@@ -1,0 +1,4 @@
+[user]
+	name = <FULL_NAME>
+	email = <EMAIL>
+	signingKey = <KEY>

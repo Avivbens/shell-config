@@ -1,0 +1,5 @@
+registry=https://zoominfo.jfrog.io/artifactory/api/npm/virtual-npm/
+always-auth=true
+email=<EMAIL>
+progress=false
+//zoominfo.jfrog.io/artifactory/api/npm/virtual-npm/:_auth=<ARTIFACTORY_AUTH>
