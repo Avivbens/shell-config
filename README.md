@@ -29,8 +29,9 @@ sudo pbpaste | sh
 **Open a new terminal window**
 
 ```bash
-cat ~/shell-config/src/scripts/cli.sh | pbcopy
-sudo pbpaste | sh
+cd ~/shell-config
+npm run build
+sudo npm run start
 ```
 
 <br>
