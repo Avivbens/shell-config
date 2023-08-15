@@ -16,7 +16,7 @@ mv -f ~/.zshrc ~/.zshrc.backup
 # create a symbolic link
 ln -f ~/shell-config/zsh/.zshrc ~/.zshrc
 
-exec /bin/zsh
+source ~/.zshrc
 
 # install git if not installed
 if ! command -v git &> /dev/null
@@ -25,7 +25,7 @@ then
     brew install git
 fi
 
-exec /bin/zsh
+source ~/.zshrc
 
 mkdir -p ~/.npmrcs
 grant_permissions "~/.npmrcs"
@@ -46,13 +46,13 @@ mkdir ~/.npmrc
 grant_permissions "~/.npmrc"
 
 brew install nvm
-exec /bin/zsh
+source ~/.zshrc
 
 echo -e "\e[33mInstall NodeJS\e[0m"
 nvm install 16.14.0
 nvm alias default 16.14.0
 
-exec /bin/zsh
+source ~/.zshrc
 
 
 # Trigger CLI
