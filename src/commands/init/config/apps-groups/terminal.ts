@@ -5,11 +5,13 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Fig',
         group: 'terminal',
+        default: true,
         commands: [BREW_CASK('fig')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting and Autosuggestions',
         group: 'terminal',
+        default: true,
         commands: [
             'git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions',
             'git clone https://github.com/zsh-users/zsh-completions.git ~/.zsh/zsh-completions',
