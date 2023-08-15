@@ -20,4 +20,4 @@ export const PYTHON: Readonly<IAppSetup[]> = [
         description: 'Python package manager, Python is required',
         deps: ['Python']
     }
-];
+] as const;

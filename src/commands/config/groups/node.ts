@@ -125,4 +125,4 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         group: 'node',
         commands: [NODE_GLOBAL('verdaccio')]
     }
-];
+] as const;

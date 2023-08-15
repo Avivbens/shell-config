@@ -8,4 +8,4 @@ export const ZI: Readonly<IAppSetup[]> = [
             'sudo chmod +a "user:$USER allow read,write,append,readattr,writeattr,readextattr,writeextattr,readsecurity" /etc/hosts && echo 127.0.0.1 dev.zoominfo.com >> /etc/hosts'
         ]
     }
-];
+] as const;

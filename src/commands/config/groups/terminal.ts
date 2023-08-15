@@ -16,4 +16,4 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
             'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting'
         ]
     },
-];
+] as const;

@@ -26,4 +26,4 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         default: true,
         commands: [BREW_INSTALL('redis')]
     }
-];
+] as const;

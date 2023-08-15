@@ -111,4 +111,4 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         commands: [BREW_CASK('postman')]
     }
-];
+] as const;
