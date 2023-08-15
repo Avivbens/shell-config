@@ -33,6 +33,5 @@ exec /bin/zsh
 
 
 echo -e "\e[33mInstall ALL global NPM packages\e[0m"
-source ~/scripts/init/install-npm-packages.sh
-
+source ~/shell-config/src/scripts/legacy/install-npm-packages.sh
 exec /bin/zsh
