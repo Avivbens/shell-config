@@ -1,4 +1,4 @@
-import { IAppSetup } from '../../../models/app-setup.model'
+import { IAppSetup } from '../../../../models/app-setup.model'
 import { NODE_GLOBAL } from '../utils'
 
 export const NODE_APPS: Readonly<IAppSetup[]> = [

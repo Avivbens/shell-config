@@ -2,10 +2,14 @@ import { Command, CommandRunner } from 'nest-commander'
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import * as ora from 'ora'
-import { IAppSetup } from '../models/app-setup.model'
-import { LoggerService } from '../services/logger.service'
+import { IAppSetup } from '../../models/app-setup.model'
+import { LoggerService } from '../../services/logger.service'
 import { MULTI_SELECT_PROMPT } from './config/multi-select.config'
-import { SETUP_ASSETS_CONFIRM_PROMPT } from './config/setup-assets.config'
+import {
+    ASK_FOR_EMAIL_PROMPT,
+    ASK_FOR_NAME_PROMPT,
+    SETUP_ASSETS_CONFIRM_PROMPT,
+} from './config/setup-assets.config'
 
 const execPromise = promisify(exec)
 const inquirer: typeof import('inquirer') = require('inquirer')
@@ -24,34 +28,48 @@ export class InitCommand extends CommandRunner {
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
-        // ask is assets needed
-        const toSetupAssets = await SETUP_ASSETS_CONFIRM_PROMPT()
+        try {
+            // ask is assets needed
+            const toSetupAssets = await SETUP_ASSETS_CONFIRM_PROMPT()
 
-        if (toSetupAssets) {
-            await this.setupAssets()
-        }
-
-        const toInstall = await MULTI_SELECT_PROMPT()
-
-        const order = this.resolveDeps(toInstall).sort((a, b) => {
-            if (a.last) {
-                return 1
+            if (toSetupAssets) {
+                await this.setupAssets()
             }
 
-            if (b.last) {
-                return -1
+            const toInstall = await MULTI_SELECT_PROMPT()
+
+            const order = this.resolveDeps(toInstall).sort((a, b) => {
+                if (a.last) {
+                    return 1
+                }
+
+                if (b.last) {
+                    return -1
+                }
+
+                return 0
+            })
+
+            for (const app of order) {
+                await this.installApp(app)
             }
-
-            return 0
-        })
-
-        for (const app of order) {
-            await this.installApp(app)
+        } catch (error) {
+            this.logger.error(`Failed to init system: ${error.stack}`)
+            process.exit(1)
         }
     }
 
     // TODO - setup assets
-    private async setupAssets(): Promise<void> {}
+    private async setupAssets(): Promise<void> {
+        try {
+            const email = await ASK_FOR_EMAIL_PROMPT()
+            const name = await ASK_FOR_NAME_PROMPT()
+
+            const spinner = ora('Setting up assets').start()
+        } catch (error) {
+            this.logger.error(`Failed to setup assets: ${error.stack}`)
+        }
+    }
 
     private resolveDeps(
         apps: IAppSetup[],

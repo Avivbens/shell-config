@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { InitCommand } from './commands/init.command'
+import { InitCommand } from './commands/init/init.command'
 import { LoggerService } from './services/logger.service'
 
 @Module({

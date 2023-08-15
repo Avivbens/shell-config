@@ -1,4 +1,4 @@
-import { IAppSetup } from '../../../models/app-setup.model'
+import { IAppSetup } from '../../../../models/app-setup.model'
 import { BREW_CASK, BREW_INSTALL, BREW_TAP } from '../utils'
 
 export const CLI_APPS: Readonly<IAppSetup[]> = [

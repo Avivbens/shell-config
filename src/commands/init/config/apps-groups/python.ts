@@ -1,4 +1,4 @@
-import { IAppSetup } from '../../../models/app-setup.model'
+import { IAppSetup } from '../../../../models/app-setup.model'
 import { BREW_INSTALL } from '../utils'
 
 export const PYTHON: Readonly<IAppSetup[]> = [
