@@ -7,7 +7,7 @@ import {
     PYTHON,
     TERMINAL_APPS,
     ZI
-} from './groups';
+} from './apps-groups';
 
 export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...ZI,
