@@ -163,7 +163,7 @@ export class InitCommand extends CommandRunner {
             return this.resolveDeps(toCheck, res, depsMap)
         } catch (error) {
             if (round === 0) {
-                this.logger.error('Failed to resolve deps')
+                this.logger.error(`Failed to resolve deps, error: ${error.stack}`)
                 process.exit(1)
             } else {
                 throw error
@@ -185,7 +185,7 @@ export class InitCommand extends CommandRunner {
             this.logger.log(`Installed ${name}`)
         } catch (error) {
             spinner.fail()
-            this.logger.error(`Failed to install ${name}`)
+            this.logger.error(`Failed to install ${name}, error: ${error.stack}`)
         }
     }
 }
