@@ -10,8 +10,8 @@ echo -e "\e[33mInstall NVM\e[0m"
 mkdir ~/.nvm
 grant_permissions "~/.nvm"
 
-mkdir ~/.npmrc
-grant_permissions "~/.npmrc"
+mkdir ~/.npmrcs
+grant_permissions "~/.npmrcs"
 
 brew install nvm
 exec /bin/zsh
