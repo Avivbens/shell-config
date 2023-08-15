@@ -22,7 +22,6 @@ import { ReplacementTemplate } from './template-handle/models/replacement.enum'
 import { replaceInTemplate } from './template-handle/replace-in-template'
 
 const execPromise = promisify(exec)
-const inquirer: typeof import('inquirer') = require('inquirer')
 
 @Command({
     name: 'init',

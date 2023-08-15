@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const inquirer: typeof import('inquirer') = require('inquirer')
+import { inquirer } from '@common/inquirer'
 
 export const SETUP_ASSETS_CONFIRM_PROMPT = async (): Promise<boolean> => {
     const { setupAssets } = await inquirer.prompt([
