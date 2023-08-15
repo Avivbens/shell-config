@@ -27,17 +27,8 @@ fi
 
 exec /bin/zsh
 
-# TODO - move into CLI as optional with inputs
-# cp -f ~/shell-config/assets/.gitconfig.personal ~/.gitconfig.personal
-# ln -f ~/.gitconfig.personal ~/.gitconfig
-
 mkdir -p ~/.npmrcs
 grant_permissions "~/.npmrcs"
-
-# TODO - move into CLI as optional with inputs
-# cp -f ~/shell-config/assets/.npmrc.personal ~/.npmrcs/personal
-# ln -f ~/.npmrcs/personal ~/.npmrc
-
 
 grant_permissions "/usr/local" || {}
 grant_permissions "/Library/Caches/Homebrew" || {}

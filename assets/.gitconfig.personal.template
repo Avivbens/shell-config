@@ -1,4 +1,6 @@
 [user]
 	name = <FULL_NAME>
-	email = <EMAIL>
-	signingKey = <KEY>
+	email = <PERSONAL_EMAIL>
+	signingKey = <PERSONAL_GIT_KEY>
+[push]
+	autoSetupRemote = true
