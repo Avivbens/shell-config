@@ -4,9 +4,10 @@ import { promisify } from 'node:util';
 import * as ora from 'ora';
 import { IAppSetup } from '../models/app-setup.model';
 import { LoggerService } from '../services/logger.service';
-import { INIT_PROMPT } from './config/init.config';
+import { MULTI_SELECT_PROMPT } from './config/multi-select.config';
 
 const execPromise = promisify(exec);
+const inquirer: typeof import('inquirer') = require('inquirer');
 
 @Command({
   name: 'init',
@@ -22,7 +23,7 @@ export class InitCommand extends CommandRunner {
   }
 
   async run(inputs: string[], options: Record<string, any>): Promise<void> {
-    const toInstall = await INIT_PROMPT();
+    const toInstall = await MULTI_SELECT_PROMPT();
 
     const order = this.resolveDeps(toInstall).sort((a, b) => {
       if (a.last) {

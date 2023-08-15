@@ -5,7 +5,7 @@ import { IAppSetup } from '../../models/app-setup.model';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const inquirer: typeof import('inquirer') = require('inquirer');
 
-export const INIT_PROMPT = async (): Promise<IAppSetup[]> => {
+export const MULTI_SELECT_PROMPT = async (): Promise<IAppSetup[]> => {
   const groups: Record<IGroup, IAppSetup[]> = APPS_CONFIG.reduce((acc, app) => {
     const { group } = app;
     acc[group] ??= [];
