@@ -4,17 +4,17 @@ import { promisify } from 'node:util';
 import * as ora from 'ora';
 import { IAppSetup } from '../models/app-setup.model';
 import { LoggerService } from '../services/logger.service';
-import { TREE_PROMPT } from './config/tree.config';
+import { INIT_PROMPT } from './config/init.config';
 
 const execPromise = promisify(exec);
 
 @Command({
-  name: 'install',
+  name: 'init',
   // arguments: '<task>',
-  description: 'Install MacOS setup with tree selection',
+  description: 'Install MacOS setup with Multi-Selection',
   options: { isDefault: true },
 })
-export class TreeCommand extends CommandRunner {
+export class InitCommand extends CommandRunner {
   private readonly installMap = new Map<string, boolean>();
 
   constructor(private readonly logger: LoggerService) {
@@ -22,7 +22,7 @@ export class TreeCommand extends CommandRunner {
   }
 
   async run(inputs: string[], options: Record<string, any>): Promise<void> {
-    const toInstall = await TREE_PROMPT();
+    const toInstall = await INIT_PROMPT();
 
     const order = this.resolveDeps(toInstall).sort((a, b) => {
       if (a.last) {

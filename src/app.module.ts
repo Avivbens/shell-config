@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TreeCommand } from './commands/tree.command';
+import { InitCommand } from './commands/init.command';
 import { LoggerService } from './services/logger.service';
 
 @Module({
-  providers: [LoggerService, TreeCommand],
+  providers: [LoggerService, InitCommand],
 })
 export class AppModule {}
