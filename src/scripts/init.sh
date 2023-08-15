@@ -24,9 +24,5 @@ grant_permissions "~/.nvm"
 # save all terminal output to a file
 # exec &> ~/Desktop/init.log
 
-mv -f ~/.zshrc ~/.zshrc.backup
-# create a symbolic link
-ln -f ~/shell-config/zsh/.zshrc ~/.zshrc
-
 # TODO - download bundled build
 npm i --no-package-lock
