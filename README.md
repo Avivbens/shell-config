@@ -1,30 +1,41 @@
 # Shell Configuration - ZSH
 
-## Core
-* Autosuggest
-* Autocomplete
-* Colored correct code
+## CLI Usage
+### Pre Install
+```bash
+cd
+git clone https://github.com/Avivbens/shell-config.git
+```
+
+```bash
+cat ~/shell-config/src/scripts/pre-init.sh | pbcopy
+sudo pbpaste | sh
+```
+
+### CLI Bootstrap
+```bash
+cd ~/shell-config
+cat ~/shell-config/src/scripts/init-cli.sh | pbcopy
+sudo pbpaste | sh
+```
 
 
 <br>
 
-## Terminal Apps
-* homebrew
-* nvm
-* google-cloud-sdk
-* fig
-
-
-<br>
-
-## Supported Features
+## Supported Terminal Features
 * System commands
 * Git commands
 * Node & NPM commands
+* Google-Cloud-Sdk
+* Homebrew
+* Fig
+* Autosuggest
+* Autocomplete
+* Colored Correct Code
 * Mongodb
 * Redis
 * Angular
-* NestJS
+* Nestjs
 * Typescript
 
 
