@@ -27,8 +27,9 @@ if [ -f "$(brew --prefix)/share/google-cloud-sdk" ]; then
   source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 fi
 
-
-source ~/shell-config/zsh/.entry-point.sh
+if [ -f "$HOME/shell-config/zsh/.entry-point.sh" ]; then
+  source ~/shell-config/zsh/.entry-point.sh
+fi
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
