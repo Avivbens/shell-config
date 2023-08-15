@@ -5,6 +5,7 @@ import * as ora from 'ora';
 import { IAppSetup } from '../models/app-setup.model';
 import { LoggerService } from '../services/logger.service';
 import { MULTI_SELECT_PROMPT } from './config/multi-select.config';
+import { SETUP_ASSETS_CONFIRM_PROMPT } from './config/setup-assets.config';
 
 const execPromise = promisify(exec);
 const inquirer: typeof import('inquirer') = require('inquirer');
@@ -23,6 +24,13 @@ export class InitCommand extends CommandRunner {
   }
 
   async run(inputs: string[], options: Record<string, any>): Promise<void> {
+    // ask is assets needed
+    const toSetupAssets = await SETUP_ASSETS_CONFIRM_PROMPT();
+
+    if (toSetupAssets) {
+      await this.setupAssets();
+    }
+
     const toInstall = await MULTI_SELECT_PROMPT();
 
     const order = this.resolveDeps(toInstall).sort((a, b) => {
@@ -40,6 +48,11 @@ export class InitCommand extends CommandRunner {
     for (const app of order) {
       await this.installApp(app);
     }
+  }
+
+  // TODO - setup assets
+  private async setupAssets(): Promise<void> {
+
   }
 
   private resolveDeps(
