@@ -1,4 +1,4 @@
-import { IAppSetup } from '../../../models/app-setup.model';
+import { IAppSetup } from '../../../models/app-setup.model'
 
 export const MACOS: Readonly<IAppSetup[]> = [
     {
@@ -6,6 +6,6 @@ export const MACOS: Readonly<IAppSetup[]> = [
         group: 'MacOS',
         default: true,
         commands: ['softwareupdate -i -a --agree-to-license'],
-        last: true
-    }
-];
+        last: true,
+    },
+]

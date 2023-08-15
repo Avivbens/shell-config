@@ -1,128 +1,128 @@
-import { IAppSetup } from '../../../models/app-setup.model';
-import { NODE_GLOBAL } from '../utils';
+import { IAppSetup } from '../../../models/app-setup.model'
+import { NODE_GLOBAL } from '../utils'
 
 export const NODE_APPS: Readonly<IAppSetup[]> = [
     {
         name: '@angular/cli',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('@angular/cli')]
+        commands: [NODE_GLOBAL('@angular/cli')],
     },
     {
         name: '@githubnext/github-copilot-cli',
         group: 'node',
-        commands: [NODE_GLOBAL('@githubnext/github-copilot-cli')]
+        commands: [NODE_GLOBAL('@githubnext/github-copilot-cli')],
     },
     {
         name: '@nestjs/cli',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('@nestjs/cli')]
+        commands: [NODE_GLOBAL('@nestjs/cli')],
     },
     {
         name: 'alfred-open-whatsapp',
         group: 'node',
-        commands: [NODE_GLOBAL('alfred-open-whatsapp')]
+        commands: [NODE_GLOBAL('alfred-open-whatsapp')],
     },
     {
         name: 'alfred-search-bookmark',
         group: 'node',
-        commands: [NODE_GLOBAL('alfred-search-bookmark')]
+        commands: [NODE_GLOBAL('alfred-search-bookmark')],
     },
     {
         name: 'corepack',
         group: 'node',
-        commands: [NODE_GLOBAL('corepack')]
+        commands: [NODE_GLOBAL('corepack')],
     },
     {
         name: 'gulp-cli',
         group: 'node',
-        commands: [NODE_GLOBAL('gulp-cli')]
+        commands: [NODE_GLOBAL('gulp-cli')],
     },
     {
         name: 'heroku',
         group: 'node',
-        commands: [NODE_GLOBAL('heroku')]
+        commands: [NODE_GLOBAL('heroku')],
     },
     {
         name: 'http-server',
         group: 'node',
-        commands: [NODE_GLOBAL('http-server')]
+        commands: [NODE_GLOBAL('http-server')],
     },
     {
         name: 'jest',
         group: 'node',
-        commands: [NODE_GLOBAL('jest')]
+        commands: [NODE_GLOBAL('jest')],
     },
     {
         name: 'nodemon',
         group: 'node',
-        commands: [NODE_GLOBAL('nodemon')]
+        commands: [NODE_GLOBAL('nodemon')],
     },
     {
         name: 'npkill',
         group: 'node',
-        commands: [NODE_GLOBAL('npkill')]
+        commands: [NODE_GLOBAL('npkill')],
     },
     {
         name: 'npmrc',
         group: 'node',
-        commands: [NODE_GLOBAL('npmrc')]
+        commands: [NODE_GLOBAL('npmrc')],
     },
     {
         name: 'nx',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('nx')]
+        commands: [NODE_GLOBAL('nx')],
     },
     {
         name: 'prettier',
         group: 'node',
-        commands: [NODE_GLOBAL('prettier')]
+        commands: [NODE_GLOBAL('prettier')],
     },
     {
         name: 'pretty-quick',
         group: 'node',
-        commands: [NODE_GLOBAL('pretty-quick')]
+        commands: [NODE_GLOBAL('pretty-quick')],
     },
     {
         name: 'ts-jest',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('ts-jest')]
+        commands: [NODE_GLOBAL('ts-jest')],
     },
     {
         name: 'ts-node-dev',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('ts-node-dev')]
+        commands: [NODE_GLOBAL('ts-node-dev')],
     },
     {
         name: 'ts-node',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('ts-node')]
+        commands: [NODE_GLOBAL('ts-node')],
     },
     {
         name: 'ttab',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('ttab')]
+        commands: [NODE_GLOBAL('ttab')],
     },
     {
         name: 'typescript',
         group: 'node',
         default: true,
-        commands: [NODE_GLOBAL('typescript')]
+        commands: [NODE_GLOBAL('typescript')],
     },
     {
         name: 'vercel',
         group: 'node',
-        commands: [NODE_GLOBAL('vercel')]
+        commands: [NODE_GLOBAL('vercel')],
     },
     {
         name: 'verdaccio',
         group: 'node',
-        commands: [NODE_GLOBAL('verdaccio')]
-    }
-] as const;
+        commands: [NODE_GLOBAL('verdaccio')],
+    },
+] as const

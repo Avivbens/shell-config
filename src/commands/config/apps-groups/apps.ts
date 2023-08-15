@@ -1,39 +1,39 @@
-import { IAppSetup } from '../../../models/app-setup.model';
-import { BREW_CASK } from '../utils';
+import { IAppSetup } from '../../../models/app-setup.model'
+import { BREW_CASK } from '../utils'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Google Chrome',
         group: 'apps',
         default: true,
-        commands: [BREW_CASK('google-chrome')]
+        commands: [BREW_CASK('google-chrome')],
     },
     {
         name: 'Alfred',
         group: 'apps',
-        commands: [BREW_CASK('alfred')]
+        commands: [BREW_CASK('alfred')],
     },
     {
         name: 'Google Drive',
         group: 'apps',
         default: true,
-        commands: [BREW_CASK('google-drive')]
+        commands: [BREW_CASK('google-drive')],
     },
     {
         name: 'Rectangle',
         group: 'apps',
-        commands: [BREW_CASK('rectangle')]
+        commands: [BREW_CASK('rectangle')],
     },
     {
         name: 'Visual Studio Code',
         group: 'apps',
         default: true,
-        commands: [BREW_CASK('visual-studio-code')]
+        commands: [BREW_CASK('visual-studio-code')],
     },
     {
         name: 'Dash',
         group: 'apps',
-        commands: [BREW_CASK('dash')]
+        commands: [BREW_CASK('dash')],
     },
     {
         name: 'Mongodb Compass',
@@ -41,7 +41,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         default: true,
         commands: [BREW_CASK('mongodb-compass')],
         description: 'MongoDB GUI, MongoDB is required',
-        deps: ['Mongodb']
+        deps: ['Mongodb'],
     },
     {
         name: 'Another Redis Desktop Manager',
@@ -49,66 +49,66 @@ export const APPS: Readonly<IAppSetup[]> = [
         default: true,
         commands: [
             BREW_CASK('another-redis-desktop-manager'),
-            'sudo xattr -rd com.apple.quarantine /Applications/Another Redis Desktop Manager.app'
+            'sudo xattr -rd com.apple.quarantine /Applications/Another Redis Desktop Manager.app',
         ],
         description: 'Redis GUI, Redis is required',
-        deps: ['Redis']
+        deps: ['Redis'],
     },
     {
         name: 'Slack',
         group: 'apps',
         default: true,
-        commands: [BREW_CASK('slack')]
+        commands: [BREW_CASK('slack')],
     },
     {
         name: 'UTM',
         group: 'apps',
         description: 'Virtual machine MacOS',
-        commands: [BREW_CASK('utm')]
+        commands: [BREW_CASK('utm')],
     },
     {
         name: '1Password',
         group: 'apps',
         default: true,
-        commands: [BREW_CASK('1password')]
+        commands: [BREW_CASK('1password')],
     },
     {
         name: 'Grammarly',
         group: 'apps',
         default: true,
-        commands: [BREW_CASK('grammarly')]
+        commands: [BREW_CASK('grammarly')],
     },
     {
         name: 'Cleanshot',
         description: 'Screen recorder and screenshot tool',
         group: 'apps',
-        commands: [BREW_CASK('cleanshot')]
+        commands: [BREW_CASK('cleanshot')],
     },
     {
         name: 'VLC',
         group: 'apps',
-        commands: [BREW_CASK('vlc')]
+        commands: [BREW_CASK('vlc')],
     },
     {
         name: 'Notion',
         group: 'apps',
-        commands: [BREW_CASK('notion')]
+        commands: [BREW_CASK('notion')],
     },
     {
         name: 'Webstorm',
         group: 'apps',
-        commands: [BREW_CASK('webstorm')]
+        commands: [BREW_CASK('webstorm')],
     },
     {
         name: 'Rancher',
         description: 'Kubernetes and Docker UI tool',
         group: 'apps',
-        commands: [BREW_CASK('rancher')]
+        commands: [BREW_CASK('rancher')],
     },
     {
         name: 'Postman',
         description: 'API client',
         group: 'apps',
-        commands: [BREW_CASK('postman')]
-    }
-] as const;
+        commands: [BREW_CASK('postman')],
+    },
+] as const

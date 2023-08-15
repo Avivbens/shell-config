@@ -1,13 +1,5 @@
-import { IAppSetup } from 'src/models/app-setup.model';
-import {
-    APPS,
-    CLI_APPS,
-    MACOS,
-    NODE_APPS,
-    PYTHON,
-    TERMINAL_APPS,
-    ZI
-} from './apps-groups';
+import { IAppSetup } from 'src/models/app-setup.model'
+import { APPS, CLI_APPS, MACOS, NODE_APPS, PYTHON, TERMINAL_APPS, ZI } from './apps-groups'
 
 export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...ZI,
@@ -17,4 +9,4 @@ export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...NODE_APPS,
     ...PYTHON,
     ...MACOS,
-] as const;
+] as const
