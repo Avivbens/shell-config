@@ -53,10 +53,3 @@ nvm install 16.14.0
 nvm alias default 16.14.0
 
 source ~/.zshrc
-
-
-# Trigger CLI
-cd ~/shell-config
-npm ci
-npm run build
-npm run start

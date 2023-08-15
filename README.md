@@ -14,11 +14,22 @@ cat ~/shell-config/src/scripts/pre-init.sh | pbcopy
 sudo pbpaste | sh
 ```
 
+**Open a new terminal window**
+
+<hr>
+
 ### CLI Bootstrap
 
 ```bash
 cd ~/shell-config
-cat ~/shell-config/src/scripts/init-cli.sh | pbcopy
+cat ~/shell-config/src/scripts/init.sh | pbcopy
+sudo pbpaste | sh
+```
+
+**Open a new terminal window**
+
+```bash
+cat ~/shell-config/src/scripts/cli.sh | pbcopy
 sudo pbpaste | sh
 ```
 
