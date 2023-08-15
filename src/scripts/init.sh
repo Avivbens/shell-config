@@ -9,6 +9,11 @@ if [ "$CURRENT_DIR_PATH" != "$NEEDED_DIR_PATH" ]; then
   exit 1
 fi
 
+function grant_permissions(){
+  sudo chown -R "$USER":admin "$1"
+  chmod -R 700 "$1"
+}
+
 # save all terminal output to a file
 # exec &> ~/Desktop/init.log
 
