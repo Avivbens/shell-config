@@ -56,3 +56,5 @@ nvm install 16.14.0
 nvm alias default 16.14.0
 
 source ~/.zshrc
+
+npm i --no-package-lock
