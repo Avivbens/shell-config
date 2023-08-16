@@ -27,7 +27,7 @@ const execPromise = promisify(exec)
     name: 'init',
     // arguments: '<task>',
     description: 'Install MacOS setup with Multi-Selection',
-    options: { isDefault: false },
+    options: { isDefault: true },
 })
 export class InitCommand extends CommandRunner {
     private readonly installMap = new Map<string, boolean>()
