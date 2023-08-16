@@ -13,7 +13,6 @@ jobs:
     release-please:
         runs-on: ubuntu-latest
         name: Release Please
-        name: Release Please
         steps:
             - name: Check out code
               uses: actions/checkout@v2
