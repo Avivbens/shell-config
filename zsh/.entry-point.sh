@@ -5,12 +5,15 @@ echo "entry point loaded"
 # mvn
 # source ~/.m2/.zshrc.mvn
 
+function sourceIf(){
+  if [ -f "$1" ]; then
+    source $1
+  fi
+}
 
 # Autosuggest
 # git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+sourceIf "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 
 # Autocomplete
@@ -22,9 +25,7 @@ autoload compinit
 
 # Colored correct code
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+sourceIf "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 
 # setopt hist_ignore_all_dups # remove older duplicate entries from history
@@ -119,4 +120,4 @@ source <(ng completion script)
 
 
 # extend
-source ~/shell-config/zsh/.zshrc.extends.sh
+sourceIf "$HOME/shell-config/zsh/.zshrc.extends.sh"

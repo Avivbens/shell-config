@@ -5,5 +5,5 @@ private
 .DS_Store
 node_modules
 dist
-pkg-build
+bin
 !templates/.gitkeep

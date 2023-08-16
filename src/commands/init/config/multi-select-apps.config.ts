@@ -1,11 +1,9 @@
+import { inquirer } from '@common/inquirer'
+import { IAppSetup } from '../../../models/app-setup.model'
 import { IGroup } from '../../../models/group.model'
 import { APPS_CONFIG } from './apps.config'
-import { IAppSetup } from '../../../models/app-setup.model'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const inquirer: typeof import('inquirer') = require('inquirer')
-
-export const MULTI_SELECT_PROMPT = async (): Promise<IAppSetup[]> => {
+export const MULTI_SELECT_APPS_PROMPT = async (): Promise<IAppSetup[]> => {
     const groups: Record<IGroup, IAppSetup[]> = APPS_CONFIG.reduce((acc, app) => {
         const { group } = app
         acc[group] ??= []
@@ -21,8 +19,6 @@ export const MULTI_SELECT_PROMPT = async (): Promise<IAppSetup[]> => {
                 name: `${name}${description ? ` - ${description}` : ''}`,
                 checked: initial,
                 value: app,
-                line: description ?? '',
-                extra: description ?? '',
             }
         })
 

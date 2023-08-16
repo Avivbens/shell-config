@@ -6,7 +6,7 @@ import { promisify } from 'node:util'
 import * as ora from 'ora'
 import { IAppSetup } from '../../models/app-setup.model'
 import { LoggerService } from '../../services/logger.service'
-import { MULTI_SELECT_PROMPT } from './config/multi-select.config'
+import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
 import {
     ASK_FOR_ARTIFACTORY_KEY_PROMPT,
     ASK_FOR_EMAIL_PROMPT,
@@ -22,7 +22,6 @@ import { ReplacementTemplate } from './template-handle/models/replacement.enum'
 import { replaceInTemplate } from './template-handle/replace-in-template'
 
 const execPromise = promisify(exec)
-const inquirer: typeof import('inquirer') = require('inquirer')
 
 @Command({
     name: 'init',
@@ -46,7 +45,7 @@ export class InitCommand extends CommandRunner {
                 await this.setupAssets()
             }
 
-            const toInstall = await MULTI_SELECT_PROMPT()
+            const toInstall = await MULTI_SELECT_APPS_PROMPT()
 
             const order = this.resolveDeps(toInstall).sort((a, b) => {
                 if (a.last) {
