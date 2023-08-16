@@ -11,7 +11,14 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Alfred',
         group: 'apps',
+        description: 'Productivity app, create custom shortcuts and workflows',
         commands: [BREW_CASK('alfred')],
+    },
+    {
+        name: 'Bar Tender',
+        group: 'apps',
+        description: 'Hide menu bar icons and manage them',
+        commands: [BREW_CASK('bartender')],
     },
     {
         name: 'Google Drive',

@@ -22,7 +22,7 @@ sudo pbpaste | sh
 
 ```bash
 cd ~/shell-config
-cat ~/shell-config/src/scripts/init.sh | pbcopy
+cat ~/shell-config/src/scripts/init.old.sh | pbcopy
 sudo pbpaste | sh
 ```
 

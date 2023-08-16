@@ -3,3 +3,5 @@ export const BREW_INSTALL = (formula: string) => `brew install ${formula}`
 export const BREW_TAP = (tapTo: string) => `brew tap ${tapTo}`
 export const NODE_GLOBAL = (packageName: string) =>
     `npm install -g ${packageName} --registry=https://registry.npmjs.org/`
+
+export const NVM_COMMAND = (command: string) => `source $HOME/.nvm/nvm.sh && nvm ${command}`
