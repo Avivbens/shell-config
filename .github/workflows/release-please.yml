@@ -31,5 +31,4 @@ jobs:
               with:
                   release-type: 'node'
                   package-name: 'my-package'
-                  release-as: 'v${{ steps.get_version.outputs.version }}'
                   path: './bin/cli'
