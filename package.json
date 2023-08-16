@@ -33,6 +33,8 @@
         "rxjs": "^7.8.1"
     },
     "devDependencies": {
+        "@commitlint/cli": "^17.7.1",
+        "@commitlint/config-conventional": "^17.7.0",
         "@nestjs/cli": "^10.0.0",
         "@nestjs/schematics": "^10.0.0",
         "@nestjs/testing": "^10.0.0",
@@ -67,7 +69,7 @@
         "targets": [
             "node18-macos-x64"
         ],
-        "outputPath": "pkg-build"
+        "outputPath": "bin"
     },
     "jest": {
         "moduleFileExtensions": [
