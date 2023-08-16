@@ -5,6 +5,13 @@ function grant_permissions(){
   chmod -R 700 "$1"
 }
 
+function get_remote_execute_file() {
+  local url="$1"
+  local response=$(curl -s "$url")
+  local raw_lines=$(echo "$response" | sed -n 's/.*"rawLines":\[\([^]]*\)\].*/\1/p' | tr -d '[]"')
+  echo "$raw_lines" | tr '\n' ' '
+}
+
 # install git if not installed
 if ! command -v git &> /dev/null
 then
@@ -24,5 +31,21 @@ grant_permissions "~/.nvm"
 # save all terminal output to a file
 # exec &> ~/Desktop/init.log
 
-# TODO - download bundled build
-npm i --no-package-lock
+# download the CLI
+curl -s https://api.github.com/repos/Avivbens/shell-config/releases/latest \
+| grep "browser_download_url.*cli-v.*.zip" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| xargs curl -L -A "Mozilla/5.0" -o ~/Desktop/cli.zip
+
+# unzip the CLI
+unzip ~/Desktop/cli.zip -d ~/Desktop
+mv ~/Desktop/bin/* ~/Desktop
+rm ~/Desktop/cli.zip
+rm -rf ~/Desktop/bin
+
+# allow apps from anywhere - avoid certificate issues
+sudo spctl --master-disable
+
+# for non Apple silicon macs
+yes 'a' | softwareupdate --install-rosetta

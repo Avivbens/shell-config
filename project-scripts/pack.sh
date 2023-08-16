@@ -1,5 +1,8 @@
 rm -rf dist
-rm -rf pkg-build
+rm -rf bin
 
 npm run build
-pkg .
+
+version=$(node -p "require('./package.json').version || 'unknown-version'")
+echo "version: $version"
+pkg . --output "bin/cli-v$version"
