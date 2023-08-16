@@ -20,6 +20,7 @@ jobs:
               run: |
                   npm install --no-package-lock
                   npm run pack
+                  cp CHANGELOG.md ./bin/cli/CHANGELOG.md
 
             - name: Determine file changes
               id: file_changes
