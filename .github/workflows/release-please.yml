@@ -28,14 +28,19 @@ jobs:
                   path: ./bin/*
                   filename: pack.zip
 
+            - name: Extract version from package.json
+              id: get_version
+              run: |
+                  echo "::set-output name=version::$(jq -r '.version' package.json)"
+
             - name: Create GitHub Release
               id: create_release
               uses: actions/create-release@v1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  tag_name: ${{ github.ref }}
-                  release_name: ${{ github.ref }}
+                  tag_name: v${{ steps.get_version.outputs.version }}
+                  release_name: v${{ steps.get_version.outputs.version }}
 
             - name: Upload Release Asset
               uses: actions/upload-release-asset@v1
