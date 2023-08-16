@@ -23,7 +23,7 @@ jobs:
 
             - name: Create a new version, update CHANGELOG.md
               run: |
-                  npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
+                  npx commitlint --from HEAD~${{ github.event.pull_request.head.sha  }} --to HEAD
 
             - name: Build Package
               run: |
