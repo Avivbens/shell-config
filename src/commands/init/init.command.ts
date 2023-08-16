@@ -25,8 +25,8 @@ const execPromise = promisify(exec)
 
 @Command({
     name: 'init',
-    description: 'Install MacOS setup with Multi-Selection',
     // arguments: '<task>',
+    description: 'Install MacOS setup with Multi-Selection',
     options: { isDefault: true },
 })
 export class InitCommand extends CommandRunner {
