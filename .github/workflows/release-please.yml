@@ -34,8 +34,8 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  tag_name: ${{ github.run_number }}
-                  release_name: ${{ github.run_number }}
+                  tag_name: ${{ github.ref }}
+                  release_name: ${{ github.ref }}
 
             - name: Upload Release Asset
               uses: actions/upload-release-asset@v1
@@ -44,17 +44,5 @@ jobs:
               with:
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
                   asset_path: ./pack.zip
-                  asset_name: pack.zip
+                  asset_name: cli.zip
                   asset_content_type: application/zip
-
-            # - name: Determine file changes
-            #   id: file_changes
-            #   run: |
-            #       echo "::set-output name=changes::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
-
-            # - name: Create Release
-            #   uses: google-github-actions/release-please-action@v3
-            #   with:
-            #       release-type: 'terraform-module'
-            #       package-name: 'my-package'
-            #       path: './bin/cli'
