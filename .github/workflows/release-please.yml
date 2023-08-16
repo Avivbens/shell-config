@@ -17,9 +17,16 @@ jobs:
             - name: Check out code
               uses: actions/checkout@v2
 
-            - name: Build Packages
+            - name: Install Node.js Deps
               run: |
                   npm install --no-package-lock
+
+            - name: Create a new version, update CHANGELOG.md
+              run: |
+                  npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
+
+            - name: Build Package
+              run: |
                   npm run pack
 
             - name: Archive pack file
