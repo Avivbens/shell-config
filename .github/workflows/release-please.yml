@@ -7,13 +7,54 @@ permissions:
     contents: write
     pull-requests: write
 
-name: release-please
+name: 📦 Create new release
 
 jobs:
     release-please:
         runs-on: ubuntu-latest
+        name: Release Please
         steps:
-            - uses: google-github-actions/release-please-action@v3
+            - name: Check out code
+              uses: actions/checkout@v2
+
+            - name: Build Packages
+              run: |
+                  npm install --no-package-lock
+                  npm run pack
+
+            - name: Archive pack file
+              uses: thedoctor0/zip-release@master
               with:
-                  release-type: node
-                  package-name: release-please-action
+                  path: ./bin/*
+                  filename: pack.zip
+
+            - name: Create GitHub Release
+              id: create_release
+              uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: ${{ github.run_number }}
+                  release_name: ${{ github.run_number }}
+
+            - name: Upload Release Asset
+              uses: actions/upload-release-asset@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
+                  asset_path: ./pack.zip
+                  asset_name: pack.zip
+                  asset_content_type: application/zip
+
+            # - name: Determine file changes
+            #   id: file_changes
+            #   run: |
+            #       echo "::set-output name=changes::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+
+            # - name: Create Release
+            #   uses: google-github-actions/release-please-action@v3
+            #   with:
+            #       release-type: 'terraform-module'
+            #       package-name: 'my-package'
+            #       path: './bin/cli'
