@@ -26,3 +26,9 @@ grant_permissions "~/.nvm"
 
 # TODO - download bundled build
 npm i --no-package-lock
+
+# allow apps from anywhere
+# sudo spctl --master-disable
+
+# disallow apps from anywhere
+# sudo spctl --master-enable
