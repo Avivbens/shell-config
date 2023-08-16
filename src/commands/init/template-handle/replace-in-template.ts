@@ -1,12 +1,12 @@
+import { resolveBundledAsset } from '@common/utils'
 import { readFile } from 'fs/promises'
-import { join } from 'path'
 import { ReplacementTemplate } from './models/replacement.enum'
 
 export async function replaceInTemplate(
     filePath: string,
     replacementObject: Record<ReplacementTemplate, string>,
 ): Promise<string> {
-    const path = join(process.cwd(), filePath)
+    const path = resolveBundledAsset(__dirname, filePath)
     const file = await readFile(path, 'utf-8')
 
     let newFile: string = file

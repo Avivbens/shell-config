@@ -1,3 +1,4 @@
+import { TARGET_DIR } from '@common/utils'
 import { Command, CommandRunner } from 'nest-commander'
 import { exec } from 'node:child_process'
 import { writeFile } from 'node:fs/promises'
@@ -27,7 +28,7 @@ const execPromise = promisify(exec)
     name: 'init',
     // arguments: '<task>',
     description: 'Install MacOS setup with Multi-Selection',
-    options: { isDefault: true },
+    options: { isDefault: false },
 })
 export class InitCommand extends CommandRunner {
     private readonly installMap = new Map<string, boolean>()
@@ -64,7 +65,6 @@ export class InitCommand extends CommandRunner {
             }
         } catch (error) {
             this.logger.error(`Failed to init system: ${error.stack}`)
-            process.exit(1)
         }
     }
 
@@ -101,7 +101,7 @@ export class InitCommand extends CommandRunner {
 
             for (const { filePath, copyTo, effects } of ASSETS_TEMPLATES) {
                 const newFileContent = await replaceInTemplate(filePath, replacementObject)
-                const destination = resolve(process.cwd(), copyTo)
+                const destination = resolve(TARGET_DIR, copyTo)
                 await writeFile(destination, newFileContent)
 
                 for (const effect of effects) {
