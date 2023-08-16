@@ -26,8 +26,10 @@ jobs:
               run: |
                   echo "::set-output name=changes::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
 
-            - uses: google-github-actions/release-please-action@v3
-              # if: ${{ steps.file_changes.outputs.changes == './bin/cli' }}
+            - name: Create Release
+              uses: google-github-actions/release-please-action@v3
               with:
-                  release-type: node
-                  package-name: release-please-action
+                  release-type: 'node'
+                  package-name: 'my-package'
+                  release-as: 'v${{ steps.get_version.outputs.version }}'
+                  path: './bin/cli'
