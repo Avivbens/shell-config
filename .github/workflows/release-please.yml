@@ -7,13 +7,27 @@ permissions:
     contents: write
     pull-requests: write
 
-name: release-please
+name: 📦 Create new release
 
 jobs:
     release-please:
         runs-on: ubuntu-latest
         steps:
+            - name: Check out code
+              uses: actions/checkout@v2
+
+            - name: Build Packages
+              run: |
+                  npm install --no-package-lock
+                  npm run pack
+
+            - name: Determine file changes
+              id: file_changes
+              run: |
+                  echo "::set-output name=changes::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+
             - uses: google-github-actions/release-please-action@v3
+              # if: ${{ steps.file_changes.outputs.changes == './bin/cli' }}
               with:
                   release-type: node
                   package-name: release-please-action
