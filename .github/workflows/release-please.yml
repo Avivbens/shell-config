@@ -13,6 +13,7 @@ jobs:
     release-please:
         runs-on: ubuntu-latest
         name: Release Please
+        name: Release Please
         steps:
             - name: Check out code
               uses: actions/checkout@v2
@@ -25,7 +26,7 @@ jobs:
             - name: Archive pack file
               uses: thedoctor0/zip-release@master
               with:
-                  path: ./bin/pack/*
+                  path: ./bin/*
                   filename: pack.zip
 
             - name: Create GitHub Release
