@@ -16,7 +16,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         commands: [
             BREW_TAP('mongodb/brew'),
             BREW_INSTALL('mongodb-community@6.0'),
-            'mkdir -p ~/mongodb',
+            'mkdir -p ~/mongodb || {  }',
         ],
     },
     {

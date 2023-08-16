@@ -80,6 +80,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: [BREW_CASK('1password')],
     },
     {
+        name: 'iTerm2',
+        description: 'Terminal replacement',
+        group: 'apps',
+        commands: [BREW_CASK('iterm2')],
+    },
+    {
         name: 'Grammarly',
         group: 'apps',
         default: true,

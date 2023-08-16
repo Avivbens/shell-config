@@ -1,6 +1,65 @@
 # Shell Configuration - ZSH
 
-## CLI Usage
+## Remote Installation - No dependencies needed
+
+<details>
+<summary>Click to expand</summary>
+
+### Pre Install
+
+```bash
+sudo cd
+function get_remote_execute_file() {
+  local file_path="$1"
+  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
+  local response=$(curl -s "$url")
+  echo "$response"
+}
+
+get_remote_execute_file "src/scripts/pre-init.sh" | sh
+```
+
+**Open a new terminal window**
+
+<hr>
+
+### CLI Installation
+
+```bash
+sudo cd
+function get_remote_execute_file() {
+  local file_path="$1"
+  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
+  local response=$(curl -s "$url")
+  echo "$response"
+}
+
+get_remote_execute_file "src/scripts/init.sh" | sh
+```
+
+### Post Install and Configuration - after done with CLI usage
+
+```bash
+sudo cd
+function get_remote_execute_file() {
+  local file_path="$1"
+  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
+  local response=$(curl -s "$url")
+  echo "$response"
+}
+
+get_remote_execute_file "src/scripts/post-init.sh" | sh
+```
+
+<br>
+<hr>
+
+</details>
+
+## Manual Installation - Git needed
+
+<details>
+<summary>Click to expand</summary>
 
 ### Pre Install
 
@@ -18,23 +77,48 @@ sudo pbpaste | sh
 
 <hr>
 
-### CLI Bootstrap
+### CLI Installation
 
 ```bash
-cd ~/shell-config
-cat ~/shell-config/src/scripts/init.old.sh | pbcopy
+cat ~/shell-config/src/scripts/init.sh | pbcopy
 sudo pbpaste | sh
 ```
 
-**Open a new terminal window**
+<!-- <br> -->
+
+<!-- Download CLI executable
+<br>
+[CLI Download](https://github.com/Avivbens/shell-config/releases/latest) - Download the `cli.zip` file and extract it to your Desktop -->
+
+### Post Install and Configuration - after done with CLI usage
 
 ```bash
-cd ~/shell-config
-npm run build
-sudo npm run start
+cat ~/shell-config/src/scripts/post-init.sh | pbcopy
+sudo pbpaste | sh
 ```
 
-<br>
+</details>
+
+## CLI Usage
+
+<!-- ```bash
+# Non Apple Silicon Macs
+softwareupdate --install-rosetta
+``` -->
+
+```bash
+# Must be done BEFORE EACH running the CLI in a new terminal window
+cd ~/Desktop
+sudo ~/Desktop/cli-v* --help
+```
+
+```bash
+# Better to start with
+~/Desktop/cli-v* shell # install shell configuration as described in this readme
+
+# Open a new terminal window, run the before each command again, and then
+~/Desktop/cli-v* init # init system configuration, ask for credentials of NPM and git, select apps to install
+```
 
 ## Supported Terminal Features
 
