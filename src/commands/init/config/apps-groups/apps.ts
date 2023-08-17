@@ -1,5 +1,5 @@
 import { IAppSetup } from '../../../../models/app-setup.model'
-import { BREW_CASK } from '../utils'
+import { BREW_CASK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
