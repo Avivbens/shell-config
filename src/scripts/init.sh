@@ -12,13 +12,6 @@ function get_remote_execute_file() {
   echo "$raw_lines" | tr '\n' ' '
 }
 
-# install git if not installed
-if ! command -v git &> /dev/null
-then
-    echo -e "\e[33mInstall GIT CLI\e[0m"
-    brew install git
-fi
-
 mkdir -p ~/.npmrcs
 grant_permissions "~/.npmrcs"
 
