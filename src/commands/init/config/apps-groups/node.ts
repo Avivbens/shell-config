@@ -1,5 +1,5 @@
 import { IAppSetup } from '../../../../models/app-setup.model'
-import { NODE_GLOBAL } from '../utils'
+import { NODE_GLOBAL } from '../common-commands'
 
 export const NODE_APPS: Readonly<IAppSetup[]> = [
     {

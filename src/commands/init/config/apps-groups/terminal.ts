@@ -1,5 +1,5 @@
 import { IAppSetup } from '../../../../models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, NVM_COMMAND } from '../utils'
+import { BREW_CASK, BREW_INSTALL, NVM_COMMAND } from '../common-commands'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
