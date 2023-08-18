@@ -1,7 +1,8 @@
-import { Logger } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
 import { appendFile } from 'fs/promises'
 import { homedir } from 'node:os'
 
+@Injectable()
 export class LoggerService {
     private logger: Logger = new Logger()
     private readonly logPath = `${homedir()}/Desktop/macos-setup.log`
