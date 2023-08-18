@@ -4,8 +4,13 @@
     "description": "CLI Tool for MacOS setup",
     "author": "Aviv Ben Shahar",
     "private": false,
-    "license": "UNLICENSED",
+    "license": "MIT",
     "bin": "dist/main.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Avivbens/shell-config.git"
+    },
+    "homepage": "https://github.com/Avivbens/shell-config#readme",
     "scripts": {
         "build": "nest build",
         "pack": "./project-scripts/pack.sh",
