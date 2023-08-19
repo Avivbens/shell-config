@@ -5,6 +5,9 @@ private
 downloads
 !downloads/.gitkeep
 
+executable
+!executable/.gitkeep
+
 .DS_Store
 node_modules
 dist
