@@ -4,8 +4,9 @@ import { InitCommand } from './commands/init/init.command'
 import { ShellCommand } from './commands/shell/shell.command'
 import { CheckUpdateService } from './services/check-update.service'
 import { LoggerService } from './services/logger.service'
+import { UpdateCommand } from './commands/update/update.command'
 
-const COMMANDS = [InitCommand, ShellCommand]
+const COMMANDS = [InitCommand, ShellCommand, UpdateCommand]
 
 @Module({
     imports: [HttpModule],
