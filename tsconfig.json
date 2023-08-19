@@ -21,7 +21,10 @@
         "forceConsistentCasingInFileNames": false,
         "noFallthroughCasesInSwitch": false,
         "paths": {
-            "@common/*": ["src/common/*"]
+            "@common/*": ["src/common/*"],
+            "@models/*": ["src/models/*"],
+            "@services/*": ["src/services/*"],
+            "@commandsØ/*": ["src/commandsØ/*"]
         }
     },
     "include": ["src/**/*"]

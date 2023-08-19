@@ -1,12 +1,12 @@
 import { TARGET_DIR } from '@common/utils'
+import { IAppSetup } from '@models/app-setup.model'
+import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import { exec } from 'node:child_process'
 import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { promisify } from 'node:util'
 import ora from 'ora'
-import { IAppSetup } from '../../models/app-setup.model'
-import { LoggerService } from '../../services/logger.service'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
 import {
     ASK_FOR_ARTIFACTORY_KEY_PROMPT,

@@ -1,4 +1,4 @@
-import { IAppSetup } from '../../../../models/app-setup.model'
+import { IAppSetup } from '@models/app-setup.model'
 
 export const ZI: Readonly<IAppSetup[]> = [
     {
