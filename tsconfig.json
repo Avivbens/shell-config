@@ -3,7 +3,7 @@
         "require": ["tsconfig-paths/register"]
     },
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "Node16",
         "declaration": true,
         "removeComments": true,
         "emitDecoratorMetadata": true,
