@@ -7,12 +7,12 @@ permissions:
     contents: write
     pull-requests: write
 
-name: 📦 Create new release
+name: 📦 Create new Beta release
 
 jobs:
     release:
         runs-on: ubuntu-latest
-        name: 📦 Release Version
+        name: 📦 Release Beta Version
         steps:
             - name: 📀 Check out code
               uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
               run: |
                   git config --global user.email "github-actions[bot]@gmail.com"
                   git config --global user.name "github-actions[bot]"
-                  npx standard-version --prerelease alpha --skip.tag --skip.commit --skip.changelog
+                  npx standard-version --prerelease beta --skip.tag --skip.changelog
                   git push --follow-tags origin staging
 
             - name: 🔨 Build Package
