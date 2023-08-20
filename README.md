@@ -35,7 +35,7 @@ shell-config shell
 
 ```bash
 # Select secrets to apply, and choose apps to install
-shell-config init
+shell-config install
 ```
 
 ```bash
