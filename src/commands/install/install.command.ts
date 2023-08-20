@@ -22,12 +22,12 @@ import { ReplacementTemplate } from './template-handle/models/replacement.enum'
 import { replaceInTemplate } from './template-handle/replace-in-template'
 
 @Command({
-    name: 'init',
+    name: 'install',
     // arguments: '<task>',
     description: 'Install MacOS setup with Multi-Selection',
     options: { isDefault: false },
 })
-export class InitCommand extends CommandRunner {
+export class InstallCommand extends CommandRunner {
     private readonly installMap = new Map<string, boolean>()
 
     constructor(private readonly logger: LoggerService) {
@@ -61,7 +61,7 @@ export class InitCommand extends CommandRunner {
                 await this.installApp(app)
             }
         } catch (error) {
-            this.logger.error(`Failed to init system: ${error.stack}`)
+            this.logger.error(`Failed install command: ${error.stack}`)
         }
     }
 
