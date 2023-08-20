@@ -12,6 +12,16 @@ function get_remote_execute_file() {
   echo "$raw_lines" | tr '\n' ' '
 }
 
+echo -e "\e[33mInstall Xcode Command Line Tools\e[0m"
+softwareupdate -i "Command Line Tools for Xcode-13.3" --agree-to-license
+
+# install homebrew if not installed
+if ! command -v brew &> /dev/null
+then
+    echo -e "\e[33mInstall Homebrew\e[0m"
+    yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 mkdir -p ~/.npmrcs
 grant_permissions "~/.npmrcs"
 
@@ -31,20 +41,37 @@ grant_permissions "~/shell-config"
 # exec &> ~/Desktop/init.log
 
 # download the CLI
-curl -s https://api.github.com/repos/Avivbens/shell-config/releases/latest \
+curl -s "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
 | grep "browser_download_url.*cli-v.*.zip" \
 | cut -d : -f 2,3 \
 | tr -d \" \
-| xargs curl -L -A "Mozilla/5.0" -o ~/Desktop/cli.zip
+| xargs curl -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
-# unzip the CLI
-unzip ~/Desktop/cli.zip -d ~/Desktop
-mv ~/Desktop/bin/* ~/Desktop
-rm ~/Desktop/cli.zip
-rm -rf ~/Desktop/bin
+
+unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"
+filename="$(basename $HOME/shell-config/downloads/bin/*)"
+mv "$HOME/shell-config/downloads/bin/*" "$HOME/shell-config/downloads"
+
+rm "$HOME/shell-config/downloads/cli-update.zip"
+rm -rf "$HOME/shell-config/downloads/bin"
+
+
+# link the downloaded file to entry point
+ln -f "$HOME/shell-config/downloads/$filename" "$HOME/shell-config/executable/shell-config"
+
+# put new entry export in .zshrc
+echo 'export PATH="$HOME/shell-config/executable:$PATH"' >> "$HOME/.zshrc"
 
 # allow apps from anywhere - avoid certificate issues
 sudo spctl --master-disable
 
 # for non Apple silicon macs
 yes 'a' | softwareupdate --install-rosetta
+
+source "$HOME/.zshrc"
+
+sudo shell-config --help
+
+
+# disallow apps from anywhere
+sudo spctl --master-enable
