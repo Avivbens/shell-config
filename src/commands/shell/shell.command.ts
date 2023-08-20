@@ -1,4 +1,5 @@
-import { TARGET_DIR, copyBundledAsset, resolveBundledAsset } from '@common/utils'
+import { BASE_PATH } from '@common/constants'
+import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
 import { IShellModule } from '@models/shell-module.model'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
@@ -63,26 +64,26 @@ export class ShellCommand extends CommandRunner {
 
     private async unpackBundledAssets(): Promise<void> {
         try {
-            this.logger.debug(`Unpacking bundled assets to ${TARGET_DIR}`)
+            this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
             const prmsMake = [
-                mkdir(`${TARGET_DIR}/zsh`, { recursive: true }),
-                mkdir(`${TARGET_DIR}/private`, { recursive: true }),
+                mkdir(`${BASE_PATH}/zsh`, { recursive: true }),
+                mkdir(`${BASE_PATH}/private`, { recursive: true }),
             ]
             await Promise.allSettled(prmsMake)
 
-            this.logger.debug(`Copying bundled assets to ${TARGET_DIR}`)
+            this.logger.debug(`Copying bundled assets to ${BASE_PATH}`)
 
             const privatePath = resolveBundledAsset(__dirname, 'private/')
             const zshPath = resolveBundledAsset(__dirname, 'zsh/')
 
             const prmsCopy = [
-                copyBundledAsset(privatePath, `${TARGET_DIR}/private`, this.logger),
-                copyBundledAsset(zshPath, `${TARGET_DIR}/zsh`, this.logger),
+                copyBundledAsset(privatePath, `${BASE_PATH}/private`, this.logger),
+                copyBundledAsset(zshPath, `${BASE_PATH}/zsh`, this.logger),
             ]
 
             await Promise.all(prmsCopy)
 
-            this.logger.debug(`Finished unpacking bundled assets to ${TARGET_DIR}`)
+            this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
         } catch (error) {
             this.logger.error(`Failed unpacking bundled assets, error: ${error.stack}`)
             throw error
@@ -92,7 +93,7 @@ export class ShellCommand extends CommandRunner {
     private async linkNewZsh(): Promise<void> {
         try {
             const zshPath = resolve(homedir(), '.zshrc')
-            const newZshPath = resolve(TARGET_DIR, 'zsh', '.zshrc')
+            const newZshPath = resolve(BASE_PATH, 'zsh', '.zshrc')
 
             this.logger.debug(`Linking new zsh at ${newZshPath} to ${zshPath}`)
             await symlink(newZshPath, zshPath)
@@ -103,7 +104,7 @@ export class ShellCommand extends CommandRunner {
 
     private async enableAllModules(): Promise<void> {
         try {
-            const modulesDirPath = resolve(TARGET_DIR, 'zsh', 'extends')
+            const modulesDirPath = resolve(BASE_PATH, 'zsh', 'extends')
             const allModulesPaths: string[] = await readdir(modulesDirPath)
             const allDisabledModulesPaths: string[] = allModulesPaths.filter((modulePath) =>
                 modulePath.endsWith('.disabled'),
@@ -129,8 +130,8 @@ export class ShellCommand extends CommandRunner {
     private async enableModule(module: IShellModule): Promise<void> {
         try {
             const { path } = module
-            const resolvedPath = resolve(TARGET_DIR, `${path}.disabled`)
-            const targetPath = resolve(TARGET_DIR, path)
+            const resolvedPath = resolve(BASE_PATH, `${path}.disabled`)
+            const targetPath = resolve(BASE_PATH, path)
 
             this.logger.debug(`Enabling module ${module.name} at ${resolvedPath}`)
 
@@ -143,7 +144,7 @@ export class ShellCommand extends CommandRunner {
     private async disableModule(module: IShellModule): Promise<void> {
         try {
             const { path } = module
-            const resolvedPath = resolve(TARGET_DIR, path)
+            const resolvedPath = resolve(BASE_PATH, path)
 
             this.logger.debug(`Disabling module ${module.name} at ${resolvedPath}`)
 

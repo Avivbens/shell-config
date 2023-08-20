@@ -1,4 +1,5 @@
-import { TARGET_DIR, execPromise } from '@common/utils'
+import { BASE_PATH } from '@common/constants'
+import { execPromise } from '@common/utils'
 import { IAppSetup } from '@models/app-setup.model'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
@@ -97,7 +98,7 @@ export class InitCommand extends CommandRunner {
 
             for (const { filePath, copyTo, effects } of ASSETS_TEMPLATES) {
                 const newFileContent = await replaceInTemplate(filePath, replacementObject)
-                const destination = resolve(TARGET_DIR, copyTo)
+                const destination = resolve(BASE_PATH, copyTo)
                 await writeFile(destination, newFileContent)
 
                 for (const effect of effects) {
