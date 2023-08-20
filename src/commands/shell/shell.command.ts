@@ -1,18 +1,14 @@
 import { BASE_PATH } from '@common/constants'
-import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
 import { IShellModule } from '@models/shell-module.model'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { copyFile, mkdir, readdir, rename, symlink } from 'node:fs/promises'
-import { homedir } from 'node:os'
+import { readdir, rename } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { MULTI_SELECT_MODULES_PROMPT } from './config/multi-select-modules.config'
-import { BACKUP_ROOT_ZSH_CONFIRM_PROMPT } from './config/setup-zsh-root.config'
 import { MODULES_MAP } from './config/shell-modules.config'
 
 @Command({
     name: 'shell',
-    // arguments: '<task>',
     description: 'Setup a shell configuration with a robust set of tools and architecture',
     options: { isDefault: false },
 })
@@ -23,16 +19,6 @@ export class ShellCommand extends CommandRunner {
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
         try {
-            const isBackupRoot: boolean = await BACKUP_ROOT_ZSH_CONFIRM_PROMPT()
-
-            if (isBackupRoot) {
-                await this.backupRootZsh()
-            }
-
-            await this.unpackBundledAssets()
-
-            await this.linkNewZsh()
-
             const modulesToDisable: IShellModule[] = await MULTI_SELECT_MODULES_PROMPT()
 
             this.logger.debug(
@@ -46,59 +32,6 @@ export class ShellCommand extends CommandRunner {
             }
         } catch (error) {
             this.logger.error(`Failed to setup shell: ${error.stack}`)
-        }
-    }
-
-    private async backupRootZsh(): Promise<void> {
-        try {
-            const rootZshPath = resolve(homedir(), '.zshrc')
-            const backupRootZshPath = resolve(homedir(), 'Desktop', `zshrc.backup-${Date.now()}`)
-
-            this.logger.debug(`Backing up root zsh at ${rootZshPath} to ${backupRootZshPath}`)
-
-            await copyFile(rootZshPath, backupRootZshPath)
-        } catch (error) {
-            this.logger.error(`Failed to backup root zsh: ${error.stack}`)
-        }
-    }
-
-    private async unpackBundledAssets(): Promise<void> {
-        try {
-            this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
-            const prmsMake = [
-                mkdir(`${BASE_PATH}/zsh`, { recursive: true }),
-                mkdir(`${BASE_PATH}/private`, { recursive: true }),
-            ]
-            await Promise.allSettled(prmsMake)
-
-            this.logger.debug(`Copying bundled assets to ${BASE_PATH}`)
-
-            const privatePath = resolveBundledAsset(__dirname, 'private/')
-            const zshPath = resolveBundledAsset(__dirname, 'zsh/')
-
-            const prmsCopy = [
-                copyBundledAsset(privatePath, `${BASE_PATH}/private`, this.logger),
-                copyBundledAsset(zshPath, `${BASE_PATH}/zsh`, this.logger),
-            ]
-
-            await Promise.all(prmsCopy)
-
-            this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
-        } catch (error) {
-            this.logger.error(`Failed unpacking bundled assets, error: ${error.stack}`)
-            throw error
-        }
-    }
-
-    private async linkNewZsh(): Promise<void> {
-        try {
-            const zshPath = resolve(homedir(), '.zshrc')
-            const newZshPath = resolve(BASE_PATH, 'zsh', '.zshrc')
-
-            this.logger.debug(`Linking new zsh at ${newZshPath} to ${zshPath}`)
-            await symlink(newZshPath, zshPath)
-        } catch (error) {
-            this.logger.error(`Failed to link new zsh: ${error.stack}`)
         }
     }
 
