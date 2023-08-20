@@ -23,7 +23,6 @@ import { replaceInTemplate } from './template-handle/replace-in-template'
 
 @Command({
     name: 'install',
-    // arguments: '<task>',
     description: 'Install MacOS setup with Multi-Selection',
     options: { isDefault: false },
 })
