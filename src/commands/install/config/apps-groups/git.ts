@@ -1,4 +1,4 @@
-import { IAppSetup } from '../../../../models/app-setup.model'
+import { IAppSetup } from '@models/app-setup.model'
 import { BREW_INSTALL } from '../common-commands'
 
 export const GIT_APPS: Readonly<IAppSetup[]> = [

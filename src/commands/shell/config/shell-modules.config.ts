@@ -1,4 +1,4 @@
-import { IShellModule } from '../../../models/shell-module.model'
+import { IShellModule } from '@models/shell-module.model'
 
 export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     {
