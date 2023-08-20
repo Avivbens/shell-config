@@ -13,6 +13,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.deta/bin:$PATH"
 
+# shell-config CLI
+export PATH="$HOME/shell-config/executable:$PATH"
 
 # google-cloud-sdk
 # The next line updates PATH for the Google Cloud SDK.

@@ -1,19 +1,17 @@
 import { CommandFactory } from 'nest-commander'
 import { AppModule } from './app.module'
-;(async () => {
-    // listen to process errors
-    process.on('uncaughtException', (err) => {
-        console.error(err)
-        process.exit(1)
-    })
-    process.on('unhandledRejection', (err) => {
-        console.error(err)
-        process.exit(1)
-    })
 
-    await CommandFactory.run(AppModule, {
+const packageJson = require('../package.json')
+
+;(async () => {
+    const app = await CommandFactory.createWithoutRunning(AppModule, {
         errorHandler: (err) => {
             process.exit(1)
         },
+        version: packageJson.version,
     })
+
+    app.enableShutdownHooks()
+
+    await CommandFactory.runApplication(app)
 })()

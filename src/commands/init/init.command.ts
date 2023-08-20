@@ -1,12 +1,10 @@
-import { TARGET_DIR } from '@common/utils'
+import { TARGET_DIR, execPromise } from '@common/utils'
+import { IAppSetup } from '@models/app-setup.model'
+import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { exec } from 'node:child_process'
 import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { promisify } from 'node:util'
-import * as ora from 'ora'
-import { IAppSetup } from '../../models/app-setup.model'
-import { LoggerService } from '../../services/logger.service'
+import ora from 'ora'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
 import {
     ASK_FOR_ARTIFACTORY_KEY_PROMPT,
@@ -21,8 +19,6 @@ import {
 } from './config/setup-assets.config'
 import { ReplacementTemplate } from './template-handle/models/replacement.enum'
 import { replaceInTemplate } from './template-handle/replace-in-template'
-
-const execPromise = promisify(exec)
 
 @Command({
     name: 'init',
