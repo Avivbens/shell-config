@@ -17,7 +17,7 @@ export class CheckUpdateService implements OnApplicationBootstrap {
         await this.checkForUpdates()
     }
 
-    private async checkForUpdates(): Promise<boolean> {
+    public async checkForUpdates(): Promise<boolean> {
         try {
             const [release] = await this.getGithubReleases()
             const { tag_name: latest } = release
@@ -57,7 +57,7 @@ export class CheckUpdateService implements OnApplicationBootstrap {
         }
     }
 
-    private async getGithubReleases(): Promise<IReleasesAPIRes[]> {
+    public async getGithubReleases(): Promise<IReleasesAPIRes[]> {
         try {
             const res = await lastValueFrom(
                 this.http.get<IReleasesAPIRes[]>(GITHUB_RELEASES_API_URL),
