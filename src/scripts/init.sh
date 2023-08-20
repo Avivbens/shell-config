@@ -50,7 +50,7 @@ curl -s "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
 
 unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"
 filename="$(basename $HOME/shell-config/downloads/bin/*)"
-mv "$HOME/shell-config/downloads/bin/*" "$HOME/shell-config/downloads"
+mv "$HOME/shell-config/downloads/bin/$filename" "$HOME/shell-config/downloads/$filename"
 
 rm "$HOME/shell-config/downloads/cli-update.zip"
 rm -rf "$HOME/shell-config/downloads/bin"
