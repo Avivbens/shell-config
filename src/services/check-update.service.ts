@@ -65,6 +65,7 @@ export class CheckUpdateService implements OnApplicationBootstrap {
             return res.data
         } catch (error) {
             this.logger.debug(`Error getGithubReleases, error: ${error.stack}`)
+            throw error
         }
     }
 }
