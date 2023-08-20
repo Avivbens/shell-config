@@ -21,9 +21,9 @@ curl -L "https://github.com/Avivbens/shell-config/releases/download/${version}/c
 `
 
 export const UNZIP_SCRIPT = `
-unzip "${BASE_PATH}/downloads/cli-update.zip" -d "${BASE_PATH}/downloads"
+unzip -q "${BASE_PATH}/downloads/cli-update.zip" -d "${BASE_PATH}/downloads"
 filename="$(basename ${BASE_PATH}/downloads/bin/*)"
-mv "${BASE_PATH}/downloads/bin/*" "${BASE_PATH}/downloads"
+mv "${BASE_PATH}/downloads/bin/$filename" "${BASE_PATH}/downloads/$filename"
 echo $filename
 
 rm "${BASE_PATH}/downloads/cli-update.zip"

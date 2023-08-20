@@ -2,6 +2,8 @@ import { execPromise } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner, Option } from 'nest-commander'
+import { existsSync } from 'node:fs'
+import ora from 'ora'
 import {
     DOWNLOAD_FILE_PATH,
     DOWNLOAD_SCRIPT_CUSTOM,
@@ -10,7 +12,6 @@ import {
     UPDATE_SCRIPT,
 } from './config/update-script.config'
 import { IUpdateCommandOptions } from './models/update-command.options'
-import { existsSync } from 'node:fs'
 
 @Command({
     name: 'update',
@@ -26,6 +27,9 @@ export class UpdateCommand extends CommandRunner {
     }
 
     async run(inputs: string[], options: IUpdateCommandOptions): Promise<void> {
+        const spinner = ora('Starting update...')
+        spinner.start()
+
         try {
             const { version } = options
             let downloadScript: string
@@ -45,15 +49,20 @@ export class UpdateCommand extends CommandRunner {
             if (version !== 'latest') {
                 const isVerified: boolean = await this.verifyCustomVersion(version)
                 if (!isVerified) {
+                    spinner.fail('Failed to update')
                     this.logger.warn('No version found!')
                     return
                 }
             }
 
-            this.logger.log('Downloading new Version...')
+            const downloadMsg = 'Downloading new Version...'
+            this.logger.log(downloadMsg)
+            spinner.text = downloadMsg
             await execPromise(downloadScript)
 
-            this.logger.log('Unzipping new Version...')
+            const unzipMsg = 'Unzipping new Version...'
+            this.logger.log(unzipMsg)
+            spinner.text = unzipMsg
             const { stdout: fileName } = await execPromise(UNZIP_SCRIPT)
             const downloadPath = DOWNLOAD_FILE_PATH(fileName)
 
@@ -62,13 +71,19 @@ export class UpdateCommand extends CommandRunner {
                 this.logger.error(
                     `Error while trying to migrate to the new version.\nTry again later.`,
                 )
+                spinner.fail('Failed to update')
                 return
             }
 
-            this.logger.log('Migrating to new Version...')
+            const migrateMsg = 'Migrating to new Version...'
+            spinner.text = migrateMsg
+            this.logger.log(migrateMsg)
             await execPromise(UPDATE_SCRIPT(fileName))
+
+            spinner.succeed('Updated successfully!')
         } catch (error) {
             this.logger.error(`Failed to update: ${error.stack}`)
+            spinner.fail('Failed to update')
         }
     }
 
@@ -104,7 +119,9 @@ export class UpdateCommand extends CommandRunner {
     private getVersion(version: string): string {
         const parsedVersion = version.match(/v?(\d+\.\d+\.\d+)/)
         const target = parsedVersion?.[1]
-        if (!target) throw new Error(`Invalid version: ${version}`)
+        if (!target) {
+            throw new Error(`Invalid version: ${version}`)
+        }
         return `v${target}`
     }
 }
