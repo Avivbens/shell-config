@@ -1,3 +1,4 @@
+import { BASE_PATH } from '@common/constants'
 import { inquirer } from '@common/inquirer'
 
 export const SETUP_ASSETS_CONFIRM_PROMPT = async (): Promise<boolean> => {
@@ -147,21 +148,21 @@ export const ASSETS_TEMPLATES = [
         filePath: `assets/.npmrc.work.template`,
         copyTo: `private/.npmrc.work`,
         effects: [
-            `ln -f ~/shell-config/private/.npmrc.work ~/.npmrcs/work`,
-            `ln -f ~/.npmrcs/work ~/.npmrc`,
+            `ln -f "${BASE_PATH}/private/.npmrc.work" "$HOME/.npmrcs/work"`,
+            `ln -f "$HOME/.npmrcs/work" "$HOME/.npmrc"`,
         ],
     },
     {
         filePath: `assets/.gitconfig.work.template`,
         copyTo: `private/.gitconfig.work`,
         effects: [
-            `ln -f ~/shell-config/private/.gitconfig.work ~/.gitconfig.work`,
-            `ln -f ~/.gitconfig.work ~/.gitconfig`,
+            `ln -f "${BASE_PATH}/private/.gitconfig.work" "$HOME/.gitconfig.work"`,
+            `ln -f "$HOME/.gitconfig.work" "$HOME/.gitconfig"`,
         ],
     },
     {
         filePath: `assets/.gitconfig.personal.template`,
         copyTo: `private/.gitconfig.personal`,
-        effects: [`ln -f ~/shell-config/private/.gitconfig.personal ~/.gitconfig.personal`],
+        effects: [`ln -f "${BASE_PATH}/private/.gitconfig.personal" "$HOME/.gitconfig.personal"`],
     },
 ] as const

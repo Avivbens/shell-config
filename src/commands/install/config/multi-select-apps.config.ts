@@ -1,6 +1,6 @@
 import { inquirer } from '@common/inquirer'
-import { IAppSetup } from '../../../models/app-setup.model'
-import { IGroup } from '../../../models/group.model'
+import { IAppSetup } from '@models/app-setup.model'
+import { IGroup } from '@models/group.model'
 import { APPS_CONFIG } from './apps.config'
 
 export const MULTI_SELECT_APPS_PROMPT = async (): Promise<IAppSetup[]> => {
