@@ -1,11 +1,6 @@
 # Shell Configuration - ZSH
 
-## Remote Installation - No dependencies needed
-
-<details>
-<summary>Click to expand</summary>
-
-### CLI Installation
+## CLI Installation - No dependencies needed
 
 ```bash
 sudo cd
@@ -18,8 +13,6 @@ function get_remote_execute_file() {
 
 get_remote_execute_file "src/scripts/init.sh" | sh
 ```
-
-</details>
 
 ## CLI Usage
 
