@@ -2,7 +2,7 @@ import { BASE_PATH } from '@common/constants'
 import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { copyFile, mkdir, symlink } from 'node:fs/promises'
+import { copyFile, mkdir, rm, symlink } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
 
@@ -53,6 +53,7 @@ export class InitCommand extends CommandRunner {
             const newZshPath = resolve(BASE_PATH, 'zsh', '.zshrc')
 
             this.logger.debug(`Linking new zsh at ${newZshPath} to ${zshPath}`)
+            await rm(zshPath).catch(() => {})
             await symlink(newZshPath, zshPath)
         } catch (error) {
             this.logger.error(`Failed to link new zsh: ${error.stack}`)
@@ -64,17 +65,17 @@ export class InitCommand extends CommandRunner {
             this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
             const prmsMake = [
                 mkdir(`${BASE_PATH}/zsh`, { recursive: true }),
-                mkdir(`${BASE_PATH}/private`, { recursive: true }),
+                mkdir(`${BASE_PATH}/assets`, { recursive: true }),
             ]
             await Promise.allSettled(prmsMake)
 
             this.logger.debug(`Copying bundled assets to ${BASE_PATH}`)
 
-            const privatePath = resolveBundledAsset(__dirname, 'private/')
+            const assetsPath = resolveBundledAsset(__dirname, 'assets/')
             const zshPath = resolveBundledAsset(__dirname, 'zsh/')
 
             const prmsCopy = [
-                copyBundledAsset(privatePath, `${BASE_PATH}/private`, this.logger),
+                copyBundledAsset(assetsPath, `${BASE_PATH}/assets`, this.logger),
                 copyBundledAsset(zshPath, `${BASE_PATH}/zsh`, this.logger),
             ]
 
