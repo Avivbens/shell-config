@@ -7,7 +7,7 @@ permissions:
     contents: write
     pull-requests: write
 
-name: 📦 Create new release
+name: 📦 Create New Release
 
 jobs:
     release:
