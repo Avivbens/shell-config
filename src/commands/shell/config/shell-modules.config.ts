@@ -31,17 +31,19 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     {
         name: 'MongoDB',
         path: 'zsh/extends/.zshrc.extends.mongo.sh',
+        default: true,
         description: 'MongoDB aliases',
+    },
+    {
+        name: 'Redis',
+        path: 'zsh/extends/.zshrc.extends.redis.sh',
+        default: true,
+        description: 'Redis aliases',
     },
     {
         name: 'Python',
         path: 'zsh/extends/.zshrc.extends.python.sh',
         description: 'Python aliases',
-    },
-    {
-        name: 'Redis',
-        path: 'zsh/extends/.zshrc.extends.redis.sh',
-        description: 'Redis aliases',
     },
 ]
 
