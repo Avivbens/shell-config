@@ -44,7 +44,6 @@ grant_permissions "~/shell-config"
 curl -s "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
 | grep "browser_download_url.*cli-v.*.zip" \
 | cut -d : -f 2,3 \
-| tr -d \" \
 | xargs curl -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
 
