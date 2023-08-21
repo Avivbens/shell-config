@@ -2,14 +2,37 @@
 
 echo "entry point loaded"
 
-# mvn
-# source ~/.m2/.zshrc.mvn
-
 function sourceIf(){
   if [ -f "$1" ]; then
     source $1
   fi
 }
+
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
+# load all homebrew paths
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
+# shell-config CLI
+export PATH="$HOME/shell-config/executable:$PATH"
+
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
+
+# if google-cloud-sdk installed manually via download
+sourceIf "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"
+sourceIf "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"
+
+# if google-cloud-sdk installed via Homebrew
+sourceIf "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+sourceIf "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
 
 # Autosuggest
 # git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
@@ -76,34 +99,16 @@ function grant_permissions(){
     PROMPT='%F{yellow}%(4~|.../%3~|%~) %F{red}: ${vcs_info_msg_0_} %F{reset_color}$ '
 
 
-alias deleteallgit="rm -rf **/.git"
-alias findallgit="find . -type d -name \".git\""
-
-
 # vscode
 alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 alias v="code ."
-alias deleteallhistory="rm -rf **/.history"
-alias findallhistory="find . -type d -name ".history""
 
 
 # github-copilot-cli alias setup
-eval "$(github-copilot-cli alias -- "$0")"
-
-
-# mongodb
-alias smongo="mongod --fork --logpath ~/mongodb/db-output.log --dbpath ~/mongodb"
-
-
-# redis
-alias sredis="ttab -t 'Redis Server' 'cd /tmp && redis-server'"
-
-
-# Python
-alias python="python3"
-alias py="python3"
-export PATH="$HOME/Library/Python/3.9/bin:$PATH"
-
+if command -v github-copilot-cli &> /dev/null
+then
+    eval "$(github-copilot-cli alias -- "$0")"
+fi
 
 # sync
 alias reload="exec /bin/zsh"
@@ -114,10 +119,9 @@ alias reload="exec /bin/zsh"
 export DOCKER_BUILDKIT=0
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
-
-
 # extend
 sourceIf "$HOME/shell-config/zsh/.zshrc.extends.sh"
+
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
