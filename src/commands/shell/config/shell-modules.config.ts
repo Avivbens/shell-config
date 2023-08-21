@@ -24,15 +24,24 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'NestJS aliases',
     },
     {
-        name: 'Private',
-        path: 'zsh/extends/.zshrc.extends.private.sh',
-        default: true,
-        description: 'Your own aliases, put your scripts here',
-    },
-    {
         name: 'Angular',
         path: 'zsh/extends/.zshrc.extends.angular.sh',
         description: 'Angular aliases',
+    },
+    {
+        name: 'MongoDB',
+        path: 'zsh/extends/.zshrc.extends.mongo.sh',
+        description: 'MongoDB aliases',
+    },
+    {
+        name: 'Python',
+        path: 'zsh/extends/.zshrc.extends.python.sh',
+        description: 'Python aliases',
+    },
+    {
+        name: 'Redis',
+        path: 'zsh/extends/.zshrc.extends.redis.sh',
+        description: 'Redis aliases',
     },
 ]
 
