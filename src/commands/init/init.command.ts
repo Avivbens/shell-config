@@ -10,7 +10,7 @@ import { resolve } from 'node:path'
     name: 'init',
     description:
         'Init shell-config setup with this CLI version. Execute this command only when you want to force-apply the latest shell-config setup',
-    options: { isDefault: false },
+    options: { isDefault: false, hidden: true },
 })
 export class InitCommand extends CommandRunner {
     constructor(private readonly logger: LoggerService) {
