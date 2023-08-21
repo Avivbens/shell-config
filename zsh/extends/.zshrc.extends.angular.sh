@@ -17,3 +17,10 @@ function ngrxcreate(){
 
     echo "set store and effects on the related module"
 }
+
+
+# Load Angular CLI autocompletion.
+if command -v ng &> /dev/null
+then
+    source <(ng completion script)
+fi
