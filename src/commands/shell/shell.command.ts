@@ -56,7 +56,7 @@ export class ShellCommand extends CommandRunner {
                 await this.enableModule(module)
             }
         } catch (error) {
-            this.logger.error(`Failed to enable all modules: ${error.stack}`)
+            this.logger.error(`Failed enableAllModules, error: ${error.stack}`)
         }
     }
 
@@ -70,7 +70,7 @@ export class ShellCommand extends CommandRunner {
 
             await rename(resolvedPath, targetPath)
         } catch (error) {
-            this.logger.error(`Failed to enable module ${module.name}, error: ${error.stack}`)
+            this.logger.error(`Failed enableModule ${module.name}, error: ${error.stack}`)
         }
     }
 
@@ -83,7 +83,7 @@ export class ShellCommand extends CommandRunner {
 
             await rename(resolvedPath, `${resolvedPath}.disabled`)
         } catch (error) {
-            this.logger.error(`Failed to disable module ${module.name}, error: ${error.stack}`)
+            this.logger.error(`Failed disableModule ${module.name}, error: ${error.stack}`)
         }
     }
 }

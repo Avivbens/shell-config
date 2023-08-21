@@ -107,7 +107,7 @@ export class InstallCommand extends CommandRunner {
 
             spinner.succeed()
         } catch (error) {
-            this.logger.error(`Failed to setup assets: ${error.stack}`)
+            this.logger.error(`Failed setupAssets, error: ${error.stack}`)
             spinner.fail()
         }
     }
@@ -158,7 +158,7 @@ export class InstallCommand extends CommandRunner {
             return this.resolveDeps(toCheck, res, depsMap)
         } catch (error) {
             if (round === 0) {
-                this.logger.error(`Failed to resolve deps, error: ${error.stack}`)
+                this.logger.error(`Failed resolveDeps, error: ${error.stack}`)
                 process.exit(1)
             } else {
                 throw error
@@ -180,7 +180,7 @@ export class InstallCommand extends CommandRunner {
             this.logger.log(`Installed ${name}`)
         } catch (error) {
             spinner.fail()
-            this.logger.error(`Failed to install ${name}, error: ${error.stack}`)
+            this.logger.error(`Failed installApp app: ${name}, error: ${error.stack}`)
         }
     }
 }
