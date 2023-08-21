@@ -20,13 +20,22 @@ export class InitCommand extends CommandRunner {
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
         try {
+            await this.ensureZshrcExists()
             await this.backupRootZsh()
 
             await this.unpackBundledAssets()
-
             await this.linkNewZsh()
         } catch (error) {
             this.logger.error(`Failed to init shell-config CLI, error: ${error.stack}`)
+        }
+    }
+
+    private async ensureZshrcExists(): Promise<void> {
+        try {
+            const zshPath = resolve(homedir(), '.zshrc')
+            await appendFile(zshPath, '')
+        } catch (error) {
+            this.logger.error(`Failed ensureZshrcExists, error: ${error.stack}`)
         }
     }
 
