@@ -74,8 +74,7 @@
         "scripts": "dist/**/*.js",
         "assets": [
             "assets/**/*",
-            "zsh/**/*",
-            "private/**/*"
+            "zsh/**/*"
         ],
         "targets": [
             "node18-macos-x64"
