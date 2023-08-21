@@ -19,7 +19,7 @@ jobs:
 
             - name: 🗃️ Install Node.js Deps
               run: |
-                  npm install --no-package-lock
+                  npm install --no-package-lock --legacy-peer-deps
 
             - name: 🔨 Build Check
               run: |
