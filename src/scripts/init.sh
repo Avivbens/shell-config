@@ -60,7 +60,7 @@ rm -rf "$HOME/shell-config/downloads/bin"
 ln -f "$HOME/shell-config/downloads/$filename" "$HOME/shell-config/executable/shell-config"
 
 # put new entry export in .zshrc
-echo 'export PATH="$HOME/shell-config/executable:$PATH"' >> "$HOME/.zshrc"
+echo '\nexport PATH="$HOME/shell-config/executable:$PATH"\n' >> "$HOME/.zshrc"
 
 # allow apps from anywhere - avoid certificate issues
 sudo spctl --master-disable
