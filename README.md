@@ -69,5 +69,7 @@ shell-config update --version {target version}
 -   [Work](zsh/extends/.zshrc.extends.work.sh)
 -   [Npm](zsh/extends/.zshrc.extends.npm.sh)
 -   [Angular](zsh/extends/.zshrc.extends.angular.sh)
+-   [MongoDB](zsh/extends/.zshrc.extends.mongo.sh)
+-   [Python](zsh/extends/.zshrc.extends.python.sh)
+-   [Redis](zsh/extends/.zshrc.extends.redis.sh)
 -   [Nest](zsh/extends/.zshrc.extends.nest.sh)
--   [Private](zsh/extends/.zshrc.extends.private.sh) - Use this file to add your own aliases and functions, it is ignored by git
