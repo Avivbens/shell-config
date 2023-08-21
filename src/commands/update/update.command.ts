@@ -3,6 +3,7 @@ import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner, Option } from 'nest-commander'
 import { existsSync } from 'node:fs'
+import { setTimeout } from 'node:timers/promises'
 import ora from 'ora'
 import {
     DOWNLOAD_FILE_PATH,
@@ -84,7 +85,12 @@ export class UpdateCommand extends CommandRunner {
             const applyMsg = 'Apply changes...'
             spinner.text = applyMsg
             this.logger.log(applyMsg)
-            await execPromise(INIT_SCRIPT)
+            await Promise.race([
+                execPromise(INIT_SCRIPT),
+                setTimeout(10_000).then(() => {
+                    this.logger.warn('Failed to apply changes.')
+                }),
+            ])
 
             spinner.succeed('Updated successfully!')
         } catch (error) {
@@ -123,7 +129,7 @@ export class UpdateCommand extends CommandRunner {
         name: 'version',
     })
     private getVersion(version: string): string {
-        const parsedVersion = version.match(/v?(\d+\.\d+\.\d+)/)
+        const parsedVersion = version.match(/v?(\d+\.\d+\.\d+(-beta).\d+)?/)
         const target = parsedVersion?.[1]
         if (!target) {
             throw new Error(`Invalid version: ${version}`)
