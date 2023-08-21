@@ -34,7 +34,7 @@ export class CheckUpdateService implements OnApplicationBootstrap {
                 return false
             }
 
-            const message = `Update available ${currentVersionClean} → ${latestClean}\nRun TODO to update`
+            const message = `Update available ${currentVersionClean} → ${latestClean}\nRun 'shell-config update' to update`
             console.log(
                 boxen(message, {
                     padding: 1,
