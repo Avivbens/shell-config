@@ -8,8 +8,9 @@ import {
     DOWNLOAD_FILE_PATH,
     DOWNLOAD_SCRIPT_CUSTOM,
     DOWNLOAD_SCRIPT_LATEST,
+    INIT_SCRIPT,
+    MIGRATE_SCRIPT,
     UNZIP_SCRIPT,
-    UPDATE_SCRIPT,
 } from './config/update-script.config'
 import { IUpdateCommandOptions } from './models/update-command.options'
 
@@ -78,7 +79,12 @@ export class UpdateCommand extends CommandRunner {
             const migrateMsg = 'Migrating to new Version...'
             spinner.text = migrateMsg
             this.logger.log(migrateMsg)
-            await execPromise(UPDATE_SCRIPT(fileName))
+            await execPromise(MIGRATE_SCRIPT(fileName))
+
+            const applyMsg = 'Apply changes...'
+            spinner.text = applyMsg
+            this.logger.log(applyMsg)
+            await execPromise(INIT_SCRIPT)
 
             spinner.succeed('Updated successfully!')
         } catch (error) {
