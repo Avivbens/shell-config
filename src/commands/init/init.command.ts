@@ -2,9 +2,10 @@ import { BASE_PATH } from '@common/constants'
 import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { copyFile, mkdir, rm, symlink } from 'node:fs/promises'
+import { appendFile, copyFile, mkdir, readFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
+import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-command.config'
 
 @Command({
     name: 'init',
@@ -19,11 +20,6 @@ export class InitCommand extends CommandRunner {
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
         try {
-            // const isBackupRoot: boolean = await BACKUP_ROOT_ZSH_CONFIRM_PROMPT()
-
-            // if (isBackupRoot) {
-            // }
-
             await this.backupRootZsh()
 
             await this.unpackBundledAssets()
@@ -50,11 +46,17 @@ export class InitCommand extends CommandRunner {
     private async linkNewZsh(): Promise<void> {
         try {
             const zshPath = resolve(homedir(), '.zshrc')
-            const newZshPath = resolve(BASE_PATH, 'zsh', '.zshrc')
+            const zshContent = await readFile(zshPath, { encoding: 'utf-8' })
 
-            this.logger.debug(`Linking new zsh at ${newZshPath} to ${zshPath}`)
-            await rm(zshPath).catch(() => {})
-            await symlink(newZshPath, zshPath)
+            const isNeedToApplyLink: boolean = !LINK_SHELL_COMMAND_EXISTS(zshContent)
+
+            if (!isNeedToApplyLink) {
+                this.logger.debug('Link already exists, skipping...')
+                return
+            }
+
+            this.logger.debug(`Linking new zsh to ${zshPath}`)
+            await appendFile(zshPath, LINK_SHELL_COMMAND)
         } catch (error) {
             this.logger.error(`Failed to link new zsh: ${error.stack}`)
         }
