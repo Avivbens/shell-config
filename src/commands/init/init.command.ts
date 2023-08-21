@@ -48,7 +48,7 @@ export class InitCommand extends CommandRunner {
 
             await copyFile(rootZshPath, backupRootZshPath)
         } catch (error) {
-            this.logger.error(`Failed to backup root zsh: ${error.stack}`)
+            this.logger.error(`Failed backupRootZsh, error: ${error.stack}`)
         }
     }
 
@@ -67,7 +67,7 @@ export class InitCommand extends CommandRunner {
             this.logger.debug(`Linking new zsh to ${zshPath}`)
             await appendFile(zshPath, LINK_SHELL_COMMAND)
         } catch (error) {
-            this.logger.error(`Failed to link new zsh: ${error.stack}`)
+            this.logger.error(`Failed linkNewZsh, error: ${error.stack}`)
         }
     }
 
@@ -94,7 +94,7 @@ export class InitCommand extends CommandRunner {
 
             this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
         } catch (error) {
-            this.logger.error(`Failed unpacking bundled assets, error: ${error.stack}`)
+            this.logger.error(`Failed unpackBundledAssets, error: ${error.stack}`)
             throw error
         }
     }

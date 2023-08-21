@@ -105,7 +105,7 @@ export class UpdateCommand extends CommandRunner {
 
             return true
         } catch (error) {
-            this.logger.error(`Failed to update: ${error.stack}`)
+            this.logger.error(`Failed verifyCustomVersion, error: ${error.stack}`)
             return false
         }
     }

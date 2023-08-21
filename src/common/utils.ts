@@ -44,7 +44,7 @@ export async function copyBundledAsset(
             ),
         )
     } catch (error) {
-        round === 0 && logger.error(`Failed to copy bundled asset: ${error.stack}`)
+        round === 0 && logger.error(`Failed copyBundledAsset, error: ${error.stack}`)
         throw error
     }
 }
