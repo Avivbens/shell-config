@@ -123,17 +123,21 @@ export class UpdateCommand extends CommandRunner {
     }
 
     @Option({
-        flags: '-v, --version <version>',
+        flags: '-t, --target <version>',
         defaultValue: 'latest',
         description: 'Select update version',
         name: 'version',
     })
     private getVersion(version: string): string {
-        const parsedVersion = version.match(/v?(\d+\.\d+\.\d+(-beta).\d+)?/)
-        const target = parsedVersion?.[1]
+        if (version === 'latest') {
+            return 'latest'
+        }
+
+        const parsedVersion = version.match(/v?(\d\.\d\.\d)(\-beta\.\d)?/)
+        const [, target, suffixBeta] = parsedVersion ?? []
         if (!target) {
             throw new Error(`Invalid version: ${version}`)
         }
-        return `v${target}`
+        return `v${target}${suffixBeta ?? ''}`
     }
 }

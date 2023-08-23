@@ -32,8 +32,8 @@ shell-config install
 ```
 
 ```bash
-# Select CLI version / update version
-shell-config update --version {target version}
+# Select CLI version / update version, target is optional - default is latest
+shell-config update --target {version}
 ```
 
 ## Supported Terminal Features
