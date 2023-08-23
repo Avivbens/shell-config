@@ -15,5 +15,5 @@ function get_all_enabled_files() {
 files=($(get_all_enabled_files "$HOME/shell-config/zsh/extends"))
 
 for file in "${files[@]}"; do
-    sourceIf "$rHOME/shell-config/zsh/extends/$file"
+    sourceIf "$HOME/shell-config/zsh/extends/$file"
 done
