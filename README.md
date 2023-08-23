@@ -66,7 +66,6 @@ shell-config update --target {version}
 ### Modules
 
 -   [Git](zsh/extends/.zshrc.extends.git.sh)
--   [Work](zsh/extends/.zshrc.extends.work.sh)
 -   [Npm](zsh/extends/.zshrc.extends.npm.sh)
 -   [Angular](zsh/extends/.zshrc.extends.angular.sh)
 -   [MongoDB](zsh/extends/.zshrc.extends.mongo.sh)
