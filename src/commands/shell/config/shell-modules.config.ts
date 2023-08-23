@@ -8,11 +8,6 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'Git aliases and functions',
     },
     {
-        name: 'Work',
-        path: 'zsh/extends/.zshrc.extends.work.sh',
-        description: 'ZI aliases and functions',
-    },
-    {
         name: 'NPM',
         path: 'zsh/extends/.zshrc.extends.npm.sh',
         default: true,
