@@ -24,7 +24,7 @@
             "@common/*": ["src/common/*"],
             "@models/*": ["src/models/*"],
             "@services/*": ["src/services/*"],
-            "@commandsØ/*": ["src/commandsØ/*"]
+            "@commands/*": ["src/commands/*"]
         }
     },
     "include": ["src/**/*"]
