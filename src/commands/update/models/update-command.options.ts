@@ -1,3 +1,3 @@
 export interface IUpdateCommandOptions {
-    version: `v.${number}.${number}.${number}` | 'latest'
+    target: `v.${number}.${number}.${number}` | 'latest'
 }

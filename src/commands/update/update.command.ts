@@ -33,7 +33,7 @@ export class UpdateCommand extends CommandRunner {
         spinner.start()
 
         try {
-            const { version } = options
+            const { target: version } = options
             let downloadScript: string
 
             switch (version) {
@@ -123,10 +123,9 @@ export class UpdateCommand extends CommandRunner {
     }
 
     @Option({
-        flags: '-t, --target <version>',
+        flags: '-t, --target <target>',
         defaultValue: 'latest',
         description: 'Select update version',
-        name: 'version',
     })
     private getVersion(version: string): string {
         if (version === 'latest') {
