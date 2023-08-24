@@ -1,5 +1,5 @@
 import { resolveBundledAsset } from '@common/utils'
-import { readFile } from 'fs/promises'
+import { readFile } from 'node:fs/promises'
 import { ReplacementTemplate } from './models/replacement.enum'
 
 export async function replaceInTemplate(

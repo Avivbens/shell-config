@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { appendFile } from 'fs/promises'
+import { appendFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 
 @Injectable()
