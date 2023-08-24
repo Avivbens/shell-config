@@ -26,7 +26,7 @@ export class ListCommand extends CommandRunner {
                 this.logger.log(`- ${external}`)
             })
         } catch (error) {
-            this.logger.error(`Failed to show externals list, error: ${error.stack}`)
+            this.logger.error(`Error ListCommand, error: ${error.stack}`)
         }
     }
 

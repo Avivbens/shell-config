@@ -39,7 +39,7 @@ export class DeleteCommand extends CommandRunner {
 
             this.logger.log(`External shell with name '${toDelete}' deleted`)
         } catch (error) {
-            this.logger.error(`Error delete external shell, error: ${error.stack}`)
+            this.logger.error(`Error DeleteCommand, error: ${error.stack}`)
         }
     }
 
