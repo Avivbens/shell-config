@@ -95,7 +95,7 @@ export class UpdateCommand extends CommandRunner {
 
             spinner.succeed('Updated successfully!')
         } catch (error) {
-            this.logger.error(`Failed to update: ${error.stack}`)
+            this.logger.error(`Error UpdateCommand, Error: ${error.stack}`)
             spinner.fail('Failed to update')
         }
     }
@@ -116,7 +116,7 @@ export class UpdateCommand extends CommandRunner {
 
             return true
         } catch (error) {
-            this.logger.error(`Failed verifyCustomVersion, error: ${error.stack}`)
+            this.logger.error(`Error verifyCustomVersion, error: ${error.stack}`)
             return false
         }
     }

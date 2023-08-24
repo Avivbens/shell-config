@@ -27,7 +27,7 @@ export class InitCommand extends CommandRunner {
             await this.unpackBundledAssets()
             await this.linkNewZsh()
         } catch (error) {
-            this.logger.error(`Failed to init shell-config CLI, error: ${error.stack}`)
+            this.logger.error(`Error InitCommand, error: ${error.stack}`)
         }
     }
 
@@ -36,7 +36,7 @@ export class InitCommand extends CommandRunner {
             const zshPath = resolve(homedir(), '.zshrc')
             await appendFile(zshPath, '')
         } catch (error) {
-            this.logger.error(`Failed ensureZshrcExists, error: ${error.stack}`)
+            this.logger.error(`Error ensureZshrcExists, error: ${error.stack}`)
         }
     }
 
@@ -49,7 +49,7 @@ export class InitCommand extends CommandRunner {
 
             await copyFile(rootZshPath, backupRootZshPath)
         } catch (error) {
-            this.logger.error(`Failed backupRootZsh, error: ${error.stack}`)
+            this.logger.error(`Error backupRootZsh, error: ${error.stack}`)
         }
     }
 
@@ -68,7 +68,7 @@ export class InitCommand extends CommandRunner {
             this.logger.debug(`Linking new zsh to ${zshPath}`)
             await appendFile(zshPath, LINK_SHELL_COMMAND)
         } catch (error) {
-            this.logger.error(`Failed linkNewZsh, error: ${error.stack}`)
+            this.logger.error(`Error linkNewZsh, error: ${error.stack}`)
         }
     }
 
@@ -95,7 +95,7 @@ export class InitCommand extends CommandRunner {
 
             this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
         } catch (error) {
-            this.logger.error(`Failed unpackBundledAssets, error: ${error.stack}`)
+            this.logger.error(`Error unpackBundledAssets, error: ${error.stack}`)
             throw error
         }
     }
