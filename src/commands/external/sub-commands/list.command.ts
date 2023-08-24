@@ -1,7 +1,7 @@
-import { BASE_PATH } from '@common/constants'
 import { LoggerService } from '@services/logger.service'
-import { readFile } from 'node:fs/promises'
 import { CommandRunner, SubCommand } from 'nest-commander'
+import { readFile } from 'node:fs/promises'
+import { EXTERNAL_REGISTRY_LIST_PATH } from '../config/constants'
 
 @SubCommand({
     name: 'list',
@@ -28,9 +28,9 @@ export class ListCommand extends CommandRunner {
 
     private async readList(): Promise<string[]> {
         try {
-            const list = (
-                await readFile(`${BASE_PATH}/zsh/external/list.txt`, { encoding: 'utf-8' })
-            ).split('\n')
+            const list = (await readFile(EXTERNAL_REGISTRY_LIST_PATH, { encoding: 'utf-8' })).split(
+                '\n',
+            )
             const filteredList = list.filter((item) => Boolean(item))
 
             return filteredList
