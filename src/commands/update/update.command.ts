@@ -26,6 +26,7 @@ export class UpdateCommand extends CommandRunner {
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
+        this.logger.setContext(UpdateCommand.name)
     }
 
     async run(inputs: string[], options: IUpdateCommandOptions): Promise<void> {
@@ -109,9 +110,7 @@ export class UpdateCommand extends CommandRunner {
             })
 
             if (!targetVersion) {
-                const msg = `No version found!`
-                console.log(msg)
-                this.logger.warn(msg)
+                this.logger.warn(`No version found!`)
                 return false
             }
 

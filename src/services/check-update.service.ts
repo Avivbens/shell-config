@@ -11,7 +11,9 @@ const packageJson = require('../../package.json')
 
 @Injectable()
 export class CheckUpdateService implements OnApplicationBootstrap {
-    constructor(private readonly http: HttpService, private readonly logger: LoggerService) {}
+    constructor(private readonly http: HttpService, private readonly logger: LoggerService) {
+        this.logger.setContext(CheckUpdateService.name)
+    }
 
     async onApplicationBootstrap() {
         await this.checkForUpdates()
