@@ -1,24 +1,42 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Scope } from '@nestjs/common'
 import { appendFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 
-@Injectable()
+@Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService {
     private readonly logPath = `${homedir()}/Desktop/macos-setup.log`
-    log(message) {
+    private _context: string
+
+    public log(message) {
+        const generatedMessage = this.generateMessage(message)
         console.log(message)
-        appendFile(this.logPath, `LOG | ${message}\n`)
+        appendFile(this.logPath, `LOG | ${generatedMessage}\n`)
     }
-    error(message, trace?) {
+    public error(message, trace?) {
+        const generatedMessage = this.generateMessage(message)
         console.error(message, trace)
-        appendFile(this.logPath, `ERROR | ${message}\n`)
+        appendFile(this.logPath, `ERROR | ${generatedMessage}\n`)
     }
-    warn(message) {
+    public warn(message) {
+        const generatedMessage = this.generateMessage(message)
         console.warn(message)
-        appendFile(this.logPath, `WARN | ${message}\n`)
+        appendFile(this.logPath, `WARN | ${generatedMessage}\n`)
     }
-    debug(message) {
+    public debug(message) {
+        const generatedMessage = this.generateMessage(message)
         // console.debug(message)
-        appendFile(this.logPath, `DEBUG | ${message}\n`)
+        appendFile(this.logPath, `DEBUG | ${generatedMessage}\n`)
+    }
+
+    private get context(): string {
+        return this._context ? `[${this._context}] ` : ''
+    }
+
+    private generateMessage(message: string): string {
+        return `${this.context}${message}`
+    }
+
+    public setContext(context: string) {
+        this._context = context
     }
 }
