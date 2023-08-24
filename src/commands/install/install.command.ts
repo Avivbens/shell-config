@@ -31,6 +31,7 @@ export class InstallCommand extends CommandRunner {
 
     constructor(private readonly logger: LoggerService) {
         super()
+        this.logger.setContext(InstallCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
