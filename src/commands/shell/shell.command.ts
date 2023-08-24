@@ -15,6 +15,7 @@ import { MODULES_MAP } from './config/shell-modules.config'
 export class ShellCommand extends CommandRunner {
     constructor(private readonly logger: LoggerService) {
         super()
+        this.logger.setContext(ShellCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {

@@ -16,6 +16,7 @@ import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-com
 export class InitCommand extends CommandRunner {
     constructor(private readonly logger: LoggerService) {
         super()
+        this.logger.setContext(InitCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
