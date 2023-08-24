@@ -109,9 +109,7 @@ export class UpdateCommand extends CommandRunner {
             })
 
             if (!targetVersion) {
-                const msg = `No version found!`
-                console.log(msg)
-                this.logger.warn(msg)
+                this.logger.warn(`No version found!`)
                 return false
             }
 
