@@ -18,6 +18,10 @@ export class ListCommand extends CommandRunner {
         try {
             const externals = await this.readList()
 
+            if (!externals.length) {
+                this.logger.warn('Externals list is empty')
+            }
+
             externals.forEach((external) => {
                 this.logger.log(`- ${external}`)
             })
