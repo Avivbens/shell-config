@@ -14,10 +14,10 @@ import { EXTERNAL_REGISTRY_DIR_PATH, EXTERNAL_REGISTRY_LIST_PATH } from '../conf
         external_name: 'Name to register under the registry',
     },
 })
-export class InstallCommand extends CommandRunner {
+export class InstallSubCommand extends CommandRunner {
     constructor(private readonly logger: LoggerService) {
         super()
-        this.logger.setContext(InstallCommand.name)
+        this.logger.setContext(InstallSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {

@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { LoggerService } from '@services/logger.service'
-import { InstallCommand } from './install.sub-command'
+import { InstallSubCommand } from './install.sub-command'
 
-describe('InstallCommand', () => {
-    let service: InstallCommand
+describe('InstallSubCommand', () => {
+    let service: InstallSubCommand
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
-                InstallCommand,
+                InstallSubCommand,
                 {
                     provide: LoggerService,
                     useValue: { setContext: jest.fn() },
@@ -16,7 +16,7 @@ describe('InstallCommand', () => {
             ],
         }).compile()
 
-        service = module.get<InstallCommand>(InstallCommand)
+        service = module.get<InstallSubCommand>(InstallSubCommand)
     })
 
     it('should be defined', () => {

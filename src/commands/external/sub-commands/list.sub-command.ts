@@ -8,10 +8,10 @@ import { EXTERNAL_REGISTRY_LIST_PATH } from '../config/constants'
     description: 'Show list of all exists externals shells',
     options: { isDefault: false },
 })
-export class ListCommand extends CommandRunner {
+export class ListSubCommand extends CommandRunner {
     constructor(private readonly logger: LoggerService) {
         super()
-        this.logger.setContext(ListCommand.name)
+        this.logger.setContext(ListSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {

@@ -8,10 +8,10 @@ import { EXTERNAL_REGISTRY_DIR_PATH, EXTERNAL_REGISTRY_LIST_PATH } from '../conf
     description: 'Delete external shell',
     options: { isDefault: false },
 })
-export class DeleteCommand extends CommandRunner {
+export class DeleteSubCommand extends CommandRunner {
     constructor(private readonly logger: LoggerService) {
         super()
-        this.logger.setContext(DeleteCommand.name)
+        this.logger.setContext(DeleteSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
