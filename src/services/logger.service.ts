@@ -14,12 +14,13 @@ export class LoggerService {
     }
     public error(message, trace?) {
         const generatedMessage = this.generateMessage(message)
-        console.error(message, trace)
+        console.error(`\x1b[31m${message}\x1b[0m`)
         appendFile(this.logPath, `ERROR | ${generatedMessage}\n`)
     }
     public warn(message) {
         const generatedMessage = this.generateMessage(message)
-        console.warn(message)
+        // set color to yellow
+        console.warn(`\x1b[33m${message}\x1b[0m`)
         appendFile(this.logPath, `WARN | ${generatedMessage}\n`)
     }
     public debug(message) {
