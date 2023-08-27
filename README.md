@@ -16,25 +16,45 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 
 ## CLI Usage
 
+Must be done BEFORE EACH running the CLI in a new terminal window
+
 ```bash
-# Must be done BEFORE EACH running the CLI in a new terminal window
 sudo shell-config --help
 ```
 
+<br>
+
+Start with this command in order to configure your ZSH shell
+
 ```bash
-# Start with this command in order to configure your ZSH shell
 shell-config shell
 ```
 
+<br>
+
+Select secrets to apply, and choose apps to install
+
 ```bash
-# Select secrets to apply, and choose apps to install
 shell-config install
 ```
 
+<br>
+
+Install external registries - share your bash functions with others!
+
 ```bash
-# Select CLI version / update version, target is optional - default is latest
+shell-config external --help
+```
+
+<br>
+
+Select CLI version / update version, target is optional - default is latest
+
+```bash
 shell-config update --target {version}
 ```
+
+<br>
 
 ## Supported Terminal Features
 
