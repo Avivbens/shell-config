@@ -178,7 +178,7 @@ export class InstallCommand extends CommandRunner {
 
             spinner.succeed()
             this.installMap.set(name, true)
-            this.logger.log(`Installed ${name}`)
+            this.logger.debug(`Installed ${name}`)
         } catch (error) {
             spinner.fail()
             this.logger.error(`Error installApp app: ${name}, error: ${error.stack}`)
