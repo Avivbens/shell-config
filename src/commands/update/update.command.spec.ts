@@ -39,6 +39,7 @@ describe('UpdateCommand', () => {
             { input: '2.0.0-beta.0', expRes: 'v2.0.0-beta.0' },
             { input: 'v2.0.0-beta.1', expRes: 'v2.0.0-beta.1' },
             { input: '2.0.0-beta.1', expRes: 'v2.0.0-beta.1' },
+            { input: '2.0.0-beta.15', expRes: 'v2.0.0-beta.15' },
         ])('Should return the parsed version for all accepted inputs', ({ input, expRes }) => {
             if (!expRes) {
                 // @ts-ignore
