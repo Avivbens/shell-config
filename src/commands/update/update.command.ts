@@ -131,7 +131,7 @@ export class UpdateCommand extends CommandRunner {
             return 'latest'
         }
 
-        const parsedVersion = version.match(/v?(\d\.\d\.\d)(\-beta\.\d+)?/)
+        const parsedVersion = version.match(/v?(\d+\.\d+\.\d+)(\-beta\.\d+)?/)
         const [, target, suffixBeta] = parsedVersion ?? []
         if (!target) {
             throw new Error(`Invalid version: ${version}`)
