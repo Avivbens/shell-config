@@ -75,6 +75,17 @@ shell-config update --target {version}
 
 <br>
 
+# Troubleshooting
+
+In case of having permissions issue. try the following:
+
+```bash
+sudo chown -R "$USER":admin ~/Desktop
+sudo shell-config --help
+```
+
+<br>
+
 # Modules federation
 
 ### Entry points
