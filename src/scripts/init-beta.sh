@@ -2,7 +2,7 @@
 
 function grant_permissions(){
   sudo chown -R "$USER":admin "$1"
-  chmod -R 700 "$1"
+  sudo chmod -R 700 "$1"
 }
 
 function get_remote_execute_file() {
@@ -21,6 +21,8 @@ then
     echo -e "\e[33mInstall Homebrew\e[0m"
     yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+grant_permissions ~/Desktop
 
 mkdir -p ~/.npmrcs
 grant_permissions "~/.npmrcs"
@@ -42,7 +44,7 @@ grant_permissions "~/shell-config"
 
 
 # download the CLI
-version="v2.0.0-beta.18"
+version="v2.0.0-beta.19"
 curl "https://github.com/Avivbens/shell-config/releases/download/$version/cli-$version.zip" -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
 unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"
@@ -58,7 +60,7 @@ ln -f "$HOME/shell-config/downloads/$filename" "$HOME/shell-config/executable/sh
 
 
 # put new entry export in .zshrc
-echo 'export PATH="$HOME/shell-config/executable:$PATH"' >> "$HOME/.zshrc"
+echo '\nexport PATH="$HOME/shell-config/executable:$PATH"\n' >> "$HOME/.zshrc"
 
 # allow apps from anywhere - avoid certificate issues
 sudo spctl --master-disable

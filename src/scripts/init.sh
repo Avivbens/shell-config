@@ -2,7 +2,7 @@
 
 function grant_permissions(){
   sudo chown -R "$USER":admin "$1"
-  chmod -R 700 "$1"
+  sudo chmod -R 700 "$1"
 }
 
 function get_remote_execute_file() {
@@ -21,6 +21,8 @@ then
     echo -e "\e[33mInstall Homebrew\e[0m"
     yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+grant_permissions ~/Desktop
 
 mkdir -p ~/.npmrcs
 grant_permissions "~/.npmrcs"
