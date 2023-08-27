@@ -40,6 +40,14 @@ describe('UpdateCommand', () => {
             { input: 'v2.0.0-beta.1', expRes: 'v2.0.0-beta.1' },
             { input: '2.0.0-beta.1', expRes: 'v2.0.0-beta.1' },
             { input: '2.0.0-beta.15', expRes: 'v2.0.0-beta.15' },
+            { input: '12.0.0-beta.15', expRes: 'v12.0.0-beta.15' },
+            { input: 'v12.0.0-beta.15', expRes: 'v12.0.0-beta.15' },
+            { input: '12.60.0-beta.15', expRes: 'v12.60.0-beta.15' },
+            { input: 'v12.60.0-beta.15', expRes: 'v12.60.0-beta.15' },
+            { input: '2.0.80-beta.15', expRes: 'v2.0.80-beta.15' },
+            { input: 'v2.0.80-beta.15', expRes: 'v2.0.80-beta.15' },
+            { input: '112.440.3280-beta.15', expRes: 'v112.440.3280-beta.15' },
+            { input: 'v112.440.3280-beta.15', expRes: 'v112.440.3280-beta.15' },
         ])('Should return the parsed version for all accepted inputs', ({ input, expRes }) => {
             if (!expRes) {
                 // @ts-ignore
