@@ -8,6 +8,9 @@ downloads
 executable
 !executable/.gitkeep
 
+zsh/external/list.txt
+zsh/external/registry
+
 .DS_Store
 node_modules
 dist

@@ -13,7 +13,7 @@ describe('UpdateCommand', () => {
                 UpdateCommand,
                 {
                     provide: LoggerService,
-                    useValue: {},
+                    useValue: { setContext: jest.fn() },
                 },
                 {
                     provide: CheckUpdateService,

@@ -17,3 +17,6 @@ files=($(get_all_enabled_files "$HOME/shell-config/zsh/extends"))
 for file in "${files[@]}"; do
     sourceIf "$HOME/shell-config/zsh/extends/$file"
 done
+
+# loads external registry
+sourceIf "$HOME/shell-config/zsh/external/.external-registry.sh"
