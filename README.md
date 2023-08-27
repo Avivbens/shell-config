@@ -90,7 +90,6 @@ sudo shell-config --help
 
 ### Entry points
 
--   [.zshrc](zsh/.zshrc) - main entry point, cloned to home directory as linked file
 -   [.entry-point](zsh/.entry-point.sh) - entry point from `.zshrc`, contains `source` commands for all modules, load the `.zshrc.extends` file
 -   [.zshrc.extends](zsh/.zshrc.extends.sh) - entry point for all modules, imports them from `.zshrc.extends.*.sh` files
 
