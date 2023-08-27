@@ -169,7 +169,12 @@ export class InstallCommand extends CommandRunner {
 
     private async installApp(app: IAppSetup): Promise<void> {
         const { commands, name } = app
-        const spinner = ora(`Installing ${name}`).start()
+        const spinner = ora({
+            text: `Installing ${name}`,
+            hideCursor: false,
+            discardStdin: false,
+        })
+        spinner.start()
 
         try {
             for (const command of commands) {
