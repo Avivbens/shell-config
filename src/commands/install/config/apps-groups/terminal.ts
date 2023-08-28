@@ -9,12 +9,14 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         default: true,
         commands: [
             BREW_INSTALL('nvm'),
+            'sleep 5',
             `chmod +x $HOME/.nvm/nvm.sh`,
             NVM_COMMAND('install 16.14.0'),
             NVM_COMMAND('alias default 16.14.0'),
         ],
         commandsFallback: [
             BREW_INSTALL_64_ARM('nvm'),
+            'sleep 5',
             `chmod +x $HOME/.nvm/nvm.sh`,
             NVM_COMMAND('install 16.14.0'),
             NVM_COMMAND('alias default 16.14.0'),
