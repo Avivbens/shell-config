@@ -1,6 +1,7 @@
+import { exec } from 'node:child_process'
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises'
-import { homedir } from 'node:os'
 import { resolve } from 'node:path'
+import { promisify } from 'node:util'
 import { LoggerService } from '../services/logger.service'
 
 /**
@@ -43,9 +44,9 @@ export async function copyBundledAsset(
             ),
         )
     } catch (error) {
-        round === 0 && logger.error(`Failed to copy bundled asset: ${error.stack}`)
+        round === 0 && logger.error(`Failed copyBundledAsset, error: ${error.stack}`)
         throw error
     }
 }
 
-export const TARGET_DIR = resolve(homedir(), 'shell-config')
+export const execPromise = promisify(exec)

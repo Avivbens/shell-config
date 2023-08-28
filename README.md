@@ -1,29 +1,6 @@
 # Shell Configuration - ZSH
 
-## Remote Installation - No dependencies needed
-
-<details>
-<summary>Click to expand</summary>
-
-### Pre Install
-
-```bash
-sudo cd
-function get_remote_execute_file() {
-  local file_path="$1"
-  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
-  local response=$(curl -s "$url")
-  echo "$response"
-}
-
-get_remote_execute_file "src/scripts/pre-init.sh" | sh
-```
-
-**Open a new terminal window**
-
-<hr>
-
-### CLI Installation
+## CLI Installation - No dependencies needed
 
 ```bash
 sudo cd
@@ -37,88 +14,60 @@ function get_remote_execute_file() {
 get_remote_execute_file "src/scripts/init.sh" | sh
 ```
 
-### Post Install and Configuration - after done with CLI usage
-
-```bash
-sudo cd
-function get_remote_execute_file() {
-  local file_path="$1"
-  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
-  local response=$(curl -s "$url")
-  echo "$response"
-}
-
-get_remote_execute_file "src/scripts/post-init.sh" | sh
-```
-
-<br>
-<hr>
-
-</details>
-
-## Manual Installation - Git needed
-
-<details>
-<summary>Click to expand</summary>
-
-### Pre Install
-
-```bash
-cd
-git clone https://github.com/Avivbens/shell-config.git
-```
-
-```bash
-cat ~/shell-config/src/scripts/pre-init.sh | pbcopy
-sudo pbpaste | sh
-```
-
-**Open a new terminal window**
-
-<hr>
-
-### CLI Installation
-
-```bash
-cat ~/shell-config/src/scripts/init.sh | pbcopy
-sudo pbpaste | sh
-```
-
-<!-- <br> -->
-
-<!-- Download CLI executable
-<br>
-[CLI Download](https://github.com/Avivbens/shell-config/releases/latest) - Download the `cli.zip` file and extract it to your Desktop -->
-
-### Post Install and Configuration - after done with CLI usage
-
-```bash
-cat ~/shell-config/src/scripts/post-init.sh | pbcopy
-sudo pbpaste | sh
-```
-
-</details>
-
 ## CLI Usage
 
-<!-- ```bash
-# Non Apple Silicon Macs
-softwareupdate --install-rosetta
-``` -->
+Must be done BEFORE EACH running the CLI in a new terminal window!
 
 ```bash
-# Must be done BEFORE EACH running the CLI in a new terminal window
-cd ~/Desktop
-sudo ~/Desktop/cli-v* --help
+sudo shell-config --help
 ```
+
+<br>
+
+Use command in order to opt-in OR opt-out global bash functions.
 
 ```bash
-# Better to start with
-~/Desktop/cli-v* shell # install shell configuration as described in this readme
-
-# Open a new terminal window, run the before each command again, and then
-~/Desktop/cli-v* init # init system configuration, ask for credentials of NPM and git, select apps to install
+shell-config shell
 ```
+
+<br>
+
+Select secrets to apply, and choose apps to install.
+<br>
+Pay attention to passwords inputs if needed!
+
+```bash
+shell-config install
+```
+
+<br>
+
+Install external registries - share your bash functions with others!
+
+```bash
+shell-config external --help
+```
+
+<br>
+
+Select CLI version / update version, target is optional - default is latest
+
+```bash
+shell-config update --target {version}
+```
+
+<br>
+
+# Troubleshooting
+
+In case of having permissions issue. try the following:
+
+```bash
+sudo chown -R "$USER":admin ~/Desktop
+sudo shell-config --help
+```
+
+<br>
 
 ## Supported Terminal Features
 
@@ -143,15 +92,25 @@ sudo ~/Desktop/cli-v* --help
 
 ### Entry points
 
--   [.zshrc](zsh/.zshrc) - main entry point, cloned to home directory as linked file
 -   [.entry-point](zsh/.entry-point.sh) - entry point from `.zshrc`, contains `source` commands for all modules, load the `.zshrc.extends` file
 -   [.zshrc.extends](zsh/.zshrc.extends.sh) - entry point for all modules, imports them from `.zshrc.extends.*.sh` files
 
 ### Modules
 
 -   [Git](zsh/extends/.zshrc.extends.git.sh)
--   [Work](zsh/extends/.zshrc.extends.work.sh)
 -   [Npm](zsh/extends/.zshrc.extends.npm.sh)
 -   [Angular](zsh/extends/.zshrc.extends.angular.sh)
+-   [MongoDB](zsh/extends/.zshrc.extends.mongo.sh)
+-   [Python](zsh/extends/.zshrc.extends.python.sh)
+-   [Redis](zsh/extends/.zshrc.extends.redis.sh)
 -   [Nest](zsh/extends/.zshrc.extends.nest.sh)
--   [Private](zsh/extends/.zshrc.extends.private.sh) - Use this file to add your own aliases and functions, it is ignored by git
+
+<br>
+
+## Screenshots
+
+![Install Command](docs/install-command.png)
+
+![Install Options](docs/install-options.png)
+
+![Shell Command](docs/shell-command.png)
