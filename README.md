@@ -58,6 +58,17 @@ shell-config update --target {version}
 
 <br>
 
+# Troubleshooting
+
+In case of having permissions issue. try the following:
+
+```bash
+sudo chown -R "$USER":admin ~/Desktop
+sudo shell-config --help
+```
+
+<br>
+
 ## Supported Terminal Features
 
 -   System commands
@@ -77,17 +88,6 @@ shell-config update --target {version}
 
 <br>
 
-# Troubleshooting
-
-In case of having permissions issue. try the following:
-
-```bash
-sudo chown -R "$USER":admin ~/Desktop
-sudo shell-config --help
-```
-
-<br>
-
 # Modules federation
 
 ### Entry points
@@ -104,3 +104,13 @@ sudo shell-config --help
 -   [Python](zsh/extends/.zshrc.extends.python.sh)
 -   [Redis](zsh/extends/.zshrc.extends.redis.sh)
 -   [Nest](zsh/extends/.zshrc.extends.nest.sh)
+
+<br>
+
+## Screenshots
+
+![Install Command](docs/install-command.png)
+
+![Install Options](docs/install-options.png)
+
+![Shell Command](docs/shell-command.png)
