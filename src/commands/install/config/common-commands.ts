@@ -3,7 +3,8 @@ export const BREW_CASK = (app: string) =>
 export const BREW_INSTALL = (formula: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew install ${formula}`
 
-export const BREW_INSTALL_64_ARM = (formula: string) => `arch -arm64 ${BREW_INSTALL(formula)}`
+export const BREW_INSTALL_64_ARM = (formula: string) =>
+    `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 arch -arm64 brew install ${formula}}`
 export const BREW_TAP = (tapTo: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew tap ${tapTo}`
 export const NODE_GLOBAL = (packageName: string) =>
