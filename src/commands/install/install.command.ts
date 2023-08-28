@@ -168,7 +168,7 @@ export class InstallCommand extends CommandRunner {
     }
 
     private async installApp(app: IAppSetup): Promise<void> {
-        const { commands, name } = app
+        const { commands, commandsFallback, name } = app
         const spinner = ora({
             text: `Installing ${name}`,
             hideCursor: false,
@@ -177,10 +177,28 @@ export class InstallCommand extends CommandRunner {
         spinner.start()
 
         try {
+            let needFallback = false
             for (const command of commands) {
-                await execPromise(command)
+                if (needFallback) {
+                    break
+                }
+
+                await execPromise(command).catch((err) => {
+                    if (!commandsFallback?.length) {
+                        throw err
+                    }
+
+                    needFallback = true
+                })
             }
 
+            if (needFallback) {
+                for (const command of commandsFallback) {
+                    await execPromise(command)
+                }
+            }
+
+            spinner.text = `Installed ${name}`
             spinner.succeed()
             this.installMap.set(name, true)
             this.logger.debug(`Installed ${name}`)
