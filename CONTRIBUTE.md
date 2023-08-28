@@ -11,7 +11,7 @@ To get started, follow these steps:
 1. Install dependencies with `npm install --legacy-peer-deps`
 1. Make changes
 1. Test your changes
-1. Submit a pull request
+1. Submit a pull request against the `staging` branch
 
 ## Commit Message Guidelines
 
