@@ -2,6 +2,15 @@ templates
 private
 !private/.gitkeep
 
+downloads
+!downloads/.gitkeep
+
+executable
+!executable/.gitkeep
+
+zsh/external/list.txt
+zsh/external/registry
+
 .DS_Store
 node_modules
 dist

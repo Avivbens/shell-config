@@ -1,24 +1,43 @@
-import { Logger } from '@nestjs/common'
-import { appendFile } from 'fs/promises'
+import { Injectable, Scope } from '@nestjs/common'
+import { appendFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 
+@Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService {
-    private logger: Logger = new Logger()
     private readonly logPath = `${homedir()}/Desktop/macos-setup.log`
-    log(message) {
-        this.logger.log(message)
-        appendFile(this.logPath, `LOG | ${message}\n`)
+    private _context: string
+
+    public log(message) {
+        const generatedMessage = this.generateMessage(message)
+        console.log(message)
+        appendFile(this.logPath, `LOG | ${generatedMessage}\n`)
     }
-    error(message, trace?) {
-        this.logger.error(message, trace)
-        appendFile(this.logPath, `ERROR | ${message}\n`)
+    public error(message, trace?) {
+        const generatedMessage = this.generateMessage(message)
+        console.error(`\x1b[31m${message}\x1b[0m`)
+        appendFile(this.logPath, `ERROR | ${generatedMessage}\n`)
     }
-    warn(message) {
-        this.logger.warn(message)
-        appendFile(this.logPath, `WARN | ${message}\n`)
+    public warn(message) {
+        const generatedMessage = this.generateMessage(message)
+        // set color to yellow
+        console.warn(`\x1b[33m${message}\x1b[0m`)
+        appendFile(this.logPath, `WARN | ${generatedMessage}\n`)
     }
-    debug(message) {
-        this.logger.debug(message)
-        appendFile(this.logPath, `DEBUG | ${message}\n`)
+    public debug(message) {
+        const generatedMessage = this.generateMessage(message)
+        // console.debug(message)
+        appendFile(this.logPath, `DEBUG | ${generatedMessage}\n`)
+    }
+
+    private get context(): string {
+        return this._context ? `[${this._context}] ` : ''
+    }
+
+    private generateMessage(message: string): string {
+        return `${this.context}${message}`
+    }
+
+    public setContext(context: string) {
+        this._context = context
     }
 }

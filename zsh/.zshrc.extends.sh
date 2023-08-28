@@ -2,20 +2,21 @@
 
 echo "extends loaded"
 
-function sourceIf(){
-  if [ -f "$1" ]; then
-    source $1
-  fi
+function sourceIf() {
+    if [ -f "$1" ]; then
+        source $1
+    fi
 }
 
-sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.git.sh"
-sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.work.sh"
-sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.npm.sh"
-sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.angular.sh"
-sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.nest.sh"
-sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.private.sh"
+function get_all_enabled_files() {
+    find "$1" -type f -not -name "*.disabled" -print0 | xargs -0 -I {} basename {} | tr '\n' ' '
+}
 
-# for file in $(ls -a | grep -e ".*\.sh"); do
-#     echo "source ~/shell-config/extends/zsh/.$file"
-#     source ~/shell-config/zsh/${file}
-# done
+files=($(get_all_enabled_files "$HOME/shell-config/zsh/extends"))
+
+for file in "${files[@]}"; do
+    sourceIf "$HOME/shell-config/zsh/extends/$file"
+done
+
+# loads external registry
+sourceIf "$HOME/shell-config/zsh/external/.external-registry.sh"

@@ -1,4 +1,4 @@
-import { IShellModule } from '../../../models/shell-module.model'
+import { IShellModule } from '@models/shell-module.model'
 
 export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     {
@@ -6,11 +6,6 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         path: 'zsh/extends/.zshrc.extends.git.sh',
         default: true,
         description: 'Git aliases and functions',
-    },
-    {
-        name: 'Work',
-        path: 'zsh/extends/.zshrc.extends.work.sh',
-        description: 'ZI aliases and functions',
     },
     {
         name: 'NPM',
@@ -24,15 +19,26 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'NestJS aliases',
     },
     {
-        name: 'Private',
-        path: 'zsh/extends/.zshrc.extends.private.sh',
-        default: true,
-        description: 'Your own aliases, put your scripts here',
-    },
-    {
         name: 'Angular',
         path: 'zsh/extends/.zshrc.extends.angular.sh',
         description: 'Angular aliases',
+    },
+    {
+        name: 'MongoDB',
+        path: 'zsh/extends/.zshrc.extends.mongo.sh',
+        default: true,
+        description: 'MongoDB aliases',
+    },
+    {
+        name: 'Redis',
+        path: 'zsh/extends/.zshrc.extends.redis.sh',
+        default: true,
+        description: 'Redis aliases',
+    },
+    {
+        name: 'Python',
+        path: 'zsh/extends/.zshrc.extends.python.sh',
+        description: 'Python aliases',
     },
 ]
 

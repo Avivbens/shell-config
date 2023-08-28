@@ -1,5 +1,5 @@
 import { inquirer } from '@common/inquirer'
-import { IShellModule } from '../../../models/shell-module.model'
+import { IShellModule } from '@models/shell-module.model'
 import { SHELL_MODULES_OPTIONS } from './shell-modules.config'
 
 export const MULTI_SELECT_MODULES_PROMPT = async (): Promise<IShellModule[]> => {
