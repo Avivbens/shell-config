@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.0 (2023-08-28)
+
+### ⚠ BREAKING CHANGES
+
+-   Release v2 into master (#31)
+
+### Features
+
+-   Release v2 into master ([#31](https://github.com/Avivbens/shell-config/issues/31)) ([c376855](https://github.com/Avivbens/shell-config/commit/c3768550d0aa3534bbad3280cc0d1bbe3248c27d)), closes [#25](https://github.com/Avivbens/shell-config/issues/25) [#27](https://github.com/Avivbens/shell-config/issues/27) [#28](https://github.com/Avivbens/shell-config/issues/28)
+
 ## 1.1.0 (2023-08-17)
 
 ### Features
