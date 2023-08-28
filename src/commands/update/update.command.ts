@@ -59,12 +59,12 @@ export class UpdateCommand extends CommandRunner {
             }
 
             const downloadMsg = 'Downloading new Version...'
-            this.logger.log(downloadMsg)
+            this.logger.debug(downloadMsg)
             spinner.text = downloadMsg
             await execPromise(downloadScript)
 
             const unzipMsg = 'Unzipping new Version...'
-            this.logger.log(unzipMsg)
+            this.logger.debug(unzipMsg)
             spinner.text = unzipMsg
             const { stdout: fileName } = await execPromise(UNZIP_SCRIPT)
             const downloadPath = DOWNLOAD_FILE_PATH(fileName)
@@ -80,12 +80,12 @@ export class UpdateCommand extends CommandRunner {
 
             const migrateMsg = 'Migrating to new Version...'
             spinner.text = migrateMsg
-            this.logger.log(migrateMsg)
+            this.logger.debug(migrateMsg)
             await execPromise(MIGRATE_SCRIPT(fileName))
 
             const applyMsg = 'Apply changes...'
             spinner.text = applyMsg
-            this.logger.log(applyMsg)
+            this.logger.debug(applyMsg)
             await Promise.race([
                 execPromise(INIT_SCRIPT),
                 setTimeout(10_000).then(() => {
