@@ -102,5 +102,9 @@ git config --global -l | grep 'email'
 echo "\n"
 
 # show current npmrc config
-npmrc
+if command -v npmrc &> /dev/null
+then
+    npmrc
+fi
+
 echo "\n"
