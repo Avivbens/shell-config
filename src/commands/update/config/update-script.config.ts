@@ -39,5 +39,5 @@ ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"
 `
 
 export const INIT_SCRIPT = `
-${BASE_PATH}/executable/shell-config init
+sudo ${BASE_PATH}/executable/shell-config init
 `
