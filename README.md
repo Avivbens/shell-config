@@ -14,6 +14,8 @@ function get_remote_execute_file() {
 get_remote_execute_file "src/scripts/init.sh" | sh
 ```
 
+**Open a new terminal window after this script!**
+
 ## CLI Usage
 
 Must be done BEFORE EACH running the CLI in a new terminal window!
