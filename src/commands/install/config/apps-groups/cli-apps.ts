@@ -5,6 +5,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'google-cloud-sdk',
         group: 'cli-apps',
+        description: 'Integrate with Google Cloud Platform services, requires Apple Silicon',
         default: true,
         commands: [BREW_CASK('google-cloud-sdk')],
     },
