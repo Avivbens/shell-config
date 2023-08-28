@@ -1,12 +1,13 @@
 import { IAppSetup } from '@models/app-setup.model'
-import { BREW_INSTALL_64_ARM } from '../common-commands'
+import { BREW_INSTALL, BREW_INSTALL_64_ARM } from '../common-commands'
 
 export const PYTHON: Readonly<IAppSetup[]> = [
     {
         name: 'Python',
         group: 'python',
         default: true,
-        commands: [BREW_INSTALL_64_ARM('python')],
+        commands: [BREW_INSTALL('python')],
+        commandsFallback: [BREW_INSTALL_64_ARM('python')],
     },
     {
         name: 'Python PIP',

@@ -4,6 +4,7 @@ export interface IAppSetup {
     name: string
     group: IGroup
     commands: readonly string[]
+    commandsFallback?: readonly string[]
     description?: string
     default?: boolean
     deps?: readonly string[]
