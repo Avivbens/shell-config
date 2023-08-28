@@ -8,6 +8,6 @@ export const BREW_INSTALL_64_ARM = (formula: string) =>
 export const BREW_TAP = (tapTo: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew tap ${tapTo}`
 export const NODE_GLOBAL = (packageName: string) =>
-    `npm install -g ${packageName} --registry=https://registry.npmjs.org/`
+    `source $HOME/.nvm/nvm.sh && npm install -g ${packageName} --registry=https://registry.npmjs.org/`
 
 export const NVM_COMMAND = (command: string) => `source $HOME/.nvm/nvm.sh && nvm ${command}`

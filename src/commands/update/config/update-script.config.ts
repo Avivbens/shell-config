@@ -39,6 +39,5 @@ ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"
 `
 
 export const INIT_SCRIPT = `
-source "$HOME/.zshrc"
-shell-config init
+${BASE_PATH}/executable/shell-config init
 `
