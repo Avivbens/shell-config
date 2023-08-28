@@ -16,7 +16,7 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 
 ## CLI Usage
 
-Must be done BEFORE EACH running the CLI in a new terminal window
+Must be done BEFORE EACH running the CLI in a new terminal window!
 
 ```bash
 sudo shell-config --help
@@ -24,7 +24,7 @@ sudo shell-config --help
 
 <br>
 
-Start with this command in order to configure your ZSH shell
+Use command in order to opt-in OR opt-out global bash functions.
 
 ```bash
 shell-config shell
@@ -32,7 +32,9 @@ shell-config shell
 
 <br>
 
-Select secrets to apply, and choose apps to install
+Select secrets to apply, and choose apps to install.
+<br>
+Pay attention to passwords inputs if needed!
 
 ```bash
 shell-config install
