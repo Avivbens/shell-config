@@ -1,5 +1,15 @@
 # Shell Configuration - ZSH
 
+**🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that tailors configurations, installs apps, and enables seamless team collaboration.
+
+<br>
+
+**Releases:**
+
+[![Latest Version Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/latest/total?label=Latest%20Version%20Downloads&color=brightgreen)](https://github.com/avivbens/shell-config/releases/latest)
+
+[![Total Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/total?label=Total%20Downloads&color=blue)](https://github.com/avivbens/shell-config/releases)
+
 ## CLI Installation - No dependencies needed
 
 ```bash
