@@ -4,11 +4,13 @@
 
 <br>
 
-**Releases:**
+<div align="center">
 
-[![Latest Version Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/latest/total?label=Latest%20Version%20Downloads&color=brightgreen)](https://github.com/avivbens/shell-config/releases/latest)
-
+[![Latest Version Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/latest/total?label=Latest%20Version%20Downloads&color=green)](https://github.com/avivbens/shell-config/releases/latest)
+[![Latest Version](https://img.shields.io/github/v/release/avivbens/shell-config?label=Latest%20Version&color=green)](https://github.com/avivbens/shell-config/releases/latest)
 [![Total Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/total?label=Total%20Downloads&color=blue)](https://github.com/avivbens/shell-config/releases)
+
+</div>
 
 ## CLI Installation - No dependencies needed
 
