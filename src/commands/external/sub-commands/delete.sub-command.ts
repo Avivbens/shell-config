@@ -1,7 +1,7 @@
 import { LoggerService } from '@services/logger.service'
 import { CommandRunner, SubCommand } from 'nest-commander'
-import { readFile, rm, writeFile } from 'node:fs/promises'
-import { EXTERNAL_REGISTRY_DIR_PATH, EXTERNAL_REGISTRY_LIST_PATH } from '../config/constants'
+import { readdir, rm } from 'node:fs/promises'
+import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
 
 @SubCommand({
     name: 'delete',
@@ -24,18 +24,14 @@ export class DeleteSubCommand extends CommandRunner {
             }
 
             const list = await this.readList()
-            const filteredList = list.filter((item) => item !== toDelete)
-            if (list.length === filteredList.length) {
-                this.logger.error(`External shell with name ${toDelete} not found`)
+
+            const isExists: boolean = list.some((item) => item === toDelete)
+            if (!isExists) {
+                this.logger.error(`External shell with name '${toDelete}' not found`)
                 return
             }
 
-            const prms = [
-                rm(`${EXTERNAL_REGISTRY_DIR_PATH}/${toDelete}`),
-                this.writeList(filteredList),
-            ]
-
-            await Promise.allSettled(prms)
+            await rm(`${EXTERNAL_REGISTRY_DIR_PATH}/${toDelete}`)
 
             this.logger.log(`External shell with name '${toDelete}' deleted`)
         } catch (error) {
@@ -45,24 +41,12 @@ export class DeleteSubCommand extends CommandRunner {
 
     private async readList(): Promise<string[]> {
         try {
-            const list = (await readFile(EXTERNAL_REGISTRY_LIST_PATH, { encoding: 'utf-8' })).split(
-                '\n',
-            )
-            const filteredList = list.filter((item) => Boolean(item))
+            const externals: string[] = await readdir(EXTERNAL_REGISTRY_DIR_PATH)
+            const filteredList = externals.filter((item) => Boolean(item) && item !== '.gitkeep')
 
             return filteredList
         } catch (error) {
             this.logger.error(`Error readList, error: ${error.stack}`)
-            throw error
-        }
-    }
-
-    private async writeList(list: string[]): Promise<void> {
-        try {
-            const listWithEmptyLine = [...list, '']
-            await writeFile(EXTERNAL_REGISTRY_LIST_PATH, listWithEmptyLine.join('\n'))
-        } catch (error) {
-            this.logger.error(`Error writeList, error: ${error.stack}`)
             throw error
         }
     }

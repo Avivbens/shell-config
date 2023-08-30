@@ -1,8 +1,8 @@
 import { LoggerService } from '@services/logger.service'
 import { CommandRunner, SubCommand } from 'nest-commander'
 import { existsSync } from 'node:fs'
-import { copyFile, readFile, writeFile } from 'node:fs/promises'
-import { EXTERNAL_REGISTRY_DIR_PATH, EXTERNAL_REGISTRY_LIST_PATH } from '../config/constants'
+import { copyFile, readdir } from 'node:fs/promises'
+import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
 
 @SubCommand({
     name: 'install',
@@ -45,14 +45,7 @@ export class InstallSubCommand extends CommandRunner {
                 return
             }
 
-            const newList: string[] = [...currentList, parsedExternalName]
-
-            const prms = [
-                copyFile(filePath, `${EXTERNAL_REGISTRY_DIR_PATH}/${parsedExternalName}`),
-                this.writeList(newList),
-            ]
-
-            await Promise.allSettled(prms)
+            await copyFile(filePath, `${EXTERNAL_REGISTRY_DIR_PATH}/${parsedExternalName}`)
 
             this.logger.log(
                 `Installed external shell with name '${parsedExternalName}' successfully`,
@@ -70,24 +63,12 @@ export class InstallSubCommand extends CommandRunner {
 
     private async readList(): Promise<string[]> {
         try {
-            const list = (await readFile(EXTERNAL_REGISTRY_LIST_PATH, { encoding: 'utf-8' })).split(
-                '\n',
-            )
-            const filteredList = list.filter((item) => Boolean(item))
+            const externals: string[] = await readdir(EXTERNAL_REGISTRY_DIR_PATH)
+            const filteredList = externals.filter((item) => Boolean(item) && item !== '.gitkeep')
 
             return filteredList
         } catch (error) {
             this.logger.error(`Error readList, error: ${error.stack}`)
-            throw error
-        }
-    }
-
-    private async writeList(list: string[]): Promise<void> {
-        try {
-            const listWithEmptyLine = [...list, '']
-            await writeFile(EXTERNAL_REGISTRY_LIST_PATH, listWithEmptyLine.join('\n'))
-        } catch (error) {
-            this.logger.error(`Error writeList, error: ${error.stack}`)
             throw error
         }
     }
