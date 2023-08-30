@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.0.1 (2023-08-30)
+
+### Bug Fixes
+
+-   external functionality, show update available just for major releases ([#32](https://github.com/Avivbens/shell-config/issues/32)) ([5d078a5](https://github.com/Avivbens/shell-config/commit/5d078a5b4017df3613e2c95a4c460c5cd882bf48))
+
 ## 2.0.0 (2023-08-28)
 
 ### ⚠ BREAKING CHANGES
