@@ -8,9 +8,6 @@ function sourceIf(){
   fi
 }
 
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # load all homebrew paths
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -121,7 +118,3 @@ export DOCKER_BUILDKIT=0
 
 # extend
 sourceIf "$HOME/shell-config/zsh/.zshrc.extends.sh"
-
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

@@ -6,15 +6,13 @@ function sourceIf() {
     fi
 }
 
-externals=()
+function get_all_external_files() {
+    find "$1" -type f -not -name ".gitkeep" -print0 | xargs -0 -I {} basename {} | tr '\n' ' '
+}
 
-# Read all externals from list.txt into the array - must have an empty line at the end
-while IFS= read -r line; do
-    externals+=("$line")
-done < <(grep -v '^$' "$HOME/shell-config/zsh/external/list.txt")
+files=($(get_all_external_files "$HOME/shell-config/zsh/external/registry"))
 
-# Loop over each element in the array
-for externalShell in "${externals[@]}"; do
+for externalShell in "${files[@]}"; do
     echo "Loading external $externalShell"
     sourceIf "$HOME/shell-config/zsh/external/registry/$externalShell"
 done
