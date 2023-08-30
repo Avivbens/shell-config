@@ -1,7 +1,7 @@
 import { LoggerService } from '@services/logger.service'
 import { CommandRunner, SubCommand } from 'nest-commander'
-import { readFile } from 'node:fs/promises'
-import { EXTERNAL_REGISTRY_LIST_PATH } from '../config/constants'
+import { readdir } from 'node:fs/promises'
+import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
 
 @SubCommand({
     name: 'list',
@@ -32,10 +32,8 @@ export class ListSubCommand extends CommandRunner {
 
     private async readList(): Promise<string[]> {
         try {
-            const list = (await readFile(EXTERNAL_REGISTRY_LIST_PATH, { encoding: 'utf-8' })).split(
-                '\n',
-            )
-            const filteredList = list.filter((item) => Boolean(item))
+            const externals: string[] = await readdir(EXTERNAL_REGISTRY_DIR_PATH)
+            const filteredList = externals.filter((item) => Boolean(item) && item !== '.gitkeep')
 
             return filteredList
         } catch (error) {
