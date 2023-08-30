@@ -23,10 +23,17 @@ export class CheckUpdateService implements OnApplicationBootstrap {
         try {
             const releases = await this.getGithubReleases()
             const latestMajorRelease = releases.find((release) => release.prerelease === false)
+            const [latestOfAllReleases] = releases
+
             const { tag_name: latest } = latestMajorRelease
+            const { tag_name: latestOfAll } = latestOfAllReleases
             const { version: currentVersion } = packageJson
 
-            const latestClean = clean(latest)
+            const isCurrentVersionBeta: boolean = currentVersion.includes('-beta')
+
+            const latestVersionToCheck = isCurrentVersionBeta ? latestOfAll : latest
+
+            const latestClean = clean(latestVersionToCheck)
             const currentVersionClean = clean(currentVersion)
 
             const updateNeeded: boolean = lt(currentVersionClean, latestClean)
