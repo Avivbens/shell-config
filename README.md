@@ -1,4 +1,4 @@
-# Shell Configuration - ZSH
+# Shell-Config CLI - Your MacOS Setup Tool
 
 **🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that tailors configurations, installs apps, and enables seamless team collaboration.
 
