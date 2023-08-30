@@ -21,8 +21,9 @@ export class CheckUpdateService implements OnApplicationBootstrap {
 
     public async checkForUpdates(): Promise<boolean> {
         try {
-            const [release] = await this.getGithubReleases()
-            const { tag_name: latest } = release
+            const releases = await this.getGithubReleases()
+            const latestMajorRelease = releases.find((release) => release.prerelease === false)
+            const { tag_name: latest } = latestMajorRelease
             const { version: currentVersion } = packageJson
 
             const latestClean = clean(latest)
