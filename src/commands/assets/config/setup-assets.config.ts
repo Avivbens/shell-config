@@ -1,26 +1,13 @@
 import { BASE_PATH } from '@common/constants'
 import { inquirer } from '@common/inquirer'
 
-export const SETUP_ASSETS_CONFIRM_PROMPT = async (): Promise<boolean> => {
-    const { setupAssets } = await inquirer.prompt([
-        {
-            type: 'confirm',
-            name: 'setupAssets',
-            message: 'Would you like to setup assets? (NPM profile and Git profile)',
-            default: true,
-        },
-    ])
-
-    return setupAssets
-}
-
 export const SETUP_ASSETS_ALSO_PERSONAL_CONFIRM_PROMPT = async (): Promise<boolean> => {
     const { setupPersonalAssets } = await inquirer.prompt([
         {
             type: 'confirm',
             name: 'setupPersonalAssets',
             message:
-                'Would you like to setup private assets too? We support a few git profiles and npmrcs (NPM profile and Git profile)',
+                'Would you like to setup private assets too? \nWe support a few git profiles and npmrcs (NPM profile and Git profile)',
             default: false,
         },
     ])
@@ -107,7 +94,7 @@ export const ASK_FOR_GIT_KEY_PROMPT = async (): Promise<string> => {
             type: 'input',
             name: 'key',
             message:
-                'Enter your git key from Github Enterprise, you can leave it empty and fill this out later under ~/.gitconfig.work',
+                'Enter your git key from Github Enterprise. \nYou can leave it empty and fill this out later under ~/.gitconfig.work',
             default: '',
         },
     ])
@@ -121,7 +108,7 @@ export const ASK_FOR_PERSONAL_GIT_KEY_PROMPT = async (): Promise<string> => {
             type: 'input',
             name: 'key',
             message:
-                'Enter your PERSONAL git key from your Github, you can leave it empty and fill this out later under ~/.gitconfig.personal',
+                'Enter your PERSONAL git key from your Github. \nYou can leave it empty and fill this out later under ~/.gitconfig.personal',
             default: '',
         },
     ])
@@ -135,7 +122,7 @@ export const ASK_FOR_ARTIFACTORY_KEY_PROMPT = async (): Promise<string> => {
             type: 'input',
             name: 'key',
             message:
-                'Enter your artifactory auth key, you can leave it empty and fill this out later under ~/.npmrcs/work',
+                'Enter your artifactory auth key. \nYou can leave it empty and fill this out later under ~/.npmrcs/work',
             default: '',
         },
     ])
