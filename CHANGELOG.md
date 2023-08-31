@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.1.0 (2023-08-31)
+
+### Features
+
+-   setup assets command, remove assets setup from install command ([#33](https://github.com/Avivbens/shell-config/issues/33)) ([fc3aa45](https://github.com/Avivbens/shell-config/commit/fc3aa450b3310fd243cbdfb308940864b158d0e3))
+
 ### 2.0.1 (2023-08-30)
 
 ### Bug Fixes
