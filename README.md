@@ -30,7 +30,7 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 
 ## CLI Usage
 
-Must be done BEFORE EACH running the CLI in a new terminal window!
+Must be called BEFORE EACH running of the CLI in a new terminal window!
 
 ```bash
 sudo shell-config --help
@@ -38,7 +38,7 @@ sudo shell-config --help
 
 <br>
 
-Use command in order to opt-in OR opt-out global bash functions.
+Opt-in OR opt-out global bash functions and configurations.
 
 ```bash
 shell-config shell
@@ -46,7 +46,7 @@ shell-config shell
 
 <br>
 
-Select secrets to apply, and choose apps to install.
+Select apps to install.
 <br>
 Pay attention to passwords inputs if needed!
 
@@ -55,8 +55,18 @@ shell-config install
 ```
 
 <br>
+Apply npmrc and gitconfig files, with secrets.
+Support multiple accounts.
+<br>
+Pay attention to passwords inputs if needed!
 
-Install external registries - share your bash functions with others!
+```bash
+shell-config assets
+```
+
+<br>
+
+Install external shell configurations - share your bash functions with others!
 
 ```bash
 shell-config external --help
