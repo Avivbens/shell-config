@@ -12,10 +12,6 @@ function sourceIf(){
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 
-# shell-config CLI
-export PATH="$HOME/shell-config/executable:$PATH"
-
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
     [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
@@ -59,6 +55,11 @@ setopt correct_all # autocorrect commands
 setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
+
+
+# shell-config CLI
+export PATH="$HOME/shell-config/executable:$PATH"
+source <(shell-config completion-script)
 
 # check for shell-config updates once in 10 times
 silent_background() {
