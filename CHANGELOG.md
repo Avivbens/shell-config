@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.2.0 (2023-09-03)
+
+### Features
+
+-   support for mcfly, auto-check for updates on bootstrap ([#34](https://github.com/Avivbens/shell-config/issues/34)) ([fb1c1fc](https://github.com/Avivbens/shell-config/commit/fb1c1fc9d0036a6369e2a02e7057fd1eff84353e))
+
 ## 2.1.0 (2023-08-31)
 
 ### Features
