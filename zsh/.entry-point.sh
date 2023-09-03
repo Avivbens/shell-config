@@ -61,6 +61,12 @@ setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 
 
+if command -v mcfly &> /dev/null
+then
+    eval "$(mcfly init zsh)"
+fi
+
+
 # general
 alias c="clear"
 alias q="exit"
