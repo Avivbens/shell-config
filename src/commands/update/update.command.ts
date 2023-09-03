@@ -33,12 +33,6 @@ export class UpdateCommand extends CommandRunner {
         const { target: version, mute } = options
 
         if (mute) {
-            // abort check for update to prevent exceed api calls
-            const randomAbort = Math.random() > 0.1
-            if (randomAbort) {
-                return
-            }
-
             await this.checkUpdateService.checkForUpdates()
             return
         }
