@@ -30,11 +30,17 @@ export class UpdateCommand extends CommandRunner {
     }
 
     async run(inputs: string[], options: IUpdateCommandOptions): Promise<void> {
+        const { target: version, mute } = options
+
+        if (mute) {
+            await this.checkUpdateService.checkForUpdates()
+            return
+        }
+
         const spinner = ora('Starting update...')
         spinner.start()
 
         try {
-            const { target: version } = options
             let downloadScript: string
 
             switch (version) {
@@ -137,5 +143,14 @@ export class UpdateCommand extends CommandRunner {
             throw new Error(`Invalid version: ${version}`)
         }
         return `v${target}${suffixBeta ?? ''}`
+    }
+
+    @Option({
+        flags: '-m, --mute',
+        defaultValue: false,
+        description: 'Daemon check for update notification. When specified is true.',
+    })
+    private checkForUpdateMute(mute: string): boolean {
+        return true
     }
 }
