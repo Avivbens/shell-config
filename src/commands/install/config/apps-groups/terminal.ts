@@ -1,5 +1,11 @@
 import { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, BREW_INSTALL_64_ARM, NVM_COMMAND } from '../common-commands'
+import {
+    BREW_CASK,
+    BREW_INSTALL,
+    BREW_INSTALL_64_ARM,
+    BREW_TAP,
+    NVM_COMMAND,
+} from '../common-commands'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
@@ -27,6 +33,14 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         group: 'terminal',
         default: true,
         commands: [BREW_CASK('fig')],
+    },
+    {
+        name: 'Mcfly',
+        description:
+            'Search & execute through your shell history, with context-aware suggestions and neural network.',
+        group: 'terminal',
+        default: true,
+        commands: [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting and Autosuggestions',
