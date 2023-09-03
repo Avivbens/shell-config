@@ -60,12 +60,14 @@ setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 
-# check for shell-config updates
+# check for shell-config updates once in 10 times
 silent_background() {
     { 2>&3 "$@"& } 3>&2 2>/dev/null
     disown &>/dev/null  # Prevent whine if job has already completed
 }
-silent_background shell-config update -m
+if [ $((RANDOM % 10)) -eq 0 ]; then
+    silent_background shell-config update -m
+fi
 
 
 if command -v mcfly &> /dev/null
