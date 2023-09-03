@@ -1,11 +1,16 @@
+import { BASE_PATH } from '@common/constants'
+import { execPromise } from '@common/utils'
 import { Injectable, Scope } from '@nestjs/common'
 import { appendFile } from 'node:fs/promises'
-import { homedir } from 'node:os'
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService {
-    private readonly logPath = `${homedir()}/Desktop/macos-setup.log`
+    private readonly logPath = `${BASE_PATH}/logs/macos-setup.log`
     private _context: string
+
+    constructor() {
+        execPromise(`mkdir -p "${BASE_PATH}/logs"`).catch(() => {})
+    }
 
     public log(message) {
         const generatedMessage = this.generateMessage(message)
