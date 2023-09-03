@@ -8,6 +8,8 @@ downloads
 executable
 !executable/.gitkeep
 
+logs
+
 zsh/external/list.txt
 zsh/external/registry
 
