@@ -21,7 +21,5 @@ const packageJson = require('../package.json')
         },
     })
 
-    app.enableShutdownHooks()
-
     await CommandFactory.runApplication(app)
 })()

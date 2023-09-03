@@ -1,7 +1,7 @@
 import { GITHUB_RELEASES_API_URL } from '@common/constants'
 import { IReleasesAPIRes } from '@models/releases-api.model'
 import { HttpService } from '@nestjs/axios'
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import boxen from 'boxen'
 import { lastValueFrom } from 'rxjs'
 import { clean, lt } from 'semver'
@@ -10,13 +10,9 @@ import { LoggerService } from './logger.service'
 const packageJson = require('../../package.json')
 
 @Injectable()
-export class CheckUpdateService implements OnApplicationBootstrap {
+export class CheckUpdateService {
     constructor(private readonly http: HttpService, private readonly logger: LoggerService) {
         this.logger.setContext(CheckUpdateService.name)
-    }
-
-    async onApplicationBootstrap() {
-        await this.checkForUpdates()
     }
 
     public async checkForUpdates(): Promise<boolean> {
@@ -44,7 +40,7 @@ export class CheckUpdateService implements OnApplicationBootstrap {
                 return false
             }
 
-            const message = `Update available ${currentVersionClean} → ${latestClean}\nRun 'shell-config update' to update`
+            const message = `Update available ${currentVersionClean} → ${latestClean}\nRun 'sudo shell-config update' to update`
             console.log(
                 boxen(message, {
                     padding: 1,

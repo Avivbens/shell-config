@@ -1,5 +1,6 @@
 import { BASE_PATH } from '@common/constants'
 import { IShellModule } from '@models/shell-module.model'
+import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import { readdir, rename } from 'node:fs/promises'
@@ -13,12 +14,17 @@ import { MODULES_MAP } from './config/shell-modules.config'
     options: { isDefault: false },
 })
 export class ShellCommand extends CommandRunner {
-    constructor(private readonly logger: LoggerService) {
+    constructor(
+        private readonly logger: LoggerService,
+        private readonly checkUpdateService: CheckUpdateService,
+    ) {
         super()
         this.logger.setContext(ShellCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
+        await this.checkUpdateService.checkForUpdates()
+
         try {
             const modulesToDisable: IShellModule[] = await MULTI_SELECT_MODULES_PROMPT()
 
