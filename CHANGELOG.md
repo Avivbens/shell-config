@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.3.0 (2023-09-04)
+
+### Features
+
+-   support completion for the CLI ([#38](https://github.com/Avivbens/shell-config/issues/38)) ([1f677f7](https://github.com/Avivbens/shell-config/commit/1f677f70e86bf44016ff5dfc601f2d9dbf357fe6)), closes [#37](https://github.com/Avivbens/shell-config/issues/37) [#34](https://github.com/Avivbens/shell-config/issues/34)
+
 ### 2.2.1 (2023-09-03)
 
 ### Features
