@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.3.1 (2023-09-04)
+
+### Bug Fixes
+
+-   update command enter sudo password enabled ([e87ec89](https://github.com/Avivbens/shell-config/commit/e87ec890c83e49f8d5a6428a1cc48c2ac835675c))
+
 ## 2.3.0 (2023-09-04)
 
 ### Features
