@@ -10,6 +10,8 @@
 [![Latest Version](https://img.shields.io/github/v/release/avivbens/shell-config?label=Latest%20Version&color=green)](https://github.com/avivbens/shell-config/releases/latest)
 [![Total Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/total?label=Total%20Downloads&color=blue)](https://github.com/avivbens/shell-config/releases)
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/kcao7snkgx)
+
 </div>
 
 ## CLI Installation - No dependencies needed
