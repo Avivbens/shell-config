@@ -1,3 +1,4 @@
+import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { CommandRunner, SubCommand } from 'nest-commander'
 import { readdir } from 'node:fs/promises'
@@ -9,12 +10,17 @@ import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
     options: { isDefault: false },
 })
 export class ListSubCommand extends CommandRunner {
-    constructor(private readonly logger: LoggerService) {
+    constructor(
+        private readonly logger: LoggerService,
+        private readonly checkUpdateService: CheckUpdateService,
+    ) {
         super()
         this.logger.setContext(ListSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
+        await this.checkUpdateService.checkForUpdates()
+
         try {
             const externals = await this.readList()
 

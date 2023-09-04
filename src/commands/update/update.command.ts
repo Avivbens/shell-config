@@ -92,14 +92,10 @@ export class UpdateCommand extends CommandRunner {
             const applyMsg = 'Apply changes...'
             spinner.text = applyMsg
             this.logger.debug(applyMsg)
-            await Promise.race([
-                execPromise(INIT_SCRIPT),
-                setTimeout(10_000).then(() => {
-                    this.logger.warn('Failed to apply changes.')
-                }),
-            ])
+            await execPromise(INIT_SCRIPT)
 
             spinner.succeed('Updated successfully!')
+            this.logger.log('Might need to enter your password to apply changes.')
         } catch (error) {
             this.logger.error(`Error UpdateCommand, Error: ${error.stack}`)
             spinner.fail('Failed to update')
