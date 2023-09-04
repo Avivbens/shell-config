@@ -36,7 +36,7 @@
         "@nestjs/core": "^10.0.0",
         "boxen": "^5.1.2",
         "inquirer": "^8.2.6",
-        "nest-commander": "^3.11.1",
+        "nest-commander": "^3.12.0",
         "ora": "^5.4.1",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.8.1",
