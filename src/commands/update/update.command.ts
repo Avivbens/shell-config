@@ -3,7 +3,6 @@ import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner, Option } from 'nest-commander'
 import { existsSync } from 'node:fs'
-import { setTimeout } from 'node:timers/promises'
 import ora from 'ora'
 import {
     DOWNLOAD_FILE_PATH,
@@ -37,7 +36,12 @@ export class UpdateCommand extends CommandRunner {
             return
         }
 
-        const spinner = ora('Starting update...')
+        const spinner = ora({
+            text: 'Starting update...',
+            hideCursor: false,
+            discardStdin: false,
+        })
+
         spinner.start()
 
         try {
@@ -92,10 +96,10 @@ export class UpdateCommand extends CommandRunner {
             const applyMsg = 'Apply changes...'
             spinner.text = applyMsg
             this.logger.debug(applyMsg)
+            this.logger.log('\nMight need to enter your password to apply changes.')
             await execPromise(INIT_SCRIPT)
 
             spinner.succeed('Updated successfully!')
-            this.logger.log('Might need to enter your password to apply changes.')
         } catch (error) {
             this.logger.error(`Error UpdateCommand, Error: ${error.stack}`)
             spinner.fail('Failed to update')
