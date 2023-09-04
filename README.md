@@ -1,10 +1,10 @@
+<div align="center">
+
 # Shell-Config CLI - Your MacOS Setup Tool
 
 **🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that tailors configurations, installs apps, and enables seamless team collaboration.
 
 <br>
-
-<div align="center">
 
 [![Latest Version Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/latest/total?label=Latest%20Version%20Downloads&color=green)](https://github.com/avivbens/shell-config/releases/latest)
 [![Latest Version](https://img.shields.io/github/v/release/avivbens/shell-config?label=Latest%20Version&color=green)](https://github.com/avivbens/shell-config/releases/latest)

@@ -1,5 +1,6 @@
 import { execPromise } from '@common/utils'
 import { IAppSetup } from '@models/app-setup.model'
+import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import ora from 'ora'
@@ -13,12 +14,17 @@ import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
 export class InstallCommand extends CommandRunner {
     private readonly installMap = new Map<string, boolean>()
 
-    constructor(private readonly logger: LoggerService) {
+    constructor(
+        private readonly logger: LoggerService,
+        private readonly checkUpdateService: CheckUpdateService,
+    ) {
         super()
         this.logger.setContext(InstallCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
+        await this.checkUpdateService.checkForUpdates()
+
         try {
             const toInstall = await MULTI_SELECT_APPS_PROMPT()
 

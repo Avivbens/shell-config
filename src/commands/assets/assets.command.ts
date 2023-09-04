@@ -1,5 +1,6 @@
 import { BASE_PATH } from '@common/constants'
 import { execPromise } from '@common/utils'
+import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import { writeFile } from 'node:fs/promises'
@@ -24,12 +25,17 @@ import { replaceInTemplate } from './template-handle/replace-in-template'
     options: { isDefault: false },
 })
 export class AssetsCommand extends CommandRunner {
-    constructor(private readonly logger: LoggerService) {
+    constructor(
+        private readonly logger: LoggerService,
+        private readonly checkUpdateService: CheckUpdateService,
+    ) {
         super()
         this.logger.setContext(AssetsCommand.name)
     }
 
     async run(inputs: string[], options: unknown): Promise<void> {
+        await this.checkUpdateService.checkForUpdates()
+
         const spinner = ora('Setting up assets')
 
         try {
