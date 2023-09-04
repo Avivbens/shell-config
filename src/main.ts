@@ -14,7 +14,7 @@ const packageJson = require('../package.json')
         version: packageJson.version,
         completion: {
             cmd: cliCommand,
-            fig: true,
+            fig: false,
             nativeShell: {
                 executablePath: cliExecutable,
             },
