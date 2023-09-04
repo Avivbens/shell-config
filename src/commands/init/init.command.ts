@@ -1,5 +1,6 @@
 import { BASE_PATH } from '@common/constants'
 import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
+import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import { appendFile, copyFile, mkdir, readFile } from 'node:fs/promises'
@@ -14,12 +15,17 @@ import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-com
     options: { isDefault: false, hidden: true },
 })
 export class InitCommand extends CommandRunner {
-    constructor(private readonly logger: LoggerService) {
+    constructor(
+        private readonly logger: LoggerService,
+        private readonly checkUpdateService: CheckUpdateService,
+    ) {
         super()
         this.logger.setContext(InitCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
+        await this.checkUpdateService.checkForUpdates()
+
         try {
             await this.ensureZshrcExists()
             await this.backupRootZsh()

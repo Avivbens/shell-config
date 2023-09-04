@@ -4,14 +4,22 @@ import { AppModule } from './app.module'
 const packageJson = require('../package.json')
 
 ;(async () => {
+    const cliCommand = 'shell-config'
+    const cliExecutable = '$HOME/shell-config/executable/shell-config'
+
     const app = await CommandFactory.createWithoutRunning(AppModule, {
         errorHandler: (err) => {
             process.exit(1)
         },
         version: packageJson.version,
+        completion: {
+            cmd: cliCommand,
+            fig: false,
+            nativeShell: {
+                executablePath: cliExecutable,
+            },
+        },
     })
-
-    app.enableShutdownHooks()
 
     await CommandFactory.runApplication(app)
 })()

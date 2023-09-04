@@ -1,6 +1,7 @@
 import { LoggerService } from '@services/logger.service'
 import { CommandRunner, SubCommand } from 'nest-commander'
 import { existsSync } from 'node:fs'
+import { CheckUpdateService } from '@services/check-update.service'
 import { copyFile, readdir } from 'node:fs/promises'
 import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
 
@@ -15,12 +16,17 @@ import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
     },
 })
 export class InstallSubCommand extends CommandRunner {
-    constructor(private readonly logger: LoggerService) {
+    constructor(
+        private readonly logger: LoggerService,
+        private readonly checkUpdateService: CheckUpdateService,
+    ) {
         super()
         this.logger.setContext(InstallSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
+        await this.checkUpdateService.checkForUpdates()
+
         try {
             const [filePath = '', externalName = ''] = inputs
 
