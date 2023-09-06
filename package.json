@@ -1,6 +1,6 @@
 {
     "name": "shell-config",
-    "version": "2.3.1",
+    "version": "2.3.2-beta.0",
     "description": "CLI Tool for MacOS setup",
     "author": "Aviv Ben Shahar",
     "private": false,
@@ -14,6 +14,7 @@
     "scripts": {
         "build": "nest build",
         "pack": "./project-scripts/pack.sh",
+        "pack-local": "./project-scripts/pack-local.sh",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "node dist/main.js",
         "start:dev": "ts-node src/main.ts",
