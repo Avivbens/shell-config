@@ -36,7 +36,6 @@ grant_permissions "~/.nvm"
 mkdir -p ~/shell-config/downloads
 mkdir -p ~/shell-config/executable
 mkdir -p ~/shell-config/zsh
-mkdir -p ~/shell-config/private
 grant_permissions "~/shell-config"
 
 # save all terminal output to a file

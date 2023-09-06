@@ -1,6 +1,4 @@
 templates
-private
-!private/.gitkeep
 
 downloads
 !downloads/.gitkeep
