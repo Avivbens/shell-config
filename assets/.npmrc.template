@@ -1,0 +1,3 @@
+registry=https://registry.npmjs.org/
+progress=false
+//registry.npmjs.org/:_authToken=<ARTIFACTORY_AUTH>
