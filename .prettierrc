@@ -1,10 +1,10 @@
 {
-  "tabWidth": 4,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "semi": false,
-  "printWidth": 100,
-  "importOrder": ["^@.*/(.*)$", "^[./]"],
-  "importOrderSeparation": false,
-  "importOrderSortSpecifiers": true
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": false,
+    "printWidth": 100,
+    "importOrder": ["^@.*/(.*)$", "^[./]"],
+    "importOrderSeparation": false,
+    "importOrderSortSpecifiers": true
 }
