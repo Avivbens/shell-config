@@ -135,8 +135,11 @@ sudo shell-config --help
 
 ## Screenshots
 
-![Install Command](docs/install-command.png)
+<div align="center">
 
-![Install Options](docs/install-options.png)
+<img src="docs/install-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
+<img src="docs/install-options.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
+<img src="docs/shell-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
+<img src="docs/assets-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 
-![Shell Command](docs/shell-command.png)
+</div>
