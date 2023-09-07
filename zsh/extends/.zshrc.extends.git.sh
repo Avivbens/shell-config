@@ -44,12 +44,28 @@ function gchmany(){
     done
 }
 
-# variable is the workspace name (personal / work)
+# switch the current git config to the one specified
 function swgit(){
-    ln -f ~/.gitconfig.$1 ~/.gitconfig
+    # if no parameter in, print the content of the folder
+    if [ $# -eq 0 ]
+    then
+        ls -1 $HOME/.gitprofiles
+        return
+    fi
+
+    # check if the file exists
+    if [ ! -f "$HOME/.gitprofiles/$1" ]
+    then
+        echo "Git config named '$1' does not exist."
+        ls -1 $HOME/.gitprofiles
+        return
+    fi
+
+    ln -fs "$HOME/.gitprofiles/$1" "$HOME/.gitconfig"
     reload
 }
 
+# rename author of commits to the current user under git config
 function rename_author(){
     git rebase -r $1 \
     --exec 'git commit --amend --no-edit --reset-author'
@@ -91,7 +107,7 @@ function clonets(){
     npm ci
 }
 
-# remove all local branches but the master
+# remove all local branches but the master & staging
 alias grab="git branch | egrep -v 'master|staging' | xargs git branch -D"
 
 git config --global push.autoSetupRemote true

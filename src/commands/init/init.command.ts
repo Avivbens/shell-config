@@ -3,7 +3,7 @@ import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { appendFile, copyFile, mkdir, readFile } from 'node:fs/promises'
+import { appendFile, copyFile, mkdir, readFile, readdir, rename, rm } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
 import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-command.config'
@@ -81,27 +81,80 @@ export class InitCommand extends CommandRunner {
     private async unpackBundledAssets(): Promise<void> {
         try {
             this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
-            const prmsMake = [
-                mkdir(`${BASE_PATH}/zsh`, { recursive: true }),
-                mkdir(`${BASE_PATH}/assets`, { recursive: true }),
-            ]
-            await Promise.allSettled(prmsMake)
+
+            const disabledExtendsFilesMap: Record<string, string> =
+                await this.getCurrentExtendsDirDisabledFilesMap()
+
+            await mkdir(`${BASE_PATH}/zsh`, { recursive: true }).catch(() => {})
+            await rm(`${BASE_PATH}/zsh/extends`, { recursive: true, force: true }).catch(() => {})
 
             this.logger.debug(`Copying bundled assets to ${BASE_PATH}`)
 
-            const assetsPath = resolveBundledAsset(__dirname, 'assets/')
             const zshPath = resolveBundledAsset(__dirname, 'zsh/')
 
-            const prmsCopy = [
-                copyBundledAsset(assetsPath, `${BASE_PATH}/assets`, this.logger),
-                copyBundledAsset(zshPath, `${BASE_PATH}/zsh`, this.logger),
-            ]
+            await copyBundledAsset(zshPath, `${BASE_PATH}/zsh`, this.logger)
 
-            await Promise.all(prmsCopy)
+            this.logger.debug(
+                `Disabling files: ${Object.entries(disabledExtendsFilesMap)
+                    .map(([originalName]) => originalName)
+                    .join(', ')}`,
+            )
+
+            const extendsFiles: string[] = await this.getExtendsFiles()
+            this.logger.debug(`Found extends files: ${extendsFiles.join(', ')}`)
+
+            const prms = extendsFiles.map(async (fileOriginalName: string) => {
+                const disabledName = disabledExtendsFilesMap[fileOriginalName]
+                if (!disabledName) {
+                    return
+                }
+
+                this.logger.debug(`Disabling file ${fileOriginalName} => ${disabledName}`)
+
+                return rename(
+                    `${BASE_PATH}/zsh/extends/${fileOriginalName}`,
+                    `${BASE_PATH}/zsh/extends/${disabledName}`,
+                )
+            })
+
+            await Promise.all(prms)
 
             this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
         } catch (error) {
             this.logger.error(`Error unpackBundledAssets, error: ${error.stack}`)
+            throw error
+        }
+    }
+
+    private async getCurrentExtendsDirDisabledFilesMap(): Promise<Record<string, string>> {
+        try {
+            const extendsFiles: string[] = await this.getExtendsFiles()
+
+            const disabledFiles = extendsFiles.filter((fileName: string) =>
+                fileName.endsWith('.disabled'),
+            )
+
+            const disabledFilesMap: Record<string, string> = disabledFiles.reduce((acc, curr) => {
+                const originalName = curr.replace('.disabled', '')
+                acc[originalName] = curr
+                return acc
+            }, {})
+
+            return disabledFilesMap
+        } catch (error) {
+            this.logger.error(`Error getCurrentExtendsDirDisabledFiles, error: ${error.stack}`)
+            throw error
+        }
+    }
+
+    private async getExtendsFiles(): Promise<string[]> {
+        try {
+            const dirPath = `${BASE_PATH}/zsh/extends`
+            const extendsFiles: string[] = await readdir(dirPath).catch(() => [])
+
+            return extendsFiles
+        } catch (error) {
+            this.logger.error(`Error getExtendsFiles, error: ${error.stack}`)
             throw error
         }
     }

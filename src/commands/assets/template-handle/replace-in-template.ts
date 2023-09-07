@@ -4,7 +4,7 @@ import { ReplacementTemplate } from './models/replacement.enum'
 
 export async function replaceInTemplate(
     filePath: string,
-    replacementObject: Record<ReplacementTemplate, string>,
+    replacementObject: Partial<Record<ReplacementTemplate, string>>,
 ): Promise<string> {
     const path = resolveBundledAsset(__dirname, filePath)
     const file = await readFile(path, 'utf-8')
@@ -13,6 +13,9 @@ export async function replaceInTemplate(
     const entires = Object.entries(replacementObject)
 
     for (const [key, value] of entires) {
+        if (!value) {
+            continue
+        }
         newFile = newFile.replace(new RegExp(key, 'g'), value)
     }
 

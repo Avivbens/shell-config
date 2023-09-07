@@ -1,21 +1,24 @@
-import { BASE_PATH } from '@common/constants'
 import { execPromise } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { writeFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
-import ora from 'ora'
+import { mkdir, readdir, writeFile } from 'node:fs/promises'
+import {
+    AvailableActionIds,
+    GIT_PROFILES_TARGET,
+    HELP_BOX_MESSAGE,
+    NPM_PROFILES_TARGET,
+} from './config/ constants.config'
 import {
     ASK_FOR_ARTIFACTORY_KEY_PROMPT,
+    ASK_FOR_CUSTOM_REGISTRY_AUTH_PROMPT,
+    ASK_FOR_CUSTOM_REGISTRY_PROMPT,
     ASK_FOR_EMAIL_PROMPT,
     ASK_FOR_GIT_KEY_PROMPT,
     ASK_FOR_NAME_PROMPT,
-    ASK_FOR_PERSONAL_EMAIL_PROMPT,
-    ASK_FOR_PERSONAL_GIT_KEY_PROMPT,
-    ASSETS_TEMPLATES,
-    SETUP_ASSETS_ALSO_PERSONAL_CONFIRM_PROMPT,
-} from './config/setup-assets.config'
+    ASK_FOR_PROFILE_NAME_PROMPT,
+    SELECT_ACTION_PROMPT,
+} from './config/inputs.config'
 import { ReplacementTemplate } from './template-handle/models/replacement.enum'
 import { replaceInTemplate } from './template-handle/replace-in-template'
 
@@ -36,50 +39,147 @@ export class AssetsCommand extends CommandRunner {
     async run(inputs: string[], options: unknown): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
-        const spinner = ora('Setting up assets')
-
+        console.log(HELP_BOX_MESSAGE)
         try {
-            const alsoPersonalAssets: boolean = await SETUP_ASSETS_ALSO_PERSONAL_CONFIRM_PROMPT()
-            let personalEmail: string = ''
-            let personalGitKey: string = ''
-            if (alsoPersonalAssets) {
-                personalEmail = await ASK_FOR_PERSONAL_EMAIL_PROMPT()
-                personalGitKey = await ASK_FOR_PERSONAL_GIT_KEY_PROMPT()
-            }
-
-            const email = await ASK_FOR_EMAIL_PROMPT()
-            const name = await ASK_FOR_NAME_PROMPT()
-            const gitKey = await ASK_FOR_GIT_KEY_PROMPT()
-            const artifactoryKey = await ASK_FOR_ARTIFACTORY_KEY_PROMPT()
-
-            const replacementObject: Record<ReplacementTemplate, string> = {
-                [ReplacementTemplate.EMAIL]: email || ReplacementTemplate.EMAIL,
-                [ReplacementTemplate.FULL_NAME]: name || ReplacementTemplate.FULL_NAME,
-                [ReplacementTemplate.GIT_KEY]: gitKey || ReplacementTemplate.GIT_KEY,
-                [ReplacementTemplate.ARTIFACTORY_AUTH]:
-                    artifactoryKey || ReplacementTemplate.ARTIFACTORY_AUTH,
-                [ReplacementTemplate.PERSONAL_EMAIL]:
-                    personalEmail || ReplacementTemplate.PERSONAL_EMAIL,
-                [ReplacementTemplate.PERSONAL_GIT_KEY]:
-                    personalGitKey || ReplacementTemplate.PERSONAL_GIT_KEY,
-            }
-
-            spinner.start()
-
-            for (const { filePath, copyTo, effects } of ASSETS_TEMPLATES) {
-                const newFileContent = await replaceInTemplate(filePath, replacementObject)
-                const destination = resolve(BASE_PATH, copyTo)
-                await writeFile(destination, newFileContent)
-
-                for (const effect of effects) {
-                    await execPromise(effect)
+            while (true) {
+                const nextSelection: AvailableActionIds = await SELECT_ACTION_PROMPT()
+                if (!nextSelection) {
+                    break
                 }
-            }
 
-            spinner.succeed()
+                await this.actionMachine(nextSelection)
+            }
         } catch (error) {
             this.logger.error(`Error AssetsCommand, Error: ${error.stack}`)
-            spinner.fail('Failed to setup assets')
         }
+    }
+
+    private async actionMachine(nextSelection: AvailableActionIds) {
+        try {
+            const profileName = await ASK_FOR_PROFILE_NAME_PROMPT()
+
+            const isExistChecker = async (dirPath: string): Promise<boolean> => {
+                const currentProfiles: string[] = await readdir(dirPath).catch(async () => [])
+
+                const isExists: boolean = currentProfiles.includes(profileName)
+                return isExists
+            }
+
+            switch (nextSelection) {
+                case 'create_new_custom_npmrc_profile': {
+                    const isExists: boolean = await isExistChecker(NPM_PROFILES_TARGET)
+
+                    if (isExists) {
+                        this.logger.error(`Profile name ${profileName} already exists`)
+                        return
+                    }
+
+                    const newFileContent = await this.askForCustomNpmrcProfileConfig(profileName)
+                    await this.mkdirIfNotExists(NPM_PROFILES_TARGET)
+
+                    const filePath = `${NPM_PROFILES_TARGET}/${profileName}`
+                    await writeFile(filePath, newFileContent, {
+                        encoding: 'utf-8',
+                    })
+
+                    await execPromise(`ln -fs ${filePath} ~/.npmrc`)
+
+                    break
+                }
+                case 'create_new_npmrc_profile': {
+                    const isExists: boolean = await isExistChecker(NPM_PROFILES_TARGET)
+
+                    if (isExists) {
+                        this.logger.error(`Profile name ${profileName} already exists`)
+                        return
+                    }
+
+                    const newFileContent = await this.askForNpmrcProfileConfig(profileName)
+                    await this.mkdirIfNotExists(NPM_PROFILES_TARGET)
+
+                    const filePath = `${NPM_PROFILES_TARGET}/${profileName}`
+                    await writeFile(filePath, newFileContent, {
+                        encoding: 'utf-8',
+                    })
+
+                    await execPromise(`ln -fs ${filePath} ~/.npmrc`)
+
+                    break
+                }
+                case 'create_new_git_profile': {
+                    const isExists: boolean = await isExistChecker(GIT_PROFILES_TARGET)
+
+                    if (isExists) {
+                        this.logger.error(`Profile name ${profileName} already exists`)
+                        return
+                    }
+
+                    const newFileContent = await this.askForGitProfileConfig(profileName)
+                    await this.mkdirIfNotExists(GIT_PROFILES_TARGET)
+
+                    const filePath = `${GIT_PROFILES_TARGET}/${profileName}`
+                    await writeFile(filePath, newFileContent, {
+                        encoding: 'utf-8',
+                    })
+
+                    await execPromise(`ln -fs ${filePath} ~/.gitconfig`)
+
+                    break
+                }
+                default: {
+                    this.logger.error(`Unknown action ${nextSelection}`)
+                }
+            }
+        } catch (error) {
+            this.logger.error(`Error actionMachine, Error: ${error.stack}`)
+            throw error
+        }
+    }
+
+    private async askForGitProfileConfig(profileName: string): Promise<string> {
+        const name = await ASK_FOR_NAME_PROMPT()
+        const email = await ASK_FOR_EMAIL_PROMPT()
+        const gitKey = await ASK_FOR_GIT_KEY_PROMPT(profileName)
+
+        const filePath = 'assets/.gitconfig.template'
+        const replacementObject: Partial<Record<ReplacementTemplate, string>> = {
+            [ReplacementTemplate.FULL_NAME]: name,
+            [ReplacementTemplate.EMAIL]: email,
+            [ReplacementTemplate.GIT_KEY]: gitKey,
+        }
+        const newFileContent = await replaceInTemplate(filePath, replacementObject)
+        return newFileContent
+    }
+
+    private async askForNpmrcProfileConfig(profileName: string): Promise<string> {
+        const artifactoryKey = await ASK_FOR_ARTIFACTORY_KEY_PROMPT(profileName)
+
+        const filePath = 'assets/.npmrc.template'
+        const replacementObject: Partial<Record<ReplacementTemplate, string>> = {
+            [ReplacementTemplate.ARTIFACTORY_AUTH]: artifactoryKey,
+        }
+        const newFileContent = await replaceInTemplate(filePath, replacementObject)
+        return newFileContent
+    }
+
+    private async askForCustomNpmrcProfileConfig(profileName: string): Promise<string> {
+        const email = await ASK_FOR_EMAIL_PROMPT()
+        const customRegistry = await ASK_FOR_CUSTOM_REGISTRY_PROMPT(profileName)
+        const customRegistryAuthEndpoint = await ASK_FOR_CUSTOM_REGISTRY_AUTH_PROMPT(profileName)
+        const artifactoryKey = await ASK_FOR_ARTIFACTORY_KEY_PROMPT(profileName)
+
+        const filePath = 'assets/.npmrc.custom.template'
+        const replacementObject: Partial<Record<ReplacementTemplate, string>> = {
+            [ReplacementTemplate.EMAIL]: email,
+            [ReplacementTemplate.ARTIFACTORY_AUTH]: artifactoryKey,
+            [ReplacementTemplate.CUSTOM_REGISTRY]: customRegistry,
+            [ReplacementTemplate.CUSTOM_REGISTRY_AUTH]: customRegistryAuthEndpoint,
+        }
+        const newFileContent = await replaceInTemplate(filePath, replacementObject)
+        return newFileContent
+    }
+
+    private async mkdirIfNotExists(dirPath: string): Promise<void> {
+        await mkdir(dirPath, { recursive: true }).catch(() => {})
     }
 }
