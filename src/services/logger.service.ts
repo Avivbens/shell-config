@@ -1,4 +1,4 @@
-import { BASE_PATH, BOOTSTRAP_TIME } from '@common/constants'
+import { BASE_PATH, BOOTSTRAP_UUID } from '@common/constants'
 import { execPromise } from '@common/utils'
 import { Injectable, Scope } from '@nestjs/common'
 import { appendFile } from 'node:fs/promises'
@@ -39,7 +39,9 @@ export class LoggerService {
     }
 
     private generateMessage(message: string): string {
-        return `${BOOTSTRAP_TIME} | ${this.context}${message}`
+        return `INSTANCE: ${BOOTSTRAP_UUID} | ${new Date().toLocaleString()} |${
+            this.context
+        }${message}`
     }
 
     public setContext(context: string) {
