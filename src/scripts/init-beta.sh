@@ -22,21 +22,24 @@ then
     yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-grant_permissions ~/Desktop
+grant_permissions "$HOME/Desktop"
 
-mkdir -p ~/.npmrcs
-grant_permissions "~/.npmrcs"
+mkdir -p "$HOME/.gitprofiles"
+grant_permissions "$HOME/.gitprofiles"
+
+mkdir -p "$HOME/.npmrcs"
+grant_permissions "$HOME/.npmrcs"
 
 grant_permissions "/usr/local" || {}
 grant_permissions "/Library/Caches/Homebrew" || {}
 
-mkdir ~/.nvm
-grant_permissions "~/.nvm"
+mkdir "$HOME/.nvm"
+grant_permissions "$HOME/.nvm"
 
-mkdir -p ~/shell-config/downloads
-mkdir -p ~/shell-config/executable
-mkdir -p ~/shell-config/zsh
-grant_permissions "~/shell-config"
+mkdir -p "$HOME/shell-config/downloads"
+mkdir -p "$HOME/shell-config/executable"
+mkdir -p "$HOME/shell-config/zsh"
+grant_permissions "$HOME/shell-config"
 
 # save all terminal output to a file
 # exec &> ~/Desktop/init.log
