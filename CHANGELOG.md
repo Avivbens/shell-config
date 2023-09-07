@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.1 (2023-09-07)
+
+### Bug Fixes
+
+-   support instance id as part of logger ([60bf988](https://github.com/Avivbens/shell-config/commit/60bf988c246d4992c520b1bcb4928d92698a911d))
+
 ## 2.4.0 (2023-09-07)
 
 ### Features
