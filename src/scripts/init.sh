@@ -24,6 +24,9 @@ fi
 
 grant_permissions "$HOME/Desktop"
 
+mkdir -p "$HOME/.gitprofiles"
+grant_permissions "$HOME/.gitprofiles"
+
 mkdir -p "$HOME/.npmrcs"
 grant_permissions "$HOME/.npmrcs"
 
