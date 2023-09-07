@@ -1,0 +1,5 @@
+registry=<CUSTOM_REGISTRY>
+always-auth=true
+email=<EMAIL>
+progress=false
+<CUSTOM_REGISTRY_AUTH>/:_auth=<ARTIFACTORY_AUTH>
