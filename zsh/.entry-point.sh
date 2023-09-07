@@ -78,22 +78,6 @@ then
 fi
 
 
-# check for shell-config updates once in 10 times
-silent_background() {
-    { 2>&3 "$@"& } 3>&2 2>/dev/null
-    disown &>/dev/null  # Prevent whine if job has already completed
-}
-if [ $((RANDOM % 10)) -eq 0 ]; then
-    silent_background shell-config update -m
-fi
-
-
-if command -v mcfly &> /dev/null
-then
-    eval "$(mcfly init zsh)"
-fi
-
-
 # general
 alias c="clear"
 alias q="exit"
