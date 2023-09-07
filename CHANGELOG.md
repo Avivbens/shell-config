@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.3 (2023-09-07)
+
+### Bug Fixes
+
+-   duplicates over entry point ([04268c7](https://github.com/Avivbens/shell-config/commit/04268c742e1957d0f14c457046b2f04df47cab76))
+
 ### 2.4.2 (2023-09-07)
 
 ### Bug Fixes
