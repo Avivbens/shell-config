@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## 2.4.0 (2023-09-07)
 
+### Features
+
+-   better assets interactive command ([8eb840f](https://github.com/Avivbens/shell-config/commit/8eb840f7e1b1738ecb0b153e905d4f8042e7f849))
+
 ### Bug Fixes
 
--   bump up version ([a2a51e6](https://github.com/Avivbens/shell-config/commit/a2a51e6575322aad17e28ffa16f4d6ddf99a05b0))
+-   bug of shell command overwrite after update ([8eb840f](https://github.com/Avivbens/shell-config/commit/8eb840f7e1b1738ecb0b153e905d4f8042e7f849))
 
 ### 2.3.1 (2023-09-04)
 
