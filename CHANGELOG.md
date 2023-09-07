@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.2 (2023-09-07)
+
+### Bug Fixes
+
+-   unpack files with admin permission mode ([effab19](https://github.com/Avivbens/shell-config/commit/effab19caf1e6319877ed9630249e04ff40caaab))
+
 ### 2.4.1 (2023-09-07)
 
 ### Bug Fixes
