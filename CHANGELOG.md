@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.5.0 (2023-09-08)
+
+### Features
+
+-   support user tags to setup default values ([#40](https://github.com/Avivbens/shell-config/issues/40)) ([2ceeb3e](https://github.com/Avivbens/shell-config/commit/2ceeb3e947ed70d083e9d215b504ffc81948fe79))
+
 ### 2.4.3 (2023-09-07)
 
 ### Bug Fixes
