@@ -12,7 +12,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'NVM',
         description: 'Node Version Manager',
         group: 'terminal',
-        default: true,
+        tags: ['engineering', 'devops'],
         commands: [
             BREW_INSTALL('nvm'),
             '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',
@@ -31,7 +31,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Fig',
         group: 'terminal',
-        default: true,
+        tags: ['engineering', 'devops', 'productivity'],
         commands: [BREW_CASK('fig')],
     },
     {
@@ -39,13 +39,13 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description:
             'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
-        default: true,
+        tags: ['engineering', 'devops', 'productivity'],
         commands: [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting and Autosuggestions',
         group: 'terminal',
-        default: true,
+        tags: ['engineering', 'devops'],
         commands: [
             'rm -rf ~/.zsh/zsh-autosuggestions && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions',
             'rm -rf ~/.zsh/zsh-completions && git clone https://github.com/zsh-users/zsh-completions.git ~/.zsh/zsh-completions',

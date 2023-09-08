@@ -5,19 +5,73 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
     {
         name: '@angular/cli',
         group: 'node',
-        default: true,
+        tags: ['engineering'],
         commands: [NODE_GLOBAL('@angular/cli')],
-    },
-    {
-        name: '@githubnext/github-copilot-cli',
-        group: 'node',
-        commands: [NODE_GLOBAL('@githubnext/github-copilot-cli')],
     },
     {
         name: '@nestjs/cli',
         group: 'node',
-        default: true,
+        tags: ['engineering'],
         commands: [NODE_GLOBAL('@nestjs/cli')],
+    },
+    {
+        name: 'nx',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('nx')],
+    },
+    {
+        name: 'ts-jest',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('ts-jest')],
+    },
+    {
+        name: 'ts-node-dev',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('ts-node-dev')],
+    },
+    {
+        name: 'ts-node',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('ts-node')],
+    },
+    {
+        name: 'typescript',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('typescript')],
+    },
+    {
+        name: '@githubnext/github-copilot-cli',
+        group: 'node',
+        tags: ['engineering', 'devops'],
+        commands: [NODE_GLOBAL('@githubnext/github-copilot-cli')],
+    },
+    {
+        name: 'nodemon',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('nodemon')],
+    },
+    {
+        name: 'npmrc',
+        group: 'node',
+        tags: ['engineering', 'devops'],
+        commands: [NODE_GLOBAL('npmrc')],
+    },
+    {
+        name: 'verdaccio',
+        group: 'node',
+        tags: ['engineering'],
+        commands: [NODE_GLOBAL('verdaccio')],
+    },
+    {
+        name: 'ttab',
+        group: 'node',
+        commands: [NODE_GLOBAL('ttab')],
     },
     {
         name: 'alfred-open-whatsapp',
@@ -55,25 +109,9 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: [NODE_GLOBAL('jest')],
     },
     {
-        name: 'nodemon',
-        group: 'node',
-        commands: [NODE_GLOBAL('nodemon')],
-    },
-    {
         name: 'npkill',
         group: 'node',
         commands: [NODE_GLOBAL('npkill')],
-    },
-    {
-        name: 'npmrc',
-        group: 'node',
-        commands: [NODE_GLOBAL('npmrc')],
-    },
-    {
-        name: 'nx',
-        group: 'node',
-        default: true,
-        commands: [NODE_GLOBAL('nx')],
     },
     {
         name: 'prettier',
@@ -86,43 +124,8 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: [NODE_GLOBAL('pretty-quick')],
     },
     {
-        name: 'ts-jest',
-        group: 'node',
-        default: true,
-        commands: [NODE_GLOBAL('ts-jest')],
-    },
-    {
-        name: 'ts-node-dev',
-        group: 'node',
-        default: true,
-        commands: [NODE_GLOBAL('ts-node-dev')],
-    },
-    {
-        name: 'ts-node',
-        group: 'node',
-        default: true,
-        commands: [NODE_GLOBAL('ts-node')],
-    },
-    {
-        name: 'ttab',
-        group: 'node',
-        default: true,
-        commands: [NODE_GLOBAL('ttab')],
-    },
-    {
-        name: 'typescript',
-        group: 'node',
-        default: true,
-        commands: [NODE_GLOBAL('typescript')],
-    },
-    {
         name: 'vercel',
         group: 'node',
         commands: [NODE_GLOBAL('vercel')],
-    },
-    {
-        name: 'verdaccio',
-        group: 'node',
-        commands: [NODE_GLOBAL('verdaccio')],
     },
 ] as const
