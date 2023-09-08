@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.5.1 (2023-09-08)
+
+### Bug Fixes
+
+-   remove tags off a few items ([90a2c09](https://github.com/Avivbens/shell-config/commit/90a2c09872db2c27f6bb652c4eaf28638988de9d))
+
 ## 2.5.0 (2023-09-08)
 
 ### Features
