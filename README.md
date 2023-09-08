@@ -50,6 +50,8 @@ shell-config shell
 
 Select apps to install.
 <br>
+We're now support [preferences based on your selection!](#Screenshots)
+<br>
 Pay attention to passwords inputs if needed!
 
 ```bash
@@ -57,6 +59,7 @@ shell-config install
 ```
 
 <br>
+
 Apply npmrc and gitconfig files, with secrets.
 Support multiple accounts.
 <br>
@@ -141,5 +144,6 @@ sudo shell-config --help
 <img src="docs/install-options.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 <img src="docs/shell-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 <img src="docs/assets-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
+<img #tags-pref src="docs/select-tags.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 
 </div>
