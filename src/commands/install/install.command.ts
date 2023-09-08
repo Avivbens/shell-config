@@ -5,6 +5,7 @@ import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import ora from 'ora'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
+import { USER_TAGS_PROMPT } from './config/user-tags.config'
 
 @Command({
     name: 'install',
@@ -26,7 +27,8 @@ export class InstallCommand extends CommandRunner {
         await this.checkUpdateService.checkForUpdates()
 
         try {
-            const toInstall = await MULTI_SELECT_APPS_PROMPT()
+            const tags = await USER_TAGS_PROMPT()
+            const toInstall = await MULTI_SELECT_APPS_PROMPT(tags)
 
             const order = this.resolveDeps(toInstall).sort((a, b) => {
                 if (a.last) {
@@ -102,7 +104,7 @@ export class InstallCommand extends CommandRunner {
                 this.logger.debug(`Error resolveDeps, error: ${error.stack}`)
             }
 
-                throw error
+            throw error
         }
     }
 
