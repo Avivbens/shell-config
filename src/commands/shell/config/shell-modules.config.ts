@@ -1,43 +1,44 @@
+import { BASE_PATH } from '@common/constants'
 import { IShellModule } from '@models/shell-module.model'
+import { resolve } from 'node:path'
+
+export const EXTENDS_MODULES_DIR_PATH = 'zsh/extends'
+export const LOCAL_MODULES_DIR_PATH = resolve(BASE_PATH, EXTENDS_MODULES_DIR_PATH)
 
 export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     {
         name: 'Git',
-        path: 'zsh/extends/.zshrc.extends.git.sh',
-        default: true,
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.git.sh`,
         description: 'Git aliases and functions',
     },
     {
         name: 'NPM',
-        path: 'zsh/extends/.zshrc.extends.npm.sh',
-        default: true,
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.npm.sh`,
         description: 'NPM aliases and functions',
     },
     {
         name: 'Nest',
-        path: 'zsh/extends/.zshrc.extends.nest.sh',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.nest.sh`,
         description: 'NestJS aliases',
     },
     {
         name: 'Angular',
-        path: 'zsh/extends/.zshrc.extends.angular.sh',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.angular.sh`,
         description: 'Angular aliases',
     },
     {
         name: 'MongoDB',
-        path: 'zsh/extends/.zshrc.extends.mongo.sh',
-        default: true,
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.mongo.sh`,
         description: 'MongoDB aliases',
     },
     {
         name: 'Redis',
-        path: 'zsh/extends/.zshrc.extends.redis.sh',
-        default: true,
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.redis.sh`,
         description: 'Redis aliases',
     },
     {
         name: 'Python',
-        path: 'zsh/extends/.zshrc.extends.python.sh',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.python.sh`,
         description: 'Python aliases',
     },
 ]
