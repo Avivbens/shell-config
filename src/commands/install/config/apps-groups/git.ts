@@ -6,13 +6,14 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         name: 'Git',
         description: 'Common Code Version Manager',
         group: 'git',
-        default: true,
+        tags: ['engineering', 'devops'],
         commands: [BREW_INSTALL('git')],
         commandsFallback: [BREW_INSTALL_64_ARM('git')],
     },
     {
         name: 'VSCode as rebase editor',
         group: 'git',
+        tags: ['engineering', 'devops'],
         commands: [
             `git config --global core.editor "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],

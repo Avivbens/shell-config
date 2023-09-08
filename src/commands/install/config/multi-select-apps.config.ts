@@ -1,9 +1,15 @@
 import { inquirer } from '@common/inquirer'
 import { IAppSetup } from '@models/app-setup.model'
 import { IGroup } from '@models/group.model'
+import { ITag } from '@models/tag.model'
 import { APPS_CONFIG } from './apps.config'
 
-export const MULTI_SELECT_APPS_PROMPT = async (): Promise<IAppSetup[]> => {
+export const MULTI_SELECT_APPS_PROMPT = async (tags: ITag[]): Promise<IAppSetup[]> => {
+    const tagsMap = tags.reduce((acc, tag) => {
+        acc[tag] = true
+        return acc
+    }, {})
+
     const groups: Record<IGroup, IAppSetup[]> = APPS_CONFIG.reduce((acc, app) => {
         const { group } = app
         acc[group] ??= []
@@ -14,10 +20,10 @@ export const MULTI_SELECT_APPS_PROMPT = async (): Promise<IAppSetup[]> => {
 
     const choices = Object.entries(groups).flatMap(([groupName, group]) => {
         const value = group.map((app) => {
-            const { name, default: initial, description } = app
+            const { name, default: initial, description, tags = [] } = app
             return {
                 name: `${name}${description ? ` - ${description}` : ''}`,
-                checked: initial,
+                checked: initial || tags.some((tag) => tagsMap[tag]),
                 value: app,
             }
         })

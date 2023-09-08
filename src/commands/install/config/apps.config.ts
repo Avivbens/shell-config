@@ -11,3 +11,12 @@ export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...PYTHON,
     ...MACOS,
 ] as const
+
+export const AVAILABLE_TAGS = [
+    'engineering',
+    'devops',
+    'ui-ux',
+    'productivity',
+    'work',
+    'personal',
+] as const
