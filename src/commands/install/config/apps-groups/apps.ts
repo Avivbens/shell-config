@@ -43,7 +43,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Dash',
         group: 'apps',
-        tags: ['engineering', 'devops'],
+        description: 'Documentation browser',
         commands: [BREW_CASK('dash')],
     },
     {
@@ -73,7 +73,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'UTM',
         group: 'apps',
         description: 'Virtual machine MacOS',
-        tags: ['engineering', 'devops'],
         commands: [BREW_CASK('utm')],
     },
     {
@@ -86,7 +85,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'iTerm2',
         description: 'Terminal replacement',
         group: 'apps',
-        tags: ['engineering', 'devops'],
         commands: [BREW_CASK('iterm2')],
     },
     {
