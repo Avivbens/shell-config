@@ -91,14 +91,18 @@ export class InstallCommand extends CommandRunner {
                 return res
             }
 
-            return this.resolveDeps(toCheck, res, depsMap)
+            return this.resolveDeps(toCheck, res, depsMap, round + 1)
         } catch (error) {
             if (round === 0) {
-                this.logger.error(`Error resolveDeps, error: ${error.stack}`)
-                process.exit(1)
-            } else {
-                throw error
+                this.logger.error(
+                    `Error resolveDeps, could not resolve deps for apps: ${apps
+                        .map((app) => app.name)
+                        .join(' ')}`,
+                )
+                this.logger.debug(`Error resolveDeps, error: ${error.stack}`)
             }
+
+                throw error
         }
     }
 
