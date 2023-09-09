@@ -59,7 +59,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         tags: ['engineering', 'devops'],
         commands: [
             BREW_CASK('another-redis-desktop-manager'),
-            'sudo xattr -rd com.apple.quarantine /Applications/Another Redis Desktop Manager.app',
+            `sudo xattr -rd com.apple.quarantine /Applications/Another\ Redis\ Desktop\ Manager.app`,
         ],
         description: 'Redis GUI, Redis is required',
     },
