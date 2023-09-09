@@ -3,7 +3,7 @@ import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
-import { appendFile, copyFile, mkdir, readFile, readdir, rename, rm } from 'node:fs/promises'
+import { appendFile, chmod, copyFile, mkdir, readFile, readdir, rename, rm } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
 import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-command.config'
@@ -32,6 +32,8 @@ export class InitCommand extends CommandRunner {
 
             await this.unpackBundledAssets()
             await this.linkNewZsh()
+
+            await chmod(BASE_PATH, '755')
         } catch (error) {
             this.logger.error(`Error InitCommand, error: ${error.stack}`)
         }

@@ -6,7 +6,11 @@ import { Command, CommandRunner } from 'nest-commander'
 import { readdir, rename } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { MULTI_SELECT_MODULES_PROMPT } from './config/multi-select-modules.config'
-import { MODULES_MAP } from './config/shell-modules.config'
+import {
+    EXTENDS_MODULES_DIR_PATH,
+    LOCAL_MODULES_DIR_PATH,
+    MODULES_MAP,
+} from './config/shell-modules.config'
 
 @Command({
     name: 'shell',
@@ -26,7 +30,10 @@ export class ShellCommand extends CommandRunner {
         await this.checkUpdateService.checkForUpdates()
 
         try {
-            const modulesToDisable: IShellModule[] = await MULTI_SELECT_MODULES_PROMPT()
+            const currentConfig = await readdir(LOCAL_MODULES_DIR_PATH)
+            const modulesToDisable: IShellModule[] = await MULTI_SELECT_MODULES_PROMPT(
+                currentConfig,
+            )
 
             this.logger.debug(
                 `Modules to disable: ${modulesToDisable.map((module) => module.name).join(', ')}`,
@@ -44,14 +51,14 @@ export class ShellCommand extends CommandRunner {
 
     private async enableAllModules(): Promise<void> {
         try {
-            const modulesDirPath = resolve(BASE_PATH, 'zsh', 'extends')
-            const allModulesPaths: string[] = await readdir(modulesDirPath)
+            const allModulesPaths: string[] = await readdir(LOCAL_MODULES_DIR_PATH)
             const allDisabledModulesPaths: string[] = allModulesPaths.filter((modulePath) =>
                 modulePath.endsWith('.disabled'),
             )
 
             const allDisabledModules: IShellModule[] = allDisabledModulesPaths.map((modulePath) => {
-                const relativePath = 'zsh/extends/' + modulePath.replace('.disabled', '')
+                const relativePath =
+                    `${EXTENDS_MODULES_DIR_PATH}/` + modulePath.replace('.disabled', '')
                 return MODULES_MAP[relativePath]
             })
 
