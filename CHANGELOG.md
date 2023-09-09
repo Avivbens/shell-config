@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.6.0 (2023-09-09)
+
+### Features
+
+-   support shell command current state by current files config ([#41](https://github.com/Avivbens/shell-config/issues/41)) ([4465e2b](https://github.com/Avivbens/shell-config/commit/4465e2b961a4d2a90d59824f793035ece98072a7))
+
 ### 2.5.1 (2023-09-08)
 
 ### Bug Fixes
