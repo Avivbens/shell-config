@@ -84,7 +84,8 @@ shell-config update --target {version}
 In case of having permissions issue, try the following:
 
 ```bash
-sudo chown -R "$USER":admin ~/Desktop
+sudo grant_permissions "$HOME/shell-config"
+sudo grant_permissions "$HOME/Desktop"
 sudo shell-config --help
 ```
 
