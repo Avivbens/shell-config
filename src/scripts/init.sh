@@ -77,3 +77,5 @@ sudo shell-config init
 
 # disallow apps from anywhere
 sudo spctl --master-enable
+
+grant_permissions "$HOME/shell-config"
