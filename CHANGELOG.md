@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.2 (2023-09-09)
+
+### Bug Fixes
+
+-   another-redis-desktop-manager command spaces escapes ([614c556](https://github.com/Avivbens/shell-config/commit/614c5569c4e4d463dcf3d4bcfa2070f883bf966f))
+
 ### 2.6.1 (2023-09-09)
 
 ### Bug Fixes
