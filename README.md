@@ -35,9 +35,7 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 In case of having permissions issue, try the following:
 
 ```bash
-sudo grant_permissions "$HOME/shell-config"
-sudo grant_permissions "$HOME/Desktop"
-sudo shell-config --help
+sudo shell-doctor
 ```
 
 ## CLI Usage

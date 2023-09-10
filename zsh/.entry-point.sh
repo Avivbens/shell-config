@@ -57,10 +57,18 @@ setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 
 
+function grant_permissions(){
+    sudo chown -R "$USER":admin "$1"
+    chmod -R 770 "$1"
+}
+
+
 # shell-config CLI
 export PATH="$HOME/shell-config/executable:$PATH"
 source <(shell-config completion-script)
-
+function shell-doctor(){
+    grant_permissions "$HOME/shell-config"
+}
 
 # check for shell-config updates once in 10 times
 silent_background() {
@@ -94,11 +102,6 @@ function killport(){
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls; }
 
-
-function grant_permissions(){
-  sudo chown -R "$USER":admin "$1"
-  chmod -R 770 "$1"
-}
 
 # branches
     # Load version control information
