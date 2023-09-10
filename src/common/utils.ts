@@ -33,7 +33,7 @@ export async function copyBundledAsset(
         const isDir = (await stat(path)).isDirectory()
         if (!isDir) {
             const content = await readFile(path)
-            return writeFile(target, content, { mode: 0o755 })
+            return writeFile(target, content, { mode: 0o770 })
         }
 
         await mkdir(target, { recursive: true }).catch(() => {})

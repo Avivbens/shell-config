@@ -2,7 +2,7 @@
 
 function grant_permissions(){
   sudo chown -R "$USER":admin "$1"
-  sudo chmod -R 700 "$1"
+  sudo chmod -R 770 "$1"
 }
 
 function get_remote_execute_file() {

@@ -15,23 +15,23 @@ export class LoggerService {
     public log(message) {
         const generatedMessage = this.generateMessage(message)
         console.log(message)
-        appendFile(this.logPath, `LOG | ${generatedMessage}\n`)
+        appendFile(this.logPath, `LOG | ${generatedMessage}\n`, { mode: 0o770 })
     }
     public error(message, trace?) {
         const generatedMessage = this.generateMessage(message)
         console.error(`\x1b[31m${message}\x1b[0m`)
-        appendFile(this.logPath, `ERROR | ${generatedMessage}\n`)
+        appendFile(this.logPath, `ERROR | ${generatedMessage}\n`, { mode: 0o770 })
     }
     public warn(message) {
         const generatedMessage = this.generateMessage(message)
         // set color to yellow
         console.warn(`\x1b[33m${message}\x1b[0m`)
-        appendFile(this.logPath, `WARN | ${generatedMessage}\n`)
+        appendFile(this.logPath, `WARN | ${generatedMessage}\n`, { mode: 0o770 })
     }
     public debug(message) {
         const generatedMessage = this.generateMessage(message)
         // console.debug(message)
-        appendFile(this.logPath, `DEBUG | ${generatedMessage}\n`)
+        appendFile(this.logPath, `DEBUG | ${generatedMessage}\n`, { mode: 0o770 })
     }
 
     private get context(): string {

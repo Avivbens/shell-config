@@ -97,7 +97,7 @@ add-zsh-hook -Uz chpwd (){ ls; }
 
 function grant_permissions(){
   sudo chown -R "$USER":admin "$1"
-  chmod -R 700 "$1"
+  chmod -R 770 "$1"
 }
 
 # branches
