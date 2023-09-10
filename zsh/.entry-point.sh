@@ -70,6 +70,13 @@ function shell-doctor(){
     grant_permissions "$HOME/shell-config"
 }
 
+# fix permissions if needed
+if [ "$(stat -f '%A' $HOME/shell-config)" != "770" ]; then
+    echo -e "\n\033[1;33mWARNING: shell-config permissions are not correct, fixing...\033[0m\n"
+    shell-doctor
+fi
+
+
 # check for shell-config updates once in 10 times
 silent_background() {
     { 2>&3 "$@"& } 3>&2 2>/dev/null
