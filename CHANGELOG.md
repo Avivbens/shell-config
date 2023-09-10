@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.4 (2023-09-10)
+
+### Bug Fixes
+
+-   shell-doctor entry point command ([a9354d1](https://github.com/Avivbens/shell-config/commit/a9354d1203abcb58a803a5b21c713906667032e1))
+
 ### 2.6.3 (2023-09-10)
 
 ### Bug Fixes
