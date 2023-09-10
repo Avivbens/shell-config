@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.5 (2023-09-10)
+
+### Bug Fixes
+
+-   auto-doctor if shell-config directory does not have permissions ([26e99f7](https://github.com/Avivbens/shell-config/commit/26e99f7f2005bc38e05ce7422d44c9b1ee6a6c9e))
+
 ### 2.6.4 (2023-09-10)
 
 ### Bug Fixes
