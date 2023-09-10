@@ -33,7 +33,7 @@ export class InitCommand extends CommandRunner {
             await this.unpackBundledAssets()
             await this.linkNewZsh()
 
-            await chmod(BASE_PATH, '755')
+            await chmod(BASE_PATH, 0o770)
         } catch (error) {
             this.logger.error(`Error InitCommand, error: ${error.stack}`)
         }

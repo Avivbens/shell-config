@@ -30,6 +30,16 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 
 **Open a new terminal window after this script!**
 
+## Troubleshooting
+
+In case of having permissions issue, try the following:
+
+```bash
+sudo grant_permissions "$HOME/shell-config"
+sudo grant_permissions "$HOME/Desktop"
+sudo shell-config --help
+```
+
 ## CLI Usage
 
 Opt-in OR opt-out global bash functions and configurations.
@@ -76,20 +86,6 @@ Select CLI version / update version, target is optional - default is latest
 ```bash
 shell-config update --target {version}
 ```
-
-<br>
-
-# Troubleshooting
-
-In case of having permissions issue, try the following:
-
-```bash
-sudo grant_permissions "$HOME/shell-config"
-sudo grant_permissions "$HOME/Desktop"
-sudo shell-config --help
-```
-
-<br>
 
 ## Supported Terminal Features
 
