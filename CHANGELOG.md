@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.6 (2023-09-10)
+
+### Bug Fixes
+
+-   better auto-doctor in less time, handle recursive permissions issues ([106b2a1](https://github.com/Avivbens/shell-config/commit/106b2a1413643a1fc5d8d84e8fd113c7ec7075f4))
+
 ### 2.6.5 (2023-09-10)
 
 ### Bug Fixes
