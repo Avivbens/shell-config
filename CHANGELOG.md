@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.3 (2023-09-10)
+
+### Bug Fixes
+
+-   change files permissions mode to 770 ([2f7fe06](https://github.com/Avivbens/shell-config/commit/2f7fe06e4ca508a629a0c934ccad7c85b31e4ea4))
+
 ### 2.6.2 (2023-09-09)
 
 ### Bug Fixes
