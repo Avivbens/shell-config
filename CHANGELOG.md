@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.7 (2023-09-11)
+
+### Bug Fixes
+
+-   compinit load with autoload to fix completion for all macs ([de17543](https://github.com/Avivbens/shell-config/commit/de175439762f6852875dd94222465327e219cb4d))
+
 ### 2.6.6 (2023-09-10)
 
 ### Bug Fixes
