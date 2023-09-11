@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.6.8 (2023-09-11)
+
+### Bug Fixes
+
+-   another-redis-desktop-manager command with quotes ([5ea121e](https://github.com/Avivbens/shell-config/commit/5ea121e006e1f9c6c277f8d4b5b9e932b37efebb))
+
 ### 2.6.7 (2023-09-11)
 
 ### Bug Fixes
