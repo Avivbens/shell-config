@@ -36,7 +36,12 @@ sourceIf "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # git clone https://github.com/zsh-users/zsh-completions.git ~/.zsh/zsh-completions
 fpath=($HOME/.zsh/zsh-completions/src $fpath)
 # rm -f ~/.zcompdump
-autoload compinit
+
+
+# load compinit as a function on an exported path to avoid overlapping with other compinit commands
+autoload -Uz compinit
+# toggle ON completions with tab key
+compinit
 
 
 # Colored correct code
