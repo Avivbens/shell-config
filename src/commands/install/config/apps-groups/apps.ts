@@ -82,6 +82,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: [BREW_CASK('1password')],
     },
     {
+        name: 'Wrap',
+        description: 'Terminal with a power of code editor',
+        group: 'apps',
+        commands: [BREW_CASK('warp')],
+    },
+    {
         name: 'iTerm2',
         description: 'Terminal replacement',
         group: 'apps',
