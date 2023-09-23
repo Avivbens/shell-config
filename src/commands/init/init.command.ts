@@ -66,7 +66,7 @@ export class InitCommand extends CommandRunner {
             const zshPath = resolve(homedir(), '.zshrc')
             const zshContent = await readFile(zshPath, { encoding: 'utf-8' })
 
-            const isNeedToApplyLink: boolean = !LINK_SHELL_COMMAND_EXISTS(zshContent)
+            const isNeedToApplyLink = !LINK_SHELL_COMMAND_EXISTS(zshContent)
 
             if (!isNeedToApplyLink) {
                 this.logger.debug('Link already exists, skipping...')

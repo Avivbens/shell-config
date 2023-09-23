@@ -1,5 +1,5 @@
 import { execPromise } from '@common/utils'
-import { IAppSetup } from '@models/app-setup.model'
+import type { IAppSetup } from '@models/app-setup.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'

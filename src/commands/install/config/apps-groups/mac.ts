@@ -1,4 +1,4 @@
-import { Arch, IAppSetup } from '@models/app-setup.model'
+import type { Arch, IAppSetup } from '@models/app-setup.model'
 
 export const MACOS: Readonly<IAppSetup[]> = [
     {

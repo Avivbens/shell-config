@@ -1,5 +1,6 @@
 import { inquirer } from '@common/inquirer'
-import { AVAILABLE_ACTIONS, AvailableActionIds } from './ constants.config'
+import type { AvailableActionIds } from './ constants.config'
+import { AVAILABLE_ACTIONS } from './ constants.config'
 
 export const ASK_FOR_PROFILE_NAME_PROMPT = async (): Promise<string> => {
     const { name } = await inquirer.prompt([

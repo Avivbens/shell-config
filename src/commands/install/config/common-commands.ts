@@ -1,4 +1,4 @@
-import { Arch } from '@models/app-setup.model'
+import type { Arch } from '@models/app-setup.model'
 
 const ARCH_FLAG = (arch?: Arch): '' | `arch -${Arch}` => (arch ? `arch -${arch}` : '')
 export const BREW_CASK = (app: string) =>

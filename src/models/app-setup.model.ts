@@ -1,6 +1,6 @@
-import { arch } from 'node:process'
-import { IGroup } from './group.model'
-import { ITag } from './tag.model'
+import type { arch } from 'node:process'
+import type { IGroup } from './group.model'
+import type { ITag } from './tag.model'
 
 export type Arch = typeof arch
 

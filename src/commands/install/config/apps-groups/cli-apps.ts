@@ -1,4 +1,4 @@
-import { Arch, IAppSetup } from '@models/app-setup.model'
+import type { Arch, IAppSetup } from '@models/app-setup.model'
 import { BREW_CASK, BREW_INSTALL, BREW_TAP } from '../common-commands'
 
 export const CLI_APPS: Readonly<IAppSetup[]> = [
