@@ -41,9 +41,6 @@ mkdir -p "$HOME/shell-config/executable"
 mkdir -p "$HOME/shell-config/zsh"
 grant_permissions "$HOME/shell-config"
 
-# save all terminal output to a file
-# exec &> ~/Desktop/init.log
-
 # download the CLI
 curl -s "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
 | grep "browser_download_url.*cli-v.*.zip" \

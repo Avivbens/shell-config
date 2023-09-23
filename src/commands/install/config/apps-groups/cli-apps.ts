@@ -1,28 +1,24 @@
-import { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, BREW_INSTALL_64_ARM, BREW_TAP } from '../common-commands'
+import { Arch, IAppSetup } from '@models/app-setup.model'
+import { BREW_CASK, BREW_INSTALL, BREW_TAP } from '../common-commands'
 
 export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'google-cloud-sdk',
         group: 'cli-apps',
-        description: 'Integrate with Google Cloud Platform services, requires Apple Silicon',
+        description: 'Integrate with Google Cloud Platform services, Python is required',
         tags: ['engineering', 'devops'],
-        commands: [BREW_CASK('google-cloud-sdk')],
+        commands: (arch: Arch) => [BREW_CASK('google-cloud-sdk')],
+        deps: ['Python'],
     },
     {
         name: 'Mongodb',
         group: 'cli-apps',
         description: 'MongoDB Community Edition server',
         tags: ['engineering', 'devops'],
-        commands: [
+        commands: (arch: Arch) => [
             BREW_TAP('mongodb/brew'),
-            BREW_INSTALL('mongodb-community@6.0'),
-            'mkdir -p ~/mongodb || {  }',
-        ],
-        commandsFallback: [
-            BREW_TAP('mongodb/brew'),
-            BREW_INSTALL_64_ARM('mongodb-community@6.0'),
-            'mkdir -p ~/mongodb || {  }',
+            BREW_INSTALL('mongodb-community@6.0', arch),
+            'mkdir -p "$HOME/mongodb"',
         ],
     },
     {
@@ -30,7 +26,6 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Redis server',
         group: 'cli-apps',
         tags: ['engineering', 'devops'],
-        commands: [BREW_INSTALL('redis')],
-        commandsFallback: [BREW_INSTALL_64_ARM('redis')],
+        commands: (arch: Arch) => [BREW_INSTALL('redis', arch)],
     },
 ] as const

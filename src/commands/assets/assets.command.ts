@@ -82,7 +82,7 @@ export class AssetsCommand extends CommandRunner {
                         encoding: 'utf-8',
                     })
 
-                    await execPromise(`ln -fs ${filePath} ~/.npmrc`)
+                    await execPromise(`ln -fs ${filePath} "$HOME/.npmrc"`)
 
                     break
                 }
@@ -102,7 +102,7 @@ export class AssetsCommand extends CommandRunner {
                         encoding: 'utf-8',
                     })
 
-                    await execPromise(`ln -fs ${filePath} ~/.npmrc`)
+                    await execPromise(`ln -fs ${filePath} "$HOME/.npmrc"`)
 
                     break
                 }
@@ -122,7 +122,7 @@ export class AssetsCommand extends CommandRunner {
                         encoding: 'utf-8',
                     })
 
-                    await execPromise(`ln -fs ${filePath} ~/.gitconfig`)
+                    await execPromise(`ln -fs ${filePath} "$HOME/.gitconfig"`)
 
                     break
                 }

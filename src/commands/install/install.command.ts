@@ -3,6 +3,7 @@ import { IAppSetup } from '@models/app-setup.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
+import { arch as ARCH } from 'node:process'
 import ora from 'ora'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
 import { USER_TAGS_PROMPT } from './config/user-tags.config'
@@ -42,11 +43,15 @@ export class InstallCommand extends CommandRunner {
                 return 0
             })
 
+            this.logger.debug(`Installing apps: ${order.map((app) => app.name).join(', ')}`)
+
+            this.logger.debug(`Installing apps by arch ${ARCH}`)
+
             for (const app of order) {
                 await this.installApp(app)
             }
         } catch (error) {
-            this.logger.error(`Error InstallCommand, error: ${error.stack}`)
+            this.logger.debug(`Error InstallCommand, error: ${error.stack}`)
         }
     }
 
@@ -97,9 +102,9 @@ export class InstallCommand extends CommandRunner {
         } catch (error) {
             if (round === 0) {
                 this.logger.error(
-                    `Error resolveDeps, could not resolve deps for apps: ${apps
-                        .map((app) => app.name)
-                        .join(' ')}`,
+                    `Error resolveDeps, Not all dependencies are listed, here is a list by <To Install> - <Dependency>: \n${apps
+                        .map((app) => `${app.name} - ${app.deps?.join(', ')}`)
+                        .join('\n')}`,
                 )
                 this.logger.debug(`Error resolveDeps, error: ${error.stack}`)
             }
@@ -109,7 +114,7 @@ export class InstallCommand extends CommandRunner {
     }
 
     private async installApp(app: IAppSetup): Promise<void> {
-        const { commands, commandsFallback, name } = app
+        const { commands, name } = app
         const spinner = ora({
             text: `Installing ${name}`,
             hideCursor: false,
@@ -118,25 +123,15 @@ export class InstallCommand extends CommandRunner {
         spinner.start()
 
         try {
-            let needFallback = false
-            for (const command of commands) {
-                if (needFallback) {
-                    break
-                }
+            const parsedCommands = commands(ARCH)
 
+            for (const command of parsedCommands) {
                 await execPromise(command).catch((err) => {
-                    if (!commandsFallback?.length) {
-                        throw err
-                    }
-
-                    needFallback = true
+                    this.logger.debug(
+                        `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
+                    )
+                    throw err
                 })
-            }
-
-            if (needFallback) {
-                for (const command of commandsFallback) {
-                    await execPromise(command)
-                }
             }
 
             spinner.text = `Installed ${name}`
