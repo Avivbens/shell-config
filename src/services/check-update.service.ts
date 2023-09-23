@@ -1,5 +1,5 @@
 import { GITHUB_RELEASES_API_URL } from '@common/constants'
-import { IReleasesAPIRes } from '@models/releases-api.model'
+import type { IReleasesAPIRes } from '@models/releases-api.model'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 import boxen from 'boxen'
@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs'
 import { clean, lt } from 'semver'
 import { LoggerService } from './logger.service'
 
-const packageJson = require('../../package.json')
+import packageJson from '../../package.json'
 
 @Injectable()
 export class CheckUpdateService {
