@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
+import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { InstallSubCommand } from './install.sub-command'
 
@@ -12,6 +13,10 @@ describe('InstallSubCommand', () => {
                 {
                     provide: LoggerService,
                     useValue: { setContext: jest.fn() },
+                },
+                {
+                    provide: CheckUpdateService,
+                    useValue: { checkUpdate: jest.fn() },
                 },
             ],
         }).compile()
