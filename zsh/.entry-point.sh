@@ -75,10 +75,7 @@ function grant_permissions(){
 # shell-config CLI
 export PATH="$HOME/shell-config/executable:$PATH"
 source <(shell-config completion-script)
-function shell-doctor(){
-    sudo "$HOME/shell-config/executable/shell-config" init
-    grant_permissions "$HOME/shell-config"
-}
+alias shell-doctor='sudo "$HOME/shell-config/executable/shell-config" init && grant_permissions "$HOME/shell-config"'
 
 # fix permissions if needed
 if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
