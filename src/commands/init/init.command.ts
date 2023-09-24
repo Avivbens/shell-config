@@ -188,6 +188,7 @@ export class InitCommand extends CommandRunner {
                 this.logger.debug(msg)
                 try {
                     await execPromise(BROW_INSTALLATION_COMMAND)
+                    spinner.succeed()
                 } catch (error) {
                     this.logger.debug(`Error installing brow, error: ${error.stack}`)
                     innerSpinner.fail()
