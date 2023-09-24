@@ -165,35 +165,13 @@ export class InitCommand extends CommandRunner {
             let fails: 0 | 1 | 2 = 0
 
             if (!brewExists) {
-                const msg = 'Brew not installed, installing...'
-                const innerSpinner = ora(msg)
-                innerSpinner.start()
-
-                this.logger.debug(msg)
-                try {
-                    await execPromise(BREW_INSTALLATION_COMMAND)
-                    spinner.succeed()
-                } catch (error) {
-                    this.logger.debug(`Error installing brew, error: ${error.stack}`)
-                    innerSpinner.fail()
-                    fails++
-                }
+                const brewInstalled = await this.installBrew()
+                !brewInstalled && fails++
             }
 
             if (!browExists) {
-                const msg = 'Brew with architecture of 64 not installed, installing...'
-                const innerSpinner = ora(msg)
-                innerSpinner.start()
-
-                this.logger.debug(msg)
-                try {
-                    await execPromise(BROW_INSTALLATION_COMMAND)
-                    spinner.succeed()
-                } catch (error) {
-                    this.logger.debug(`Error installing brow, error: ${error.stack}`)
-                    innerSpinner.fail()
-                    fails++
-                }
+                const browInstalled = await this.installBrow()
+                !browInstalled && fails++
             }
 
             const spinnerStatus: Record<0 | 1 | 2, keyof ora.Ora> = {
@@ -207,6 +185,40 @@ export class InitCommand extends CommandRunner {
         } catch (error) {
             this.logger.debug(`Error handleBrewInstallation, error: ${error.stack}`)
             spinner.fail()
+        }
+    }
+
+    private async installBrew(): Promise<boolean> {
+        const msg = 'Brew not installed, installing...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(BREW_INSTALLATION_COMMAND)
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error installing brew, error: ${error.stack}`)
+            innerSpinner.fail()
+            return false
+        }
+    }
+
+    private async installBrow(): Promise<boolean> {
+        const msg = 'Brew with architecture of 64 is not installed, installing...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(BROW_INSTALLATION_COMMAND)
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error installing brow, error: ${error.stack}`)
+            innerSpinner.fail()
+            return false
         }
     }
 
