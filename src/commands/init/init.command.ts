@@ -1,11 +1,19 @@
 import { BASE_PATH } from '@common/constants'
-import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
+import { copyBundledAsset, execPromise, resolveBundledAsset } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
+import { existsSync } from 'node:fs'
 import { appendFile, chmod, copyFile, mkdir, readFile, readdir, rename, rm } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
+import ora from 'ora'
+import {
+    BREW_DIRECTORY,
+    BREW_INSTALLATION_COMMAND,
+    BROW_DIRECTORY,
+    BROW_INSTALLATION_COMMAND,
+} from './config/brew.config'
 import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-command.config'
 
 @Command({
@@ -34,6 +42,8 @@ export class InitCommand extends CommandRunner {
             await this.linkNewZsh()
 
             await chmod(BASE_PATH, 0o770)
+
+            await this.handleBrewInstallation()
         } catch (error) {
             this.logger.error(`Error InitCommand, error: ${error.stack}`)
         }
@@ -49,6 +59,9 @@ export class InitCommand extends CommandRunner {
     }
 
     private async backupRootZsh(): Promise<void> {
+        const spinner = ora('Backup root zsh')
+        spinner.start()
+
         try {
             const rootZshPath = resolve(homedir(), '.zshrc')
             const backupRootZshPath = resolve(homedir(), 'Desktop', `zshrc.backup-${Date.now()}`)
@@ -56,12 +69,17 @@ export class InitCommand extends CommandRunner {
             this.logger.debug(`Backing up root zsh at ${rootZshPath} to ${backupRootZshPath}`)
 
             await copyFile(rootZshPath, backupRootZshPath)
+            spinner.succeed()
         } catch (error) {
             this.logger.error(`Error backupRootZsh, error: ${error.stack}`)
+            spinner.fail()
         }
     }
 
     private async linkNewZsh(): Promise<void> {
+        const spinner = ora('Setup .zshrc to load shell-config')
+        spinner.start()
+
         try {
             const zshPath = resolve(homedir(), '.zshrc')
             const zshContent = await readFile(zshPath, { encoding: 'utf-8' })
@@ -70,17 +88,23 @@ export class InitCommand extends CommandRunner {
 
             if (!isNeedToApplyLink) {
                 this.logger.debug('Link already exists, skipping...')
+                spinner.succeed()
                 return
             }
 
             this.logger.debug(`Linking new zsh to ${zshPath}`)
             await appendFile(zshPath, LINK_SHELL_COMMAND)
+            spinner.succeed()
         } catch (error) {
             this.logger.error(`Error linkNewZsh, error: ${error.stack}`)
+            spinner.fail()
         }
     }
 
     private async unpackBundledAssets(): Promise<void> {
+        const spinner = ora('Unpacking bundled assets')
+        spinner.start()
+
         try {
             this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
 
@@ -122,9 +146,66 @@ export class InitCommand extends CommandRunner {
             await Promise.all(prms)
 
             this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
+            spinner.succeed()
         } catch (error) {
             this.logger.error(`Error unpackBundledAssets, error: ${error.stack}`)
+            spinner.fail()
             throw error
+        }
+    }
+
+    private async handleBrewInstallation(): Promise<void> {
+        const spinner = ora('Installing brew...')
+        spinner.start()
+
+        try {
+            const brewExists: boolean = existsSync(BREW_DIRECTORY)
+            const browExists: boolean = existsSync(BROW_DIRECTORY)
+
+            let fails: 0 | 1 | 2 = 0
+
+            if (!brewExists) {
+                const msg = 'Brew not installed, installing...'
+                const innerSpinner = ora(msg)
+                innerSpinner.start()
+
+                this.logger.debug(msg)
+                try {
+                    await execPromise(BREW_INSTALLATION_COMMAND)
+                    spinner.succeed()
+                } catch (error) {
+                    this.logger.debug(`Error installing brew, error: ${error.stack}`)
+                    innerSpinner.fail()
+                    fails++
+                }
+            }
+
+            if (!browExists) {
+                const msg = 'Brew with architecture of 64 not installed, installing...'
+                const innerSpinner = ora(msg)
+                innerSpinner.start()
+
+                this.logger.debug(msg)
+                try {
+                    await execPromise(BROW_INSTALLATION_COMMAND)
+                } catch (error) {
+                    this.logger.debug(`Error installing brow, error: ${error.stack}`)
+                    innerSpinner.fail()
+                    fails++
+                }
+            }
+
+            const spinnerStatus: Record<0 | 1 | 2, keyof ora.Ora> = {
+                0: 'succeed',
+                1: 'warn',
+                2: 'fail',
+            }
+
+            const status = spinnerStatus[fails]
+            spinner[status]?.()
+        } catch (error) {
+            this.logger.debug(`Error handleBrewInstallation, error: ${error.stack}`)
+            spinner.fail()
         }
     }
 

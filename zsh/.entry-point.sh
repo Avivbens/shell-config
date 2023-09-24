@@ -11,6 +11,10 @@ function sourceIf(){
 # load all homebrew paths
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# support brew formulaes installed via Rosetta 2
+alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
+# arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
