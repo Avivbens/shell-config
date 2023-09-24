@@ -76,6 +76,7 @@ function grant_permissions(){
 export PATH="$HOME/shell-config/executable:$PATH"
 source <(shell-config completion-script)
 function shell-doctor(){
+    sudo "$HOME/shell-config/executable/shell-config" init
     grant_permissions "$HOME/shell-config"
 }
 

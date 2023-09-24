@@ -181,6 +181,7 @@ export class InitCommand extends CommandRunner {
             }
 
             const status = spinnerStatus[fails]
+            spinner.text = `Installed brew`
             spinner[status]?.()
         } catch (error) {
             this.logger.debug(`Error handleBrewInstallation, error: ${error.stack}`)
