@@ -39,5 +39,5 @@ ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"
 `
 
 export const INIT_SCRIPT = `
-osascript -e 'tell app "Terminal" to do script "cd"'
+osascript -e 'tell app "Terminal" to do script "sudo $HOME/shell-config/executable/shell-config init && shell-doctor"'
 `
