@@ -14,6 +14,7 @@ import {
     BROW_DIRECTORY,
     BROW_INSTALLATION_COMMAND,
 } from './config/brew.config'
+import { REDO_INIT_COMMAND_MESSAGE } from './config/init.config'
 import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-command.config'
 
 @Command({
@@ -35,30 +36,45 @@ export class InitCommand extends CommandRunner {
         await this.checkUpdateService.checkForUpdates()
 
         try {
-            await this.ensureZshrcExists()
-            await this.backupRootZsh()
+            const results: boolean[] = []
 
-            await this.unpackBundledAssets()
-            await this.linkNewZsh()
+            results.push(await this.ensureZshrcExists())
 
-            await chmod(BASE_PATH, 0o770)
+            results.push(await this.backupRootZsh())
 
-            await this.handleBrewInstallation()
+            results.push(await this.unpackBundledAssets())
+            results.push(await this.linkNewZsh())
+
+            results.push(
+                await chmod(BASE_PATH, 0o770)
+                    .then(() => true)
+                    .catch(() => false),
+            )
+
+            results.push(await this.handleBrewInstallation())
+
+            const isAllSuccess = results.every((result) => result)
+
+            if (!isAllSuccess) {
+                console.log(REDO_INIT_COMMAND_MESSAGE)
+            }
         } catch (error) {
             this.logger.error(`Error InitCommand, error: ${error.stack}`)
         }
     }
 
-    private async ensureZshrcExists(): Promise<void> {
+    private async ensureZshrcExists(): Promise<boolean> {
         try {
             const zshPath = resolve(homedir(), '.zshrc')
             await appendFile(zshPath, '')
+            return true
         } catch (error) {
-            this.logger.error(`Error ensureZshrcExists, error: ${error.stack}`)
+            this.logger.debug(`Error ensureZshrcExists, error: ${error.stack}`)
+            return false
         }
     }
 
-    private async backupRootZsh(): Promise<void> {
+    private async backupRootZsh(): Promise<boolean> {
         const spinner = ora('Backup root zsh')
         spinner.start()
 
@@ -70,13 +86,15 @@ export class InitCommand extends CommandRunner {
 
             await copyFile(rootZshPath, backupRootZshPath)
             spinner.succeed()
+            return true
         } catch (error) {
-            this.logger.error(`Error backupRootZsh, error: ${error.stack}`)
+            this.logger.debug(`Error backupRootZsh, error: ${error.stack}`)
             spinner.fail()
+            return false
         }
     }
 
-    private async linkNewZsh(): Promise<void> {
+    private async linkNewZsh(): Promise<boolean> {
         const spinner = ora('Setup .zshrc to load shell-config')
         spinner.start()
 
@@ -89,19 +107,22 @@ export class InitCommand extends CommandRunner {
             if (!isNeedToApplyLink) {
                 this.logger.debug('Link already exists, skipping...')
                 spinner.succeed()
-                return
+                return true
             }
 
             this.logger.debug(`Linking new zsh to ${zshPath}`)
             await appendFile(zshPath, LINK_SHELL_COMMAND)
             spinner.succeed()
+
+            return true
         } catch (error) {
             this.logger.error(`Error linkNewZsh, error: ${error.stack}`)
             spinner.fail()
+            return false
         }
     }
 
-    private async unpackBundledAssets(): Promise<void> {
+    private async unpackBundledAssets(): Promise<boolean> {
         const spinner = ora('Unpacking bundled assets')
         spinner.start()
 
@@ -147,14 +168,15 @@ export class InitCommand extends CommandRunner {
 
             this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
             spinner.succeed()
+            return true
         } catch (error) {
-            this.logger.error(`Error unpackBundledAssets, error: ${error.stack}`)
+            this.logger.debug(`Error unpackBundledAssets, error: ${error.stack}`)
             spinner.fail()
-            throw error
+            return false
         }
     }
 
-    private async handleBrewInstallation(): Promise<void> {
+    private async handleBrewInstallation(): Promise<boolean> {
         const spinner = ora('Installing brew...')
         spinner.start()
 
@@ -183,9 +205,12 @@ export class InitCommand extends CommandRunner {
             const status = spinnerStatus[fails]
             spinner.text = `Installed brew`
             spinner[status]?.()
+
+            return fails === 0
         } catch (error) {
             this.logger.debug(`Error handleBrewInstallation, error: ${error.stack}`)
             spinner.fail()
+            return false
         }
     }
 
@@ -239,7 +264,7 @@ export class InitCommand extends CommandRunner {
 
             return disabledFilesMap
         } catch (error) {
-            this.logger.error(`Error getCurrentExtendsDirDisabledFiles, error: ${error.stack}`)
+            this.logger.debug(`Error getCurrentExtendsDirDisabledFiles, error: ${error.stack}`)
             throw error
         }
     }
@@ -251,7 +276,7 @@ export class InitCommand extends CommandRunner {
 
             return extendsFiles
         } catch (error) {
-            this.logger.error(`Error getExtendsFiles, error: ${error.stack}`)
+            this.logger.debug(`Error getExtendsFiles, error: ${error.stack}`)
             throw error
         }
     }
