@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.7.0 (2023-09-25)
+
+### Features
+
+-   support multiple architectures ([#42](https://github.com/Avivbens/shell-config/issues/42)) ([c17650d](https://github.com/Avivbens/shell-config/commit/c17650d095c68cfa8a72692d8162df2a3682b41d))
+
 ### 2.6.8 (2023-09-11)
 
 ### Bug Fixes
