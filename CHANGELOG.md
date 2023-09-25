@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.7.3 (2023-09-25)
+
+### Bug Fixes
+
+-   un-triggered commands over the terminal ([1c53a10](https://github.com/Avivbens/shell-config/commit/1c53a1052dbf84ef7bf94fadcd42e6966b645bda))
+
 ### 2.7.2 (2023-09-25)
 
 ### Bug Fixes
