@@ -58,6 +58,8 @@ yes 'a' | softwareupdate --install-rosetta
 
 $HOME/shell-config/executable/shell-config init
 
+grant_permissions "$HOME/shell-config"
+
 # disallow apps from anywhere
 sudo spctl --master-enable
 
