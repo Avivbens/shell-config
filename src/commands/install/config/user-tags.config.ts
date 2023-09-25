@@ -1,5 +1,5 @@
 import { inquirer } from '@common/inquirer'
-import { ITag } from '@models/tag.model'
+import type { ITag } from '@models/tag.model'
 import { AVAILABLE_TAGS } from './apps.config'
 
 export const USER_TAGS_PROMPT = async (): Promise<ITag[]> => {

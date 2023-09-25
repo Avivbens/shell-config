@@ -3,8 +3,8 @@ import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import { mkdir, readdir, writeFile } from 'node:fs/promises'
+import type { AvailableActionIds } from './config/ constants.config'
 import {
-    AvailableActionIds,
     GIT_PROFILES_TARGET,
     HELP_BOX_MESSAGE,
     NPM_PROFILES_TARGET,
@@ -82,7 +82,7 @@ export class AssetsCommand extends CommandRunner {
                         encoding: 'utf-8',
                     })
 
-                    await execPromise(`ln -fs ${filePath} ~/.npmrc`)
+                    await execPromise(`ln -fs ${filePath} "$HOME/.npmrc"`)
 
                     break
                 }
@@ -102,7 +102,7 @@ export class AssetsCommand extends CommandRunner {
                         encoding: 'utf-8',
                     })
 
-                    await execPromise(`ln -fs ${filePath} ~/.npmrc`)
+                    await execPromise(`ln -fs ${filePath} "$HOME/.npmrc"`)
 
                     break
                 }
@@ -122,7 +122,7 @@ export class AssetsCommand extends CommandRunner {
                         encoding: 'utf-8',
                     })
 
-                    await execPromise(`ln -fs ${filePath} ~/.gitconfig`)
+                    await execPromise(`ln -fs ${filePath} "$HOME/.gitconfig"`)
 
                     break
                 }

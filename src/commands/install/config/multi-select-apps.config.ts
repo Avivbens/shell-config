@@ -1,7 +1,7 @@
 import { inquirer } from '@common/inquirer'
-import { IAppSetup } from '@models/app-setup.model'
-import { IGroup } from '@models/group.model'
-import { ITag } from '@models/tag.model'
+import type { IAppSetup } from '@models/app-setup.model'
+import type { IGroup } from '@models/group.model'
+import type { ITag } from '@models/tag.model'
 import { APPS_CONFIG } from './apps.config'
 
 export const MULTI_SELECT_APPS_PROMPT = async (tags: ITag[]): Promise<IAppSetup[]> => {

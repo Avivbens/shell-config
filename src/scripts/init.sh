@@ -15,13 +15,6 @@ function get_remote_execute_file() {
 echo -e "\e[33mInstall Xcode Command Line Tools\e[0m"
 softwareupdate -i "Command Line Tools for Xcode-13.3" --agree-to-license
 
-# install homebrew if not installed
-if ! command -v brew &> /dev/null
-then
-    echo -e "\e[33mInstall Homebrew\e[0m"
-    yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
 grant_permissions "$HOME/Desktop"
 
 mkdir -p "$HOME/.gitprofiles"
@@ -31,7 +24,7 @@ mkdir -p "$HOME/.npmrcs"
 grant_permissions "$HOME/.npmrcs"
 
 grant_permissions "/usr/local" || {}
-grant_permissions "/Library/Caches/Homebrew" || {}
+grant_permissions "/Library/Caches" || {}
 
 mkdir "$HOME/.nvm"
 grant_permissions "$HOME/.nvm"
@@ -40,9 +33,6 @@ mkdir -p "$HOME/shell-config/downloads"
 mkdir -p "$HOME/shell-config/executable"
 mkdir -p "$HOME/shell-config/zsh"
 grant_permissions "$HOME/shell-config"
-
-# save all terminal output to a file
-# exec &> ~/Desktop/init.log
 
 # download the CLI
 curl -s "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
@@ -62,20 +52,17 @@ rm -rf "$HOME/shell-config/downloads/bin"
 # link the downloaded file to entry point
 ln -f "$HOME/shell-config/downloads/$filename" "$HOME/shell-config/executable/shell-config"
 
-# put new entry export in .zshrc
-echo '\nexport PATH="$HOME/shell-config/executable:$PATH"\n' >> "$HOME/.zshrc"
-
 # allow apps from anywhere - avoid certificate issues
 sudo spctl --master-disable
 
 # for non Apple silicon macs
 yes 'a' | softwareupdate --install-rosetta
 
-source "$HOME/.zshrc"
+$HOME/shell-config/executable/shell-config init
 
-sudo shell-config init
+grant_permissions "$HOME/shell-config"
 
 # disallow apps from anywhere
 sudo spctl --master-enable
 
-grant_permissions "$HOME/shell-config"
+osascript -e 'tell app "Terminal" to do script "cd"'

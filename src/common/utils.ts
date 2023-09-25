@@ -2,7 +2,7 @@ import { exec } from 'node:child_process'
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { promisify } from 'node:util'
-import { LoggerService } from '../services/logger.service'
+import type { LoggerService } from '../services/logger.service'
 
 /**
  * @param currentDirectory - __dirname

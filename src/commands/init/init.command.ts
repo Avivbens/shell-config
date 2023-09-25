@@ -1,11 +1,20 @@
 import { BASE_PATH } from '@common/constants'
-import { copyBundledAsset, resolveBundledAsset } from '@common/utils'
+import { copyBundledAsset, execPromise, resolveBundledAsset } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
+import { existsSync } from 'node:fs'
 import { appendFile, chmod, copyFile, mkdir, readFile, readdir, rename, rm } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
+import ora from 'ora'
+import {
+    BREW_DIRECTORY,
+    BREW_INSTALLATION_COMMAND,
+    BROW_DIRECTORY,
+    BROW_INSTALLATION_COMMAND,
+} from './config/brew.config'
+import { REDO_INIT_COMMAND_MESSAGE } from './config/init.config'
 import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-command.config'
 
 @Command({
@@ -27,28 +36,48 @@ export class InitCommand extends CommandRunner {
         await this.checkUpdateService.checkForUpdates()
 
         try {
-            await this.ensureZshrcExists()
-            await this.backupRootZsh()
+            const results: boolean[] = []
 
-            await this.unpackBundledAssets()
-            await this.linkNewZsh()
+            results.push(await this.ensureZshrcExists())
 
-            await chmod(BASE_PATH, 0o770)
+            results.push(await this.backupRootZsh())
+
+            results.push(await this.unpackBundledAssets())
+            results.push(await this.linkNewZsh())
+
+            results.push(
+                await chmod(BASE_PATH, 0o770)
+                    .then(() => true)
+                    .catch(() => false),
+            )
+
+            results.push(await this.handleBrewInstallation())
+
+            const isAllSuccess = results.every((result) => result)
+
+            if (!isAllSuccess) {
+                console.log(REDO_INIT_COMMAND_MESSAGE)
+            }
         } catch (error) {
             this.logger.error(`Error InitCommand, error: ${error.stack}`)
         }
     }
 
-    private async ensureZshrcExists(): Promise<void> {
+    private async ensureZshrcExists(): Promise<boolean> {
         try {
             const zshPath = resolve(homedir(), '.zshrc')
             await appendFile(zshPath, '')
+            return true
         } catch (error) {
-            this.logger.error(`Error ensureZshrcExists, error: ${error.stack}`)
+            this.logger.debug(`Error ensureZshrcExists, error: ${error.stack}`)
+            return false
         }
     }
 
-    private async backupRootZsh(): Promise<void> {
+    private async backupRootZsh(): Promise<boolean> {
+        const spinner = ora('Backup root zsh')
+        spinner.start()
+
         try {
             const rootZshPath = resolve(homedir(), '.zshrc')
             const backupRootZshPath = resolve(homedir(), 'Desktop', `zshrc.backup-${Date.now()}`)
@@ -56,31 +85,47 @@ export class InitCommand extends CommandRunner {
             this.logger.debug(`Backing up root zsh at ${rootZshPath} to ${backupRootZshPath}`)
 
             await copyFile(rootZshPath, backupRootZshPath)
+            spinner.succeed()
+            return true
         } catch (error) {
-            this.logger.error(`Error backupRootZsh, error: ${error.stack}`)
+            this.logger.debug(`Error backupRootZsh, error: ${error.stack}`)
+            spinner.fail()
+            return false
         }
     }
 
-    private async linkNewZsh(): Promise<void> {
+    private async linkNewZsh(): Promise<boolean> {
+        const spinner = ora('Setup .zshrc to load shell-config')
+        spinner.start()
+
         try {
             const zshPath = resolve(homedir(), '.zshrc')
             const zshContent = await readFile(zshPath, { encoding: 'utf-8' })
 
-            const isNeedToApplyLink: boolean = !LINK_SHELL_COMMAND_EXISTS(zshContent)
+            const isNeedToApplyLink = !LINK_SHELL_COMMAND_EXISTS(zshContent)
 
             if (!isNeedToApplyLink) {
                 this.logger.debug('Link already exists, skipping...')
-                return
+                spinner.succeed()
+                return true
             }
 
             this.logger.debug(`Linking new zsh to ${zshPath}`)
             await appendFile(zshPath, LINK_SHELL_COMMAND)
+            spinner.succeed()
+
+            return true
         } catch (error) {
             this.logger.error(`Error linkNewZsh, error: ${error.stack}`)
+            spinner.fail()
+            return false
         }
     }
 
-    private async unpackBundledAssets(): Promise<void> {
+    private async unpackBundledAssets(): Promise<boolean> {
+        const spinner = ora('Unpacking bundled assets')
+        spinner.start()
+
         try {
             this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
 
@@ -122,9 +167,142 @@ export class InitCommand extends CommandRunner {
             await Promise.all(prms)
 
             this.logger.debug(`Finished unpacking bundled assets to ${BASE_PATH}`)
+            spinner.succeed()
+            return true
         } catch (error) {
-            this.logger.error(`Error unpackBundledAssets, error: ${error.stack}`)
-            throw error
+            this.logger.debug(`Error unpackBundledAssets, error: ${error.stack}`)
+            spinner.fail()
+            return false
+        }
+    }
+
+    private async handleBrewInstallation(): Promise<boolean> {
+        const spinner = ora('Verifing Homebrew...')
+        spinner.start()
+
+        try {
+            let brewExists: boolean = existsSync(BREW_DIRECTORY)
+            let browExists: boolean = existsSync(BROW_DIRECTORY)
+
+            let fails: 0 | 1 | 2 = 0
+
+            if (!brewExists) {
+                const brewInstalled = await this.installBrew()
+                if (!brewInstalled) {
+                    fails++
+                } else {
+                    brewExists = true
+                }
+            }
+
+            if (!browExists) {
+                const browInstalled = await this.installBrow()
+                if (!browInstalled) {
+                    fails++
+                } else {
+                    browExists = true
+                }
+            }
+
+            if (brewExists) {
+                await this.updateBrew()
+            }
+
+            if (browExists) {
+                await this.updateBrow()
+            }
+
+            const spinnerStatus: Record<0 | 1 | 2, keyof ora.Ora> = {
+                0: 'succeed',
+                1: 'warn',
+                2: 'fail',
+            }
+
+            const status = spinnerStatus[fails]
+            spinner.text = `Homebrew Verified`
+            spinner[status]?.()
+
+            return fails === 0
+        } catch (error) {
+            this.logger.debug(`Error handleBrewInstallation, error: ${error.stack}`)
+            spinner.fail()
+            return false
+        }
+    }
+
+    private async installBrew(): Promise<boolean> {
+        const msg = 'Homebrew not installed, installing...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(BREW_INSTALLATION_COMMAND)
+            innerSpinner.text = 'Homebrew installed'
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error installBrew, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew not installed'
+            innerSpinner.fail()
+            return false
+        }
+    }
+
+    private async installBrow(): Promise<boolean> {
+        const msg = 'Homebrew 64x arch is not installed, installing...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(BROW_INSTALLATION_COMMAND)
+            innerSpinner.text = 'Homebrew 64x arch installed'
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error installBrow, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew 64x arch not installed'
+            innerSpinner.fail()
+            return false
+        }
+    }
+
+    private async updateBrew(): Promise<boolean> {
+        const msg = 'Updating Homebrew...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(`${BREW_DIRECTORY} update`)
+            innerSpinner.text = 'Homebrew updated'
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error updateBrew, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew not updated'
+            innerSpinner.warn()
+            return false
+        }
+    }
+
+    private async updateBrow(): Promise<boolean> {
+        const msg = 'Updating Homebrew 64x arch...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(`${BROW_DIRECTORY} update`)
+            innerSpinner.text = 'Homebrew 64x arch updated'
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error updateBrow, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew 64x arch not updated'
+            innerSpinner.warn()
+            return false
         }
     }
 
@@ -144,7 +322,7 @@ export class InitCommand extends CommandRunner {
 
             return disabledFilesMap
         } catch (error) {
-            this.logger.error(`Error getCurrentExtendsDirDisabledFiles, error: ${error.stack}`)
+            this.logger.debug(`Error getCurrentExtendsDirDisabledFiles, error: ${error.stack}`)
             throw error
         }
     }
@@ -156,7 +334,7 @@ export class InitCommand extends CommandRunner {
 
             return extendsFiles
         } catch (error) {
-            this.logger.error(`Error getExtendsFiles, error: ${error.stack}`)
+            this.logger.debug(`Error getExtendsFiles, error: ${error.stack}`)
             throw error
         }
     }

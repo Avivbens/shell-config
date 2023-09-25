@@ -38,6 +38,10 @@ export const MIGRATE_SCRIPT = (filename: string) => `
 ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"
 `
 
+/**
+ * @description Dynamically generated script to init shell-config setup
+ * @see {@link [script](src/commands/init-script/config/init-script.config.ts)}
+ */
 export const INIT_SCRIPT = `
-sudo ${BASE_PATH}/executable/shell-config init
+source <(shell-config init-script)
 `

@@ -1,5 +1,5 @@
 import { BASE_PATH } from '@common/constants'
-import { IShellModule } from '@models/shell-module.model'
+import type { IShellModule } from '@models/shell-module.model'
 import { resolve } from 'node:path'
 
 export const EXTENDS_MODULES_DIR_PATH = 'zsh/extends'

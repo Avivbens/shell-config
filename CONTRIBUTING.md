@@ -13,6 +13,12 @@ To get started, follow these steps:
 1. Test your changes
 1. Submit a pull request against the `staging` branch
 
+## CLI Setup Flow
+
+1. CLI is getting updated via the `shell-config update` command OR installed via the [init.sh](src/scripts/init.sh) script
+1. Both the [.zshrc configuration](zsh/.entry-point.sh), and the [UpdateCommand](src/commands/update/update.command.ts) calling `source <(shell-config init-script)` in order to have the dynamic init command of the latest version.
+1. The [InitCommand](src/commands/init/init.command.ts) kicks in, and checks all of the relevant files, tools, setups and configurations of the latest version, and update them if needed. Homebrew is been installed for both Apple Silicon and Intel based Macs. It will also backup the current `.zshrc` file
+
 ## Commit Message Guidelines
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. Make sure your commit messages follow the format below:

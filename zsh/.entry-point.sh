@@ -9,7 +9,13 @@ function sourceIf(){
 }
 
 # load all homebrew paths
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# support brew formulaes installed via Rosetta 2
+alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
+# arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 
 # NVM
@@ -77,7 +83,9 @@ function shell-doctor(){
 
 # fix permissions if needed
 if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
-    echo -e "\n\033[1;33mWARNING: shell-config permissions are not correct, fixing...\033[0m\n"
+    echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
+    shell-doctor
+    shell-config init
     shell-doctor
 fi
 

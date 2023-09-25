@@ -12,7 +12,7 @@ import {
     MIGRATE_SCRIPT,
     UNZIP_SCRIPT,
 } from './config/update-script.config'
-import { IUpdateCommandOptions } from './models/update-command.options'
+import type { IUpdateCommandOptions } from './models/update-command.options'
 
 @Command({
     name: 'update',

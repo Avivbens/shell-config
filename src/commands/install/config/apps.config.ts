@@ -1,4 +1,4 @@
-import { IAppSetup } from '@models/app-setup.model'
+import type { IAppSetup } from '@models/app-setup.model'
 import { APPS, CLI_APPS, MACOS, NODE_APPS, PYTHON, TERMINAL_APPS } from './apps-groups'
 import { GIT_APPS } from './apps-groups/git'
 

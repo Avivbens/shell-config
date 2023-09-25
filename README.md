@@ -28,14 +28,12 @@ function get_remote_execute_file() {
 get_remote_execute_file "src/scripts/init.sh" | sh
 ```
 
-**Open a new terminal window after this script!**
-
 ## Troubleshooting
 
 In case of having permissions issue, try the following:
 
 ```bash
-sudo shell-doctor
+source <(shell-config init-script)
 ```
 
 ## CLI Usage
@@ -123,14 +121,20 @@ shell-config update --target {version}
 
 <br>
 
+## Contributing
+
+Good to know that you want to contribute to this project! 🎉
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
+
 ## Screenshots
 
 <div align="center">
 
-<img src="docs/install-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 <img src="docs/install-options.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 <img src="docs/shell-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 <img src="docs/assets-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 <img #tags-pref src="docs/select-tags.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
+<img src="docs/install-command.jpg" style="width: 49%; object-fit: cover; border-radius: 10px;">
 
 </div>

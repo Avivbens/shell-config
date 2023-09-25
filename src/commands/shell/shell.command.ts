@@ -1,5 +1,5 @@
 import { BASE_PATH } from '@common/constants'
-import { IShellModule } from '@models/shell-module.model'
+import type { IShellModule } from '@models/shell-module.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
