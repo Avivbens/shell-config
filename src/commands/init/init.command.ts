@@ -181,19 +181,35 @@ export class InitCommand extends CommandRunner {
         spinner.start()
 
         try {
-            const brewExists: boolean = existsSync(BREW_DIRECTORY)
-            const browExists: boolean = existsSync(BROW_DIRECTORY)
+            let brewExists: boolean = existsSync(BREW_DIRECTORY)
+            let browExists: boolean = existsSync(BROW_DIRECTORY)
 
             let fails: 0 | 1 | 2 = 0
 
             if (!brewExists) {
                 const brewInstalled = await this.installBrew()
-                !brewInstalled && fails++
+                if (!brewInstalled) {
+                    fails++
+                } else {
+                    brewExists = true
+                }
             }
 
             if (!browExists) {
                 const browInstalled = await this.installBrow()
-                !browInstalled && fails++
+                if (!browInstalled) {
+                    fails++
+                } else {
+                    browExists = true
+                }
+            }
+
+            if (brewExists) {
+                await this.updateBrew()
+            }
+
+            if (browExists) {
+                await this.updateBrow()
             }
 
             const spinnerStatus: Record<0 | 1 | 2, keyof ora.Ora> = {
@@ -215,39 +231,77 @@ export class InitCommand extends CommandRunner {
     }
 
     private async installBrew(): Promise<boolean> {
-        const msg = 'Brew not installed, installing...'
+        const msg = 'Homebrew not installed, installing...'
         const innerSpinner = ora(msg)
         innerSpinner.start()
 
         this.logger.debug(msg)
         try {
             await execPromise(BREW_INSTALLATION_COMMAND)
-            innerSpinner.text = 'Homebrewrew installed'
+            innerSpinner.text = 'Homebrew installed'
             innerSpinner.succeed()
             return true
         } catch (error) {
-            this.logger.debug(`Error installing brew, error: ${error.stack}`)
-            innerSpinner.text = 'Homebrewrew not installed'
+            this.logger.debug(`Error installBrew, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew not installed'
             innerSpinner.fail()
             return false
         }
     }
 
     private async installBrow(): Promise<boolean> {
-        const msg = 'Homebrewrew 64x arch is not installed, installing...'
+        const msg = 'Homebrew 64x arch is not installed, installing...'
         const innerSpinner = ora(msg)
         innerSpinner.start()
 
         this.logger.debug(msg)
         try {
             await execPromise(BROW_INSTALLATION_COMMAND)
-            innerSpinner.text = 'Homebrewrew 64x arch installed'
+            innerSpinner.text = 'Homebrew 64x arch installed'
             innerSpinner.succeed()
             return true
         } catch (error) {
-            this.logger.debug(`Error installing brow, error: ${error.stack}`)
-            innerSpinner.text = 'Homebrewrew 64x arch not installed'
+            this.logger.debug(`Error installBrow, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew 64x arch not installed'
             innerSpinner.fail()
+            return false
+        }
+    }
+
+    private async updateBrew(): Promise<boolean> {
+        const msg = 'Updating Homebrew...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(`${BREW_DIRECTORY} update`)
+            innerSpinner.text = 'Homebrew updated'
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error updateBrew, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew not updated'
+            innerSpinner.warn()
+            return false
+        }
+    }
+
+    private async updateBrow(): Promise<boolean> {
+        const msg = 'Updating Homebrew 64x arch...'
+        const innerSpinner = ora(msg)
+        innerSpinner.start()
+
+        this.logger.debug(msg)
+        try {
+            await execPromise(`${BROW_DIRECTORY} update`)
+            innerSpinner.text = 'Homebrew 64x arch updated'
+            innerSpinner.succeed()
+            return true
+        } catch (error) {
+            this.logger.debug(`Error updateBrow, error: ${error.stack}`)
+            innerSpinner.text = 'Homebrew 64x arch not updated'
+            innerSpinner.warn()
             return false
         }
     }
