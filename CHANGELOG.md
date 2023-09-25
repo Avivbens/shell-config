@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.7.2 (2023-09-25)
+
+### Bug Fixes
+
+-   non-execution of terminal scripts ([216aed0](https://github.com/Avivbens/shell-config/commit/216aed074d201242d0231c2ef83abc4e6191293e))
+
 ### 2.7.1 (2023-09-25)
 
 ### Bug Fixes
