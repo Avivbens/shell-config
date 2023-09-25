@@ -15,13 +15,6 @@ function get_remote_execute_file() {
 echo -e "\e[33mInstall Xcode Command Line Tools\e[0m"
 softwareupdate -i "Command Line Tools for Xcode-13.3" --agree-to-license
 
-# install homebrew if not installed
-if ! command -v brew &> /dev/null
-then
-    echo -e "\e[33mInstall Homebrew\e[0m"
-    yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
 grant_permissions "$HOME/Desktop"
 
 mkdir -p "$HOME/.gitprofiles"
@@ -31,7 +24,7 @@ mkdir -p "$HOME/.npmrcs"
 grant_permissions "$HOME/.npmrcs"
 
 grant_permissions "/usr/local" || {}
-grant_permissions "/Library/Caches/Homebrew" || {}
+grant_permissions "/Library/Caches" || {}
 
 mkdir "$HOME/.nvm"
 grant_permissions "$HOME/.nvm"
@@ -43,7 +36,7 @@ grant_permissions "$HOME/shell-config"
 
 
 # download the CLI
-version="v2.0.0-beta.36"
+version="v2.7.0-beta.14"
 curl "https://github.com/Avivbens/shell-config/releases/download/$version/cli-$version.zip" -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
 unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"
@@ -57,10 +50,6 @@ rm -rf "$HOME/shell-config/downloads/bin"
 # link the downloaded file to entry point
 ln -f "$HOME/shell-config/downloads/$filename" "$HOME/shell-config/executable/shell-config"
 
-
-# put new entry export in .zshrc
-echo '\nexport PATH="$HOME/shell-config/executable:$PATH"\n' >> "$HOME/.zshrc"
-
 # allow apps from anywhere - avoid certificate issues
 sudo spctl --master-disable
 
@@ -69,7 +58,9 @@ yes 'a' | softwareupdate --install-rosetta
 
 source "$HOME/.zshrc"
 
-sudo shell-config init
+./$HOME/shell-config/executable/shell-config init
 
 # disallow apps from anywhere
 sudo spctl --master-enable
+
+grant_permissions "$HOME/shell-config"

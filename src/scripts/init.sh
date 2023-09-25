@@ -60,7 +60,7 @@ yes 'a' | softwareupdate --install-rosetta
 
 source "$HOME/.zshrc"
 
-sudo $HOME/shell-config/executable/shell-config init
+./$HOME/shell-config/executable/shell-config init
 
 # disallow apps from anywhere
 sudo spctl --master-enable
