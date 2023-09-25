@@ -58,7 +58,9 @@ sudo spctl --master-disable
 # for non Apple silicon macs
 yes 'a' | softwareupdate --install-rosetta
 
-source <($HOME/shell-config/executable/shell-config init-script)
+$HOME/shell-config/executable/shell-config init
 
 # disallow apps from anywhere
 sudo spctl --master-enable
+
+source "$HOME/.zshrc"

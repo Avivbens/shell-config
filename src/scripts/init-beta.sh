@@ -36,7 +36,7 @@ grant_permissions "$HOME/shell-config"
 
 
 # download the CLI
-version="v2.7.0-beta.19"
+version="v2.7.0-beta.20"
 curl "https://github.com/Avivbens/shell-config/releases/download/$version/cli-$version.zip" -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
 unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"
@@ -56,7 +56,9 @@ sudo spctl --master-disable
 # for non Apple silicon macs
 yes 'a' | softwareupdate --install-rosetta
 
-source <($HOME/shell-config/executable/shell-config init-script)
+$HOME/shell-config/executable/shell-config init
 
 # disallow apps from anywhere
 sudo spctl --master-enable
+
+source "$HOME/.zshrc"
