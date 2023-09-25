@@ -1,5 +1,5 @@
-import type { Arch, IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, BREW_TAP } from '../common-commands'
+import type { IAppSetup } from '@models/app-setup.model'
+import { BREW_CASK, BREW_INSTALL, BREW_TAP, BROW_INSTALL, BROW_TAP } from '../common-commands'
 
 export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
@@ -15,9 +15,14 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'MongoDB Community Edition server',
         tags: ['engineering', 'devops'],
-        commands: (arch: Arch) => [
+        commands: () => [
             BREW_TAP('mongodb/brew'),
-            BREW_INSTALL('mongodb-community@6.0', arch),
+            BREW_INSTALL('mongodb-community@6.0'),
+            'mkdir -p "$HOME/mongodb"',
+        ],
+        fallbackCommands: () => [
+            BROW_TAP('mongodb/brew'),
+            BROW_INSTALL('mongodb-community@6.0'),
             'mkdir -p "$HOME/mongodb"',
         ],
     },
@@ -26,6 +31,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Redis server',
         group: 'cli-apps',
         tags: ['engineering', 'devops'],
-        commands: (arch: Arch) => [BREW_INSTALL('redis', arch)],
+        commands: () => [BREW_INSTALL('redis')],
+        fallbackCommands: () => [BROW_INSTALL('redis')],
     },
 ] as const

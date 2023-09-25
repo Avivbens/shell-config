@@ -1,5 +1,12 @@
-import type { Arch, IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, BREW_TAP, NVM_COMMAND } from '../common-commands'
+import type { IAppSetup } from '@models/app-setup.model'
+import {
+    BREW_CASK,
+    BREW_INSTALL,
+    BREW_TAP,
+    BROW_INSTALL,
+    BROW_TAP,
+    NVM_COMMAND,
+} from '../common-commands'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
@@ -7,8 +14,8 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description: 'Node Version Manager',
         group: 'terminal',
         tags: ['engineering', 'devops'],
-        commands: (arch: Arch) => [
-            BREW_INSTALL('nvm', arch),
+        commands: () => [
+            BREW_INSTALL('nvm'),
             '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',
             `chmod +x $HOME/.nvm/nvm.sh`,
             NVM_COMMAND('install 16.14.0'),
@@ -28,6 +35,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         group: 'terminal',
         tags: ['engineering', 'devops', 'productivity'],
         commands: () => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
+        fallbackCommands: () => [BROW_TAP('cantino/mcfly'), BROW_INSTALL('cantino/mcfly/mcfly')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting and Autosuggestions',

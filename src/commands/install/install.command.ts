@@ -45,7 +45,7 @@ export class InstallCommand extends CommandRunner {
 
             this.logger.debug(`Installing apps: ${order.map((app) => app.name).join(', ')}`)
 
-            this.logger.debug(`Installing apps by arch ${ARCH}`)
+            this.logger.debug(`Current arch ${ARCH}`)
 
             for (const app of order) {
                 await this.installApp(app)
@@ -114,7 +114,7 @@ export class InstallCommand extends CommandRunner {
     }
 
     private async installApp(app: IAppSetup): Promise<void> {
-        const { commands, name } = app
+        const { name, commands, fallbackCommands } = app
         const spinner = ora({
             text: `Installing ${name}`,
             hideCursor: false,
@@ -123,15 +123,32 @@ export class InstallCommand extends CommandRunner {
         spinner.start()
 
         try {
-            const parsedCommands = commands(ARCH)
+            try {
+                const parsedCommands = commands(ARCH)
+                for (const command of parsedCommands) {
+                    await execPromise(command).catch((err) => {
+                        this.logger.debug(
+                            `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
+                        )
+                        throw err
+                    })
+                }
+            } catch (error) {
+                if (!fallbackCommands) {
+                    throw error
+                }
 
-            for (const command of parsedCommands) {
-                await execPromise(command).catch((err) => {
-                    this.logger.debug(
-                        `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
-                    )
-                    throw err
-                })
+                this.logger.debug(`Installing ${name} with fallback commands`)
+
+                const parsedFallbackCommands = fallbackCommands(ARCH)
+                for (const command of parsedFallbackCommands) {
+                    await execPromise(command).catch((err) => {
+                        this.logger.debug(
+                            `Error installApp app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
+                        )
+                        throw err
+                    })
+                }
             }
 
             spinner.text = `Installed ${name}`
@@ -140,7 +157,7 @@ export class InstallCommand extends CommandRunner {
             this.logger.debug(`Installed ${name}`)
         } catch (error) {
             spinner.fail()
-            this.logger.error(`Error installApp app: ${name}, error: ${error.stack}`)
+            this.logger.error(`Error installApp app: ${name}, error: ${error.message}`)
         }
     }
 }

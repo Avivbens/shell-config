@@ -1,4 +1,4 @@
-import type { Arch, IAppSetup } from '@models/app-setup.model'
+import type { IAppSetup } from '@models/app-setup.model'
 import { BREW_INSTALL } from '../common-commands'
 
 export const GIT_APPS: Readonly<IAppSetup[]> = [
@@ -7,7 +7,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         description: 'Common Code Version Manager',
         group: 'git',
         tags: ['engineering', 'devops'],
-        commands: (arch: Arch) => [BREW_INSTALL('git', arch)],
+        commands: () => [BREW_INSTALL('git')],
     },
     {
         name: 'VSCode as rebase editor',
