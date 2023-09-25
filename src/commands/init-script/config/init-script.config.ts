@@ -1,7 +1,9 @@
+import { TELL_TERMINAL_EXECUTE_SCRIPT } from '@common/utils'
+
 export const INIT_DYNAMIC_SCRIPT = `
-osascript -e 'tell app "Terminal" to do script "shell-doctor && shell-config init && shell-doctor"'
+${TELL_TERMINAL_EXECUTE_SCRIPT('shell-doctor && shell-config init && shell-doctor')}
 `
 
 export const OPEN_TERMINAL = `
-osascript -e 'tell app "Terminal" to do script "cd"'
+${TELL_TERMINAL_EXECUTE_SCRIPT('cd')}
 `

@@ -1,4 +1,5 @@
 import { BASE_PATH } from '@common/constants'
+import { TELL_TERMINAL_EXECUTE_SCRIPT } from '@common/utils'
 
 export const DOWNLOAD_SCRIPT_LATEST = `
 mkdir -p "${BASE_PATH}/downloads"
@@ -44,5 +45,5 @@ ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"
  */
 export const INIT_SCRIPT = `
 shell-config --version
-osascript -e 'tell app "Terminal" to do script "source <(shell-config init-script)"'
+${TELL_TERMINAL_EXECUTE_SCRIPT('source <(shell-config init-script)')}
 ` as const

@@ -50,3 +50,11 @@ export async function copyBundledAsset(
 }
 
 export const execPromise = promisify(exec)
+
+export const TELL_TERMINAL_EXECUTE_SCRIPT = (script: string) => `
+osascript -e '
+    tell application "Terminal"
+        set currentTab to do script "${script}"
+    end tell
+'
+`
