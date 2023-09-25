@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.7.1 (2023-09-25)
+
+### Bug Fixes
+
+-   update command load of the init-script ([94ae839](https://github.com/Avivbens/shell-config/commit/94ae839ba2e7769c10ef0f1c5ebec64390239e98))
+
 ## 2.7.0 (2023-09-25)
 
 ### Features
