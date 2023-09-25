@@ -151,10 +151,11 @@ export class InstallCommand extends CommandRunner {
                 }
             }
 
-            spinner.text = `Installed ${name}`
-            spinner.succeed()
             this.installMap.set(name, true)
-            this.logger.debug(`Installed ${name}`)
+
+            const successMsg = `Installed ${name}`
+            spinner.succeed(successMsg)
+            this.logger.debug(successMsg)
         } catch (error) {
             spinner.fail()
             this.logger.error(`Error installApp app: ${name}, error: ${error.message}`)

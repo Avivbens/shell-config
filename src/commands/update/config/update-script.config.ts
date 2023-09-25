@@ -43,5 +43,6 @@ ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"
  * @see {@link [script](src/commands/init-script/config/init-script.config.ts)}
  */
 export const INIT_SCRIPT = `
-source <(shell-config init-script)
-`
+shell-config --version
+osascript -e 'tell app "Terminal" to do script "source <(shell-config init-script)"'
+` as const

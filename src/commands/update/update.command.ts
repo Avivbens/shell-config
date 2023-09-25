@@ -3,6 +3,7 @@ import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner, Option } from 'nest-commander'
 import { existsSync } from 'node:fs'
+import { env } from 'node:process'
 import ora from 'ora'
 import {
     DOWNLOAD_FILE_PATH,
@@ -97,9 +98,11 @@ export class UpdateCommand extends CommandRunner {
             spinner.text = applyMsg
             this.logger.debug(applyMsg)
             this.logger.log('\nMight need to enter your password to apply changes.')
-            await execPromise(INIT_SCRIPT)
+            await execPromise(INIT_SCRIPT, { shell: env.SHELL })
 
-            spinner.succeed('Updated successfully!')
+            const successMsg = 'Updated successfully!'
+            this.logger.debug(successMsg)
+            spinner.succeed(successMsg)
         } catch (error) {
             this.logger.error(`Error UpdateCommand, Error: ${error.stack}`)
             spinner.fail('Failed to update')
