@@ -28,8 +28,6 @@ function get_remote_execute_file() {
 get_remote_execute_file "src/scripts/init.sh" | sh
 ```
 
-**Open a new terminal window after this script!**
-
 ## Troubleshooting
 
 In case of having permissions issue, try the following:
