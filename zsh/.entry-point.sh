@@ -86,6 +86,7 @@ if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; the
     echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
     shell-doctor
     shell-config init
+    shell-doctor
 fi
 
 # check for shell-config updates once in 10 times
