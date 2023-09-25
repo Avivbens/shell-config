@@ -8,6 +8,7 @@ export interface IAppSetup {
     name: string
     group: IGroup
     commands: (arch: Arch) => readonly string[]
+    fallbackCommands?: (arch: Arch) => readonly string[]
     description?: string
 
     /**

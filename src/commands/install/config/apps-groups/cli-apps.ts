@@ -7,7 +7,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'Integrate with Google Cloud Platform services, Python is required',
         tags: ['engineering', 'devops'],
-        commands: (arch: Arch) => [BREW_CASK('google-cloud-sdk')],
+        commands: () => [BREW_CASK('google-cloud-sdk')],
         deps: ['Python'],
     },
     {

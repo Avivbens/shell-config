@@ -12,7 +12,7 @@ export const PYTHON: Readonly<IAppSetup[]> = [
         name: 'Python PIP',
         group: 'python',
         default: true,
-        commands: (arch: Arch) => [
+        commands: () => [
             'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py',
             'python3 get-pip.py',
             'rm get-pip.py',

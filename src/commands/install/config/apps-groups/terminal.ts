@@ -19,7 +19,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'Fig',
         group: 'terminal',
         tags: ['engineering', 'devops', 'productivity'],
-        commands: (arch: Arch) => [BREW_CASK('fig')],
+        commands: () => [BREW_CASK('fig')],
     },
     {
         name: 'Mcfly',
@@ -27,13 +27,13 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
             'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
         tags: ['engineering', 'devops', 'productivity'],
-        commands: (arch: Arch) => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
+        commands: () => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting and Autosuggestions',
         group: 'terminal',
         tags: ['engineering', 'devops'],
-        commands: (arch: Arch) => [
+        commands: () => [
             'rm -rf "$HOME/.zsh/zsh-autosuggestions" && git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"',
             'rm -rf "$HOME/.zsh/zsh-completions" && git clone https://github.com/zsh-users/zsh-completions.git "$HOME/.zsh/zsh-completions"',
             'rm -rf "$HOME/.zsh/zsh-syntax-highlighting" && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"',
