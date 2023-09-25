@@ -35,7 +35,7 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 In case of having permissions issue, try the following:
 
 ```bash
-sudo shell-doctor
+source <(shell-config init-script)
 ```
 
 ## CLI Usage
@@ -122,6 +122,12 @@ shell-config update --target {version}
 -   [Nest](zsh/extends/.zshrc.extends.nest.sh)
 
 <br>
+
+## Contributing
+
+Good to know that you want to contribute to this project! 🎉
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Screenshots
 

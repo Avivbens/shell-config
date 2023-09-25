@@ -58,9 +58,7 @@ sudo spctl --master-disable
 # for non Apple silicon macs
 yes 'a' | softwareupdate --install-rosetta
 
-$HOME/shell-config/executable/shell-config init
+source <($HOME/shell-config/executable/shell-config init-script)
 
 # disallow apps from anywhere
 sudo spctl --master-enable
-
-grant_permissions "$HOME/shell-config"
