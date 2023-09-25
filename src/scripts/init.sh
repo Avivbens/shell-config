@@ -63,4 +63,4 @@ $HOME/shell-config/executable/shell-config init
 # disallow apps from anywhere
 sudo spctl --master-enable
 
-source "$HOME/.zshrc"
+osascript -e 'tell app "Terminal" to do script "cd"'

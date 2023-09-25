@@ -6,7 +6,7 @@ There was a problem with the initialization of the shell-config Setup.
 
 Please run the following command to rerun the setup:
 
-sudo shell-config init
+source <(shell-config init-script)
 `
 export const REDO_INIT_COMMAND_MESSAGE = boxen(MSG, {
     padding: 1,
