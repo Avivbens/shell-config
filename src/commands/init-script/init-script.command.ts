@@ -1,5 +1,7 @@
+import { BASE_PATH } from '@common/constants'
+import { access, stat } from 'fs/promises'
 import { Command, CommandRunner } from 'nest-commander'
-import { INIT_DYNAMIC_SCRIPT } from './config/init-script.config'
+import { INIT_DYNAMIC_SCRIPT, OPEN_TERMINAL } from './config/init-script.config'
 
 @Command({
     name: 'init-script',
@@ -14,7 +16,13 @@ export class InitScriptCommand extends CommandRunner {
 
     async run(inputs: string[], options: Record<string, any>): Promise<void> {
         try {
-            console.log(INIT_DYNAMIC_SCRIPT)
+            const {} = await stat(`${BASE_PATH}/zsh`)
+            const hasPermissions: boolean = await access(`${BASE_PATH}/zsh`)
+                .then(() => true)
+                .catch(() => false)
+
+            const script = hasPermissions ? INIT_DYNAMIC_SCRIPT : OPEN_TERMINAL
+            console.log(script)
         } catch (error) {}
     }
 }
