@@ -36,7 +36,7 @@ grant_permissions "$HOME/shell-config"
 
 
 # download the CLI
-version="v2.7.0-beta.17"
+version="v2.7.0-beta.18"
 curl "https://github.com/Avivbens/shell-config/releases/download/$version/cli-$version.zip" -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
 unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"

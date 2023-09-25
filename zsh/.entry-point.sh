@@ -9,7 +9,9 @@ function sourceIf(){
 }
 
 # load all homebrew paths
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # support brew formulaes installed via Rosetta 2
 alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
