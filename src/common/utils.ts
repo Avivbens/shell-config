@@ -54,6 +54,8 @@ export const execPromise = promisify(exec)
 export const TELL_TERMINAL_EXECUTE_SCRIPT = (script: string) => `
 osascript -e '
     tell application "Terminal"
+        set newTab to do script ""
+        delay 1
         set currentTab to do script "${script}"
     end tell
 '
