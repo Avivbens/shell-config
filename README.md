@@ -14,6 +14,38 @@
 
 </div>
 
+<div align="left">
+
+## The Reason
+
+`shell-config` is your go-to CLI tool for seamless MacOS configuration, app installation, and team collaboration.
+
+📦 **Effortless App Installation:**
+
+-   Install apps with default selections or customized user profiles.
+-   Choose what suits your needs, whether you're a developer, designer, or data scientist. 💻
+
+🐚 **Plug & Play Shell Settings:**
+
+-   Optimize your command line with bash functions and aliases.
+-   Tailor your shell experience by enabling or disabling specific features.
+
+🔄 **Version Control:**
+
+-   Effortlessly switch between CLI versions and receive notifications about new updates.
+
+🖥️ **MacOS Compatibility:**
+
+-   Compatible with MacOS 11 and above, ensuring seamless integration across all MacOS architectures. 🍏💻
+
+🛠️ **Generate & Manage Assets Files:**
+
+-   Easily generate or update asset files like `.npmrc` and `.gitconfig` with the settings you need.
+-   `shell-config` supports multiple profiles, allowing you to create and manage various configurations for different projects or team requirements.
+-   Seamlessly switch between profiles to adapt your environment to the task at hand.
+
+</div>
+
 ## CLI Installation - No dependencies needed
 
 ```bash
