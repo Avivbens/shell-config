@@ -16,6 +16,20 @@
 
 <div align="left">
 
+## CLI Installation
+
+```bash
+sudo cd
+function get_remote_execute_file() {
+  local file_path="$1"
+  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
+  local response=$(curl -s "$url")
+  echo "$response"
+}
+
+get_remote_execute_file "src/scripts/init.sh" | sh
+```
+
 ## The Reason
 
 `shell-config` is your go-to CLI tool for seamless MacOS configuration, app installation, and team collaboration.
@@ -45,20 +59,6 @@
 -   Seamlessly switch between profiles to adapt your environment to the task at hand.
 
 </div>
-
-## CLI Installation - No dependencies needed
-
-```bash
-sudo cd
-function get_remote_execute_file() {
-  local file_path="$1"
-  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
-  local response=$(curl -s "$url")
-  echo "$response"
-}
-
-get_remote_execute_file "src/scripts/init.sh" | sh
-```
 
 ## Troubleshooting
 
