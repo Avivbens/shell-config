@@ -6,7 +6,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'Google Chrome',
         group: 'apps',
         default: true,
+        description: 'Web browser',
         commands: () => [BREW_CASK('google-chrome')],
+    },
+    {
+        name: 'Firefox',
+        group: 'apps',
+        description: 'Web browser',
+        commands: () => [BREW_CASK('firefox')],
     },
     {
         name: 'Alfred',
