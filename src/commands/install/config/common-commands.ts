@@ -12,6 +12,8 @@ export const BREW_TAP = (tapTo: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew tap ${tapTo}`
 
 // BROW
+export const BROW_CASK = (app: string) =>
+    `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brow install --cask ${app}`
 export const BROW_INSTALL = (formula: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 ${BROW_ALIAS} install ${formula}`
 export const BROW_TAP = (tapTo: string) =>

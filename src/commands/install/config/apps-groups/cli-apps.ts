@@ -1,5 +1,12 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, BREW_TAP, BROW_INSTALL, BROW_TAP } from '../common-commands'
+import {
+    BREW_CASK,
+    BREW_INSTALL,
+    BREW_TAP,
+    BROW_CASK,
+    BROW_INSTALL,
+    BROW_TAP,
+} from '../common-commands'
 
 export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
@@ -8,6 +15,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Integrate with Google Cloud Platform services, Python is required',
         tags: ['engineering', 'devops'],
         commands: () => [BREW_CASK('google-cloud-sdk')],
+        fallbackCommands: () => [BROW_CASK('google-cloud-sdk')],
         deps: ['Python'],
     },
     {
