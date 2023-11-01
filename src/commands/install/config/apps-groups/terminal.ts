@@ -23,7 +23,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         ],
         fallbackCommands: () => [
             BROW_INSTALL('nvm'),
-            '\\. "$(brow --prefix)/opt/nvm/nvm.sh"',
+            '\\. "$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix)/opt/nvm/nvm.sh"',
             `chmod +x $HOME/.nvm/nvm.sh`,
             NVM_COMMAND('install 16.14.0'),
             NVM_COMMAND('alias default 16.14.0'),
