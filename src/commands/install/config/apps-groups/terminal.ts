@@ -3,6 +3,7 @@ import {
     BREW_CASK,
     BREW_INSTALL,
     BREW_TAP,
+    BROW_ALIAS,
     BROW_INSTALL,
     BROW_TAP,
     NVM_COMMAND,
@@ -23,7 +24,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         ],
         fallbackCommands: () => [
             BROW_INSTALL('nvm'),
-            '\\. "$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix)/opt/nvm/nvm.sh"',
+            `\\. "$(${BROW_ALIAS} --prefix)/opt/nvm/nvm.sh"`,
             `chmod +x $HOME/.nvm/nvm.sh`,
             NVM_COMMAND('install 16.14.0'),
             NVM_COMMAND('alias default 16.14.0'),
