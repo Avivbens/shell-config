@@ -1,7 +1,7 @@
 import type { Arch } from '@models/app-setup.model'
 
 const ARCH_FLAG = (arch?: Arch): '' | `arch -${Arch}` => (arch ? `arch -${arch}` : '')
-const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
+export const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
 
 // BREW
 export const BREW_CASK = (app: string) =>
@@ -12,6 +12,8 @@ export const BREW_TAP = (tapTo: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew tap ${tapTo}`
 
 // BROW
+export const BROW_CASK = (app: string) =>
+    `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brow install --cask ${app}`
 export const BROW_INSTALL = (formula: string) =>
     `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 ${BROW_ALIAS} install ${formula}`
 export const BROW_TAP = (tapTo: string) =>
