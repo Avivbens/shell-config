@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.8.0 (2023-11-07)
+
+### Features
+
+-   support devops features, fix: node & google-cloud sdk issues ([#44](https://github.com/Avivbens/shell-config/issues/44)) ([edf3bac](https://github.com/Avivbens/shell-config/commit/edf3bac0ed30486ff080c99ec3c88e5047ecc313)), closes [#43](https://github.com/Avivbens/shell-config/issues/43)
+
 ### 2.7.3 (2023-09-25)
 
 ### Bug Fixes
