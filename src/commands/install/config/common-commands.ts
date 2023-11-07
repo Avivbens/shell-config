@@ -1,7 +1,7 @@
 import type { Arch } from '@models/app-setup.model'
 
 const ARCH_FLAG = (arch?: Arch): '' | `arch -${Arch}` => (arch ? `arch -${arch}` : '')
-const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
+export const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
 
 // BREW
 export const BREW_CASK = (app: string) =>

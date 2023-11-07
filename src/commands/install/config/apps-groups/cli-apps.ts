@@ -19,6 +19,14 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         deps: ['Python'],
     },
     {
+        name: 'AWS CLI',
+        group: 'cli-apps',
+        description: 'Official Amazon AWS command-line interface, Python is required',
+        tags: ['devops'],
+        commands: () => [BREW_INSTALL('awscli')],
+        deps: ['Python'],
+    },
+    {
         name: 'Mongodb',
         group: 'cli-apps',
         description: 'MongoDB Community Edition server',
@@ -41,5 +49,26 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['engineering', 'devops'],
         commands: () => [BREW_INSTALL('redis')],
         fallbackCommands: () => [BROW_INSTALL('redis')],
+    },
+    {
+        name: 'Docker',
+        description: 'Docker CLI',
+        group: 'cli-apps',
+        tags: ['devops'],
+        commands: () => [BREW_INSTALL('docker')],
+    },
+    {
+        name: 'Terraform',
+        description: 'Terraform CLI',
+        group: 'cli-apps',
+        tags: ['devops'],
+        commands: () => [BREW_INSTALL('terraform')],
+    },
+    {
+        name: 'Kubernetes Helm',
+        description: 'Kubernetes package manager',
+        group: 'cli-apps',
+        tags: ['devops'],
+        commands: () => [BREW_INSTALL('helm')],
     },
 ] as const
