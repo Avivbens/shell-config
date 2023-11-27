@@ -27,6 +27,13 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         deps: ['Python'],
     },
     {
+        name: 'Kubectx',
+        group: 'cli-apps',
+        description: 'Kubernetes CLI, Switch faster between Kubernetes contexts and namespaces',
+        tags: ['devops'],
+        commands: () => [BREW_INSTALL('kubectx')],
+    },
+    {
         name: 'Mongodb',
         group: 'cli-apps',
         description: 'MongoDB Community Edition server',
