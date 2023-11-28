@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.8.1 (2023-11-28)
+
+### Bug Fixes
+
+-   add kubectx support ([#45](https://github.com/Avivbens/shell-config/issues/45)) ([17c2fab](https://github.com/Avivbens/shell-config/commit/17c2fabad4da679316e201a8176fca8ae11c01f3))
+
 ## 2.8.0 (2023-11-07)
 
 ### Features
