@@ -78,4 +78,10 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['devops'],
         commands: () => [BREW_INSTALL('helm')],
     },
+    {
+        name: 'Btop',
+        description: 'Resource monitor over the terminal',
+        group: 'cli-apps',
+        commands: () => [BREW_INSTALL('btop')],
+    },
 ] as const
