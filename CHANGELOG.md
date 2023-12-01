@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.8.2 (2023-12-01)
+
+### Bug Fixes
+
+-   support btop terminal app ([#46](https://github.com/Avivbens/shell-config/issues/46)) ([f144c8c](https://github.com/Avivbens/shell-config/commit/f144c8cd577a00f896c824794357b062433b9524))
+
 ### 2.8.1 (2023-11-28)
 
 ### Bug Fixes
