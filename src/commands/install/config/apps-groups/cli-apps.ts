@@ -85,3 +85,4 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_INSTALL('btop')],
     },
 ] as const
+
