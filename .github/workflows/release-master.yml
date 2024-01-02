@@ -52,6 +52,8 @@ jobs:
                   npm run build
 
             - name: Create a new version, update CHANGELOG.md
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
               run: |
                   git config --global user.email "github-actions[bot]@gmail.com"
                   git config --global user.name "github-actions[bot]"
