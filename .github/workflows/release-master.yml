@@ -56,7 +56,7 @@ jobs:
                   git config --global user.email "github-actions[bot]@gmail.com"
                   git config --global user.name "github-actions[bot]"
                   npx standard-version
-                  git push --follow-tags origin master
+                  git push --force --follow-tags origin master
 
             - name: 🔨 Build Package
               run: |
