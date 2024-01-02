@@ -26,7 +26,7 @@ export class ShellCommand extends CommandRunner {
         this.logger.setContext(ShellCommand.name)
     }
 
-    async run(inputs: string[], options: Record<string, any>): Promise<void> {
+    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
         try {

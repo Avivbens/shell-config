@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
 import { CheckUpdateService } from '@services/check-update.service'
@@ -40,7 +41,7 @@ describe('InstallSubCommand', () => {
         ])(
             'should grab the name of the external with the extension of .sh',
             ({ input, expRes }) => {
-                // @ts-ignore
+                // @ts-expect-error
                 const res = service.parseExternalName(input)
                 expect(res).toEqual(expRes)
             },

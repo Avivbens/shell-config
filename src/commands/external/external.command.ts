@@ -13,7 +13,7 @@ export class ExternalCommand extends CommandRunner {
         super()
     }
 
-    async run(inputs: string[], options: Record<string, any>): Promise<void> {
+    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
         return this.command.help()

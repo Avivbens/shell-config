@@ -10,12 +10,38 @@ permissions:
 name: 📦 Create New Beta Release
 
 jobs:
-    release:
+    checks:
+        name: ✅ Check for Release
         runs-on: ubuntu-latest
-        name: 📦 Release Beta Version
+        timeout-minutes: 15
+
+        env:
+            HUSKY: 0
+
         steps:
             - name: 📀 Check out code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 1
+
+            - name: 🧪 Check out repository code
+              uses: ./.github/workflows/health-check
+
+    release:
+        name: 📦 Release Beta Version
+        runs-on: ubuntu-latest
+        timeout-minutes: 60
+        needs:
+            - checks
+
+        env:
+            HUSKY: 0
+
+        steps:
+            - name: 📀 Check out code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 1
 
             - name: 🗃️ Install Node.js Deps
               run: |
