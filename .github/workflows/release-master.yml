@@ -47,10 +47,6 @@ jobs:
               run: |
                   npm install --legacy-peer-deps
 
-            - name: 🔨 Build Check
-              run: |
-                  npm run build
-
             - name: Create a new version, update CHANGELOG.md
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
