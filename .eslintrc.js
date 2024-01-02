@@ -23,6 +23,9 @@ module.exports = {
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/consistent-type-imports': 'error',
+        'no-unused-vars': 'off',
+        'no-constant-condition': 'off',
+        'no-useless-escape': 'off',
         'prettier/prettier': [
             'error',
             {

@@ -22,6 +22,7 @@ export class InitScriptCommand extends CommandRunner {
 
             const script = hasPermissions ? INIT_DYNAMIC_SCRIPT : OPEN_TERMINAL
             console.log(script)
+            // eslint-disable-next-line no-empty
         } catch (error) {}
     }
 }
