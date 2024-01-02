@@ -24,7 +24,7 @@ export class InstallCommand extends CommandRunner {
         this.logger.setContext(InstallCommand.name)
     }
 
-    async run(inputs: string[], options: Record<string, any>): Promise<void> {
+    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
         try {

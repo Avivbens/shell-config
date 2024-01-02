@@ -32,7 +32,7 @@ export class InitCommand extends CommandRunner {
         this.logger.setContext(InitCommand.name)
     }
 
-    async run(inputs: string[], options: Record<string, any>): Promise<void> {
+    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
         try {

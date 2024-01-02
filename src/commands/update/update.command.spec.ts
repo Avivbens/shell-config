@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
 import { UpdateCommand } from './update.command'
@@ -50,13 +51,13 @@ describe('UpdateCommand', () => {
             { input: 'v112.440.3280-beta.15', expRes: 'v112.440.3280-beta.15' },
         ])('Should return the parsed version for all accepted inputs', ({ input, expRes }) => {
             if (!expRes) {
-                // @ts-ignore
+                // @ts-expect-error
                 const res = () => service.getVersion(input)
                 expect(res).toThrowError(`Invalid version: ${input}`)
                 return
             }
 
-            // @ts-ignore
+            // @ts-expect-error
             const res = service.getVersion(input)
             expect(res).toEqual(expRes)
         })

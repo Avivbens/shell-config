@@ -4,20 +4,24 @@ module.exports = {
         project: 'tsconfig.json',
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint/eslint-plugin'],
-    extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
+    plugins: ['@typescript-eslint/eslint-plugin', 'jest', 'prettier'],
+    extends: [
+        'plugin:@typescript-eslint/recommended',
+        'eslint:recommended',
+        'plugin:prettier/recommended',
+        'prettier',
+    ],
     root: true,
     env: {
         node: true,
         jest: true,
     },
-    ignorePatterns: ['.eslintrc.js'],
     rules: {
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/no-explicit-any': 'warn',
         '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/consistent-type-imports': 'error',
         'prettier/prettier': [
             'error',
@@ -26,4 +30,14 @@ module.exports = {
             },
         ],
     },
+    overrides: [
+        {
+            files: ['*.spec.js'],
+            plugins: ['jest'],
+            extends: ['plugin:jest/recommended'],
+            rules: {
+                'jest/prefer-expect-assertions': 0,
+            },
+        },
+    ],
 }
