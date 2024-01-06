@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.8.4 (2024-01-06)
+
+
+### Bug Fixes
+
+* failing to install google-cloud-sdk for apple silicon chip ([2d9cf38](https://github.com/Avivbens/shell-config/commit/2d9cf38795cbcb975d0c44cbddf7b173a810c7d6))
+
 ### 2.8.3 (2024-01-02)
 
 
