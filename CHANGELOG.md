@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.8.5 (2024-01-07)
+
+
+### Bug Fixes
+
+* add vall commad for opening vscode for all sub-directories ([9477dbe](https://github.com/Avivbens/shell-config/commit/9477dbede78c251628723eead983b29dfc65204b))
+
 ### 2.8.4 (2024-01-06)
 
 
