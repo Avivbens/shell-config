@@ -136,8 +136,10 @@ add-zsh-hook -Uz chpwd (){ ls; }
 
 
 # vscode
-alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+VSCODE="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+alias code="$VSCODE"
 alias v="code ."
+alias vall="ls -d */ | xargs -I {} sh -c '$VSCODE ./{}'"
 
 
 # github-copilot-cli alias setup
