@@ -119,6 +119,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('vlc')],
     },
     {
+        name: 'Subler',
+        description: 'MP4 metadata editor, video converter, and muxer',
+        group: 'apps',
+        commands: () => [BREW_CASK('subler')],
+    },
+    {
         name: 'Notion',
         group: 'apps',
         tags: ['productivity'],
