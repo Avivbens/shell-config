@@ -38,7 +38,7 @@ export const MULTI_SELECT_APPS_PROMPT = async (tags: ITag[]): Promise<IAppSetup[
             message: 'Select your MacOS setup',
             loop: false,
             choices,
-            pageSize: 40,
+            pageSize: 30,
         },
     ])
 
