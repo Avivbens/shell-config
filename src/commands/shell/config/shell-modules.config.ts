@@ -12,6 +12,11 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'Git aliases and functions',
     },
     {
+        name: 'VSCode',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.vscode.sh`,
+        description: 'VSCode aliases and functions',
+    },
+    {
         name: 'NPM',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.npm.sh`,
         description: 'NPM aliases and functions',
