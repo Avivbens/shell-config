@@ -2,6 +2,9 @@
 
 echo "extends.git.sh loaded"
 
+# depends on zsh/extends/.zshrc.extends.vscode.sh
+source "$HOME/shell-config/zsh/extends/.zshrc.extends.vscode.sh"
+
 alias gl="git log"
 alias gd="git diff"
 alias gs="git status"
