@@ -135,13 +135,6 @@ add-zsh-hook -Uz chpwd (){ ls; }
     PROMPT='%F{yellow}%(4~|.../%3~|%~) %F{red}: ${vcs_info_msg_0_} %F{reset_color}$ '
 
 
-# vscode
-VSCODE="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
-alias code="$VSCODE"
-alias v="code ."
-alias vall="ls -d */ | xargs -I {} sh -c '$VSCODE ./{}'"
-
-
 # github-copilot-cli alias setup
 if command -v github-copilot-cli &> /dev/null
 then

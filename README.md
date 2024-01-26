@@ -2,7 +2,10 @@
 
 # Shell-Config CLI - Your MacOS Setup Tool
 
-**🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that tailors configurations, installs apps, and enables seamless team collaboration.
+**🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that does it all for you:
+installs apps, configures your dev system, and personalizes your working station.
+
+**Turn your new Mac into a useful working station in minutes**
 
 <br>
 
@@ -32,12 +35,16 @@ get_remote_execute_file "src/scripts/init.sh" | sh
 
 ## The Reason
 
-`shell-config` is your go-to CLI tool for seamless MacOS configuration, app installation, and team collaboration.
+`shell-config` is your go-to CLI tool for seamless MacOS configuration, app installation and zsh aliases commands.
+
+Set up the very same environment, with a personalization touch just for your needs, on all your Macs in minutes, and enjoy a consistent experience across all your devices.
+
+## CLI Features
 
 📦 **Effortless App Installation:**
 
 -   Install apps with default selections or customized user profiles.
--   Choose what suits your needs, whether you're a developer, designer, or data scientist. 💻
+-   Choose what suits **your needs**, whether you're a developer, designer, or data scientist. 💻
 
 🐚 **Plug & Play Shell Settings:**
 
@@ -82,7 +89,7 @@ Select apps to install.
 <br>
 We're now support [preferences based on your selection!](#Screenshots)
 <br>
-Pay attention to passwords inputs if needed!
+**Pay attention to passwords inputs if needed!**
 
 ```bash
 shell-config install
@@ -144,6 +151,7 @@ shell-config update --target {version}
 ### Modules
 
 -   [Git](zsh/extends/.zshrc.extends.git.sh)
+-   [VSCode](zsh/extends/.zshrc.extends.vscode.sh)
 -   [Npm](zsh/extends/.zshrc.extends.npm.sh)
 -   [Angular](zsh/extends/.zshrc.extends.angular.sh)
 -   [MongoDB](zsh/extends/.zshrc.extends.mongo.sh)
