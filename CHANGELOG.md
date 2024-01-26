@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/Avivbens/shell-config/compare/v2.8.5...v2.9.0) (2024-01-26)
+
+
+### Features
+
+* support git log better padding with less ([ab024ff](https://github.com/Avivbens/shell-config/commit/ab024ffcbaa40bc355b7157cda1727cea78a5344))
+* support vscode shell module ([5f2b932](https://github.com/Avivbens/shell-config/commit/5f2b9324ebdaaa7a82ca396b80b3ac0455bf5ab4))
+
+
+### Bug Fixes
+
+* add subler as an app ([0cd0ad6](https://github.com/Avivbens/shell-config/commit/0cd0ad67f6f42ac2202262ff577e6eb5dce50e69))
+* bump up deps ([4e8ccb9](https://github.com/Avivbens/shell-config/commit/4e8ccb92b7a68d9dac4c9f165d3035a1f45d306f))
+* page size for install command ([5075eae](https://github.com/Avivbens/shell-config/commit/5075eaec3a9612bfa85ed29db75702c5d692f98b))
+
 ### 2.8.5 (2024-01-07)
 
 
