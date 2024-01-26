@@ -41,7 +41,7 @@ jobs:
             - name: 📀 Check out code
               uses: actions/checkout@v3
               with:
-                  fetch-depth: 1
+                  fetch-depth: 0
 
             - name: 🗃️ Install Node.js Deps
               run: |
