@@ -4,7 +4,13 @@ module.exports = {
         project: 'tsconfig.json',
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint/eslint-plugin', 'jest', 'prettier'],
+    plugins: [
+        '@typescript-eslint/eslint-plugin',
+        'jest',
+        'prettier',
+        'deprecation',
+        'unused-imports',
+    ],
     extends: [
         'plugin:@typescript-eslint/recommended',
         'eslint:recommended',
@@ -32,6 +38,8 @@ module.exports = {
                 endOfLine: 'auto',
             },
         ],
+        'deprecation/deprecation': 'warn',
+        'unused-imports/no-unused-imports': 'error',
     },
     overrides: [
         {
