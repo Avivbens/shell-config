@@ -8,15 +8,23 @@ function sourceIf(){
   fi
 }
 
-# load all homebrew paths
-if [ -f "/opt/homebrew/bin/brew" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+# Homebrew paths
+BROW="/usr/local/Homebrew/bin/brew"
+BREW="/opt/homebrew/bin/brew"
 
 # support brew formulaes installed via Rosetta 2
-alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
+alias brow="arch --x86_64 $BROW"
 # arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# load all homebrew paths - brow
+if [ -f "$BROW" ]; then
+    eval "$($BROW shellenv)"
+fi
+
+# load all homebrew paths - brew
+if [ -f "$BREW" ]; then
+    eval "$($BREW shellenv)"
+fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
