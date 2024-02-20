@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.9.1](https://github.com/Avivbens/shell-config/compare/v2.9.0...v2.9.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* homebrew setup on root (both arch64 and native brew) ([aa65eb1](https://github.com/Avivbens/shell-config/commit/aa65eb11cb2bfdf114d736fa19dc890057086f33))
+
 ## [2.9.0](https://github.com/Avivbens/shell-config/compare/v2.8.5...v2.9.0) (2024-01-26)
 
 
