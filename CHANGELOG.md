@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.9.2](https://github.com/Avivbens/shell-config/compare/v2.9.1...v2.9.2) (2024-02-21)
+
+
+### Bug Fixes
+
+* setup nodejs default version to 18.19.1 - EOL for nodejs 16 ([4c144d6](https://github.com/Avivbens/shell-config/commit/4c144d62804f050badc478102a03d9d4c92c053b))
+
 ### [2.9.1](https://github.com/Avivbens/shell-config/compare/v2.9.0...v2.9.1) (2024-02-20)
 
 
