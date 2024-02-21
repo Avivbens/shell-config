@@ -9,6 +9,8 @@ import {
     NVM_COMMAND,
 } from '../common-commands'
 
+const DEFAULT_NODE_VERSION = '18.19.1'
+
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'NVM',
@@ -19,15 +21,15 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
             BREW_INSTALL('nvm'),
             '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',
             `chmod +x $HOME/.nvm/nvm.sh`,
-            NVM_COMMAND('install 16.14.0'),
-            NVM_COMMAND('alias default 16.14.0'),
+            NVM_COMMAND(`install ${DEFAULT_NODE_VERSION}`),
+            NVM_COMMAND(`alias default ${DEFAULT_NODE_VERSION}`),
         ],
         fallbackCommands: () => [
             BROW_INSTALL('nvm'),
             `\\. "$(${BROW_ALIAS} --prefix)/opt/nvm/nvm.sh"`,
             `chmod +x $HOME/.nvm/nvm.sh`,
-            NVM_COMMAND('install 16.14.0'),
-            NVM_COMMAND('alias default 16.14.0'),
+            NVM_COMMAND(`install ${DEFAULT_NODE_VERSION}`),
+            NVM_COMMAND(`alias default ${DEFAULT_NODE_VERSION}`),
         ],
     },
     {
