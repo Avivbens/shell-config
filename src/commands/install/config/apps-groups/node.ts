@@ -58,9 +58,18 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'npmrc',
+        description: 'manage multiple .npmrc files effortlessly',
         group: 'node',
         tags: ['engineering', 'devops'],
         commands: () => [NODE_GLOBAL('npmrc')],
+    },
+    {
+        name: 'DPDM',
+        description:
+            'A robust static dependency analyzer for your JavaScript and TypeScript projects',
+        group: 'node',
+        tags: ['engineering'],
+        commands: () => [NODE_GLOBAL('dpdm')],
     },
     {
         name: 'verdaccio',

@@ -52,9 +52,20 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         group: 'terminal',
         tags: ['engineering', 'devops'],
         commands: () => [
-            'rm -rf "$HOME/.zsh/zsh-autosuggestions" && git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"',
-            'rm -rf "$HOME/.zsh/zsh-completions" && git clone https://github.com/zsh-users/zsh-completions.git "$HOME/.zsh/zsh-completions"',
-            'rm -rf "$HOME/.zsh/zsh-syntax-highlighting" && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"',
+            BREW_INSTALL('zsh-autosuggestions'),
+            BREW_INSTALL('zsh-syntax-highlighting'),
+            BREW_INSTALL('zsh-completions'),
+            `chmod go-w "$(brew --prefix)/share"`,
+            `chmod -R go-w "$(brew --prefix)/share/zsh"`,
+        ],
+        fallbackCommands: () => [
+            BROW_INSTALL('zsh-autosuggestions'),
+            BROW_INSTALL('zsh-syntax-highlighting'),
+            BROW_INSTALL('zsh-completions'),
+            `chmod go-w "$(brew --prefix)/share"`,
+            `chmod -R go-w "$(brew --prefix)/share/zsh"`,
+            `chmod go-w "$(${BROW_ALIAS} --prefix)/share"`,
+            `chmod -R go-w "$(${BROW_ALIAS} --prefix)/share/zsh"`,
         ],
     },
 ] as const

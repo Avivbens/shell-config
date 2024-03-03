@@ -42,13 +42,13 @@ sourceIf "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 
 # Autosuggest
-# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-sourceIf "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+sourceIf "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+sourceIf "$(brow --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 
 # Autocomplete
-# git clone https://github.com/zsh-users/zsh-completions.git ~/.zsh/zsh-completions
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+FPATH=$(brow --prefix)/share/zsh-completions:$FPATH
 # rm -f ~/.zcompdump
 
 
@@ -59,9 +59,8 @@ compinit
 
 
 # Colored correct code
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-sourceIf "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
+sourceIf "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+sourceIf "$(brow --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # setopt hist_ignore_all_dups # remove older duplicate entries from history
 # setopt hist_reduce_blanks # remove superfluous blanks from history items
@@ -130,19 +129,6 @@ autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls; }
 
 
-# branches
-    # Load version control information
-    autoload -Uz vcs_info
-    precmd() { vcs_info }
-
-    # Format the vcs_info_msg_0_ variable
-    zstyle ':vcs_info:git:*' formats '(%b)'
-
-    # Set up the prompt (with git branch name)
-    setopt PROMPT_SUBST
-    PROMPT='%F{yellow}%(4~|.../%3~|%~) %F{red}: ${vcs_info_msg_0_} %F{reset_color}$ '
-
-
 # github-copilot-cli alias setup
 if command -v github-copilot-cli &> /dev/null
 then
@@ -151,11 +137,6 @@ fi
 
 # sync
 alias reload="exec /bin/zsh"
-
-
-# docker
-# show all logs
-export DOCKER_BUILDKIT=0
 
 
 # extend
