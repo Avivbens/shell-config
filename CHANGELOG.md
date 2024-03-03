@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/Avivbens/shell-config/compare/v2.9.2...v2.10.0) (2024-03-03)
+
+
+### Features
+
+* support `theme` shell module for all colors setup ([c6161fc](https://github.com/Avivbens/shell-config/commit/c6161fc7349362979f3e41c824b4baf7da6ddee9))
+
+
+### Bug Fixes
+
+* add dpdm as nodejs package ([3a72511](https://github.com/Avivbens/shell-config/commit/3a72511a5cc6ce6e5634d1b5289bd347e46af5bd))
+* support zsh colors and autocomplete by brew ([5a6f6b3](https://github.com/Avivbens/shell-config/commit/5a6f6b30525cc4a703a23f401ff9cf3d39dce2e5))
+
 ### [2.9.2](https://github.com/Avivbens/shell-config/compare/v2.9.1...v2.9.2) (2024-02-21)
 
 
