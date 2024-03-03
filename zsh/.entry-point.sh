@@ -129,19 +129,6 @@ autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls; }
 
 
-# branches
-    # Load version control information
-    autoload -Uz vcs_info
-    precmd() { vcs_info }
-
-    # Format the vcs_info_msg_0_ variable
-    zstyle ':vcs_info:git:*' formats '(%b)'
-
-    # Set up the prompt (with git branch name)
-    setopt PROMPT_SUBST
-    PROMPT='%F{yellow}%(4~|.../%3~|%~) %F{red}: ${vcs_info_msg_0_} %F{reset_color}$ '
-
-
 # github-copilot-cli alias setup
 if command -v github-copilot-cli &> /dev/null
 then
@@ -150,11 +137,6 @@ fi
 
 # sync
 alias reload="exec /bin/zsh"
-
-
-# docker
-# show all logs
-export DOCKER_BUILDKIT=0
 
 
 # extend

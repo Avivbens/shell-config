@@ -17,6 +17,11 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'VSCode aliases and functions',
     },
     {
+        name: 'Theme',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.theme.sh`,
+        description: 'Theme for the terminal, showing the current branch and more',
+    },
+    {
         name: 'NPM',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.npm.sh`,
         description: 'NPM aliases and functions',
