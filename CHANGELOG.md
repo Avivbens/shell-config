@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.1](https://github.com/Avivbens/shell-config/compare/v2.10.0...v2.10.1) (2024-03-10)
+
+
+### Bug Fixes
+
+* compinit only for `zsh-completions` exists ([1574ee5](https://github.com/Avivbens/shell-config/commit/1574ee5e8cb5d0585c1052c39a1e294c3bf6811b))
+
 ## [2.10.0](https://github.com/Avivbens/shell-config/compare/v2.9.2...v2.10.0) (2024-03-03)
 
 
