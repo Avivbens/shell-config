@@ -47,15 +47,23 @@ sourceIf "$(brow --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 
 # Autocomplete
-FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-FPATH=$(brow --prefix)/share/zsh-completions:$FPATH
-# rm -f ~/.zcompdump
+# only if zsh-completions installed via Homebrew
+if [ -f "$(brew --prefix)/share/zsh-completions" ]; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    # load compinit as a function on an exported path to avoid overlapping with other compinit commands
+    autoload -Uz compinit
+    # toggle ON completions with tab key
+    compinit
+fi
 
-
-# load compinit as a function on an exported path to avoid overlapping with other compinit commands
-autoload -Uz compinit
-# toggle ON completions with tab key
-compinit
+# only if zsh-completions installed via legacy Homebrew
+if [ -f "$(brow --prefix)/share/zsh-completions" ]; then
+    FPATH=$(brow --prefix)/share/zsh-completions:$FPATH
+    # load compinit as a function on an exported path to avoid overlapping with other compinit commands
+    autoload -Uz compinit
+    # toggle ON completions with tab key
+    compinit
+fi
 
 
 # Colored correct code
