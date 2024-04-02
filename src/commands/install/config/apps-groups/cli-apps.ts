@@ -3,12 +3,36 @@ import {
     BREW_CASK,
     BREW_INSTALL,
     BREW_TAP,
+    BROW_ALIAS,
     BROW_CASK,
     BROW_INSTALL,
     BROW_TAP,
+    NVM_COMMAND,
 } from '../common-commands'
 
+const DEFAULT_NODE_VERSION = '18.19.1'
+
 export const CLI_APPS: Readonly<IAppSetup[]> = [
+    {
+        name: 'NVM',
+        description: 'Node Version Manager',
+        group: 'cli-apps',
+        tags: ['engineering', 'devops'],
+        commands: () => [
+            BREW_INSTALL('nvm'),
+            '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',
+            `chmod +x $HOME/.nvm/nvm.sh`,
+            NVM_COMMAND(`install ${DEFAULT_NODE_VERSION}`),
+            NVM_COMMAND(`alias default ${DEFAULT_NODE_VERSION}`),
+        ],
+        fallbackCommands: () => [
+            BROW_INSTALL('nvm'),
+            `\\. "$(${BROW_ALIAS} --prefix)/opt/nvm/nvm.sh"`,
+            `chmod +x $HOME/.nvm/nvm.sh`,
+            NVM_COMMAND(`install ${DEFAULT_NODE_VERSION}`),
+            NVM_COMMAND(`alias default ${DEFAULT_NODE_VERSION}`),
+        ],
+    },
     {
         name: 'google-cloud-sdk',
         group: 'cli-apps',

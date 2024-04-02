@@ -6,31 +6,20 @@ import {
     BROW_ALIAS,
     BROW_INSTALL,
     BROW_TAP,
-    NVM_COMMAND,
 } from '../common-commands'
-
-const DEFAULT_NODE_VERSION = '18.19.1'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
-        name: 'NVM',
-        description: 'Node Version Manager',
+        name: 'Wrap',
+        description: 'Terminal with a power of code editor',
         group: 'terminal',
-        tags: ['engineering', 'devops'],
-        commands: () => [
-            BREW_INSTALL('nvm'),
-            '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',
-            `chmod +x $HOME/.nvm/nvm.sh`,
-            NVM_COMMAND(`install ${DEFAULT_NODE_VERSION}`),
-            NVM_COMMAND(`alias default ${DEFAULT_NODE_VERSION}`),
-        ],
-        fallbackCommands: () => [
-            BROW_INSTALL('nvm'),
-            `\\. "$(${BROW_ALIAS} --prefix)/opt/nvm/nvm.sh"`,
-            `chmod +x $HOME/.nvm/nvm.sh`,
-            NVM_COMMAND(`install ${DEFAULT_NODE_VERSION}`),
-            NVM_COMMAND(`alias default ${DEFAULT_NODE_VERSION}`),
-        ],
+        commands: () => [BREW_CASK('warp')],
+    },
+    {
+        name: 'iTerm2',
+        description: 'Terminal replacement',
+        group: 'terminal',
+        commands: () => [BREW_CASK('iterm2')],
     },
     {
         name: 'Fig',

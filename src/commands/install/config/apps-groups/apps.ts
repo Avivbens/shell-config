@@ -3,19 +3,6 @@ import { BREW_CASK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
-        name: 'Google Chrome',
-        group: 'apps',
-        default: true,
-        description: 'Web browser',
-        commands: () => [BREW_CASK('google-chrome')],
-    },
-    {
-        name: 'Firefox',
-        group: 'apps',
-        description: 'Web browser',
-        commands: () => [BREW_CASK('firefox')],
-    },
-    {
         name: 'Alfred',
         group: 'apps',
         description: 'Productivity app, create custom shortcuts and workflows',
@@ -38,37 +25,27 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Rectangle',
         group: 'apps',
+        description: 'Move and resize windows in macOS using keyboard shortcuts',
         tags: ['productivity'],
         commands: () => [BREW_CASK('rectangle')],
     },
     {
-        name: 'Visual Studio Code',
+        name: 'Vivid',
         group: 'apps',
-        tags: ['engineering', 'devops'],
-        commands: () => [BREW_CASK('visual-studio-code')],
+        description: 'Unlocks the full brightness of your MacBook Pro',
+        commands: () => [BREW_CASK('vivid')],
+    },
+    {
+        name: 'MonitorControl',
+        group: 'apps',
+        description: 'Tool to control external monitor brightness and volume',
+        commands: () => [BREW_CASK('monitorcontrol')],
     },
     {
         name: 'Dash',
         group: 'apps',
         description: 'Documentation browser',
         commands: () => [BREW_CASK('dash')],
-    },
-    {
-        name: 'Mongodb Compass',
-        group: 'apps',
-        tags: ['engineering', 'devops'],
-        commands: () => [BREW_CASK('mongodb-compass')],
-        description: 'MongoDB GUI, MongoDB is required',
-    },
-    {
-        name: 'Another Redis Desktop Manager',
-        group: 'apps',
-        tags: ['engineering', 'devops'],
-        commands: () => [
-            BREW_CASK('another-redis-desktop-manager'),
-            `sudo xattr -rd com.apple.quarantine "/Applications/Another Redis Desktop Manager.app"`,
-        ],
-        description: 'Redis GUI, Redis is required',
     },
     {
         name: 'Slack',
@@ -87,18 +64,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['personal', 'work'],
         commands: () => [BREW_CASK('1password')],
-    },
-    {
-        name: 'Wrap',
-        description: 'Terminal with a power of code editor',
-        group: 'apps',
-        commands: () => [BREW_CASK('warp')],
-    },
-    {
-        name: 'iTerm2',
-        description: 'Terminal replacement',
-        group: 'apps',
-        commands: () => [BREW_CASK('iterm2')],
     },
     {
         name: 'Grammarly',
@@ -141,25 +106,5 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['personal'],
         commands: () => [BREW_CASK('telegram-desktop')],
-    },
-    {
-        name: 'Webstorm',
-        group: 'apps',
-        tags: ['engineering', 'devops'],
-        commands: () => [BREW_CASK('webstorm')],
-    },
-    {
-        name: 'Rancher',
-        description: 'Kubernetes and Docker UI tool',
-        group: 'apps',
-        tags: ['engineering', 'devops'],
-        commands: () => [BREW_CASK('rancher')],
-    },
-    {
-        name: 'Postman',
-        description: 'API client',
-        group: 'apps',
-        tags: ['engineering', 'devops'],
-        commands: () => [BREW_CASK('postman')],
     },
 ] as const
