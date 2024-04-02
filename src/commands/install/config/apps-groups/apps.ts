@@ -38,8 +38,21 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Rectangle',
         group: 'apps',
+        description: 'Move and resize windows in macOS using keyboard shortcuts',
         tags: ['productivity'],
         commands: () => [BREW_CASK('rectangle')],
+    },
+    {
+        name: 'Vivid',
+        group: 'apps',
+        description: 'Unlocks the full brightness of your MacBook Pro',
+        commands: () => [BREW_CASK('vivid')],
+    },
+    {
+        name: 'MonitorControl',
+        group: 'apps',
+        description: 'Tool to control external monitor brightness and volume',
+        commands: () => [BREW_CASK('monitorcontrol')],
     },
     {
         name: 'Visual Studio Code',
