@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.3](https://github.com/Avivbens/shell-config/compare/v2.11.2...v2.11.3) (2024-04-02)
+
+
+### Bug Fixes
+
+* bump-up to node 20, add readme section for error handling `Cannot find module` ([484434a](https://github.com/Avivbens/shell-config/commit/484434a70013dab71e95aac7112ef29de4b6f5d5))
+
 ### [2.11.2](https://github.com/Avivbens/shell-config/compare/v2.11.1...v2.11.2) (2024-04-02)
 
 
