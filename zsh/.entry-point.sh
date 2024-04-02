@@ -93,6 +93,7 @@ function grant_permissions(){
 export PATH="$HOME/shell-config/executable:$PATH"
 source <(shell-config completion-script)
 function shell-doctor(){
+    chmod -R 755 $(compaudit)
     grant_permissions "$HOME/shell-config"
 }
 
