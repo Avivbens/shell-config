@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.2](https://github.com/Avivbens/shell-config/compare/v2.11.1...v2.11.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* add `compaudit` handler for doctor ([d4d1d00](https://github.com/Avivbens/shell-config/commit/d4d1d009255fc6d6cae5d59d5f33e38d8047eb8d))
+
 ### [2.11.1](https://github.com/Avivbens/shell-config/compare/v2.11.0...v2.11.1) (2024-04-02)
 
 

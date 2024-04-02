@@ -1,6 +1,6 @@
 {
     "name": "shell-config",
-    "version": "2.11.1",
+    "version": "2.11.2",
     "description": "CLI Tool for MacOS setup",
     "author": "Aviv Ben Shahar",
     "private": false,
