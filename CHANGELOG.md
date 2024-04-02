@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/Avivbens/shell-config/compare/v2.10.1...v2.11.0) (2024-04-02)
+
+
+### Features
+
+* add Vivid and MonitorControl ([adcc123](https://github.com/Avivbens/shell-config/commit/adcc123857e5773822f7032f7b73372c9f818312))
+* re-organize all groups for `install` command ([46dc372](https://github.com/Avivbens/shell-config/commit/46dc372fb18fce7b0e196ae580bc566850f38a37))
+
 ### [2.10.1](https://github.com/Avivbens/shell-config/compare/v2.10.0...v2.10.1) (2024-03-10)
 
 
