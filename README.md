@@ -75,6 +75,12 @@ In case of having permissions issue, try the following:
 source <(shell-config init-script)
 ```
 
+If you're facing issues like the following, **FORCE QUIT** the terminal and open a new one:
+
+```bash
+Error: Cannot find module '*/shell-config/*'
+```
+
 ## CLI Usage
 
 Opt-in OR opt-out global bash functions and configurations.

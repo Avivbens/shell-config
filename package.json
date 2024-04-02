@@ -85,7 +85,7 @@
             "zsh/**/*"
         ],
         "targets": [
-            "node18-macos-x64"
+            "node20-macos-x64"
         ],
         "outputPath": "bin"
     },
