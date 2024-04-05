@@ -145,7 +145,7 @@ then
 fi
 
 # sync
-alias reload="exec /bin/zsh"
+alias reload="source $HOME/.zshrc"
 
 
 # extend
