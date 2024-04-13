@@ -43,13 +43,14 @@ function grant_permissions(){
 
 function shell-doctor(){
     chmod -R 755 $(compaudit)
+    autoload -Uz compinit
     grant_permissions "$HOME/shell-config"
 }
 
 # check if need to fix compaudit
 if compaudit | grep -q .; then
-    chmod -R 755 $(compaudit)
-    autoload -Uz compinit
+    printf "\n\033[1;33mWARNING: shell-config permissions are not correct, fixing...\033[0m\n"
+    shell-doctor
 fi
 
 # fix permissions if needed
