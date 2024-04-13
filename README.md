@@ -22,15 +22,7 @@ installs apps, configures your dev system, and personalizes your working station
 ## CLI Installation
 
 ```bash
-sudo cd
-function get_remote_execute_file() {
-  local file_path="$1"
-  local url="https://raw.githubusercontent.com/avivbens/shell-config/master/$file_path"
-  local response=$(curl -s "$url")
-  echo "$response"
-}
-
-get_remote_execute_file "src/scripts/init.sh" | sh
+sudo cd && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
 ```
 
 ## The Reason

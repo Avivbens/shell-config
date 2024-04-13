@@ -14,7 +14,7 @@ BREW="/opt/homebrew/bin/brew"
 
 # support brew formulaes installed via Rosetta 2
 alias brow="arch --x86_64 $BROW"
-# arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# arch --x86_64 /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # load all homebrew paths - brow
 if [ -f "$BROW" ]; then
@@ -30,6 +30,45 @@ fi
 export NVM_DIR="$HOME/.nvm"
     [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
     [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
+
+# ----- shell-config -----
+export PATH="$HOME/shell-config/executable:$PATH"
+source <(shell-config completion-script)
+
+function grant_permissions(){
+    sudo chown -R "$USER":admin "$1"
+    chmod -R 770 "$1"
+}
+
+function shell-doctor(){
+    chmod -R 755 $(compaudit)
+    grant_permissions "$HOME/shell-config"
+}
+
+# check if need to fix compaudit
+if compaudit | grep -q .; then
+    chmod -R 755 $(compaudit)
+    autoload -Uz compinit
+fi
+
+# fix permissions if needed
+if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
+    echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
+    shell-doctor
+    shell-config init
+    shell-doctor
+fi
+
+# check for shell-config updates once in 10 times
+silent_background() {
+    { 2>&3 "$@"& } 3>&2 2>/dev/null
+    disown &>/dev/null  # Prevent whine if job has already completed
+}
+if [ $((RANDOM % 10)) -eq 0 ]; then
+    silent_background shell-config update -m
+fi
+# ----- shell-config -----
 
 
 # if google-cloud-sdk installed manually via download
@@ -81,38 +120,6 @@ setopt correct_all # autocorrect commands
 setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
-
-
-function grant_permissions(){
-    sudo chown -R "$USER":admin "$1"
-    chmod -R 770 "$1"
-}
-
-
-# shell-config CLI
-export PATH="$HOME/shell-config/executable:$PATH"
-source <(shell-config completion-script)
-function shell-doctor(){
-    chmod -R 755 $(compaudit)
-    grant_permissions "$HOME/shell-config"
-}
-
-# fix permissions if needed
-if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
-    echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
-    shell-doctor
-    shell-config init
-    shell-doctor
-fi
-
-# check for shell-config updates once in 10 times
-silent_background() {
-    { 2>&3 "$@"& } 3>&2 2>/dev/null
-    disown &>/dev/null  # Prevent whine if job has already completed
-}
-if [ $((RANDOM % 10)) -eq 0 ]; then
-    silent_background shell-config update -m
-fi
 
 
 if command -v mcfly &> /dev/null
