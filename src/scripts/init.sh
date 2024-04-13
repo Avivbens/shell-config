@@ -5,13 +5,6 @@ function grant_permissions(){
   sudo chmod -R 770 "$1"
 }
 
-function get_remote_execute_file() {
-  local url="$1"
-  local response=$(curl -s "$url")
-  local raw_lines=$(echo "$response" | sed -n 's/.*"rawLines":\[\([^]]*\)\].*/\1/p' | tr -d '[]"')
-  echo "$raw_lines" | tr '\n' ' '
-}
-
 echo -e "\e[33mInstall Xcode Command Line Tools\e[0m"
 softwareupdate -i "Command Line Tools for Xcode-13.3" --agree-to-license
 
@@ -35,10 +28,10 @@ mkdir -p "$HOME/shell-config/zsh"
 grant_permissions "$HOME/shell-config"
 
 # download the CLI
-curl -s "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
+curl -fsSLk "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
 | grep "browser_download_url.*cli-v.*.zip" \
 | cut -d : -f 2,3 \
-| xargs curl -L -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
+| xargs curl -fsSLk -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 
 
 unzip "$HOME/shell-config/downloads/cli-update.zip" -d "$HOME/shell-config/downloads"

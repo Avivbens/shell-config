@@ -14,7 +14,7 @@ BREW="/opt/homebrew/bin/brew"
 
 # support brew formulaes installed via Rosetta 2
 alias brow="arch --x86_64 $BROW"
-# arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# arch --x86_64 /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # load all homebrew paths - brow
 if [ -f "$BROW" ]; then
