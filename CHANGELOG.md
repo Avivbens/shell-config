@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.6](https://github.com/Avivbens/shell-config/compare/v2.11.5...v2.11.6) (2024-04-13)
+
+
+### Bug Fixes
+
+* better `shell-doctor` command ([91394df](https://github.com/Avivbens/shell-config/commit/91394df5c1b70c39bb5dec24de7739638db82117))
+
 ### [2.11.5](https://github.com/Avivbens/shell-config/compare/v2.11.4...v2.11.5) (2024-04-13)
 
 
