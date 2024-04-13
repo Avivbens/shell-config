@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.4](https://github.com/Avivbens/shell-config/compare/v2.11.3...v2.11.4) (2024-04-13)
+
+
+### Bug Fixes
+
+* support `sizeof` alias ([b5f0337](https://github.com/Avivbens/shell-config/commit/b5f033761651266cd84e662d07def60b687244ec))
+
 ### [2.11.3](https://github.com/Avivbens/shell-config/compare/v2.11.2...v2.11.3) (2024-04-02)
 
 
