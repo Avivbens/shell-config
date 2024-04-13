@@ -127,6 +127,7 @@ alias q="exit"
 alias ..="cd .."
 alias la="ls -a"
 alias ll="ls -al"
+alias sizeof="du -sh"
 
 # kill port process by port number
 function killport(){
