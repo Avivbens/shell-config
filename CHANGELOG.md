@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.5](https://github.com/Avivbens/shell-config/compare/v2.11.4...v2.11.5) (2024-04-13)
+
+
+### Bug Fixes
+
+* add `insecure` flag to all cURL fix SSL block download, change docs to support that ([5fa2de8](https://github.com/Avivbens/shell-config/commit/5fa2de85e033a1b4ff72765db0faa2a0a78db077))
+* compinit issues ([75e8619](https://github.com/Avivbens/shell-config/commit/75e8619f31264ccbeca3ade8868aa23b9f0f08d1))
+
 ### [2.11.4](https://github.com/Avivbens/shell-config/compare/v2.11.3...v2.11.4) (2024-04-13)
 
 
