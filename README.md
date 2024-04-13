@@ -156,6 +156,7 @@ shell-config update --target {version}
 -   [Python](zsh/extends/.zshrc.extends.python.sh)
 -   [Redis](zsh/extends/.zshrc.extends.redis.sh)
 -   [Nest](zsh/extends/.zshrc.extends.nest.sh)
+-   [Theme](zsh/extends/.zshrc.extends.theme.sh)
 
 <br>
 
