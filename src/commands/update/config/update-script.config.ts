@@ -1,12 +1,12 @@
-import { BASE_PATH } from '@common/constants'
+import { BASE_PATH, CURL_COMMAND } from '@common/constants'
 import { TELL_TERMINAL_EXECUTE_SCRIPT } from '@common/utils'
 
 export const DOWNLOAD_SCRIPT_LATEST = `
 mkdir -p "${BASE_PATH}/downloads"
-curl -fsSLk "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
+${CURL_COMMAND} "https://api.github.com/repos/Avivbens/shell-config/releases/latest" \
 | grep "browser_download_url.*cli-v.*.zip" \
 | cut -d : -f 2,3 \
-| xargs curl -fsSLk -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
+| xargs ${CURL_COMMAND} -A "Mozilla/5.0" -o "$HOME/shell-config/downloads/cli-update.zip"
 `
 
 /**
@@ -19,7 +19,7 @@ curl -fsSLk "https://api.github.com/repos/Avivbens/shell-config/releases/latest"
  */
 export const DOWNLOAD_SCRIPT_CUSTOM = (version: string) => `
 mkdir -p "${BASE_PATH}/downloads"
-curl -fsSLk "https://github.com/Avivbens/shell-config/releases/download/${version}/cli-${version}.zip" -s -A "Mozilla/5.0" -o ${BASE_PATH}/downloads/cli-update.zip
+${CURL_COMMAND} "https://github.com/Avivbens/shell-config/releases/download/${version}/cli-${version}.zip" -s -A "Mozilla/5.0" -o ${BASE_PATH}/downloads/cli-update.zip
 `
 
 export const UNZIP_SCRIPT = `

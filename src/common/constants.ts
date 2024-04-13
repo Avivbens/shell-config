@@ -6,3 +6,5 @@ export const GITHUB_RELEASES_API_URL =
     `https://api.github.com/repos/${GITHUB_REPO}/releases` as const
 export const BASE_PATH = `${homedir()}/shell-config` as const
 export const BOOTSTRAP_UUID = randomUUID().slice(0, 8)
+
+export const CURL_COMMAND = `curl -fsSLk`

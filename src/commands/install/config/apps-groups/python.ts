@@ -1,3 +1,4 @@
+import { CURL_COMMAND } from '@common/constants'
 import type { IAppSetup } from '@models/app-setup.model'
 import { BREW_INSTALL, BROW_INSTALL } from '../common-commands'
 
@@ -14,7 +15,7 @@ export const PYTHON: Readonly<IAppSetup[]> = [
         group: 'python',
         default: true,
         commands: () => [
-            'curl -fsSLk https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py',
+            `${CURL_COMMAND} https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py`,
             'python3 /tmp/get-pip.py',
             'rm /tmp/get-pip.py',
         ],
