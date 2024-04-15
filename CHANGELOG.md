@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.7](https://github.com/Avivbens/shell-config/compare/v2.11.6...v2.11.7) (2024-04-15)
+
+
+### Bug Fixes
+
+* rebase with VSCode command ([5e5aa96](https://github.com/Avivbens/shell-config/commit/5e5aa96e32564bd8506791693b81b6e2e242cdaa))
+
 ### [2.11.6](https://github.com/Avivbens/shell-config/compare/v2.11.5...v2.11.6) (2024-04-13)
 
 
