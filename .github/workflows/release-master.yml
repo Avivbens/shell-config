@@ -2,10 +2,14 @@ on:
     push:
         branches:
             - master
+            - beta
+            - +([0-9])?(.{+([0-9]),x}).x
 
 permissions:
     contents: write
     pull-requests: write
+    issues: write
+    deployments: write
 
 name: 📦 Create New Release
 
@@ -30,7 +34,7 @@ jobs:
     release:
         name: 📦 Release Version
         runs-on: ubuntu-latest
-        timeout-minutes: 60
+        timeout-minutes: 20
         needs:
             - checks
 
@@ -42,17 +46,10 @@ jobs:
               uses: actions/checkout@v4
               with:
                   fetch-depth: 0
+                  persist-credentials: false
 
-            - name: 🗃️ Install Node.js Deps
-              run: |
-                  npm install --legacy-peer-deps
-
-            - name: Create a new version, update CHANGELOG.md
-              run: |
-                  git config --global user.email "github-actions[bot]@gmail.com"
-                  git config --global user.name "github-actions[bot]"
-                  npx standard-version
-                  git push --follow-tags origin master
+            - name: 🖥️ Setup Env
+              uses: ./.github/workflows/install
 
             - name: 🔨 Build Package
               run: |
@@ -64,26 +61,13 @@ jobs:
                   path: ./bin/*
                   filename: pack.zip
 
-            - name: Extract version from package.json
-              id: get_version
+            - name: Release
+              env:
+                  # This is required to make semantic-release work with GitHub Actions
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GIT_AUTHOR_NAME: github-bot
+                  GIT_AUTHOR_EMAIL: github-bot@gmail.com
+                  GIT_COMMITTER_NAME: github-bot
+                  GIT_COMMITTER_EMAIL: github-bot@gmail.com
               run: |
-                  echo "::set-output name=version::$(jq -r '.version' package.json)"
-
-            - name: Create GitHub Release
-              id: create_release
-              uses: actions/create-release@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  tag_name: v${{ steps.get_version.outputs.version }}
-                  release_name: v${{ steps.get_version.outputs.version }}
-
-            - name: Upload Release Asset
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./pack.zip
-                  asset_name: cli-v${{ steps.get_version.outputs.version }}.zip
-                  asset_content_type: application/zip
+                  npx semantic-release
