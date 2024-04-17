@@ -1,3 +1,10 @@
+## [2.11.8](https://github.com/Avivbens/shell-config/compare/v2.11.7...v2.11.8) (2024-04-17)
+
+
+### Bug Fixes
+
+* some deployment ([b7d3353](https://github.com/Avivbens/shell-config/commit/b7d3353b80f099b7a2165079dff994723daf92c3))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
