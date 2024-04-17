@@ -36,15 +36,8 @@ inputs:
 runs:
     using: composite
     steps:
-        - name: 🖥️ Setup Node
-          uses: actions/setup-node@v4
-          with:
-              node-version: 20
-
-        - name: 🔗 Install Dependencies
-          shell: bash
-          run: |
-              npm install --legacy-peer-deps
+        - name: 🖥️ Setup Env
+          uses: ./.github/workflows/install
 
         - name: 🧪 Test
           if: ${{ inputs.run-tests == 'true' }}

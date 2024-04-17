@@ -1,134 +1,112 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 ### [2.11.7](https://github.com/Avivbens/shell-config/compare/v2.11.6...v2.11.7) (2024-04-15)
-
 
 ### Bug Fixes
 
-* rebase with VSCode command ([5e5aa96](https://github.com/Avivbens/shell-config/commit/5e5aa96e32564bd8506791693b81b6e2e242cdaa))
+-   rebase with VSCode command ([5e5aa96](https://github.com/Avivbens/shell-config/commit/5e5aa96e32564bd8506791693b81b6e2e242cdaa))
 
 ### [2.11.6](https://github.com/Avivbens/shell-config/compare/v2.11.5...v2.11.6) (2024-04-13)
 
-
 ### Bug Fixes
 
-* better `shell-doctor` command ([91394df](https://github.com/Avivbens/shell-config/commit/91394df5c1b70c39bb5dec24de7739638db82117))
+-   better `shell-doctor` command ([91394df](https://github.com/Avivbens/shell-config/commit/91394df5c1b70c39bb5dec24de7739638db82117))
 
 ### [2.11.5](https://github.com/Avivbens/shell-config/compare/v2.11.4...v2.11.5) (2024-04-13)
 
-
 ### Bug Fixes
 
-* add `insecure` flag to all cURL fix SSL block download, change docs to support that ([5fa2de8](https://github.com/Avivbens/shell-config/commit/5fa2de85e033a1b4ff72765db0faa2a0a78db077))
-* compinit issues ([75e8619](https://github.com/Avivbens/shell-config/commit/75e8619f31264ccbeca3ade8868aa23b9f0f08d1))
+-   add `insecure` flag to all cURL fix SSL block download, change docs to support that ([5fa2de8](https://github.com/Avivbens/shell-config/commit/5fa2de85e033a1b4ff72765db0faa2a0a78db077))
+-   compinit issues ([75e8619](https://github.com/Avivbens/shell-config/commit/75e8619f31264ccbeca3ade8868aa23b9f0f08d1))
 
 ### [2.11.4](https://github.com/Avivbens/shell-config/compare/v2.11.3...v2.11.4) (2024-04-13)
 
-
 ### Bug Fixes
 
-* support `sizeof` alias ([b5f0337](https://github.com/Avivbens/shell-config/commit/b5f033761651266cd84e662d07def60b687244ec))
+-   support `sizeof` alias ([b5f0337](https://github.com/Avivbens/shell-config/commit/b5f033761651266cd84e662d07def60b687244ec))
 
 ### [2.11.3](https://github.com/Avivbens/shell-config/compare/v2.11.2...v2.11.3) (2024-04-02)
 
-
 ### Bug Fixes
 
-* bump-up to node 20, add readme section for error handling `Cannot find module` ([484434a](https://github.com/Avivbens/shell-config/commit/484434a70013dab71e95aac7112ef29de4b6f5d5))
+-   bump-up to node 20, add readme section for error handling `Cannot find module` ([484434a](https://github.com/Avivbens/shell-config/commit/484434a70013dab71e95aac7112ef29de4b6f5d5))
 
 ### [2.11.2](https://github.com/Avivbens/shell-config/compare/v2.11.1...v2.11.2) (2024-04-02)
 
-
 ### Bug Fixes
 
-* add `compaudit` handler for doctor ([d4d1d00](https://github.com/Avivbens/shell-config/commit/d4d1d009255fc6d6cae5d59d5f33e38d8047eb8d))
+-   add `compaudit` handler for doctor ([d4d1d00](https://github.com/Avivbens/shell-config/commit/d4d1d009255fc6d6cae5d59d5f33e38d8047eb8d))
 
 ### [2.11.1](https://github.com/Avivbens/shell-config/compare/v2.11.0...v2.11.1) (2024-04-02)
 
-
 ### Bug Fixes
 
-* `pkg` deprecated => `@yao-pkg/pkg` ([99dafc5](https://github.com/Avivbens/shell-config/commit/99dafc5a725d21ad7e112f44c568b5b2ba974f5a))
+-   `pkg` deprecated => `@yao-pkg/pkg` ([99dafc5](https://github.com/Avivbens/shell-config/commit/99dafc5a725d21ad7e112f44c568b5b2ba974f5a))
 
 ## [2.11.0](https://github.com/Avivbens/shell-config/compare/v2.10.1...v2.11.0) (2024-04-02)
 
-
 ### Features
 
-* add Vivid and MonitorControl ([adcc123](https://github.com/Avivbens/shell-config/commit/adcc123857e5773822f7032f7b73372c9f818312))
-* re-organize all groups for `install` command ([46dc372](https://github.com/Avivbens/shell-config/commit/46dc372fb18fce7b0e196ae580bc566850f38a37))
+-   add Vivid and MonitorControl ([adcc123](https://github.com/Avivbens/shell-config/commit/adcc123857e5773822f7032f7b73372c9f818312))
+-   re-organize all groups for `install` command ([46dc372](https://github.com/Avivbens/shell-config/commit/46dc372fb18fce7b0e196ae580bc566850f38a37))
 
 ### [2.10.1](https://github.com/Avivbens/shell-config/compare/v2.10.0...v2.10.1) (2024-03-10)
 
-
 ### Bug Fixes
 
-* compinit only for `zsh-completions` exists ([1574ee5](https://github.com/Avivbens/shell-config/commit/1574ee5e8cb5d0585c1052c39a1e294c3bf6811b))
+-   compinit only for `zsh-completions` exists ([1574ee5](https://github.com/Avivbens/shell-config/commit/1574ee5e8cb5d0585c1052c39a1e294c3bf6811b))
 
 ## [2.10.0](https://github.com/Avivbens/shell-config/compare/v2.9.2...v2.10.0) (2024-03-03)
 
-
 ### Features
 
-* support `theme` shell module for all colors setup ([c6161fc](https://github.com/Avivbens/shell-config/commit/c6161fc7349362979f3e41c824b4baf7da6ddee9))
-
+-   support `theme` shell module for all colors setup ([c6161fc](https://github.com/Avivbens/shell-config/commit/c6161fc7349362979f3e41c824b4baf7da6ddee9))
 
 ### Bug Fixes
 
-* add dpdm as nodejs package ([3a72511](https://github.com/Avivbens/shell-config/commit/3a72511a5cc6ce6e5634d1b5289bd347e46af5bd))
-* support zsh colors and autocomplete by brew ([5a6f6b3](https://github.com/Avivbens/shell-config/commit/5a6f6b30525cc4a703a23f401ff9cf3d39dce2e5))
+-   add dpdm as nodejs package ([3a72511](https://github.com/Avivbens/shell-config/commit/3a72511a5cc6ce6e5634d1b5289bd347e46af5bd))
+-   support zsh colors and autocomplete by brew ([5a6f6b3](https://github.com/Avivbens/shell-config/commit/5a6f6b30525cc4a703a23f401ff9cf3d39dce2e5))
 
 ### [2.9.2](https://github.com/Avivbens/shell-config/compare/v2.9.1...v2.9.2) (2024-02-21)
 
-
 ### Bug Fixes
 
-* setup nodejs default version to 18.19.1 - EOL for nodejs 16 ([4c144d6](https://github.com/Avivbens/shell-config/commit/4c144d62804f050badc478102a03d9d4c92c053b))
+-   setup nodejs default version to 18.19.1 - EOL for nodejs 16 ([4c144d6](https://github.com/Avivbens/shell-config/commit/4c144d62804f050badc478102a03d9d4c92c053b))
 
 ### [2.9.1](https://github.com/Avivbens/shell-config/compare/v2.9.0...v2.9.1) (2024-02-20)
 
-
 ### Bug Fixes
 
-* homebrew setup on root (both arch64 and native brew) ([aa65eb1](https://github.com/Avivbens/shell-config/commit/aa65eb11cb2bfdf114d736fa19dc890057086f33))
+-   homebrew setup on root (both arch64 and native brew) ([aa65eb1](https://github.com/Avivbens/shell-config/commit/aa65eb11cb2bfdf114d736fa19dc890057086f33))
 
 ## [2.9.0](https://github.com/Avivbens/shell-config/compare/v2.8.5...v2.9.0) (2024-01-26)
 
-
 ### Features
 
-* support git log better padding with less ([ab024ff](https://github.com/Avivbens/shell-config/commit/ab024ffcbaa40bc355b7157cda1727cea78a5344))
-* support vscode shell module ([5f2b932](https://github.com/Avivbens/shell-config/commit/5f2b9324ebdaaa7a82ca396b80b3ac0455bf5ab4))
-
+-   support git log better padding with less ([ab024ff](https://github.com/Avivbens/shell-config/commit/ab024ffcbaa40bc355b7157cda1727cea78a5344))
+-   support vscode shell module ([5f2b932](https://github.com/Avivbens/shell-config/commit/5f2b9324ebdaaa7a82ca396b80b3ac0455bf5ab4))
 
 ### Bug Fixes
 
-* add subler as an app ([0cd0ad6](https://github.com/Avivbens/shell-config/commit/0cd0ad67f6f42ac2202262ff577e6eb5dce50e69))
-* bump up deps ([4e8ccb9](https://github.com/Avivbens/shell-config/commit/4e8ccb92b7a68d9dac4c9f165d3035a1f45d306f))
-* page size for install command ([5075eae](https://github.com/Avivbens/shell-config/commit/5075eaec3a9612bfa85ed29db75702c5d692f98b))
+-   add subler as an app ([0cd0ad6](https://github.com/Avivbens/shell-config/commit/0cd0ad67f6f42ac2202262ff577e6eb5dce50e69))
+-   bump up deps ([4e8ccb9](https://github.com/Avivbens/shell-config/commit/4e8ccb92b7a68d9dac4c9f165d3035a1f45d306f))
+-   page size for install command ([5075eae](https://github.com/Avivbens/shell-config/commit/5075eaec3a9612bfa85ed29db75702c5d692f98b))
 
 ### 2.8.5 (2024-01-07)
 
-
 ### Bug Fixes
 
-* add vall commad for opening vscode for all sub-directories ([9477dbe](https://github.com/Avivbens/shell-config/commit/9477dbede78c251628723eead983b29dfc65204b))
+-   add vall commad for opening vscode for all sub-directories ([9477dbe](https://github.com/Avivbens/shell-config/commit/9477dbede78c251628723eead983b29dfc65204b))
 
 ### 2.8.4 (2024-01-06)
 
-
 ### Bug Fixes
 
-* failing to install google-cloud-sdk for apple silicon chip ([2d9cf38](https://github.com/Avivbens/shell-config/commit/2d9cf38795cbcb975d0c44cbddf7b173a810c7d6))
+-   failing to install google-cloud-sdk for apple silicon chip ([2d9cf38](https://github.com/Avivbens/shell-config/commit/2d9cf38795cbcb975d0c44cbddf7b173a810c7d6))
 
 ### 2.8.3 (2024-01-02)
 
-
 ### Bug Fixes
 
-* workflow for release ([dab9fd7](https://github.com/Avivbens/shell-config/commit/dab9fd79b154826a3e3bc4294de4bf8ce13a12b0))
+-   workflow for release ([dab9fd7](https://github.com/Avivbens/shell-config/commit/dab9fd79b154826a3e3bc4294de4bf8ce13a12b0))
 
 ### 2.8.2 (2023-12-01)
 
