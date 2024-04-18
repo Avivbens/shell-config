@@ -1,3 +1,10 @@
+## [2.11.8](https://github.com/Avivbens/shell-config/compare/v2.11.7...v2.11.8) (2024-04-18)
+
+
+### Bug Fixes
+
+* **deps:** bump up all deps, migrate to `lint-staged` ([b5c1391](https://github.com/Avivbens/shell-config/commit/b5c139141a2acba9ffc495db094c7529f8b53d19))
+
 ### [2.11.7](https://github.com/Avivbens/shell-config/compare/v2.11.6...v2.11.7) (2024-04-15)
 
 ### Bug Fixes
