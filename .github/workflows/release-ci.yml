@@ -51,17 +51,35 @@ jobs:
             - name: 🖥️ Setup Env
               uses: ./.github/workflows/install
 
-            - name: 🔨 Build Package
+            - name: 🆚 Extract Next Release Version
+              id: extract-version
               run: |
+                  GITHUB_REF=${{ github.head_ref }}
+                  NEXT_VERSION=$(npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.ref }} \
+                  | grep "The next release version is" \
+                  | node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
+                  echo "::set-output name=version::$NEXT_VERSION"
+
+            - name: 🔨 Build Package
+              if: steps.extract-version.outputs.version != ''
+              run: |
+                  # update package.json version - for packing purposes
+                  node -e "const fs = require('fs'); \
+                  const pkg = require('./package.json'); \
+                  pkg.version = '${{ steps.extract-version.outputs.version }}'; \
+                  fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 4));"
+
                   npm run pack
 
             - name: 🤐 Archive pack file
+              if: steps.extract-version.outputs.version != ''
               uses: thedoctor0/zip-release@master
               with:
                   path: ./bin/*
                   filename: pack.zip
 
-            - name: Release
+            - name: 🚀 Release
+              if: steps.extract-version.outputs.version != ''
               env:
                   # This is required to make semantic-release work with GitHub Actions
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

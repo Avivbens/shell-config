@@ -24,6 +24,15 @@ jobs:
             - name: 🖥️ Setup Env
               uses: ./.github/workflows/install
 
+            - name: 🆚 Extract Next Release Version
+              id: extract-version
+              run: |
+                  GITHUB_REF=${{ github.head_ref }}
+                  NEXT_VERSION=$(npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.ref }} \
+                  | grep "The next release version is" \
+                  | node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
+                  echo "::set-output name=version::$NEXT_VERSION"
+
             - name: 🔬 Check semantic versioning
               id: semantic-release
               run: |
@@ -46,6 +55,8 @@ jobs:
                           .reverse()
                           .findIndex((line) => line.match(semanticReleaseLogMatch));
 
+                      const nextVersion = '${{ steps.extract-version.outputs.version }}';
+
                       const releaseNoteIndex = lines.length - lastSemanticReleaseLogIndex;
                       const releaseNote = lines.slice(releaseNoteIndex);
 
@@ -55,7 +66,8 @@ jobs:
                       }
 
                       const SEMANTIC_RELEASE_BODY_HEADER = '## 📝 Semantic Release Report';
-                      const body = [SEMANTIC_RELEASE_BODY_HEADER, res].join('\n');
+                      const NEXT_VERSION_HEADER = `### 🚀 Next Version: ${nextVersion}`;
+                      const body = [SEMANTIC_RELEASE_BODY_HEADER, NEXT_VERSION_HEADER, res].join('\n');
 
                       // get last comment
                       const comments = await github.rest.issues.listComments({
