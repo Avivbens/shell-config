@@ -1,10 +1,10 @@
+import { Command, CommandRunner } from 'nest-commander'
+import { arch as ARCH } from 'node:process'
+import ora from 'ora'
 import { execPromise } from '@common/utils'
 import type { IAppSetup } from '@models/app-setup.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
-import { Command, CommandRunner } from 'nest-commander'
-import { arch as ARCH } from 'node:process'
-import ora from 'ora'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
 import { USER_TAGS_PROMPT } from './config/user-tags.config'
 

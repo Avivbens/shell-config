@@ -1,14 +1,10 @@
+import { Command, CommandRunner } from 'nest-commander'
+import { mkdir, readdir, writeFile } from 'node:fs/promises'
 import { execPromise } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
-import { Command, CommandRunner } from 'nest-commander'
-import { mkdir, readdir, writeFile } from 'node:fs/promises'
 import type { AvailableActionIds } from './config/ constants.config'
-import {
-    GIT_PROFILES_TARGET,
-    HELP_BOX_MESSAGE,
-    NPM_PROFILES_TARGET,
-} from './config/ constants.config'
+import { GIT_PROFILES_TARGET, HELP_BOX_MESSAGE, NPM_PROFILES_TARGET } from './config/ constants.config'
 import {
     ASK_FOR_ARTIFACTORY_KEY_PROMPT,
     ASK_FOR_CUSTOM_REGISTRY_AUTH_PROMPT,

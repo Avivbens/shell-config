@@ -1,7 +1,7 @@
+import { appendFile } from 'node:fs/promises'
 import { BASE_PATH, BOOTSTRAP_UUID } from '@common/constants'
 import { execPromise } from '@common/utils'
 import { Injectable, Scope } from '@nestjs/common'
-import { appendFile } from 'node:fs/promises'
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService {
@@ -39,9 +39,7 @@ export class LoggerService {
     }
 
     private generateMessage(message: string): string {
-        return `INSTANCE: ${BOOTSTRAP_UUID} | ${new Date().toLocaleString()} |${
-            this.context
-        }${message}`
+        return `INSTANCE: ${BOOTSTRAP_UUID} | ${new Date().toLocaleString()} |${this.context}${message}`
     }
 
     public setContext(context: string) {

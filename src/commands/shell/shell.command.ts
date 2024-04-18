@@ -1,16 +1,12 @@
+import { Command, CommandRunner } from 'nest-commander'
+import { readdir, rename } from 'node:fs/promises'
+import { resolve } from 'node:path'
 import { BASE_PATH } from '@common/constants'
 import type { IShellModule } from '@models/shell-module.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
-import { Command, CommandRunner } from 'nest-commander'
-import { readdir, rename } from 'node:fs/promises'
-import { resolve } from 'node:path'
 import { MULTI_SELECT_MODULES_PROMPT } from './config/multi-select-modules.config'
-import {
-    EXTENDS_MODULES_DIR_PATH,
-    LOCAL_MODULES_DIR_PATH,
-    MODULES_MAP,
-} from './config/shell-modules.config'
+import { EXTENDS_MODULES_DIR_PATH, LOCAL_MODULES_DIR_PATH, MODULES_MAP } from './config/shell-modules.config'
 
 @Command({
     name: 'shell',
@@ -31,13 +27,9 @@ export class ShellCommand extends CommandRunner {
 
         try {
             const currentConfig = await readdir(LOCAL_MODULES_DIR_PATH)
-            const modulesToDisable: IShellModule[] = await MULTI_SELECT_MODULES_PROMPT(
-                currentConfig,
-            )
+            const modulesToDisable: IShellModule[] = await MULTI_SELECT_MODULES_PROMPT(currentConfig)
 
-            this.logger.debug(
-                `Modules to disable: ${modulesToDisable.map((module) => module.name).join(', ')}`,
-            )
+            this.logger.debug(`Modules to disable: ${modulesToDisable.map((module) => module.name).join(', ')}`)
 
             await this.enableAllModules()
 
@@ -57,14 +49,11 @@ export class ShellCommand extends CommandRunner {
             )
 
             const allDisabledModules: IShellModule[] = allDisabledModulesPaths.map((modulePath) => {
-                const relativePath =
-                    `${EXTENDS_MODULES_DIR_PATH}/` + modulePath.replace('.disabled', '')
+                const relativePath = `${EXTENDS_MODULES_DIR_PATH}/` + modulePath.replace('.disabled', '')
                 return MODULES_MAP[relativePath]
             })
 
-            this.logger.debug(
-                `Modules to enable: ${allDisabledModules.map((module) => module.name).join(', ')}`,
-            )
+            this.logger.debug(`Modules to enable: ${allDisabledModules.map((module) => module.name).join(', ')}`)
 
             for (const module of allDisabledModules) {
                 await this.enableModule(module)

@@ -62,11 +62,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'MongoDB Community Edition server',
         tags: ['engineering', 'devops'],
-        commands: () => [
-            BREW_TAP('mongodb/brew'),
-            BREW_INSTALL('mongodb-community@6.0'),
-            'mkdir -p "$HOME/mongodb"',
-        ],
+        commands: () => [BREW_TAP('mongodb/brew'), BREW_INSTALL('mongodb-community@6.0'), 'mkdir -p "$HOME/mongodb"'],
         fallbackCommands: () => [
             BROW_TAP('mongodb/brew'),
             BROW_INSTALL('mongodb-community@6.0'),

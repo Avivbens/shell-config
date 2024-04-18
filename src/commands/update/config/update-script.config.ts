@@ -32,8 +32,7 @@ rm "${BASE_PATH}/downloads/cli-update.zip"
 rm -rf "${BASE_PATH}/downloads/bin"
 `
 
-export const DOWNLOAD_FILE_PATH = (filename: string) =>
-    `${BASE_PATH}/downloads/${filename.replace(/\n/g, '')}`
+export const DOWNLOAD_FILE_PATH = (filename: string) => `${BASE_PATH}/downloads/${filename.replace(/\n/g, '')}`
 
 export const MIGRATE_SCRIPT = (filename: string) => `
 ln -f "${DOWNLOAD_FILE_PATH(filename)}" "${BASE_PATH}/executable/shell-config"

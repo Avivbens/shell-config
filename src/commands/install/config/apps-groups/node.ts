@@ -65,8 +65,7 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'DPDM',
-        description:
-            'A robust static dependency analyzer for your JavaScript and TypeScript projects',
+        description: 'A robust static dependency analyzer for your JavaScript and TypeScript projects',
         group: 'node',
         tags: ['engineering'],
         commands: () => [NODE_GLOBAL('dpdm')],

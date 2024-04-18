@@ -1,13 +1,13 @@
-import { BASE_PATH } from '@common/constants'
-import { copyBundledAsset, execPromise, resolveBundledAsset } from '@common/utils'
-import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
 import { Command, CommandRunner } from 'nest-commander'
 import { existsSync } from 'node:fs'
 import { appendFile, chmod, copyFile, mkdir, readFile, readdir, rename, rm } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { resolve } from 'node:path'
 import ora from 'ora'
+import { BASE_PATH } from '@common/constants'
+import { copyBundledAsset, execPromise, resolveBundledAsset } from '@common/utils'
+import { CheckUpdateService } from '@services/check-update.service'
+import { LoggerService } from '@services/logger.service'
 import {
     BREW_DIRECTORY,
     BREW_INSTALLATION_COMMAND,
@@ -129,8 +129,7 @@ export class InitCommand extends CommandRunner {
         try {
             this.logger.debug(`Unpacking bundled assets to ${BASE_PATH}`)
 
-            const disabledExtendsFilesMap: Record<string, string> =
-                await this.getCurrentExtendsDirDisabledFilesMap()
+            const disabledExtendsFilesMap: Record<string, string> = await this.getCurrentExtendsDirDisabledFilesMap()
 
             await mkdir(`${BASE_PATH}/zsh`, { recursive: true }).catch(() => {})
             await rm(`${BASE_PATH}/zsh/extends`, { recursive: true, force: true }).catch(() => {})
@@ -310,9 +309,7 @@ export class InitCommand extends CommandRunner {
         try {
             const extendsFiles: string[] = await this.getExtendsFiles()
 
-            const disabledFiles = extendsFiles.filter((fileName: string) =>
-                fileName.endsWith('.disabled'),
-            )
+            const disabledFiles = extendsFiles.filter((fileName: string) => fileName.endsWith('.disabled'))
 
             const disabledFilesMap: Record<string, string> = disabledFiles.reduce((acc, curr) => {
                 const originalName = curr.replace('.disabled', '')

@@ -1,7 +1,7 @@
 import { CommandFactory } from 'nest-commander'
+import packageJson from '../package.json'
 import { AppModule } from './app.module'
 
-import packageJson from '../package.json'
 ;(async () => {
     const cliCommand = 'shell-config'
     const cliExecutable = '$HOME/shell-config/executable/shell-config'

@@ -10,13 +10,16 @@ export const MULTI_SELECT_APPS_PROMPT = async (tags: ITag[]): Promise<IAppSetup[
         return acc
     }, {})
 
-    const groups: Record<IGroup, IAppSetup[]> = APPS_CONFIG.reduce((acc, app) => {
-        const { group } = app
-        acc[group] ??= []
-        acc[group].push(app)
+    const groups: Record<IGroup, IAppSetup[]> = APPS_CONFIG.reduce(
+        (acc, app) => {
+            const { group } = app
+            acc[group] ??= []
+            acc[group].push(app)
 
-        return acc
-    }, {} as Record<IGroup, IAppSetup[]>)
+            return acc
+        },
+        {} as Record<IGroup, IAppSetup[]>,
+    )
 
     const choices = Object.entries(groups).flatMap(([groupName, group]) => {
         const value = group.map((app) => {
