@@ -2,8 +2,6 @@
 name: Semantic Release Report 📝
 on:
     pull_request:
-        branches-ignore:
-            - beta
         branches:
             - beta
             - master
