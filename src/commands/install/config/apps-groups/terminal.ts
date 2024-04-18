@@ -1,12 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import {
-    BREW_CASK,
-    BREW_INSTALL,
-    BREW_TAP,
-    BROW_ALIAS,
-    BROW_INSTALL,
-    BROW_TAP,
-} from '../common-commands'
+import { BREW_CASK, BREW_INSTALL, BREW_TAP, BROW_ALIAS, BROW_INSTALL, BROW_TAP } from '../common-commands'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
@@ -29,8 +22,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Mcfly',
-        description:
-            'Search & execute through your shell history, with context-aware suggestions and neural network.',
+        description: 'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
         tags: ['engineering', 'devops', 'productivity'],
         commands: () => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],

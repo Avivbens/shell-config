@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { inquirer } from '@common/inquirer'
 import type { AvailableActionIds } from './ constants.config'
 import { AVAILABLE_ACTIONS } from './ constants.config'

@@ -1,6 +1,6 @@
-import { BASE_PATH } from '@common/constants'
 import { access } from 'fs/promises'
 import { Command, CommandRunner } from 'nest-commander'
+import { BASE_PATH } from '@common/constants'
 import { INIT_DYNAMIC_SCRIPT, OPEN_TERMINAL } from './config/init-script.config'
 
 @Command({

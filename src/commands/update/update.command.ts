@@ -1,10 +1,11 @@
-import { execPromise } from '@common/utils'
-import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+/* eslint-disable no-useless-escape */
 import { Command, CommandRunner, Option } from 'nest-commander'
 import { existsSync } from 'node:fs'
 import { env } from 'node:process'
 import ora from 'ora'
+import { execPromise } from '@common/utils'
+import { CheckUpdateService } from '@services/check-update.service'
+import { LoggerService } from '@services/logger.service'
 import {
     DOWNLOAD_FILE_PATH,
     DOWNLOAD_SCRIPT_CUSTOM,
@@ -82,9 +83,7 @@ export class UpdateCommand extends CommandRunner {
 
             const isExists: boolean = existsSync(downloadPath)
             if (!isExists) {
-                this.logger.error(
-                    `Error while trying to migrate to the new version.\nTry again later.`,
-                )
+                this.logger.error(`Error while trying to migrate to the new version.\nTry again later.`)
                 spinner.fail('Failed to update')
                 return
             }

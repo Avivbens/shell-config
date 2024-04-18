@@ -1,17 +1,19 @@
+import boxen from 'boxen'
+import { lastValueFrom } from 'rxjs'
+import { clean, lt } from 'semver'
 import { GITHUB_RELEASES_API_URL } from '@common/constants'
 import type { IReleasesAPIRes } from '@models/releases-api.model'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
-import boxen from 'boxen'
-import { lastValueFrom } from 'rxjs'
-import { clean, lt } from 'semver'
-import { LoggerService } from './logger.service'
-
 import packageJson from '../../package.json'
+import { LoggerService } from './logger.service'
 
 @Injectable()
 export class CheckUpdateService {
-    constructor(private readonly http: HttpService, private readonly logger: LoggerService) {
+    constructor(
+        private readonly http: HttpService,
+        private readonly logger: LoggerService,
+    ) {
         this.logger.setContext(CheckUpdateService.name)
     }
 
@@ -34,9 +36,7 @@ export class CheckUpdateService {
 
             const updateNeeded: boolean = lt(currentVersionClean, latestClean)
             if (!updateNeeded) {
-                this.logger.debug(
-                    `Current version: ${currentVersionClean}, latest version: ${latestClean}`,
-                )
+                this.logger.debug(`Current version: ${currentVersionClean}, latest version: ${latestClean}`)
                 return false
             }
 
@@ -65,9 +65,7 @@ export class CheckUpdateService {
 
     public async getGithubReleases(): Promise<IReleasesAPIRes[]> {
         try {
-            const res = await lastValueFrom(
-                this.http.get<IReleasesAPIRes[]>(GITHUB_RELEASES_API_URL),
-            )
+            const res = await lastValueFrom(this.http.get<IReleasesAPIRes[]>(GITHUB_RELEASES_API_URL))
             return res.data
         } catch (error) {
             this.logger.debug(`Error getGithubReleases, error: ${error.stack}`)

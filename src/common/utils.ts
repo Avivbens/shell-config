@@ -23,12 +23,7 @@ export const resolveBundledAsset = (currentDirectory: string, assetPath: string)
  * @param path - path to asset relative to this project root, use {@link resolveBundledAsset}
  * @param target - path to copy asset to
  */
-export async function copyBundledAsset(
-    path: string,
-    target: string,
-    logger: LoggerService,
-    round = 0,
-) {
+export async function copyBundledAsset(path: string, target: string, logger: LoggerService, round = 0) {
     try {
         const isDir = (await stat(path)).isDirectory()
         if (!isDir) {
@@ -39,9 +34,7 @@ export async function copyBundledAsset(
         await mkdir(target, { recursive: true }).catch(() => {})
         const children = await readdir(path)
         await Promise.all(
-            children.map((child) =>
-                copyBundledAsset(resolve(path, child), resolve(target, child), logger, round + 1),
-            ),
+            children.map((child) => copyBundledAsset(resolve(path, child), resolve(target, child), logger, round + 1)),
         )
     } catch (error) {
         round === 0 && logger.error(`Failed copyBundledAsset, error: ${error.stack}`)

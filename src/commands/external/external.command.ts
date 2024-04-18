@@ -1,5 +1,5 @@
-import { CheckUpdateService } from '@services/check-update.service'
 import { Command, CommandRunner } from 'nest-commander'
+import { CheckUpdateService } from '@services/check-update.service'
 import { DeleteSubCommand, InstallSubCommand, ListSubCommand } from './sub-commands'
 
 @Command({

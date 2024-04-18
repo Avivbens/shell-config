@@ -1,6 +1,6 @@
+import { resolve } from 'node:path'
 import { BASE_PATH } from '@common/constants'
 import type { IShellModule } from '@models/shell-module.model'
-import { resolve } from 'node:path'
 
 export const EXTENDS_MODULES_DIR_PATH = 'zsh/extends'
 export const LOCAL_MODULES_DIR_PATH = resolve(BASE_PATH, EXTENDS_MODULES_DIR_PATH)
@@ -53,12 +53,9 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     },
 ]
 
-export const MODULES_MAP: Record<string, IShellModule> = SHELL_MODULES_OPTIONS.reduce(
-    (acc, module) => {
-        const { path } = module
-        acc[path] = module
+export const MODULES_MAP: Record<string, IShellModule> = SHELL_MODULES_OPTIONS.reduce((acc, module) => {
+    const { path } = module
+    acc[path] = module
 
-        return acc
-    },
-    {},
-)
+    return acc
+}, {})

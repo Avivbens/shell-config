@@ -38,13 +38,10 @@ describe('InstallSubCommand', () => {
             { input: 'test.sh-shell.sh', expRes: 'test.sh-shell.sh' },
             { input: 'test.sh-shell', expRes: 'test.sh-shell.sh' },
             { input: 'test-shell', expRes: 'test-shell.sh' },
-        ])(
-            'should grab the name of the external with the extension of .sh',
-            ({ input, expRes }) => {
-                // @ts-expect-error
-                const res = service.parseExternalName(input)
-                expect(res).toEqual(expRes)
-            },
-        )
+        ])('should grab the name of the external with the extension of .sh', ({ input, expRes }) => {
+            // @ts-expect-error
+            const res = service.parseExternalName(input)
+            expect(res).toEqual(expRes)
+        })
     })
 })

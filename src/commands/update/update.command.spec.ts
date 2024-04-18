@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
-import { UpdateCommand } from './update.command'
-import { LoggerService } from '@services/logger.service'
 import { CheckUpdateService } from '@services/check-update.service'
+import { LoggerService } from '@services/logger.service'
+import { UpdateCommand } from './update.command'
 
 describe('UpdateCommand', () => {
     let service: UpdateCommand
