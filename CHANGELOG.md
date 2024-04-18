@@ -1,3 +1,23 @@
+## [2.11.10-beta.1](https://github.com/Avivbens/shell-config/compare/v2.11.9...v2.11.10-beta.1) (2024-04-18)
+
+
+### Bug Fixes
+
+* some commit ([eba6fb8](https://github.com/Avivbens/shell-config/commit/eba6fb830d600c57b02036513aba446ed417bcfb))
+* some commit ([301fcca](https://github.com/Avivbens/shell-config/commit/301fccaff11eee8b847c2bbe021cfdbc25558451))
+* some commit ([f9888d8](https://github.com/Avivbens/shell-config/commit/f9888d8c174c1cf32d22aa6df4711a329ec6e911))
+* some commit ([bb1dbbd](https://github.com/Avivbens/shell-config/commit/bb1dbbd0b28380a7d1f522f10ded8189a73b02b9))
+* some commit ([ace988a](https://github.com/Avivbens/shell-config/commit/ace988aacbaf619839fc6d784df6b14608eee04b))
+* some commit ([d81362d](https://github.com/Avivbens/shell-config/commit/d81362d22c78f7a50877f4baaa78c4123932e4fb))
+* some commit ([6c442cf](https://github.com/Avivbens/shell-config/commit/6c442cf0ef3dee972258ba7f2d2e6e587609e651))
+* some commit ([c21369b](https://github.com/Avivbens/shell-config/commit/c21369b30fa69eb7dd140499b19644312641c39c))
+* some commit ([f866105](https://github.com/Avivbens/shell-config/commit/f86610560c80cd9b589d2f31d05bc6587386d96b))
+* some commit ([85ec539](https://github.com/Avivbens/shell-config/commit/85ec53946372e43745dfc95d3294c314a3836a0a))
+* some commit ([3a1faf0](https://github.com/Avivbens/shell-config/commit/3a1faf02f36266091881e50b31cede6404ade4b5))
+* some commit ([d1f5508](https://github.com/Avivbens/shell-config/commit/d1f5508cadeb5f9418c7b4ac9e9159f90fa9abe5))
+* some commit ([127ed75](https://github.com/Avivbens/shell-config/commit/127ed75db8c5c63a1919d190cc3326a2baf8e78b))
+* some commit ([8e85a0d](https://github.com/Avivbens/shell-config/commit/8e85a0d2e005f5b34aed9a0c140300625e44b9b6))
+
 ## [2.11.9](https://github.com/Avivbens/shell-config/compare/v2.11.8...v2.11.9) (2024-04-18)
 
 
