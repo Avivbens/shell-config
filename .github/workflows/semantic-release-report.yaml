@@ -27,9 +27,9 @@ jobs:
             - name: 🔬 Check Semantic Versioning
               id: semantic-release
               run: |
-                  GITHUB_REF=${{ github.head_ref }}
-                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }}
-                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }} > output.txt
+                  GITHUB_REF="master"
+                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches master
+                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches master > output.txt
                   REPORT=$(cat output.txt | base64 -w 0)
 
                   VERSION=$(cat output.txt | \
