@@ -33,7 +33,7 @@ jobs:
 
                   VERSION=$(cat output.txt | \
                   grep "The next release version is" | \
-                  node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
+                  node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+(-beta\.\d+)?)/)?.[1] ?? '')")
 
                   echo "releaseNote=$REPORT" >> $GITHUB_OUTPUT
                   echo "version=$VERSION" >> $GITHUB_OUTPUT
