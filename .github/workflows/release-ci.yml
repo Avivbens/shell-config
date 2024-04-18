@@ -61,6 +61,8 @@ jobs:
                   | node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
 
                   echo "::set-output name=version::$NEXT_VERSION"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
             - name: 🔨 Build Package
               if: steps.extract-version.outputs.version != ''
