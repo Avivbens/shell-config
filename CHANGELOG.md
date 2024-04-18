@@ -1,3 +1,16 @@
+## [2.11.9](https://github.com/Avivbens/shell-config/compare/v2.11.8...v2.11.9) (2024-04-18)
+
+
+### Bug Fixes
+
+* check commit ([5c275e9](https://github.com/Avivbens/shell-config/commit/5c275e99ad12c6c3a7a46d775a0e4ee71711bfb2))
+* check commit ([3bb6d85](https://github.com/Avivbens/shell-config/commit/3bb6d85e1b4562eae5ec2e5d6cacbb55c58dd399))
+* check commit ([6d31f9a](https://github.com/Avivbens/shell-config/commit/6d31f9a36889d0a6d491b19ae4cddb4aa4d0fbae))
+* check commit ([ce72ac3](https://github.com/Avivbens/shell-config/commit/ce72ac3cb89743abdbe8427798ff1ab4febf625c))
+* check commit ([7bd7b83](https://github.com/Avivbens/shell-config/commit/7bd7b8301576a83c3f27a2abbd02f1beead297b0))
+* pack with next version, bail if no next version ([da4c609](https://github.com/Avivbens/shell-config/commit/da4c609d3f124f5b103e299246940f456f8500ce))
+* rename file ([dde754f](https://github.com/Avivbens/shell-config/commit/dde754fcba96c5b88cd12a9733ad8016682520af))
+
 ## [2.11.8](https://github.com/Avivbens/shell-config/compare/v2.11.7...v2.11.8) (2024-04-17)
 
 ### Bug Fixes
