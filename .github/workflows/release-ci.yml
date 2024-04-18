@@ -54,7 +54,7 @@ jobs:
             - name: 🆚 Extract Next Release Version
               id: extract-version
               run: |
-                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.ref_name }} > output.txt
+                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator > output.txt
 
                   NEXT_VERSION=$(cat output.txt \
                   | grep "The next release version is" \
