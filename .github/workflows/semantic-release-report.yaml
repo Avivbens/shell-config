@@ -24,22 +24,19 @@ jobs:
             - name: 🖥️ Setup Env
               uses: ./.github/workflows/install
 
-            - name: 🆚 Extract Next Release Version
-              id: extract-version
-              run: |
-                  GITHUB_REF=${{ github.ref_name }}
-                  NEXT_VERSION=$(npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.ref_name }} \
-                  | grep "The next release version is" \
-                  | node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
-                  echo "::set-output name=version::$NEXT_VERSION"
-
-            - name: 🔬 Check semantic versioning
+            - name: 🔬 Check Semantic Versioning
               id: semantic-release
               run: |
-                  GITHUB_REF=${{ github.ref_name }}
-                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.ref_name }} > output.txt
-                  OUTPUT=$(cat output.txt | base64 -w 0)
-                  echo "::set-output name=releaseNote::$OUTPUT"
+                  GITHUB_REF=${{ github.head_ref }}
+                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }} > output.txt
+                  REPORT=$(cat output.txt | base64 -w 0)
+
+                  VERSION=$(cat output.txt | \
+                  grep "The next release version is" | \
+                  node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
+
+                  echo "releaseNote=$REPORT" >> $GITHUB_OUTPUT
+                  echo "version=$VERSION" >> $GITHUB_OUTPUT
 
             - name: 📝 Report semantic versioning
               uses: actions/github-script@v7
@@ -55,7 +52,7 @@ jobs:
                           .reverse()
                           .findIndex((line) => line.match(semanticReleaseLogMatch));
 
-                      const nextVersion = '${{ steps.extract-version.outputs.version }}';
+                      const nextVersion = '${{ steps.semantic-release.outputs.version }}';
 
                       const releaseNoteIndex = lines.length - lastSemanticReleaseLogIndex;
                       const releaseNote = lines.slice(releaseNoteIndex);
