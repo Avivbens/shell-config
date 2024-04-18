@@ -9,7 +9,6 @@ permissions:
     contents: write
     pull-requests: write
     issues: write
-    id-token: write
     deployments: write
 
 name: 📦 Create New Release
@@ -55,7 +54,7 @@ jobs:
             - name: 🆚 Extract Next Release Version
               id: extract-version
               run: |
-                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator > output.txt
+                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches master > output.txt
 
                   NEXT_VERSION=$(cat output.txt \
                   | grep "The next release version is" \
