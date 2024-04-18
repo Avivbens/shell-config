@@ -1,3 +1,10 @@
+## [2.11.10-beta.3](https://github.com/Avivbens/shell-config/compare/v2.11.10-beta.2...v2.11.10-beta.3) (2024-04-18)
+
+
+### Bug Fixes
+
+* support beta ([292bb96](https://github.com/Avivbens/shell-config/commit/292bb96535d56a2c608c685673db97504f9ab4cf))
+
 ## [2.11.10-beta.2](https://github.com/Avivbens/shell-config/compare/v2.11.10-beta.1...v2.11.10-beta.2) (2024-04-18)
 
 
