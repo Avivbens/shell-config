@@ -46,8 +46,8 @@
         "semver": "^7.6.0"
     },
     "devDependencies": {
-        "@commitlint/cli": "^17.7.1",
-        "@commitlint/config-conventional": "^17.7.0",
+        "@commitlint/cli": "^19.2.2",
+        "@commitlint/config-conventional": "^19.2.2",
         "@nestjs/cli": "^10.3.2",
         "@nestjs/schematics": "^10.1.1",
         "@nestjs/testing": "^10.3.7",
