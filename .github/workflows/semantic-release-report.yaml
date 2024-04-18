@@ -27,8 +27,8 @@ jobs:
             - name: 🆚 Extract Next Release Version
               id: extract-version
               run: |
-                  GITHUB_REF=${{ github.head_ref }}
-                  NEXT_VERSION=$(npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }} \
+                  GITHUB_REF=master
+                  NEXT_VERSION=$(npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches master \
                   | grep "The next release version is" \
                   | node -e "console.log(require('fs').readFileSync(0, 'utf-8').match(/The next release version is (\d+\.\d+\.\d+)/)?.[1] ?? '')")
                   echo "::set-output name=version::$NEXT_VERSION"
@@ -36,8 +36,8 @@ jobs:
             - name: 🔬 Check semantic versioning
               id: semantic-release
               run: |
-                  GITHUB_REF=${{ github.head_ref }}
-                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }} > output.txt
+                  GITHUB_REF=master
+                  npx semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches master > output.txt
                   OUTPUT=$(cat output.txt | base64 -w 0)
                   echo "::set-output name=releaseNote::$OUTPUT"
 
