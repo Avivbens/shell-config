@@ -1,3 +1,6 @@
+---
+name: '📦 Create New Release'
+    
 on:
     push:
         branches:
@@ -14,8 +17,6 @@ permissions:
 concurrency:
     group: release-ci-${{ github.repository }}-${{ github.ref }}
     cancel-in-progress: true
-
-name: 📦 Create New Release
 
 jobs:
     checks:
