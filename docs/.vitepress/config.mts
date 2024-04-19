@@ -5,7 +5,7 @@ import { SIDEBAR } from './sidebar.config.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: ' ',
+    title: 'Shell Config',
     description: 'CLI Tool for MacOS setup - apps, shell, assets, etc',
     base: getDocsBase(),
     cleanUrls: true,
@@ -23,6 +23,7 @@ export default defineConfig({
         logo: '/logos/logo-short-no-bg.png',
         nav: NAVBAR,
         sidebar: SIDEBAR,
+        siteTitle: '',
         socialLinks: [
             //
             { icon: 'github', link: `https://github.com/${REPOSITORY_FULLNAME}#readme` },
