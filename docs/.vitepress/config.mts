@@ -17,6 +17,7 @@ export default defineConfig({
         breaks: true,
         lineNumbers: true,
     },
+    appearance: 'force-dark',
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         logo: '/logos/logo-short-no-bg.png',
