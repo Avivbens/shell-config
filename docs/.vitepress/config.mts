@@ -35,5 +35,9 @@ export default defineConfig({
         lastUpdated: {
             formatOptions: { dateStyle: 'medium' },
         },
+        footer: {
+            message: 'Released under the MIT License',
+            copyright: 'Copyright © 2023-present Aviv Ben Shahar'
+        }
     },
 })

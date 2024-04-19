@@ -1,7 +1,7 @@
 module.exports = process.env.CI
     ? {
-          '**/*.(js|ts|json|yaml)': 'npm run lint',
+          '**/*.(js|ts|mts|mjs|cjs|cts|json|yaml)': 'npm run lint',
       }
     : {
-          '**/*.(js|ts|json|yaml)': 'npm run lint:fix',
+          '**/*.(js|ts|mts|mjs|cjs|cts|json|yaml)': 'npm run lint:fix',
       }
