@@ -1,12 +1,16 @@
 name: Deploy VitePress Docs 📚
 
 on:
+    release:
+        types:
+            - released
     push:
         branches:
             - master
         paths:
             - 'docs/**/*'
             - '.github/workflows/deploy-docs.yaml'
+            - 'package.json'
 
 permissions:
     contents: read
