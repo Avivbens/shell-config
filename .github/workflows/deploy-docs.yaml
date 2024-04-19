@@ -1,0 +1,70 @@
+name: Deploy VitePress Docs 📚
+
+on:
+    push:
+        branches:
+            - master
+        paths:
+            - 'docs/**'
+            - '.github/workflows/deploy-docs.yaml'
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: pages
+    cancel-in-progress: true
+
+jobs:
+    checks:
+        name: Checks 🧪
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Checks 🧪
+              uses: ./.github/workflows/health-check
+
+    build:
+        name: Build 🔨
+        runs-on: ubuntu-latest
+        needs:
+            - checks
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: 🖥️ Setup Env
+              uses: ./.github/workflows/install
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
+
+            - name: Build with VitePress
+              run: npm run docs:build
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: 'dist/docs'
+
+    deploy:
+        name: Deploy 🚀
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        needs:
+            - build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v2
