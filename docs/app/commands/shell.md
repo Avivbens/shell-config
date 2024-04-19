@@ -30,4 +30,4 @@ Enable / disable the modules according to your preferences, by using the arrow k
 
 ## Examples
 
-![Shell Command](../../public/shell-command.jpg)
+![Shell Command](/shell-command.jpg)

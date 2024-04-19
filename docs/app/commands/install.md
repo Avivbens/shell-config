@@ -23,6 +23,6 @@ You can set a predefined selected applications by using the profiles feature. Si
 
 ## Examples
 
-![Install Profiles](../../public/select-tags.jpg)
-![Install Options](../../public/install-options.jpg)
-![After Install](../../public/install-command.jpg)
+![Install Profiles](/select-tags.jpg)
+![Install Options](/install-options.jpg)
+![After Install](/install-command.jpg)
