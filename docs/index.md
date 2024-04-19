@@ -5,6 +5,9 @@ layout: home
 hero:
     name: 'Shell Config'
     tagline: 'CLI Tool for MacOS setup - apps, shell, assets, etc'
+    image:
+        src: /assets/logos/logo-full-no-bg.png
+        alt: shell-config logo
     actions:
         - theme: brand
           text: Discover
