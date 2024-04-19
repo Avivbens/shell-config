@@ -11,6 +11,7 @@ export default defineConfig({
     cleanUrls: true,
     ignoreDeadLinks: false,
     outDir: '../dist/docs/',
+    head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
     markdown: {
         defaultHighlightLang: 'typescript',
         breaks: true,
