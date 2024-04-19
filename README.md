@@ -15,7 +15,7 @@ installs apps, configures your dev system, and personalizes your working station
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/kcao7snkgx)
 
-### [Read Our Official Docs 📚](https://github.com/Avivbens/shell-config/pages)
+### <a href="https://avivbens.github.io/shell-config/" target="_blank">Read Our Official Docs 📚</a>
 
 </div>
 
