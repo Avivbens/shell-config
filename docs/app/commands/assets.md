@@ -35,4 +35,4 @@ You can create as many profiles as you wish, and simply switch between them usin
 
 ## Examples
 
-![Assets Page](../../assets/assets-command.jpg)
+![Assets Page](../../public/assets-command.jpg)

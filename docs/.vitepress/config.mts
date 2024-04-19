@@ -1,11 +1,11 @@
 import { defineConfig } from 'vitepress'
-import { getDocsBase, remoteDefaultBranch, REPOSITORY_FULLNAME } from './constants/repository.mjs'
+import { REPOSITORY_FULLNAME, getDocsBase, remoteDefaultBranch } from './constants/repository.mjs'
 import { NAVBAR } from './navbar.config.mjs'
 import { SIDEBAR } from './sidebar.config.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: 'Shell Config',
+    title: ' ',
     description: 'CLI Tool for MacOS setup - apps, shell, assets, etc',
     base: getDocsBase(),
     cleanUrls: true,
@@ -18,6 +18,7 @@ export default defineConfig({
     },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
+        logo: '/logos/logo-short-no-bg.png',
         nav: NAVBAR,
         sidebar: SIDEBAR,
         socialLinks: [
