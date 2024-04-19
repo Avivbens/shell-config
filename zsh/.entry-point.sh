@@ -44,7 +44,10 @@ function grant_permissions(){
 function shell-doctor(){
     chmod -R 755 $(compaudit)
     autoload -Uz compinit
-    grant_permissions "$HOME/shell-config"
+    grant_permissions "$HOME/shell-config/zsh"
+    grant_permissions "$HOME/shell-config/executable"
+    grant_permissions "$HOME/shell-config/downloads"
+    grant_permissions "$HOME/shell-config/assets"
 }
 
 # check if need to fix compaudit
