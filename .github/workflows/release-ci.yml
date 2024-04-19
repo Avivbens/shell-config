@@ -1,8 +1,10 @@
 ---
 name: '📦 Create New Release'
-    
+
 on:
     push:
+        paths-ignore:
+            - 'docs/**/*'
         branches:
             - master
             - beta
