@@ -2,6 +2,8 @@
 
 echo "entry point loaded"
 
+export TERMINAL_INSTANCE_ID=$(date +%s)
+
 source "$HOME/shell-config/zsh/.utils.sh"
 
 
