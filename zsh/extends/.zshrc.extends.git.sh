@@ -19,7 +19,6 @@ alias gm="git merge"
 alias gf="git fetch"
 alias gr="git rebase"
 alias gunlast="git reset --soft HEAD~1"
-alias pq="pretty-quick --staged"
 
 # setup less to fit with git log, in order to search and see the hash of the commit
 # set the number of padding lines to 15
@@ -76,9 +75,9 @@ function rename_author(){
     --exec 'git commit --amend --no-edit --reset-author'
 }
 
-function replace_author(){
-    look_for_email="$1"
-    replacement_email="$2"
+function replace_author() {
+    local look_for_email="$1"
+    local replacement_email="$2"
     git filter-branch -f --env-filter "
         if [ \"\$GIT_COMMITTER_EMAIL\" = \"$look_for_email\" ]; then
             export GIT_COMMITTER_EMAIL=\"$replacement_email\"
