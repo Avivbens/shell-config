@@ -2,11 +2,8 @@
 
 echo "entry point loaded"
 
-function sourceIf(){
-  if [ -f "$1" ]; then
-    source $1
-  fi
-}
+source "$HOME/shell-config/zsh/.utils.sh"
+
 
 # Homebrew paths
 BROW="/usr/local/Homebrew/bin/brew"
