@@ -1,3 +1,13 @@
+## [2.11.9](https://github.com/Avivbens/shell-config/compare/v2.11.8...v2.11.9) (2024-04-20)
+
+
+### Bug Fixes
+
+* drop unused aliases, use `local` in all shell functions ([68841fd](https://github.com/Avivbens/shell-config/commit/68841fdbdc87da6e6d44e8e81952061fa2b906e7))
+* **load-time:** improve by `600` milliseconds 🚀 ([c33beb3](https://github.com/Avivbens/shell-config/commit/c33beb30acdd2aaa8f790aeb233d72c9278d42f5))
+* **logs:** drop all logs for loaded modules ([8f89a8a](https://github.com/Avivbens/shell-config/commit/8f89a8ac52164f3f2a42bcb3a2de0ed265eb4e59))
+* split `ZSH Terminal Syntax` packages ([08511ba](https://github.com/Avivbens/shell-config/commit/08511ba3c8f07dd572285870d01bdd8fd032182f))
+
 ## [2.11.8](https://github.com/Avivbens/shell-config/compare/v2.11.7...v2.11.8) (2024-04-18)
 
 
