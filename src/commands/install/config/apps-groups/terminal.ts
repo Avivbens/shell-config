@@ -29,19 +29,28 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_TAP('cantino/mcfly'), BROW_INSTALL('cantino/mcfly/mcfly')],
     },
     {
-        name: 'ZSH Terminal Syntax Highlighting and Autosuggestions',
+        name: 'ZSH Terminal Syntax Highlighting',
         group: 'terminal',
         tags: ['engineering', 'devops'],
+        commands: () => [BREW_INSTALL('zsh-syntax-highlighting')],
+        fallbackCommands: () => [BROW_INSTALL('zsh-syntax-highlighting')],
+    },
+    {
+        name: 'ZSH Terminal Syntax Autosuggestions',
+        group: 'terminal',
+        tags: ['engineering', 'devops'],
+        commands: () => [BREW_INSTALL('zsh-autosuggestions')],
+        fallbackCommands: () => [BROW_INSTALL('zsh-autosuggestions')],
+    },
+    {
+        name: 'ZSH Terminal Syntax Completions',
+        group: 'terminal',
         commands: () => [
-            BREW_INSTALL('zsh-autosuggestions'),
-            BREW_INSTALL('zsh-syntax-highlighting'),
             BREW_INSTALL('zsh-completions'),
             `chmod go-w "$(brew --prefix)/share"`,
             `chmod -R go-w "$(brew --prefix)/share/zsh"`,
         ],
         fallbackCommands: () => [
-            BROW_INSTALL('zsh-autosuggestions'),
-            BROW_INSTALL('zsh-syntax-highlighting'),
             BROW_INSTALL('zsh-completions'),
             `chmod go-w "$(brew --prefix)/share"`,
             `chmod -R go-w "$(brew --prefix)/share/zsh"`,
