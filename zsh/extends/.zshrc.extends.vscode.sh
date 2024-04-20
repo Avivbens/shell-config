@@ -1,7 +1,5 @@
 #! /usr/bin/env zsh
 
-echo "extends.vscode.sh loaded"
-
 export VSCODE="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
 # open vscode
