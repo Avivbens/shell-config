@@ -13,7 +13,9 @@ BREW="/opt/homebrew/bin/brew"
 
 # support brew formulaes installed via Rosetta 2
 alias brow="arch --x86_64 $BROW"
-# arch --x86_64 /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+export BREW_PERFIX=$(brew --prefix)
+export BROW_PERFIX=$(brow --prefix)
 
 # load all homebrew paths - brow
 if [ -f "$BROW" ]; then
@@ -27,8 +29,8 @@ fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+    [ -s "$BREW_PERFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PERFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$BREW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 
 # ----- shell-config -----
@@ -73,25 +75,24 @@ if [ $((RANDOM % 10)) -eq 0 ]; then
 fi
 # ----- shell-config -----
 
-
 # if google-cloud-sdk installed manually via download
 sourceIf "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"
 sourceIf "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"
 
 # if google-cloud-sdk installed via Homebrew
-sourceIf "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-sourceIf "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+sourceIf "$BREW_PERFIX/share/google-cloud-sdk/path.zsh.inc"
+sourceIf "$BREW_PERFIX/share/google-cloud-sdk/completion.zsh.inc"
 
 
 # Autosuggest
-sourceIf "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-sourceIf "$(brow --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+sourceIf "$BREW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+sourceIf "$BROW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 
 # Autocomplete
 # only if zsh-completions installed via Homebrew
-if [ -f "$(brew --prefix)/share/zsh-completions" ]; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+if [ -f "$BREW_PERFIX/share/zsh-completions" ]; then
+    FPATH="$BREW_PERFIX/share/zsh-completions:$FPATH"
     # load compinit as a function on an exported path to avoid overlapping with other compinit commands
     autoload -Uz compinit
     # toggle ON completions with tab key
@@ -99,18 +100,17 @@ if [ -f "$(brew --prefix)/share/zsh-completions" ]; then
 fi
 
 # only if zsh-completions installed via legacy Homebrew
-if [ -f "$(brow --prefix)/share/zsh-completions" ]; then
-    FPATH=$(brow --prefix)/share/zsh-completions:$FPATH
+if [ -f "$BROW_PERFIX/share/zsh-completions" ]; then
+    FPATH=$BROW_PERFIX/share/zsh-completions:$FPATH
     # load compinit as a function on an exported path to avoid overlapping with other compinit commands
     autoload -Uz compinit
     # toggle ON completions with tab key
     compinit
 fi
 
-
 # Colored correct code
-sourceIf "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-sourceIf "$(brow --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+sourceIf "$BREW_PERFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+sourceIf "$BROW_PERFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # setopt hist_ignore_all_dups # remove older duplicate entries from history
 # setopt hist_reduce_blanks # remove superfluous blanks from history items
