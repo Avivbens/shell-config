@@ -5,7 +5,7 @@ alias nsd="npm run start:dev"
 alias nb="npm run build"
 alias nt="npm run test"
 alias nte="npm run test:e2e"
-function cnodem(){
+function cnodem() {
     npm ci --only=prod
     npm ci
 }

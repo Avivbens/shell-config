@@ -24,42 +24,39 @@ alias gunlast="git reset --soft HEAD~1"
 # set the number of padding lines to 15
 export LESS="-FXRSj15"
 
-function gmd(){
+function gmd() {
     git pull
     git merge origin/dev
 }
 
 # stop git from tracking a file
-function gstrack(){
+function gstrack() {
     git update-index --assume-unchanged $1
 }
 
 # resume tracking for a file
-function grtrack(){
+function grtrack() {
     git update-index --no-assume-unchanged $1
 }
 
 # get few files from another commit OR branch
-function gchmany(){
+function gchmany() {
     # 2 is offset
-    for i in ${@:2}
-    do
+    for i in ${@:2}; do
         gch $1 $i $i
     done
 }
 
 # switch the current git config to the one specified
-function swgit(){
+function swgit() {
     # if no parameter in, print the content of the folder
-    if [ $# -eq 0 ]
-    then
+    if [ $# -eq 0 ]; then
         ls -1 $HOME/.gitprofiles
         return
     fi
 
     # check if the file exists
-    if [ ! -f "$HOME/.gitprofiles/$1" ]
-    then
+    if [ ! -f "$HOME/.gitprofiles/$1" ]; then
         echo "Git config named '$1' does not exist."
         ls -1 $HOME/.gitprofiles
         return
@@ -70,9 +67,9 @@ function swgit(){
 }
 
 # rename author of commits to the current user under git config
-function rename_author(){
+function rename_author() {
     git rebase -r $1 \
-    --exec 'git commit --amend --no-edit --reset-author'
+        --exec 'git commit --amend --no-edit --reset-author'
 }
 
 function replace_author() {
@@ -103,7 +100,7 @@ function copy_init() {
 }
 
 # 1 - repo to clone
-function clonets(){
+function clonets() {
     git clone $1
     # enter the directory
     cd $(basename $_ .git)
@@ -122,8 +119,7 @@ git config --global -l | grep 'email'
 echo "\n"
 
 # show current npmrc config
-if command -v npmrc &> /dev/null
-then
+if command -v npmrc &>/dev/null; then
     npmrc
 fi
 
