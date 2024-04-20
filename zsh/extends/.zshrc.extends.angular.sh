@@ -1,7 +1,5 @@
 #! /usr/bin/env zsh
 
-echo "extends.angular.sh loaded"
-
 # create ngrx files - first arg is the name of the module, second is the name of the facade
 function ngrxcreate(){
     touch ./actions.ts

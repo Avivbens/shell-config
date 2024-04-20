@@ -1,7 +1,5 @@
 #! /usr/bin/env zsh
 
-echo "extends.npm.sh loaded"
-
 alias ns="npm run start"
 alias nsd="npm run start:dev"
 alias nb="npm run build"

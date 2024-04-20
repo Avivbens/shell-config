@@ -1,7 +1,5 @@
 #! /usr/bin/env zsh
 
-echo "extends.nest.sh loaded"
-
 # create initial files for nest project
 function nestserver() {
     if [ -z "$1" ]; then

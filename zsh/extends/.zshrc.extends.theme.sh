@@ -1,7 +1,5 @@
 #! /usr/bin/env zsh
 
-echo "extends.theme.sh loaded"
-
 # Load version control information
 autoload -Uz vcs_info
 precmd() { vcs_info }

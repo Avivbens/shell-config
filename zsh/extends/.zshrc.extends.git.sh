@@ -1,7 +1,5 @@
 #! /usr/bin/env zsh
 
-echo "extends.git.sh loaded"
-
 # depends on zsh/extends/.zshrc.extends.vscode.sh
 source "$HOME/shell-config/zsh/extends/.zshrc.extends.vscode.sh"
 
