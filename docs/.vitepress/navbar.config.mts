@@ -9,11 +9,11 @@ export const NAVBAR: DefaultTheme.NavItem[] = [
         items: [
             {
                 text: 'Changelog',
-                link: 'https://github.com/Avivbens/shell-config/blob/master/CHANGELOG.md',
+                link: `https://github.com/Avivbens/shell-config/blob/v${version}/CHANGELOG.md`,
             },
             {
                 text: 'Contributing',
-                link: 'https://github.com/Avivbens/shell-config/blob/master/CONTRIBUTING.md',
+                link: `https://github.com/Avivbens/shell-config/blob/v${version}/CONTRIBUTING.md`,
             },
         ],
     },
