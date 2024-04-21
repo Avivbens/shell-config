@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/Avivbens/shell-config/compare/v2.11.9...v2.12.0) (2024-04-21)
+
+
+### Features
+
+* support `GitHub CLI` terminal app, aliases and functions ([6916109](https://github.com/Avivbens/shell-config/commit/69161097ccab40309e577bcaa21c497fd209589c))
+
 ## [2.11.9](https://github.com/Avivbens/shell-config/compare/v2.11.8...v2.11.9) (2024-04-20)
 
 
