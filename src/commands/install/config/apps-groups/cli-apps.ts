@@ -34,6 +34,14 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         ],
     },
     {
+        name: 'GitHub CLI',
+        group: 'cli-apps',
+        description: 'GitHub in your terminal',
+        tags: ['engineering', 'devops'],
+        commands: () => [BREW_INSTALL('gh')],
+        fallbackCommands: () => [BROW_INSTALL('gh')],
+    },
+    {
         name: 'google-cloud-sdk',
         group: 'cli-apps',
         description: 'Integrate with Google Cloud Platform services, Python is required',
