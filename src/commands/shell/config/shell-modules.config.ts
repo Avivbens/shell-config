@@ -22,6 +22,11 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'Theme for the terminal, showing the current branch and more',
     },
     {
+        name: 'GitHub CLI',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.github.sh`,
+        description: 'GitHub CLI aliases and functions',
+    },
+    {
         name: 'NPM',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.npm.sh`,
         description: 'NPM aliases and functions',
