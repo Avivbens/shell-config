@@ -19,6 +19,7 @@ Enable / disable the modules according to your preferences, by using the arrow k
 ## Modules
 
 -   [Git](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.git.sh)
+-   [GitHub CLI](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.github.sh)
 -   [VSCode](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.vscode.sh)
 -   [Npm](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.npm.sh)
 -   [Angular](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.angular.sh)
