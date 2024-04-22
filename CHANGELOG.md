@@ -1,3 +1,15 @@
+# [2.13.0](https://github.com/Avivbens/shell-config/compare/v2.12.0...v2.13.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* **apps:** add `App Store` apps collection ([b080b26](https://github.com/Avivbens/shell-config/commit/b080b261dc94d742eac6d32c7aae7682668c961a))
+
+
+### Features
+
+* support open installation page on `App Store` apps within `shell-config` ([749bfdd](https://github.com/Avivbens/shell-config/commit/749bfdd2f40f9b36ac0d2794b765a2c7d8a1cec1))
+
 # [2.12.0](https://github.com/Avivbens/shell-config/compare/v2.11.9...v2.12.0) (2024-04-21)
 
 
