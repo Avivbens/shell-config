@@ -23,5 +23,7 @@ export const NODE_GLOBAL = (packageName: string) =>
 export const NVM_COMMAND = (command: string) => `source $HOME/.nvm/nvm.sh && nvm ${command}`
 
 // App Store
+export const OPEN_BROWSER_LINK = (link: string) => `open -a Safari ${link}`
+
 export const OPEN_APP_STORE_APP_LINK = (appPath: `${string}/id${number}`) =>
-    `open -a Safari https://apps.apple.com/il/app/${appPath}`
+    OPEN_BROWSER_LINK(`https://apps.apple.com/il/app/${appPath}`)
