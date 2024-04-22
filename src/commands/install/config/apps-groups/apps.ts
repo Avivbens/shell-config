@@ -76,6 +76,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'RCMD',
         description: 'Switch apps instantly using a Hotkey (paid)',
         group: 'apps',
+        tags: ['productivity'],
         commands: () => [OPEN_APP_STORE_APP_LINK('rcmd-app-switcher/id1596283165')],
     },
     {
@@ -89,6 +90,13 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Easy window resize & organize',
         group: 'apps',
         commands: () => [OPEN_APP_STORE_APP_LINK('bettersnaptool/id417375580')],
+    },
+    {
+        name: 'TextSniper',
+        description: 'Extract and copy text from images (paid)',
+        group: 'apps',
+        tags: ['productivity'],
+        commands: () => [BREW_CASK('textsniper')],
     },
     {
         name: 'TinkerTool',

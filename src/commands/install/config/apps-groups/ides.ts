@@ -14,4 +14,10 @@ export const IDES: Readonly<IAppSetup[]> = [
         tags: ['engineering', 'devops'],
         commands: () => [BREW_CASK('webstorm')],
     },
+    {
+        name: 'Pycharm',
+        group: 'IDEs',
+        description: 'Python IDE',
+        commands: () => [BREW_CASK('pycharm')],
+    },
 ]
