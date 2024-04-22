@@ -3,8 +3,9 @@ import { DefaultTheme } from 'vitepress'
 export const SIDEBAR: DefaultTheme.Sidebar = [
     {
         text: 'Commands',
-        collapsed: false,
         base: '/app/commands/',
+        link : '../setup',
+        collapsed: false,
         items: [
             {
                 text: 'Install',
