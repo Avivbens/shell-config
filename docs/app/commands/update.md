@@ -25,3 +25,17 @@ shell-config update -t <VERSION_HERE>
 ```bash
 shell-config update -m
 ```
+
+## Examples
+
+### Post Install / Update Process
+
+After Updating the CLI version, a new terminal window will be opened, executing the following:
+
+![Post Update](/post-update.png)
+
+### Support Future Migration Scripts
+
+Then, a new terminal window will be opened, so the new CLI can set any migration script, if needed. The following command would be executed:
+
+![Post Update Run](/post-update-run.png)
