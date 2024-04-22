@@ -14,12 +14,15 @@ Select the applications you want to install by using the arrow keys and space ba
 
 ::: warning **Note ❗**
 For some applications, you may be asked to provide your password.
-Pay attention to the password inputs if needed! *(key icon)*
+Pay attention to the password inputs if needed! _(key icon)_
 :::
 
 ## Profiles
 
-You can set a predefined selected applications by using the profiles feature. Simply select the relevant profiles you'd like to have, and press `Enter` to preselect relevant applications.
+You can set predefined selected applications by using the profiles feature. Simply select the relevant profiles you'd like to have, and press `Enter` to preselect relevant applications.
+
+Some profiles have dependencies, such as `node-engineering` profile, which is dependent on the `engineering` profile.
+You can select both, but under the hood, the `engineering` profile will be selected automatically.
 
 ## Examples
 

@@ -18,7 +18,7 @@ For each selected asset, you'd be asked to provide the required information.
 
 ::: warning **Note ❗**
 For some configuration, you may be asked to provide your password.
-Pay attention to the password inputs if needed! *(key icon)*
+Pay attention to the password inputs if needed! _(key icon)_
 :::
 
 ## Multi Profiles Support
