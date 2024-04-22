@@ -26,8 +26,9 @@ export const SIDEBAR: DefaultTheme.Sidebar = [
     },
     {
         text: 'Troubleshooting',
-        collapsed: false,
         base: '/app/troubleshooting/',
+        link: 'index',
+        collapsed: false,
         items: [
             {
                 text: 'Permissions',

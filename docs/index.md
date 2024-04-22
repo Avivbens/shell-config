@@ -14,7 +14,7 @@ hero:
           link: /app/setup
         - theme: alt
           text: Troubleshooting
-          link: /app/troubleshooting/permissions
+          link: /app/troubleshooting/index
 features:
     - title: Install Apps
       link: '/app/commands/install'
