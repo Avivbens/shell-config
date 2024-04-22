@@ -6,7 +6,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         name: 'Git',
         description: 'Common Code Version Manager',
         group: 'git',
-        tags: ['engineering', 'devops'],
+        tags: ['engineering'],
         commands: () => [BREW_INSTALL('git')],
     },
     {

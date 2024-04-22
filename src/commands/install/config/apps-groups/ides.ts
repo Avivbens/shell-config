@@ -5,13 +5,13 @@ export const IDES: Readonly<IAppSetup[]> = [
     {
         name: 'Visual Studio Code',
         group: 'IDEs',
-        tags: ['engineering', 'devops'],
+        tags: ['engineering'],
         commands: () => [BREW_CASK('visual-studio-code')],
     },
     {
         name: 'Webstorm',
         group: 'IDEs',
-        tags: ['web-engineering'],
+        tags: ['web-engineering', 'node-engineering'],
         paid: true,
         commands: () => [BREW_CASK('webstorm')],
     },
