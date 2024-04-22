@@ -1,3 +1,3 @@
-import type { AVAILABLE_TAGS } from '@commands/install/config/apps.config'
+export const AVAILABLE_TAGS = ['engineering', 'devops', 'ui-ux', 'productivity', 'work', 'personal'] as const
 
 export type ITag = (typeof AVAILABLE_TAGS)[number]
