@@ -5,15 +5,17 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Alfred',
         group: 'apps',
-        description: 'Productivity app, create custom shortcuts and workflows',
+        description: 'Productivity app, create custom shortcuts and workflows (paid)',
         tags: ['productivity'],
+        paid: true,
         commands: () => [BREW_CASK('alfred')],
     },
     {
         name: 'Bar Tender',
         group: 'apps',
-        description: 'Hide menu bar icons and manage them',
+        description: 'Hide menu bar icons and manage them (paid)',
         tags: ['productivity'],
+        paid: true,
         commands: () => [BREW_CASK('bartender')],
     },
     {
@@ -64,6 +66,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Screen recorder and screenshot tool (paid)',
         group: 'apps',
         tags: ['productivity'],
+        paid: true,
         commands: () => [BREW_CASK('cleanshot')],
     },
     {
@@ -71,6 +74,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Clipboard manager (paid)',
         group: 'apps',
         tags: ['super-user'],
+        paid: true,
         commands: () => [OPEN_APP_STORE_APP_LINK('paste-endless-clipboard/id967805235')],
     },
     {
@@ -78,6 +82,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Switch apps instantly using a Hotkey (paid)',
         group: 'apps',
         tags: ['super-user'],
+        paid: true,
         commands: () => [OPEN_APP_STORE_APP_LINK('rcmd-app-switcher/id1596283165')],
     },
     {
@@ -99,6 +104,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Extract and copy text from images (paid)',
         group: 'apps',
         tags: ['productivity'],
+        paid: true,
         commands: () => [BREW_CASK('textsniper')],
     },
     {
@@ -135,7 +141,8 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Vivid',
         group: 'apps',
-        description: 'Unlocks the full brightness of your MacBook Pro',
+        description: 'Unlocks the full brightness of your MacBook Pro (paid)',
+        paid: true,
         commands: () => [BREW_CASK('vivid')],
     },
     {

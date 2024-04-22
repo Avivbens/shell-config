@@ -9,7 +9,7 @@ export const USER_TAGS_PROMPT = async (): Promise<ITag[]> => {
             message: 'Let us know your preferences',
             loop: false,
             choices: AVAILABLE_TAGS,
-            pageSize: 10,
+            pageSize: 13,
         },
     ])
 

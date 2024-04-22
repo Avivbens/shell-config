@@ -9,6 +9,7 @@ export const AVAILABLE_TAGS = [
     'super-user',
     'work',
     'personal',
+    'NON-PAID: drop all paid apps selections',
 ] as const
 
 export type ITag = (typeof AVAILABLE_TAGS)[number]
