@@ -1,3 +1,10 @@
+## [2.13.1](https://github.com/Avivbens/shell-config/compare/v2.13.0...v2.13.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **app:** support `TinkerTool` app ([6ef56e8](https://github.com/Avivbens/shell-config/commit/6ef56e81d20b7a93414c3a738b7f85ae8042c482))
+
 # [2.13.0](https://github.com/Avivbens/shell-config/compare/v2.12.0...v2.13.0) (2024-04-22)
 
 
