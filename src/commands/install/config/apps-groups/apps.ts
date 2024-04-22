@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, OPEN_APP_STORE_APP_LINK } from '../common-commands'
+import { BREW_CASK, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
@@ -89,6 +89,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Easy window resize & organize',
         group: 'apps',
         commands: () => [OPEN_APP_STORE_APP_LINK('bettersnaptool/id417375580')],
+    },
+    {
+        name: 'TinkerTool',
+        description: 'Access hidden system settings on macOS',
+        group: 'apps',
+        commands: () => [OPEN_BROWSER_LINK('https://www.bresink.com/osx/0TinkerTool/download.php')],
     },
     {
         name: 'Notion',
