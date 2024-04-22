@@ -1,3 +1,10 @@
+## [2.14.1](https://github.com/Avivbens/shell-config/compare/v2.14.0...v2.14.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **profiles:** change `devops` to be dependent on `engineering`, fix `web` <=> `node` ([afa60c3](https://github.com/Avivbens/shell-config/commit/afa60c3ed43756257769bb266dced54f12be0879))
+
 # [2.14.0](https://github.com/Avivbens/shell-config/compare/v2.13.1...v2.14.0) (2024-04-22)
 
 
