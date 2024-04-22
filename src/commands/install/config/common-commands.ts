@@ -21,3 +21,7 @@ export const NODE_GLOBAL = (packageName: string) =>
     `source $HOME/.nvm/nvm.sh && npm install -g ${packageName} --registry=https://registry.npmjs.org/`
 
 export const NVM_COMMAND = (command: string) => `source $HOME/.nvm/nvm.sh && nvm ${command}`
+
+// App Store
+export const OPEN_APP_STORE_APP_LINK = (appPath: `${string}/id${number}`) =>
+    `open -a Safari https://apps.apple.com/il/app/${appPath}`
