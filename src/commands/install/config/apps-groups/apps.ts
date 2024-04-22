@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK } from '../common-commands'
+import { BREW_CASK, OPEN_APP_STORE_APP_LINK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
@@ -30,22 +30,10 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('rectangle')],
     },
     {
-        name: 'Vivid',
-        group: 'apps',
-        description: 'Unlocks the full brightness of your MacBook Pro',
-        commands: () => [BREW_CASK('vivid')],
-    },
-    {
         name: 'MonitorControl',
         group: 'apps',
         description: 'Tool to control external monitor brightness and volume',
         commands: () => [BREW_CASK('monitorcontrol')],
-    },
-    {
-        name: 'Dash',
-        group: 'apps',
-        description: 'Documentation browser',
-        commands: () => [BREW_CASK('dash')],
     },
     {
         name: 'Slack',
@@ -79,15 +67,28 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('cleanshot')],
     },
     {
-        name: 'VLC',
+        name: 'Paste',
+        description: 'Clipboard manager',
         group: 'apps',
-        commands: () => [BREW_CASK('vlc')],
+        commands: () => [OPEN_APP_STORE_APP_LINK('paste-endless-clipboard/id967805235')],
     },
     {
-        name: 'Subler',
-        description: 'MP4 metadata editor, video converter, and muxer',
+        name: 'RCMD',
+        description: 'Switch apps instantly using a Hotkey',
         group: 'apps',
-        commands: () => [BREW_CASK('subler')],
+        commands: () => [OPEN_APP_STORE_APP_LINK('rcmd-app-switcher/id1596283165')],
+    },
+    {
+        name: 'Amphetamine',
+        description: 'Prevent your Mac from sleeping',
+        group: 'apps',
+        commands: () => [OPEN_APP_STORE_APP_LINK('amphetamine/id937984704')],
+    },
+    {
+        name: 'BetterSnapTool',
+        description: 'Easy window resize & organize',
+        group: 'apps',
+        commands: () => [OPEN_APP_STORE_APP_LINK('bettersnaptool/id417375580')],
     },
     {
         name: 'Notion',
@@ -106,5 +107,28 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['personal'],
         commands: () => [BREW_CASK('telegram-desktop')],
+    },
+    {
+        name: 'Dash',
+        group: 'apps',
+        description: 'Documentation browser',
+        commands: () => [BREW_CASK('dash')],
+    },
+    {
+        name: 'Vivid',
+        group: 'apps',
+        description: 'Unlocks the full brightness of your MacBook Pro',
+        commands: () => [BREW_CASK('vivid')],
+    },
+    {
+        name: 'VLC',
+        group: 'apps',
+        commands: () => [BREW_CASK('vlc')],
+    },
+    {
+        name: 'Subler',
+        description: 'MP4 metadata editor, video converter, and muxer',
+        group: 'apps',
+        commands: () => [BREW_CASK('subler')],
     },
 ] as const
