@@ -13,6 +13,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         name: 'VSCode as rebase editor',
         description: 'Apply rebase with VSCode UI editor',
         group: 'git',
+        tags: ['super-user'],
         commands: () => [
             `git config --global core.editor "/Applications/Visual\\ Studio\\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],

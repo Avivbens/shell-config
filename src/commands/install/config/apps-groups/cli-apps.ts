@@ -17,7 +17,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         name: 'NVM',
         description: 'Node Version Manager',
         group: 'cli-apps',
-        tags: ['engineering', 'devops'],
+        tags: ['node-engineering', 'devops'],
         commands: () => [
             BREW_INSTALL('nvm'),
             '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',

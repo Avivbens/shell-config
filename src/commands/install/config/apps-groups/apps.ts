@@ -70,25 +70,28 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'Paste',
         description: 'Clipboard manager (paid)',
         group: 'apps',
+        tags: ['super-user'],
         commands: () => [OPEN_APP_STORE_APP_LINK('paste-endless-clipboard/id967805235')],
     },
     {
         name: 'RCMD',
         description: 'Switch apps instantly using a Hotkey (paid)',
         group: 'apps',
-        tags: ['productivity'],
+        tags: ['super-user'],
         commands: () => [OPEN_APP_STORE_APP_LINK('rcmd-app-switcher/id1596283165')],
     },
     {
         name: 'Amphetamine',
         description: 'Prevent your Mac from sleeping',
         group: 'apps',
+        tags: ['super-user'],
         commands: () => [OPEN_APP_STORE_APP_LINK('amphetamine/id937984704')],
     },
     {
         name: 'BetterSnapTool',
         description: 'Easy window resize & organize',
         group: 'apps',
+        tags: ['super-user'],
         commands: () => [OPEN_APP_STORE_APP_LINK('bettersnaptool/id417375580')],
     },
     {
@@ -102,6 +105,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'TinkerTool',
         description: 'Access hidden system settings on macOS',
         group: 'apps',
+        tags: ['super-user'],
         commands: () => [OPEN_BROWSER_LINK('https://www.bresink.com/osx/0TinkerTool/download.php')],
     },
     {

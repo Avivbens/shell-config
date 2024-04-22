@@ -6,6 +6,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'Wrap',
         description: 'Terminal with a power of code editor',
         group: 'terminal',
+        tags: ['super-user'],
         commands: () => [BREW_CASK('warp')],
     },
     {
@@ -17,14 +18,14 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Fig',
         group: 'terminal',
-        tags: ['engineering', 'devops', 'productivity'],
+        tags: ['productivity'],
         commands: () => [BREW_CASK('fig')],
     },
     {
         name: 'Mcfly',
         description: 'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
-        tags: ['engineering', 'devops', 'productivity'],
+        tags: ['productivity'],
         commands: () => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
         fallbackCommands: () => [BROW_TAP('cantino/mcfly'), BROW_INSTALL('cantino/mcfly/mcfly')],
     },
