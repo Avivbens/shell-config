@@ -23,5 +23,6 @@ export const TAGS_DEPS: Partial<Record<ITag, ITag[]>> = {
     'python-engineering': ['engineering'],
     'node-engineering': ['engineering'],
     'web-engineering': ['engineering'],
+    devops: ['engineering'],
     'super-user': ['productivity'],
 }

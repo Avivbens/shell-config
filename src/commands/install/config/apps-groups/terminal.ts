@@ -32,14 +32,14 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'ZSH Terminal Syntax Highlighting',
         group: 'terminal',
-        tags: ['engineering', 'devops'],
+        tags: ['engineering'],
         commands: () => [BREW_INSTALL('zsh-syntax-highlighting')],
         fallbackCommands: () => [BROW_INSTALL('zsh-syntax-highlighting')],
     },
     {
         name: 'ZSH Terminal Syntax Autosuggestions',
         group: 'terminal',
-        tags: ['engineering', 'devops'],
+        tags: ['engineering'],
         commands: () => [BREW_INSTALL('zsh-autosuggestions')],
         fallbackCommands: () => [BROW_INSTALL('zsh-autosuggestions')],
     },
