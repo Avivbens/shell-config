@@ -1,3 +1,17 @@
+# [2.14.0](https://github.com/Avivbens/shell-config/compare/v2.13.1...v2.14.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* add paid label for paid apps ([54d7bd0](https://github.com/Avivbens/shell-config/commit/54d7bd05db24bec5afe90f898302214ba3342849))
+* **apps:** add `TextSniper` and `Pycharm` ([73903cb](https://github.com/Avivbens/shell-config/commit/73903cbf84dd45745b4b24e213b319535b834479))
+
+
+### Features
+
+* support `NON-PAID` option to exclude all paid apps selections ([0bed54e](https://github.com/Avivbens/shell-config/commit/0bed54e2e23b6dfd3d009926f0018f01dd80e965))
+* support more `profile tags`, drop unused node packages, change tags system - support tags dependencies ([4a7a3a4](https://github.com/Avivbens/shell-config/commit/4a7a3a4d2981533d4a5b52eeae7b3939a665f978))
+
 ## [2.13.1](https://github.com/Avivbens/shell-config/compare/v2.13.0...v2.13.1) (2024-04-22)
 
 
