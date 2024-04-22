@@ -3,6 +3,7 @@ import { arch as ARCH } from 'node:process'
 import ora from 'ora'
 import { execPromise } from '@common/utils'
 import type { IAppSetup } from '@models/app-setup.model'
+import { ITag, TAGS_DEPS } from '@models/tag.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
@@ -29,7 +30,13 @@ export class InstallCommand extends CommandRunner {
 
         try {
             const tags = await USER_TAGS_PROMPT()
-            const toInstall = await MULTI_SELECT_APPS_PROMPT(tags)
+            const tagsWithDeps: ITag[] = tags.flatMap((tag) => {
+                const deps: ITag[] = TAGS_DEPS[tag] ?? []
+                return [tag, ...deps]
+            })
+            const uniqueTags = [...new Set(tagsWithDeps)]
+
+            const toInstall = await MULTI_SELECT_APPS_PROMPT(uniqueTags)
 
             const order = this.resolveDeps(toInstall).sort((a, b) => {
                 if (a.last) {

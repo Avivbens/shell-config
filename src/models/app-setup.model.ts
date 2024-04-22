@@ -22,7 +22,18 @@ export interface IAppSetup {
      * For example, by selecting the tag "engineering", all apps with the tag "engineering" will be selected by default.
      */
     tags?: readonly ITag[]
+
+    /**
+     * @description Dependencies are used to install apps in a specific order.
+     * Should be the name of the app.
+     */
     deps?: readonly string[]
+
+    /**
+     * @description If true, the app require a paid subscription / license.
+     * @default false
+     */
+    paid?: boolean
 
     /**
      * @default false
