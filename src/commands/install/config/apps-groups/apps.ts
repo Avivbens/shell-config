@@ -61,20 +61,20 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Cleanshot',
-        description: 'Screen recorder and screenshot tool',
+        description: 'Screen recorder and screenshot tool (paid)',
         group: 'apps',
         tags: ['productivity'],
         commands: () => [BREW_CASK('cleanshot')],
     },
     {
         name: 'Paste',
-        description: 'Clipboard manager',
+        description: 'Clipboard manager (paid)',
         group: 'apps',
         commands: () => [OPEN_APP_STORE_APP_LINK('paste-endless-clipboard/id967805235')],
     },
     {
         name: 'RCMD',
-        description: 'Switch apps instantly using a Hotkey',
+        description: 'Switch apps instantly using a Hotkey (paid)',
         group: 'apps',
         commands: () => [OPEN_APP_STORE_APP_LINK('rcmd-app-switcher/id1596283165')],
     },
