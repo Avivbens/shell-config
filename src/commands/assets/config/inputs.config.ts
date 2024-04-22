@@ -37,7 +37,7 @@ export const ASK_FOR_EMAIL_PROMPT = async (): Promise<string> => {
                     return errorMsg
                 }
 
-                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+                const emailRegex = /^[\w\.\-\d]+@([\w-]+\.)+[\w-]{2,4}$/
                 if (!emailRegex.test(value)) {
                     return errorMsg
                 }
