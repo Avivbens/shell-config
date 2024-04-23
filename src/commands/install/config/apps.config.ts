@@ -4,6 +4,7 @@ import {
     BROWSERS,
     CLI_APPS,
     ENGINEERING_APPS,
+    GIT_APPS,
     IDES,
     MACOS,
     MEDIA_APPS,
@@ -11,7 +12,6 @@ import {
     PYTHON,
     TERMINAL_APPS,
 } from './apps-groups'
-import { GIT_APPS } from './apps-groups/git'
 
 export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...GIT_APPS,

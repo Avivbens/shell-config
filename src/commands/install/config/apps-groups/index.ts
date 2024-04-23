@@ -1,4 +1,5 @@
 export * from './apps'
+export * from './git'
 export * from './media'
 export * from './cli-apps'
 export * from './mac'
