@@ -1,4 +1,5 @@
 export * from './apps'
+export * from './media'
 export * from './cli-apps'
 export * from './mac'
 export * from './node'

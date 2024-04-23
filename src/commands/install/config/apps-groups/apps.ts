@@ -108,11 +108,26 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('textsniper')],
     },
     {
+        name: 'Rocket',
+        description: 'Emoji shortcuts for faster typing',
+        group: 'apps',
+        tags: ['productivity'],
+        commands: () => [BREW_CASK('rocket')],
+    },
+    {
         name: 'TinkerTool',
         description: 'Access hidden system settings on macOS',
         group: 'apps',
         tags: ['super-user'],
         commands: () => [OPEN_BROWSER_LINK('https://www.bresink.com/osx/0TinkerTool/download.php')],
+    },
+    {
+        name: 'Dropover',
+        description: 'Drag and drop files between apps with quick actions (paid)',
+        group: 'apps',
+        tags: ['super-user'],
+        paid: true,
+        commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
     },
     {
         name: 'Notion',
@@ -144,16 +159,5 @@ export const APPS: Readonly<IAppSetup[]> = [
         description: 'Unlocks the full brightness of your MacBook Pro (paid)',
         paid: true,
         commands: () => [BREW_CASK('vivid')],
-    },
-    {
-        name: 'VLC',
-        group: 'apps',
-        commands: () => [BREW_CASK('vlc')],
-    },
-    {
-        name: 'Subler',
-        description: 'MP4 metadata editor, video converter, and muxer',
-        group: 'apps',
-        commands: () => [BREW_CASK('subler')],
     },
 ] as const
