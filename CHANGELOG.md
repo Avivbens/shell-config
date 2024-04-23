@@ -1,3 +1,10 @@
+## [2.14.2](https://github.com/Avivbens/shell-config/compare/v2.14.1...v2.14.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* **apps:** add media group, add `Downie`, `Rocket` and `Dropover` ([17790af](https://github.com/Avivbens/shell-config/commit/17790af9d36e25b8f8312197f34cb910776d3388))
+
 ## [2.14.1](https://github.com/Avivbens/shell-config/compare/v2.14.0...v2.14.1) (2024-04-22)
 
 
