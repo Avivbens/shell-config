@@ -1,3 +1,10 @@
+## [2.14.5](https://github.com/Avivbens/shell-config/compare/v2.14.4...v2.14.5) (2024-04-24)
+
+
+### Bug Fixes
+
+* **apps:** support `Unplug Alarm` and `Radio Silence` ([259661f](https://github.com/Avivbens/shell-config/commit/259661faf0c1f0c2c07e260c5f8538e2ab8bdb2a))
+
 ## [2.14.4](https://github.com/Avivbens/shell-config/compare/v2.14.3...v2.14.4) (2024-04-24)
 
 
