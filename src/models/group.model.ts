@@ -1,6 +1,7 @@
 export const GROUPS = [
     'apps',
     'media',
+    'security-privacy',
     'cli-apps',
     'terminal',
     'python',

@@ -10,6 +10,7 @@ import {
     MEDIA_APPS,
     NODE_APPS,
     PYTHON,
+    SECURITY_PRIVACY,
     TERMINAL_APPS,
 } from './apps-groups'
 
@@ -22,6 +23,7 @@ export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...CLI_APPS,
     ...APPS,
     ...MEDIA_APPS,
+    ...SECURITY_PRIVACY,
     ...NODE_APPS,
     ...PYTHON,
     ...MACOS,
