@@ -1,6 +1,7 @@
 export * from './apps'
 export * from './git'
 export * from './media'
+export * from './security-privacy'
 export * from './cli-apps'
 export * from './mac'
 export * from './node'
