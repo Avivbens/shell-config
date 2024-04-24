@@ -1,3 +1,10 @@
+## [2.14.4](https://github.com/Avivbens/shell-config/compare/v2.14.3...v2.14.4) (2024-04-24)
+
+
+### Bug Fixes
+
+* **apps:** support `zoxide` and `bat` ([2424b81](https://github.com/Avivbens/shell-config/commit/2424b8103503132c726ae80599e86855878291be))
+
 ## [2.14.3](https://github.com/Avivbens/shell-config/compare/v2.14.2...v2.14.3) (2024-04-24)
 
 
