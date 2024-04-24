@@ -124,6 +124,17 @@ if command -v mcfly &>/dev/null; then
     eval "$(mcfly init zsh)"
 fi
 
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init zsh)"
+    alias cd="z"
+fi
+
+if command -v bat &>/dev/null; then
+    export BAT_THEME="TwoDark"
+    alias cat="bat"
+fi
+
+
 # general
 alias c="clear"
 alias q="exit"
