@@ -18,4 +18,11 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
             `git config --global core.editor "/Applications/Visual\\ Studio\\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],
     },
+    {
+        name: 'Enable ReReRe',
+        description: 'Enable reuse recorded resolution for merge conflicts',
+        group: 'git',
+        tags: ['super-user'],
+        commands: () => [`git config --global rerere.enabled true`],
+    },
 ] as const
