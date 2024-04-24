@@ -1,3 +1,10 @@
+## [2.14.3](https://github.com/Avivbens/shell-config/compare/v2.14.2...v2.14.3) (2024-04-24)
+
+
+### Bug Fixes
+
+* support git `ReReRe` install option ([40d17e3](https://github.com/Avivbens/shell-config/commit/40d17e3b2f755bcfeccda5f5e21979f5d384029b))
+
 ## [2.14.2](https://github.com/Avivbens/shell-config/compare/v2.14.1...v2.14.2) (2024-04-23)
 
 
