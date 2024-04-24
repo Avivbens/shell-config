@@ -30,6 +30,20 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_TAP('cantino/mcfly'), BROW_INSTALL('cantino/mcfly/mcfly')],
     },
     {
+        name: 'Bat',
+        description: 'Syntax highlighting for cat',
+        group: 'terminal',
+        tags: ['productivity'],
+        commands: () => [BREW_INSTALL('bat')],
+    },
+    {
+        name: 'Zoxide',
+        description: 'A faster way to navigate your filesystem - replace your native `cd` with memory-based autojump',
+        group: 'terminal',
+        tags: ['productivity'],
+        commands: () => [BREW_INSTALL('zoxide')],
+    },
+    {
         name: 'ZSH Terminal Syntax Highlighting',
         group: 'terminal',
         tags: ['engineering'],
