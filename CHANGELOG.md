@@ -1,3 +1,10 @@
+## [2.14.6](https://github.com/Avivbens/shell-config/compare/v2.14.5...v2.14.6) (2024-04-25)
+
+
+### Bug Fixes
+
+* **apps:** add `Hovrly` ([f540cdb](https://github.com/Avivbens/shell-config/commit/f540cdb0ae54897b476f3458ffc89cb46a746f90))
+
 ## [2.14.5](https://github.com/Avivbens/shell-config/compare/v2.14.4...v2.14.5) (2024-04-24)
 
 
