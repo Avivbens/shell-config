@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
+import { BREW_CASK, BREW_INSTALL, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
@@ -128,6 +128,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         tags: ['super-user'],
         paid: true,
         commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
+    },
+    {
+        name: 'Hovrly',
+        description: 'Easily see time zones in your menu bar',
+        group: 'apps',
+        commands: () => [BREW_INSTALL('hovrly')],
     },
     {
         name: 'Notion',
