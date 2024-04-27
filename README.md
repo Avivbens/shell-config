@@ -37,20 +37,6 @@ Set up the very same environment, with a personalization touch just for your nee
 
 </div>
 
-## Troubleshooting
-
-In case of having permissions issue, try the following:
-
-```bash
-source <(shell-config init-script)
-```
-
-If you're facing issues like the following, **FORCE QUIT** the terminal and open a new one:
-
-```bash
-Error: Cannot find module '*/shell-config/*'
-```
-
 ## Contributing
 
 Good to know that you want to contribute to this project! 🎉

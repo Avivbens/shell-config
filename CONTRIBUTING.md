@@ -13,6 +13,18 @@ To get started, follow these steps:
 1. Test your changes
 1. Submit a pull request against the `beta` branch
 
+## Add Some New Apps / Tools
+
+1. Open the relevant file by the new app category [in here](src/commands/install/config/apps.config.ts)
+1. Add the new app / tool to the relevant category, follow the [IAppSetup](src/models/app-setup.model.ts) type
+1. Test your changes via the following command:
+
+```bash
+npm run start:dev -- install
+```
+
+4. Commit your changes, like `fix(apps): <Explain>`, and open a PR 🎉
+
 ## CLI Setup Flow
 
 1. CLI is getting updated via the `shell-config update` command OR installed via the [init.sh](src/scripts/init.sh) script
