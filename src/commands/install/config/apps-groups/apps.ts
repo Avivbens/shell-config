@@ -20,6 +20,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Google Drive',
+        description: 'Cloud storage service by Google (password needed)',
         group: 'apps',
         default: true,
         commands: () => [BREW_CASK('google-drive')],

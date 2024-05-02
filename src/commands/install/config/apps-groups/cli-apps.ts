@@ -15,7 +15,7 @@ const DEFAULT_NODE_VERSION = '18.19.1'
 export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'NVM',
-        description: 'Node Version Manager',
+        description: 'Node Version Manager (password needed)',
         group: 'cli-apps',
         tags: ['node-engineering', 'web-engineering', 'devops'],
         commands: () => [

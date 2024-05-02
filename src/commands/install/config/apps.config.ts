@@ -24,7 +24,7 @@ export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...APPS,
     ...MEDIA_APPS,
     ...SECURITY_PRIVACY,
+    ...MACOS,
     ...NODE_APPS,
     ...PYTHON,
-    ...MACOS,
 ] as const

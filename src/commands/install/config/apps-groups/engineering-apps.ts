@@ -4,20 +4,20 @@ import { BREW_CASK } from '../common-commands'
 export const ENGINEERING_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Mongodb Compass',
+        description: 'MongoDB GUI, MongoDB is required',
         group: 'engineering-apps',
         tags: ['engineering'],
         commands: () => [BREW_CASK('mongodb-compass')],
-        description: 'MongoDB GUI, MongoDB is required',
     },
     {
         name: 'Another Redis Desktop Manager',
+        description: 'Redis GUI, Redis is required (password needed)',
         group: 'engineering-apps',
         tags: ['engineering'],
         commands: () => [
             BREW_CASK('another-redis-desktop-manager'),
             `sudo xattr -rd com.apple.quarantine "/Applications/Another Redis Desktop Manager.app"`,
         ],
-        description: 'Redis GUI, Redis is required',
     },
     {
         name: 'Rancher',
