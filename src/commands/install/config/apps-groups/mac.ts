@@ -3,6 +3,7 @@ import type { IAppSetup } from '@models/app-setup.model'
 export const MACOS: Readonly<IAppSetup[]> = [
     {
         name: 'Sudo password with Touch ID',
+        description: 'Enable Touch ID for sudo (password needed)',
         group: 'MacOS',
         default: true,
         commands: () => [

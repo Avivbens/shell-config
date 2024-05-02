@@ -59,6 +59,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'ZSH Terminal Syntax Completions',
+        description: 'Completions for zsh (password needed)',
         group: 'terminal',
         commands: () => [
             BREW_INSTALL('zsh-completions'),
