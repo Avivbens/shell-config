@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { REPOSITORY_FULLNAME, getDocsBase, remoteDefaultBranch } from './constants/repository.mjs'
 import { NAVBAR } from './navbar.config.mjs'
 import { SIDEBAR } from './sidebar.config.mjs'
+import { GOOGLE_ANALYTICS_ID, GOOGLE_ANALYTICS_SCRIPT } from './analytics/google-analytics.config'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -11,7 +12,15 @@ export default defineConfig({
     cleanUrls: true,
     ignoreDeadLinks: false,
     outDir: '../dist/docs/',
-    head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
+    head: [
+        ['link', { rel: 'icon', href: 'favicon.ico' }],
+        ['script', { async: '', src: `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}` }],
+        [
+            'script',
+            {},
+            GOOGLE_ANALYTICS_SCRIPT,
+        ],
+    ],
     markdown: {
         defaultHighlightLang: 'typescript',
         breaks: true,
@@ -38,7 +47,7 @@ export default defineConfig({
         },
         footer: {
             message: 'Released under the MIT License',
-            copyright: 'Copyright © 2023-present Aviv Ben Shahar'
-        }
+            copyright: 'Copyright © 2023-present Aviv Ben Shahar',
+        },
     },
 })
