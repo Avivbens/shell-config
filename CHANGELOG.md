@@ -1,3 +1,16 @@
+# [2.15.0](https://github.com/Avivbens/shell-config/compare/v2.14.6...v2.15.0) (2024-05-02)
+
+
+### Bug Fixes
+
+* add `password needed` label for all related apps ([9a414cc](https://github.com/Avivbens/shell-config/commit/9a414cc6643a3f467455792da87d6c34018c43a9))
+* **git-extends:** support for both `branch all` and `branch` ([7089f11](https://github.com/Avivbens/shell-config/commit/7089f115d890066d030f51bcab0ea5d9ed5a2703))
+
+
+### Features
+
+* **apps:** support `Sudo with Touch ID` feature ([9e3f167](https://github.com/Avivbens/shell-config/commit/9e3f167fb9f219ba0b17166e67b842817ffdc983))
+
 ## [2.14.6](https://github.com/Avivbens/shell-config/compare/v2.14.5...v2.14.6) (2024-04-25)
 
 
