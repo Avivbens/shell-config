@@ -9,7 +9,7 @@ Set up the very same environment, with a personalization touch just for your nee
 ## CLI Installation
 
 ```bash
-sudo cd && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
+sudo -v && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
 ```
 
 ### Following Steps

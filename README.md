@@ -24,7 +24,7 @@ installs apps, configures your dev system, and personalizes your working station
 ## CLI Installation
 
 ```bash
-sudo cd && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
+sudo -v && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
 ```
 
 ![Shell Config Logo](docs/public/logos/logo-full.png)

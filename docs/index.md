@@ -35,7 +35,7 @@ features:
 You can get started using `shell-config` using the following command:
 
 ```bash
-sudo cd && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
+sudo -v && /bin/bash -c "$(curl -fsSLk https://raw.githubusercontent.com/avivbens/shell-config/HEAD/src/scripts/init.sh)"
 ```
 
 [Learn more](/app/setup)
