@@ -1,3 +1,13 @@
+---
+prev:
+  text: 'Install Command'
+  link: '/app/commands/install'
+
+next:
+  text: 'Assets Command'
+  link: '/app/commands/assets'
+---
+
 <script setup>
     const repoUrl = 'https://github.com/Avivbens/shell-config/tree/HEAD'
 </script>

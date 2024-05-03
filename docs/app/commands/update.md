@@ -1,3 +1,11 @@
+---
+prev:
+  text: 'Assets Command'
+  link: '/app/commands/assets'
+
+next: false
+---
+
 # Update Command
 
 The `update` command is used to update the shell-config CLI to the latest version.

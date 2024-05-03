@@ -1,3 +1,11 @@
+---
+prev:
+    text: 'Permissions'
+    link: '/app/troubleshooting/permissions'
+
+next: false
+---
+
 # Not Found
 
 In some cases, `shell-config` would be unavailable with the following error:

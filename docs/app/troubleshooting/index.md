@@ -1,3 +1,10 @@
+---
+prev: false
+next:
+  text: 'Permissions'
+  link: '/app/troubleshooting/permissions'
+---
+
 # Troubleshooting
 
 `shell-config` saves logs for each action that has been executed, as well as errors that may have occurred. You can find and search through the logs with the following command:

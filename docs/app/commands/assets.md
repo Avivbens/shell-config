@@ -1,3 +1,13 @@
+---
+prev:
+  text: 'Shell Command'
+  link: '/app/commands/shell'
+
+next:
+  text: 'Update Command'
+  link: '/app/commands/update'
+---
+
 <script setup>
     const repoUrl = 'https://github.com/Avivbens/shell-config/tree/HEAD'
 </script>

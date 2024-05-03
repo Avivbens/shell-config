@@ -1,3 +1,13 @@
+---
+prev:
+  text: 'Setup'
+  link: '/app/setup'
+
+next:
+  text: 'Shell Command'
+  link: '/app/commands/shell'
+---
+
 # Install Command
 
 The `install` command is used to install useful MacOS applications and tools - according to your own profile preferences.

@@ -1,3 +1,10 @@
+---
+prev: false
+next:
+    text: 'Install Command'
+    link: '/app/commands/install'
+---
+
 # Setup
 
 ### The Reason
