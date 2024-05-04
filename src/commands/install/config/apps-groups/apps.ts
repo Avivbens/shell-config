@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
+import { BREW_CASK, BREW_INSTALL, BROW_CASK, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
@@ -147,12 +147,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['personal'],
         commands: () => [BREW_CASK('whatsapp')],
+        fallbackCommands: () => [BROW_CASK('whatsapp')],
     },
     {
         name: 'Telegram Desktop',
         group: 'apps',
         tags: ['personal'],
         commands: () => [BREW_CASK('telegram-desktop')],
+        fallbackCommands: () => [BROW_CASK('telegram-desktop')],
     },
     {
         name: 'Dash',

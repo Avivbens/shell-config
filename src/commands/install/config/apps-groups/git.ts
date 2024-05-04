@@ -11,7 +11,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'VSCode as rebase editor',
-        description: 'Apply rebase with VSCode UI editor',
+        description: 'Apply rebase with VSCode UI editor (Git required)',
         group: 'git',
         tags: ['super-user'],
         commands: () => [
@@ -19,12 +19,14 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
             'sleep 2',
             `git config --global core.editor "/Applications/Visual\\ Studio\\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],
+        deps: ['Git'],
     },
     {
         name: 'Enable ReReRe',
-        description: 'Enable reuse recorded resolution for merge conflicts',
+        description: 'Enable reuse recorded resolution for merge conflicts (Git required)',
         group: 'git',
         tags: ['super-user'],
         commands: () => [`git config --global rerere.enabled true`],
+        deps: ['Git'],
     },
 ] as const

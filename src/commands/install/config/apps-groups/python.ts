@@ -12,7 +12,7 @@ export const PYTHON: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Python PIP',
-        description: 'Python package manager, Python is required',
+        description: 'Python package manager (Python required)',
         group: 'python',
         default: true,
         commands: () => [

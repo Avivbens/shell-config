@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK } from '../common-commands'
+import { BREW_CASK, BROW_CASK } from '../common-commands'
 
 export const IDES: Readonly<IAppSetup[]> = [
     {
@@ -13,7 +13,8 @@ export const IDES: Readonly<IAppSetup[]> = [
         group: 'IDEs',
         tags: ['web-engineering', 'node-engineering'],
         paid: true,
-        commands: () => [BREW_CASK('webstorm')],
+        commands: () => [BROW_CASK('webstorm')],
+        fallbackCommands: () => [BREW_CASK('webstorm')],
     },
     {
         name: 'Pycharm',
@@ -21,6 +22,7 @@ export const IDES: Readonly<IAppSetup[]> = [
         tags: ['python-engineering'],
         description: 'Python IDE',
         paid: true,
-        commands: () => [BREW_CASK('pycharm')],
+        commands: () => [BROW_CASK('pycharm')],
+        fallbackCommands: () => [BREW_CASK('pycharm')],
     },
 ]
