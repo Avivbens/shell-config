@@ -6,6 +6,7 @@ export const MACOS: Readonly<IAppSetup[]> = [
         description: 'Enable Touch ID for sudo (password needed)',
         group: 'MacOS',
         default: true,
+        first: true,
         commands: () => [
             'sudo -v',
             'sudo cp -f /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local',

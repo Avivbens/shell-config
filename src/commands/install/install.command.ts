@@ -1,7 +1,7 @@
 import { Listr, ListrTask } from 'listr2'
 import { Command, CommandRunner, Option } from 'nest-commander'
 import { cpus } from 'node:os'
-import { arch as ARCH } from 'node:process'
+import { arch as ARCH, exit } from 'node:process'
 import ora from 'ora'
 import { BREW_NON_ERRORS } from '@common/constants'
 import { execPromise } from '@common/utils'
@@ -41,8 +41,24 @@ export class InstallCommand extends CommandRunner {
         return true
     }
 
+    @Option({
+        name: 'parallelCount',
+        flags: '-p --parallel-count <parallelCount>',
+        defaultValue: cpus().length / 2 + 1,
+        description: 'Amount of parallel processes for installation',
+    })
+    private parallelCount(count: string): number {
+        const parsed = Number(count)
+        if (isNaN(parsed)) {
+            this.logger.error('Parallel count should be a number')
+            exit(1)
+        }
+
+        return parsed
+    }
+
     async run(inputs: string[], options: IInstallCommandOptions): Promise<void> {
-        const { noParallel } = options
+        const { noParallel, parallelCount } = options
         await this.checkUpdateService.checkForUpdates()
 
         try {
@@ -55,24 +71,30 @@ export class InstallCommand extends CommandRunner {
 
             const toInstall = await MULTI_SELECT_APPS_PROMPT(uniqueTags)
 
-            const order = this.resolveDeps(toInstall).sort((a, b) => {
-                if (a.last) {
-                    return 1
-                }
+            const resolvedDeps = this.resolveDeps(toInstall)
 
-                if (b.last) {
-                    return -1
-                }
-
-                return 0
-            })
-
-            this.logger.debug(`Installing apps: ${order.map((app) => app.name).join(', ')}`)
-
+            this.logger.debug(`Installing apps, resolvedDeps: ${resolvedDeps.map((app) => app.name).join(', ')}`)
             this.logger.debug(`Current arch ${ARCH}`)
 
+            const firstApps = resolvedDeps.filter((app) => app.first)
+            const lastApps = resolvedDeps.filter((app) => app.last)
+            const restApps = resolvedDeps.filter((app) => !app.first && !app.last)
+
             if (noParallel) {
-                for (const app of order) {
+                this.logger.debug('No parallel installation!')
+
+                this.logger.debug(`Installing apps, firstApps: ${firstApps.map((app) => app.name).join(', ')}`)
+                for (const app of firstApps) {
+                    await this.installApp(app)
+                }
+
+                this.logger.debug(`Installing apps, restApps: ${restApps.map((app) => app.name).join(', ')}`)
+                for (const app of restApps) {
+                    await this.installApp(app)
+                }
+
+                this.logger.debug(`Installing apps, lastApps: ${lastApps.map((app) => app.name).join(', ')}`)
+                for (const app of lastApps) {
                     await this.installApp(app)
                 }
 
@@ -82,23 +104,28 @@ export class InstallCommand extends CommandRunner {
             /**
              * Parallel installation
              */
-            this.logger.log('Parallel installation is experimental!', 'yellow')
-            this.logger.log('Enter sudo password in order to have parallel installation', 'red-background')
+            this.logger.log(
+                '\n\n---------- Enter sudo password in order to have parallel installation ----------\n\n',
+                'red-background',
+            )
             await execPromise(`sudo -v`)
 
-            const cpusAmount = cpus().length
-            const parallelProcessAmount = cpusAmount / 2 + 1
+            this.logger.debug(`Installing apps, firstApps: ${firstApps.map((app) => app.name).join(', ')}`)
+            for (const app of firstApps) {
+                await this.installApp(app)
+            }
 
-            const orderNoLast = order.filter((app) => !app.last)
-            const lastApps = order.filter((app) => app.last)
+            this.logger.debug(`Installing apps, restApps: ${restApps.map((app) => app.name).join(', ')}`)
 
-            const tasksChunks = this.generateParallelTasks(orderNoLast, parallelProcessAmount)
+            const tasksChunks = this.generateParallelTasks(restApps, parallelCount)
 
             for (const tasks of tasksChunks) {
-                const spinners = new Listr(tasks, TASKS_CONFIG(parallelProcessAmount))
+                const spinners = new Listr(tasks, TASKS_CONFIG(parallelCount))
 
                 await spinners.run()
             }
+
+            this.logger.debug(`Installing apps, lastApps: ${lastApps.map((app) => app.name).join(', ')}`)
 
             for (const app of lastApps) {
                 await this.installApp(app)
