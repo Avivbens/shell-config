@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
+import { BREW_CASK, BREW_INSTALL, BROW_CASK, OPEN_APP_STORE_APP_LINK, OPEN_BROWSER_LINK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
@@ -60,7 +60,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'Grammarly',
         group: 'apps',
         default: true,
-        commands: () => [BREW_CASK('grammarly')],
+        commands: () => [BREW_CASK('grammarly-desktop')],
     },
     {
         name: 'Cleanshot',
@@ -147,12 +147,29 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['personal'],
         commands: () => [BREW_CASK('whatsapp')],
+        fallbackCommands: () => [BROW_CASK('whatsapp')],
     },
     {
-        name: 'Telegram Desktop',
+        name: 'WhatsApp (legacy)',
+        description: 'WhatsApp legacy version',
+        group: 'apps',
+        commands: () => [
+            BREW_CASK(
+                'https://raw.githubusercontent.com/Homebrew/homebrew-cask/2f428f0d63c346637aafd8a8b2f474670c2e42f1/Casks/w/whatsapp.rb',
+            ),
+        ],
+        fallbackCommands: () => [
+            BROW_CASK(
+                'https://raw.githubusercontent.com/Homebrew/homebrew-cask/2f428f0d63c346637aafd8a8b2f474670c2e42f1/Casks/w/whatsapp.rb',
+            ),
+        ],
+    },
+    {
+        name: 'Telegram',
         group: 'apps',
         tags: ['personal'],
-        commands: () => [BREW_CASK('telegram-desktop')],
+        commands: () => [BREW_CASK('telegram')],
+        fallbackCommands: () => [BROW_CASK('telegram')],
     },
     {
         name: 'Dash',

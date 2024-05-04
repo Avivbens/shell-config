@@ -8,7 +8,7 @@ To get started, follow these steps:
 
 1. Fork the repository
 1. Clone your forked repository
-1. Install dependencies with `npm install --legacy-peer-deps`
+1. Install dependencies with `npm ci --no-fund --no-audit --no-progress`
 1. Make changes
 1. Test your changes
 1. Submit a pull request against the `beta` branch

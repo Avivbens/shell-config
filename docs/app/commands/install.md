@@ -1,11 +1,11 @@
 ---
 prev:
-  text: 'Setup'
-  link: '/app/setup'
+    text: 'Setup'
+    link: '/app/setup'
 
 next:
-  text: 'Shell Command'
-  link: '/app/commands/shell'
+    text: 'Shell Command'
+    link: '/app/commands/shell'
 ---
 
 # Install Command
@@ -18,6 +18,11 @@ This command will install each of the selected applications and all of its depen
 You can see all supported applications [in here](https://github.com/Avivbens/shell-config/tree/HEAD/src/commands/install/config/apps.config.ts)
 :::
 
+::: tip **Parallel Mode 🚀**
+`shell-config` support parallel mode for application installation!
+This means that the applications will be installed in parallel, which will save you time 🎉
+:::
+
 ## Usage
 
 ```bash
@@ -27,9 +32,16 @@ shell-config install
 Select the applications you want to install by using the arrow keys and space bar to select/deselect the applications. Press `Enter` to install the selected applications.
 
 ::: warning **Note ❗**
-For some applications, you may be asked to provide your password.
+**Relevant for non-parallel installation ONLY**
+For some applications, you may be asked to provide your password
 Pay attention to the password inputs if needed! _( 🔑 - key icon)_
+
+_For parallel mode, you will be asked to provide your password only once_
 :::
+
+## Options
+
+-   `--no-parallel` - Disable parallel mode for applications installation.
 
 ## Profiles
 
@@ -46,4 +58,4 @@ You can see all profiles dependencies [in here](https://github.com/Avivbens/shel
 
 ![Install Profiles](/select-tags.png)
 ![Install Options](/install-options.png)
-![After Install](/install-command.png)
+![Install Command](/install-command.png)

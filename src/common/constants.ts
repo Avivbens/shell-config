@@ -7,3 +7,8 @@ export const BASE_PATH = `${homedir()}/shell-config` as const
 export const BOOTSTRAP_UUID = randomUUID().slice(0, 8)
 
 export const CURL_COMMAND = `curl -fsSLk`
+
+export const BREW_NON_ERRORS: string[] = [
+    `Error: It seems there is already an App at`,
+    `the latest version is already installed`,
+]

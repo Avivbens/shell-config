@@ -12,14 +12,14 @@ export const PYTHON: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Python PIP',
+        description: 'Python package manager (Python required)',
         group: 'python',
         default: true,
         commands: () => [
             `${CURL_COMMAND} https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py`,
-            'python3 /tmp/get-pip.py',
+            'python3 /tmp/get-pip.py --break-system-packages',
             'rm /tmp/get-pip.py',
         ],
-        description: 'Python package manager, Python is required',
         deps: ['Python'],
     },
 ] as const
