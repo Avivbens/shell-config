@@ -1,5 +1,5 @@
 import boxen from 'boxen'
-import { homedir } from 'os'
+import { homedir } from 'node:os'
 
 export const AVAILABLE_ACTIONS = [
     { name: 'Create a new git profile', value: 'create_new_git_profile' },

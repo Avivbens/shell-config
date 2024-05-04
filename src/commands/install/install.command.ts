@@ -11,7 +11,7 @@ import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { APPS_CONFIG_MAP } from './config/apps.config'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
-import { TASKS_CONFIG } from './config/parallel.config'
+import { HELP_BOX_MESSAGE, TASKS_CONFIG } from './config/parallel.config'
 import { USER_TAGS_PROMPT } from './config/user-tags.config'
 import { IInstallCommandOptions } from './models/install-command.options'
 
@@ -104,10 +104,7 @@ export class InstallCommand extends CommandRunner {
             /**
              * Parallel installation
              */
-            this.logger.log(
-                '\n\n---------- Enter sudo password in order to have parallel installation ----------\n\n',
-                'red-background',
-            )
+            console.log(HELP_BOX_MESSAGE)
             await execPromise(`sudo -v`)
 
             this.logger.debug(`Installing apps, firstApps: ${firstApps.map((app) => app.name).join(', ')}`)
