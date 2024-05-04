@@ -12,3 +12,5 @@ export const BREW_NON_ERRORS: string[] = [
     `Error: It seems there is already an App at`,
     `the latest version is already installed`,
 ]
+
+export const BREW_INSTALL_RETRIES = 3

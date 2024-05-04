@@ -42,6 +42,7 @@ _For parallel mode, you will be asked to provide your password only once_
 ## Options
 
 -   `--no-parallel` - Disable parallel mode for applications installation.
+-   `-p --parallel-count <parallelCount>` - Set the number of parallel application installations. The default is based on the number of CPU cores.
 
 ## Profiles
 

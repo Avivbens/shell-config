@@ -37,6 +37,12 @@ export interface IAppSetup {
 
     /**
      * @default false
+     * @description If true, the app will be installed first.
+     */
+    first?: boolean
+
+    /**
+     * @default false
      * @description If true, the app will be installed last. Cannot be a dependency!
      */
     last?: boolean

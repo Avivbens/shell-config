@@ -20,7 +20,7 @@ export class LoggerService {
     }
     public error(message: string, trace?) {
         const generatedMessage = this.generateMessage(message)
-        console.error(`\x1b[31m${message}\x1b[0m`)
+        console.error(this.coloredMessage(message, 'red'))
         appendFile(this.logPath, `ERROR | ${generatedMessage}\n`, { mode: 0o770 })
     }
     public warn(message: string) {
