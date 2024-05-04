@@ -3,7 +3,7 @@ import { Command, CommandRunner, Option } from 'nest-commander'
 import { cpus } from 'node:os'
 import { arch as ARCH, exit } from 'node:process'
 import ora from 'ora'
-import { BREW_NON_ERRORS } from '@common/constants'
+import { BREW_INSTALL_RETRIES, BREW_NON_ERRORS } from '@common/constants'
 import { execPromise } from '@common/utils'
 import type { IAppSetup } from '@models/app-setup.model'
 import { ITag, TAGS_DEPS } from '@models/tag.model'
@@ -270,7 +270,7 @@ export class InstallCommand extends CommandRunner {
 
                     return {
                         title: `Installing ${name}`,
-                        retry: 3,
+                        retry: BREW_INSTALL_RETRIES,
                         task: async (ctx, task) => {
                             try {
                                 await this.installAppV2(app)
@@ -335,12 +335,21 @@ export class InstallCommand extends CommandRunner {
         try {
             try {
                 const parsedCommands = commands(ARCH)
+                let forceStop = false
+
                 for (const command of parsedCommands) {
+                    if (forceStop) {
+                        break
+                    }
+
                     await execPromise(command).catch((err) => {
                         this.logger.debug(
                             `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
                         )
-                        throw err
+
+                        this.processInstallError(err)
+
+                        forceStop = true
                     })
                 }
             } catch (error) {
@@ -351,12 +360,21 @@ export class InstallCommand extends CommandRunner {
                 this.logger.debug(`Installing ${name} with fallback commands`)
 
                 const parsedFallbackCommands = fallbackCommands(ARCH)
+                let forceStop = false
+
                 for (const command of parsedFallbackCommands) {
+                    if (forceStop) {
+                        break
+                    }
+
                     await execPromise(command).catch((err) => {
                         this.logger.debug(
                             `Error installApp app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
                         )
-                        throw err
+
+                        this.processInstallError(err)
+
+                        forceStop = true
                     })
                 }
             }
@@ -383,12 +401,21 @@ export class InstallCommand extends CommandRunner {
         try {
             try {
                 const parsedCommands = commands(ARCH)
+                let forceStop = false
+
                 for (const command of parsedCommands) {
+                    if (forceStop) {
+                        break
+                    }
+
                     await execPromise(command).catch((err) => {
                         this.logger.debug(
                             `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
                         )
-                        throw err
+
+                        this.processInstallError(err)
+
+                        forceStop = true
                     })
                 }
             } catch (error) {
@@ -399,12 +426,21 @@ export class InstallCommand extends CommandRunner {
                 this.logger.debug(`Installing ${name} with fallback commands`)
 
                 const parsedFallbackCommands = fallbackCommands(ARCH)
+                let forceStop = false
+
                 for (const command of parsedFallbackCommands) {
+                    if (forceStop) {
+                        break
+                    }
+
                     await execPromise(command).catch((err) => {
                         this.logger.debug(
                             `Error installApp app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
                         )
-                        throw err
+
+                        this.processInstallError(err)
+
+                        forceStop = true
                     })
                 }
             }
@@ -414,17 +450,23 @@ export class InstallCommand extends CommandRunner {
             const successMsg = `Installed ${name}`
             this.logger.debug(successMsg)
         } catch (error) {
-            const { message } = error
-            /**
-             * Do not throw error if app already installed
-             */
-            const isOk = BREW_NON_ERRORS.some((nonErrorMsg) => message?.includes(nonErrorMsg))
-            if (isOk) {
-                return
-            }
-
             this.logger.debug(`Error installApp2 app: ${name}, error: ${error.message}`)
             throw error
         }
+    }
+
+    /**
+     * Checks if an error should be treated as a non-error
+     * @returns true - if error should be treated as a non-error
+     * @throws - If error should be an error
+     */
+    private processInstallError(error: Error): void {
+        const { message } = error
+        const isOk = BREW_NON_ERRORS.some((nonErrorMsg) => message?.includes(nonErrorMsg))
+        if (isOk) {
+            return
+        }
+
+        throw error
     }
 }
