@@ -29,4 +29,15 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         commands: () => [`git config --global rerere.enabled true`],
         deps: ['Git'],
     },
+    {
+        name: 'Auto Setup Remote',
+        description: 'Automatically setup remote tracking branches on git push (Git required)',
+        group: 'git',
+        tags: ['productivity'],
+        commands: () => [
+            'sleep 4', // avoid lock for other `git config` options
+            `git config --global --bool push.autoSetupRemote true`,
+        ],
+        deps: ['Git'],
+    },
 ] as const
