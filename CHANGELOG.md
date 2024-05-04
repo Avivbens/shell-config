@@ -1,3 +1,10 @@
+## [2.16.1](https://github.com/Avivbens/shell-config/compare/v2.16.0...v2.16.1) (2024-05-04)
+
+
+### Bug Fixes
+
+* **apps:** support `Git autoSetupRemote` ([b0a17b0](https://github.com/Avivbens/shell-config/commit/b0a17b01c4efe429c68e3193bdeb6088e3a41ae1))
+
 # [2.16.0](https://github.com/Avivbens/shell-config/compare/v2.15.0...v2.16.0) (2024-05-04)
 
 
