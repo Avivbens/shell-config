@@ -1,3 +1,19 @@
+# [2.16.0](https://github.com/Avivbens/shell-config/compare/v2.15.0...v2.16.0) (2024-05-04)
+
+
+### Bug Fixes
+
+* **apps:** `pip` installation issue - `error: externally-managed-environment` ([07c5a79](https://github.com/Avivbens/shell-config/commit/07c5a7904552846798aebbd9ae3b91579c3f1eef))
+* **apps:** fallback for `Intel` chip apps, dependencies of `git` ([5676cb5](https://github.com/Avivbens/shell-config/commit/5676cb5e6948bcd9551dee13f5e7a274374cb45c))
+* **apps:** resolve deprecated `Grammarly`, move `telegram-desktop` => `telegram` ([fdc0312](https://github.com/Avivbens/shell-config/commit/fdc03127a553fc6b723cf17d9cd7bc0a4cb9538f))
+* **apps:** support legacy `WhatsApp` app ([6aed381](https://github.com/Avivbens/shell-config/commit/6aed381a391203f3635b858e978c4c416bd80e6b))
+* **deps:** drop `legacy-peer-deps` - `override` to CommonJS packages 🎉 ([d77c867](https://github.com/Avivbens/shell-config/commit/d77c86750e3f8a59e2770e0a7b25d3868bdb454c))
+
+
+### Features
+
+* support `parallel` installation mode 🚀 ([5842931](https://github.com/Avivbens/shell-config/commit/584293160bc35b5b6e38bdc1324465893ae5de65))
+
 # [2.15.0](https://github.com/Avivbens/shell-config/compare/v2.14.6...v2.15.0) (2024-05-02)
 
 
