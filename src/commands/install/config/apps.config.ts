@@ -28,3 +28,11 @@ export const APPS_CONFIG: Readonly<IAppSetup[]> = [
     ...NODE_APPS,
     ...PYTHON,
 ] as const
+
+export const APPS_CONFIG_MAP = APPS_CONFIG.reduce(
+    (acc, app) => {
+        acc[app.name] = app
+        return acc
+    },
+    {} as Record<string, IAppSetup>,
+)

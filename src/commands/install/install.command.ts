@@ -1,13 +1,19 @@
-import { Command, CommandRunner } from 'nest-commander'
+import { Listr, ListrTask } from 'listr2'
+import { Command, CommandRunner, Option } from 'nest-commander'
+import { cpus } from 'node:os'
 import { arch as ARCH } from 'node:process'
 import ora from 'ora'
+import { BREW_NON_ERRORS } from '@common/constants'
 import { execPromise } from '@common/utils'
 import type { IAppSetup } from '@models/app-setup.model'
 import { ITag, TAGS_DEPS } from '@models/tag.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
+import { APPS_CONFIG_MAP } from './config/apps.config'
 import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
+import { TASKS_CONFIG } from './config/parallel.config'
 import { USER_TAGS_PROMPT } from './config/user-tags.config'
+import { IInstallCommandOptions } from './models/install-command.options'
 
 @Command({
     name: 'install',
@@ -25,7 +31,18 @@ export class InstallCommand extends CommandRunner {
         this.logger.setContext(InstallCommand.name)
     }
 
-    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
+    @Option({
+        name: 'noParallel',
+        flags: '--no-parallel',
+        defaultValue: false,
+        description: 'Disable parallel mode for installation',
+    })
+    private isNoParallel(): boolean {
+        return true
+    }
+
+    async run(inputs: string[], options: IInstallCommandOptions): Promise<void> {
+        const { noParallel } = options
         await this.checkUpdateService.checkForUpdates()
 
         try {
@@ -54,7 +71,36 @@ export class InstallCommand extends CommandRunner {
 
             this.logger.debug(`Current arch ${ARCH}`)
 
-            for (const app of order) {
+            if (noParallel) {
+                for (const app of order) {
+                    await this.installApp(app)
+                }
+
+                return
+            }
+
+            /**
+             * Parallel installation
+             */
+            this.logger.log('Parallel installation is experimental!', 'yellow')
+            this.logger.log('Enter sudo password in order to have parallel installation', 'red-background')
+            await execPromise(`sudo -v`)
+
+            const cpusAmount = cpus().length
+            const parallelProcessAmount = cpusAmount / 2 + 1
+
+            const orderNoLast = order.filter((app) => !app.last)
+            const lastApps = order.filter((app) => app.last)
+
+            const tasksChunks = this.generateParallelTasks(orderNoLast, parallelProcessAmount)
+
+            for (const tasks of tasksChunks) {
+                const spinners = new Listr(tasks, TASKS_CONFIG(parallelProcessAmount))
+
+                await spinners.run()
+            }
+
+            for (const app of lastApps) {
                 await this.installApp(app)
             }
         } catch (error) {
@@ -62,6 +108,11 @@ export class InstallCommand extends CommandRunner {
         }
     }
 
+    /**
+     * Resolve dependencies order for apps
+     * @returns All apps within the resolved order
+     * @throws - If any dependency is not listed
+     */
     private resolveDeps(
         apps: IAppSetup[],
         res: IAppSetup[] = [],
@@ -69,20 +120,9 @@ export class InstallCommand extends CommandRunner {
         round = 0,
     ): IAppSetup[] {
         try {
-            const [withDeps, noDeps] = apps.reduce(
-                (acc, app) => {
-                    const { deps } = app
-                    if (deps?.length) {
-                        acc[0].push(app)
-                    } else {
-                        acc[1].push(app)
-                        depsMap[app.name] = true
-                    }
+            const [withDeps, noDeps] = this.splitAppsDeps(apps)
 
-                    return acc
-                },
-                [[] as IAppSetup[], [] as IAppSetup[]],
-            )
+            noDeps.forEach((app) => (depsMap[app.name] = true))
 
             res.push(...noDeps)
 
@@ -120,6 +160,141 @@ export class InstallCommand extends CommandRunner {
         }
     }
 
+    /**
+     * Get splitted apps by deps / no deps
+     * @param apps - List of apps
+     * @returns [withDeps, noDeps]
+     */
+    private splitAppsDeps(apps: IAppSetup[]): [IAppSetup[], IAppSetup[]] {
+        const [withDeps, noDeps] = apps.reduce(
+            (acc, app) => {
+                const { deps } = app
+                if (deps?.length) {
+                    acc[0].push(app)
+                } else {
+                    acc[1].push(app)
+                }
+
+                return acc
+            },
+            [[] as IAppSetup[], [] as IAppSetup[]],
+        )
+
+        return [withDeps, noDeps]
+    }
+
+    /**
+     * Build parallel tasks for installation whit dependencies as subtasks
+     * @returns Chunks of tasks
+     */
+    private generateParallelTasks(apps: IAppSetup[], parallelProcessAmount: number): ListrTask[][] {
+        const CHUNKS_SIZE = 15
+        try {
+            /**
+             * All selected apps deps enrichment
+             *
+             * @example
+             * {
+             *  'Python': [<ALL_PYTHON_DEPS>]
+             * }
+             */
+            const appsDeps: Record<string, IAppSetup[]> = apps.reduce((acc, app) => {
+                const { deps } = app
+                if (deps?.length) {
+                    acc[app.name] = deps.map((dep) => APPS_CONFIG_MAP[dep])
+                }
+
+                return acc
+            }, {})
+
+            /**
+             * All selected apps depend by enrichment
+             *
+             * @example
+             * {
+             *  'Python': [<ALL_APPS_DEPEND_ON_PYTHON>]
+             * }
+             */
+            const appsDependBy: Record<string, IAppSetup[]> = apps.reduce((acc, app) => {
+                const { deps } = app
+                if (!deps?.length) {
+                    return acc
+                }
+
+                deps.forEach((dep) => {
+                    acc[dep] ??= []
+                    acc[dep].push(app)
+                })
+
+                return acc
+            }, {})
+
+            const nonDeps = apps.filter((app) => !appsDeps[app.name])
+
+            /**
+             * Build tasks and subtasks by dependencies
+             * @param entries - List of apps
+             * @returns - List of tasks within inner deps processing
+             */
+            const buildByDeps = (entries: IAppSetup[]): ListrTask[] => {
+                const tasks: ListrTask[] = entries.map((app) => {
+                    const { name } = app
+                    const dependBy = appsDependBy[name]
+
+                    return {
+                        title: `Installing ${name}`,
+                        task: async (ctx, task) => {
+                            try {
+                                await this.installAppV2(app)
+
+                                if (!dependBy?.length) {
+                                    return
+                                }
+
+                                const subTasks = buildByDeps(dependBy)
+                                return task.newListr(subTasks, TASKS_CONFIG(parallelProcessAmount))
+                            } catch (error) {
+                                throw new Error(`${name}: ${error.message}`)
+                            }
+                        },
+                    }
+                })
+
+                return tasks
+            }
+
+            const allTasks = buildByDeps(nonDeps)
+
+            const tasksChunks = this.splitToChunks(allTasks, CHUNKS_SIZE)
+
+            return tasksChunks
+        } catch (error) {
+            this.logger.error(`Error generateParallelTasks, error: ${error.stack}`)
+            throw error
+        }
+    }
+
+    /**
+     * Get splitted entities by chunks
+     * @param entities - List of entities
+     * @param chunkSize - Size of chunk
+     */
+    private splitToChunks<T = unknown>(entities: T[], chunkSize: number): T[][] {
+        const chunks: T[][] = []
+        let i = 0
+
+        while (i < entities.length) {
+            chunks.push(entities.slice(i, (i += chunkSize)))
+        }
+
+        return chunks
+    }
+
+    /**
+     * Install app by commands with spinner
+     * @param app - App to install
+     * @deprecated - Use {@link installAppV2} instead
+     */
     private async installApp(app: IAppSetup): Promise<void> {
         const { name, commands, fallbackCommands } = app
         const spinner = ora({
@@ -166,6 +341,62 @@ export class InstallCommand extends CommandRunner {
         } catch (error) {
             spinner.fail()
             this.logger.error(`Error installApp app: ${name}, error: ${error.message}`)
+        }
+    }
+
+    /**
+     * Install app by commands
+     * @param app - App to install
+     * @throws - If any command fails (including fallback commands)
+     */
+    private async installAppV2(app: IAppSetup): Promise<void> {
+        const { name, commands, fallbackCommands } = app
+
+        try {
+            try {
+                const parsedCommands = commands(ARCH)
+                for (const command of parsedCommands) {
+                    await execPromise(command).catch((err) => {
+                        this.logger.debug(
+                            `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
+                        )
+                        throw err
+                    })
+                }
+            } catch (error) {
+                if (!fallbackCommands) {
+                    throw error
+                }
+
+                this.logger.debug(`Installing ${name} with fallback commands`)
+
+                const parsedFallbackCommands = fallbackCommands(ARCH)
+                for (const command of parsedFallbackCommands) {
+                    await execPromise(command).catch((err) => {
+                        this.logger.debug(
+                            `Error installApp app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
+                        )
+                        throw err
+                    })
+                }
+            }
+
+            this.installMap.set(name, true)
+
+            const successMsg = `Installed ${name}`
+            this.logger.debug(successMsg)
+        } catch (error) {
+            const { message } = error
+            /**
+             * Do not throw error if app already installed
+             */
+            const isOk = BREW_NON_ERRORS.some((nonErrorMsg) => message?.includes(nonErrorMsg))
+            if (isOk) {
+                return
+            }
+
+            this.logger.debug(`Error installApp2 app: ${name}, error: ${error.message}`)
+            throw error
         }
     }
 }

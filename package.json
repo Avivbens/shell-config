@@ -42,6 +42,7 @@
         "eslint-plugin-jsonc": "^2.15.1",
         "inquirer": "^8.2.6",
         "jsonc-eslint-parser": "^2.4.0",
+        "listr2": "^3.14.0",
         "nest-commander": "^3.12.5",
         "ora": "^5.4.1",
         "reflect-metadata": "^0.2.2",

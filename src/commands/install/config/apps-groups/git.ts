@@ -15,6 +15,8 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         group: 'git',
         tags: ['super-user'],
         commands: () => [
+            // avoid lock for other `git config` options
+            'sleep 2',
             `git config --global core.editor "/Applications/Visual\\ Studio\\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],
     },
