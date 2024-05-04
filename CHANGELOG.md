@@ -1,3 +1,16 @@
+# [2.17.0](https://github.com/Avivbens/shell-config/compare/v2.16.1...v2.17.0) (2024-05-04)
+
+
+### Bug Fixes
+
+* add retry for failed tasks ([701bc1b](https://github.com/Avivbens/shell-config/commit/701bc1bd56fd12ad3102fedf19b8921a1aa85680))
+* **install:** better error handling for installing apps ([b1a561e](https://github.com/Avivbens/shell-config/commit/b1a561e292a25a16f375641ab2b734f2712add6b))
+
+
+### Features
+
+* support `parallelCount` set parallel count, suppot `first` property to install before all others ([0d117b5](https://github.com/Avivbens/shell-config/commit/0d117b50c8beb41867c451040df0098c40624d11))
+
 ## [2.16.1](https://github.com/Avivbens/shell-config/compare/v2.16.0...v2.16.1) (2024-05-04)
 
 
