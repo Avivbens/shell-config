@@ -243,6 +243,7 @@ export class InstallCommand extends CommandRunner {
 
                     return {
                         title: `Installing ${name}`,
+                        retry: 3,
                         task: async (ctx, task) => {
                             try {
                                 await this.installAppV2(app)
