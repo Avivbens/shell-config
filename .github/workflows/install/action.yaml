@@ -13,5 +13,4 @@ runs:
         - name: 🔗 Install Dependencies
           shell: bash
           run: |
-              npm i --legacy-peer-deps
-              #   npm ci --no-fund --no-audit --no-progress --ignore-scripts
+              npm ci --no-fund --no-audit --no-progress --ignore-scripts
