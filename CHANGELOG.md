@@ -1,3 +1,10 @@
+## [2.17.1](https://github.com/Avivbens/shell-config/compare/v2.17.0...v2.17.1) (2024-05-04)
+
+
+### Bug Fixes
+
+* **install:** better `parallel` sudo required message ([6dfe9cd](https://github.com/Avivbens/shell-config/commit/6dfe9cd1544caeca7772d443a8f9570027836f51))
+
 # [2.17.0](https://github.com/Avivbens/shell-config/compare/v2.16.1...v2.17.0) (2024-05-04)
 
 
