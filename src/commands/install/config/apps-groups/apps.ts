@@ -60,7 +60,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'Grammarly',
         group: 'apps',
         default: true,
-        commands: () => [BREW_CASK('grammarly')],
+        commands: () => [BREW_CASK('grammarly-desktop')],
     },
     {
         name: 'Cleanshot',
@@ -150,11 +150,11 @@ export const APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_CASK('whatsapp')],
     },
     {
-        name: 'Telegram Desktop',
+        name: 'Telegram',
         group: 'apps',
         tags: ['personal'],
-        commands: () => [BREW_CASK('telegram-desktop')],
-        fallbackCommands: () => [BROW_CASK('telegram-desktop')],
+        commands: () => [BREW_CASK('telegram')],
+        fallbackCommands: () => [BROW_CASK('telegram')],
     },
     {
         name: 'Dash',
