@@ -1,3 +1,10 @@
+## [2.17.2](https://github.com/Avivbens/shell-config/compare/v2.17.1...v2.17.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* **apps:** `cost-of-modules` node package ([54a133a](https://github.com/Avivbens/shell-config/commit/54a133a862f7a5915b32d4c9ffba4cb2d2bde25b))
+
 ## [2.17.1](https://github.com/Avivbens/shell-config/compare/v2.17.0...v2.17.1) (2024-05-04)
 
 
