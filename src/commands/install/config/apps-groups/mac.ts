@@ -1,4 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
+import { BREW_INSTALL } from '../common-commands'
 
 export const MACOS: Readonly<IAppSetup[]> = [
     {
@@ -12,6 +13,12 @@ export const MACOS: Readonly<IAppSetup[]> = [
             'sudo cp -f /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local',
             `sudo /bin/bash -c "echo 'auth       sufficient     pam_tid.so' >> /etc/pam.d/sudo_local"`,
         ],
+    },
+    {
+        name: 'smartmontools',
+        description: 'Monitor your hard drive health',
+        group: 'MacOS',
+        commands: () => [BREW_INSTALL('smartmontools')],
     },
     {
         name: 'Update MacOS version',
