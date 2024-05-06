@@ -56,8 +56,15 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('nodemon')],
     },
     {
+        name: 'cost-of-modules',
+        description: 'Full report of all the modules in node_modules and their sizes',
+        group: 'node',
+        tags: ['web-engineering', 'node-engineering'],
+        commands: () => [NODE_GLOBAL('cost-of-modules')],
+    },
+    {
         name: 'npmrc',
-        description: 'manage multiple .npmrc files effortlessly',
+        description: 'Manage multiple .npmrc files effortlessly',
         group: 'node',
         tags: ['web-engineering', 'node-engineering', 'devops'],
         commands: () => [NODE_GLOBAL('npmrc')],
