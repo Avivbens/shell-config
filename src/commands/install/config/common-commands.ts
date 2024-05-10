@@ -2,28 +2,41 @@ import type { Arch } from '@models/app-setup.model'
 
 const ARCH_FLAG = (arch?: Arch): '' | `arch -${Arch}` => (arch ? `arch -${arch}` : '')
 export const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
+const BREW_NON_INTERACTIVE_FLAGS = `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1`
 
-// BREW
-export const BREW_CASK = (app: string) => `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew install --cask ${app}`
-export const BREW_INSTALL = (formula: string) =>
-    `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew install ${formula}`
-export const BREW_TAP = (tapTo: string) => `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 brew tap ${tapTo}`
+/**
+ * General
+ */
+export const OPEN_BROWSER_LINK = (link: string) => `open ${link}`
 
-// BROW
-export const BROW_CASK = (app: string) =>
-    `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 ${BROW_ALIAS} install --cask ${app}`
-export const BROW_INSTALL = (formula: string) =>
-    `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 ${BROW_ALIAS} install ${formula}`
-export const BROW_TAP = (tapTo: string) => `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1 ${BROW_ALIAS} tap ${tapTo}`
+/**
+ * HomeBrew
+ */
+export const BREW_CASK = (app: string) => `${BREW_NON_INTERACTIVE_FLAGS} brew install --cask ${app}`
+export const BREW_HOME = (app: string, cask: boolean = false) =>
+    `${BREW_NON_INTERACTIVE_FLAGS} brew home ${cask ? '--cask' : ''} ${app}`
+export const BREW_INSTALL = (formula: string) => `${BREW_NON_INTERACTIVE_FLAGS} brew install ${formula}`
+export const BREW_TAP = (tapTo: string) => `${BREW_NON_INTERACTIVE_FLAGS} brew tap ${tapTo}`
 
-// NODE
-export const NODE_GLOBAL = (packageName: string) =>
-    `source $HOME/.nvm/nvm.sh && npm install -g ${packageName} --registry=https://registry.npmjs.org/`
+/**
+ * HomeBrew - Rosetta
+ */
+export const BROW_CASK = (app: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BROW_ALIAS} install --cask ${app}`
+export const BROW_INSTALL = (formula: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BROW_ALIAS} install ${formula}`
+export const BROW_TAP = (tapTo: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BROW_ALIAS} tap ${tapTo}`
 
-export const NVM_COMMAND = (command: string) => `source $HOME/.nvm/nvm.sh && nvm ${command}`
-
-// App Store
-export const OPEN_BROWSER_LINK = (link: string) => `open -a Safari ${link}`
-
+/**
+ * App Store
+ */
 export const OPEN_APP_STORE_APP_LINK = (appPath: `${string}/id${number}`) =>
     OPEN_BROWSER_LINK(`https://apps.apple.com/il/app/${appPath}`)
+
+/**
+ * NodeJS
+ */
+const LOAD_NVM = `source $HOME/.nvm/nvm.sh`
+export const NODE_GLOBAL = (packageName: string) =>
+    `${LOAD_NVM} && npm install -g ${packageName} --registry=https://registry.npmjs.org/`
+export const NPM_HOME = (packageName: string) => OPEN_BROWSER_LINK(`https://www.npmjs.com/package/${packageName}`)
+
+export const NVM_COMMAND = (command: string) => `${LOAD_NVM} && nvm ${command}`

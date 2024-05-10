@@ -46,4 +46,10 @@ export interface IAppSetup {
      * @description If true, the app will be installed last. Cannot be a dependency!
      */
     last?: boolean
+
+    /**
+     * @description Open the app's website / documentation
+     * @default undefined
+     */
+    openUrl?: () => string
 }

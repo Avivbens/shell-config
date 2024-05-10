@@ -35,10 +35,13 @@
         "docs:preview": "vitepress preview docs"
     },
     "dependencies": {
+        "@inquirer/core": "^8.1.0",
         "@nestjs/axios": "^3.0.2",
         "@nestjs/common": "^10.3.7",
         "@nestjs/core": "^10.3.7",
+        "ansi-escapes": "^4.3.2",
         "boxen": "^5.1.2",
+        "chalk": "^4.1.2",
         "eslint-plugin-jsonc": "^2.15.1",
         "inquirer": "^8.2.6",
         "jsonc-eslint-parser": "^2.4.0",

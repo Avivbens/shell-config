@@ -1,6 +1,7 @@
 import type { IAppSetup } from '@models/app-setup.model'
 import {
     BREW_CASK,
+    BREW_HOME,
     BREW_INSTALL,
     BREW_TAP,
     BROW_ALIAS,
@@ -18,6 +19,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Node Version Manager (password needed)',
         group: 'cli-apps',
         tags: ['node-engineering', 'web-engineering', 'devops'],
+        openUrl: () => BREW_HOME('nvm'),
         commands: () => [
             BREW_INSTALL('nvm'),
             '\\. "$(brew --prefix)/opt/nvm/nvm.sh"',
@@ -38,6 +40,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'GitHub in your terminal',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('gh'),
         commands: () => [BREW_INSTALL('gh')],
         fallbackCommands: () => [BROW_INSTALL('gh')],
     },
@@ -46,6 +49,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'Integrate with Google Cloud Platform services (Python required)',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('google-cloud-sdk'),
         commands: () => [BREW_CASK('google-cloud-sdk')],
         fallbackCommands: () => [BROW_CASK('google-cloud-sdk')],
         deps: ['Python'],
@@ -55,6 +59,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'Official Amazon AWS command-line interface (Python required)',
         tags: ['devops'],
+        openUrl: () => BREW_HOME('awscli'),
         commands: () => [BREW_INSTALL('awscli')],
         deps: ['Python'],
     },
@@ -63,6 +68,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'Kubernetes CLI, Switch faster between Kubernetes contexts and namespaces',
         tags: ['devops'],
+        openUrl: () => BREW_HOME('kubectx'),
         commands: () => [BREW_INSTALL('kubectx')],
     },
     {
@@ -70,6 +76,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'MongoDB Community Edition server',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('mongodb-community@6.0'),
         commands: () => [BREW_TAP('mongodb/brew'), BREW_INSTALL('mongodb-community@6.0'), 'mkdir -p "$HOME/mongodb"'],
         fallbackCommands: () => [
             BROW_TAP('mongodb/brew'),
@@ -82,6 +89,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Redis server',
         group: 'cli-apps',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('redis'),
         commands: () => [BREW_INSTALL('redis')],
         fallbackCommands: () => [BROW_INSTALL('redis')],
     },
@@ -90,6 +98,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Docker CLI',
         group: 'cli-apps',
         tags: ['node-engineering', 'devops'],
+        openUrl: () => BREW_HOME('docker'),
         commands: () => [BREW_INSTALL('docker')],
     },
     {
@@ -97,6 +106,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Terraform CLI',
         group: 'cli-apps',
         tags: ['devops'],
+        openUrl: () => BREW_HOME('terraform'),
         commands: () => [BREW_INSTALL('terraform')],
     },
     {
@@ -104,12 +114,14 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Kubernetes package manager',
         group: 'cli-apps',
         tags: ['devops'],
+        openUrl: () => BREW_HOME('helm'),
         commands: () => [BREW_INSTALL('helm')],
     },
     {
         name: 'Btop',
         description: 'Resource monitor over the terminal',
         group: 'cli-apps',
+        openUrl: () => BREW_HOME('btop'),
         commands: () => [BREW_INSTALL('btop')],
     },
 ] as const

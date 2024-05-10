@@ -5,7 +5,7 @@ import { env } from 'node:process'
 import ora from 'ora'
 import { execPromise } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { InjectLogger, LoggerService } from '@services/logger'
 import {
     DOWNLOAD_FILE_PATH,
     DOWNLOAD_SCRIPT_CUSTOM,
@@ -23,7 +23,7 @@ import type { IUpdateCommandOptions } from './models/update-command.options'
 })
 export class UpdateCommand extends CommandRunner {
     constructor(
-        private readonly logger: LoggerService,
+        @InjectLogger(UpdateCommand.name) private readonly logger: LoggerService,
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()

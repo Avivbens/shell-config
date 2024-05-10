@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_INSTALL } from '../common-commands'
+import { BREW_HOME, BREW_INSTALL } from '../common-commands'
 
 export const GIT_APPS: Readonly<IAppSetup[]> = [
     {
@@ -7,6 +7,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         description: 'Common Code Version Manager',
         group: 'git',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('git'),
         commands: () => [BREW_INSTALL('git')],
     },
     {
@@ -14,9 +15,9 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         description: 'Apply rebase with VSCode UI editor (Git required)',
         group: 'git',
         tags: ['super-user'],
+        openUrl: () =>
+            `open https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#:~:text=documentation%20mentioned%20above.-,core.editor,-By%20default%2C%20Git`,
         commands: () => [
-            // avoid lock for other `git config` options
-            'sleep 2',
             `git config --global core.editor "/Applications/Visual\\ Studio\\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],
         deps: ['Git'],
@@ -26,7 +27,24 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         description: 'Enable reuse recorded resolution for merge conflicts (Git required)',
         group: 'git',
         tags: ['super-user'],
-        commands: () => [`git config --global rerere.enabled true`],
+        openUrl: () => `open https://git-scm.com/book/en/v2/Git-Tools-Rerere`,
+        commands: () => [
+            // avoid lock for other `git config` options
+            'sleep 1',
+            `git config --global rerere.enabled true`,
+        ],
+        deps: ['Git'],
+    },
+    {
+        name: 'Increase credential cache timeout',
+        description: 'Increase the cache time for using your credentials from Keychain - 1 month (Git required)',
+        group: 'git',
+        openUrl: () => `open https://git-scm.com/docs/git-credential-cache`,
+        commands: () => [
+            // avoid lock for other `git config` options
+            'sleep 2',
+            `git config --global credential.helper 'cache --timeout 2592000'`,
+        ],
         deps: ['Git'],
     },
     {
@@ -34,8 +52,10 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         description: 'Automatically setup remote tracking branches on git push (Git required)',
         group: 'git',
         tags: ['productivity'],
+        openUrl: () => `open https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote`,
         commands: () => [
-            'sleep 4', // avoid lock for other `git config` options
+            // avoid lock for other `git config` options
+            'sleep 3',
             `git config --global --bool push.autoSetupRemote true`,
         ],
         deps: ['Git'],

@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import { BASE_PATH } from '@common/constants'
 import type { IShellModule } from '@models/shell-module.model'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { InjectLogger, LoggerService } from '@services/logger'
 import { MULTI_SELECT_MODULES_PROMPT } from './config/multi-select-modules.config'
 import { EXTENDS_MODULES_DIR_PATH, LOCAL_MODULES_DIR_PATH, MODULES_MAP } from './config/shell-modules.config'
 
@@ -15,7 +15,7 @@ import { EXTENDS_MODULES_DIR_PATH, LOCAL_MODULES_DIR_PATH, MODULES_MAP } from '.
 })
 export class ShellCommand extends CommandRunner {
     constructor(
-        private readonly logger: LoggerService,
+        @InjectLogger(ShellCommand.name) private readonly logger: LoggerService,
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()

@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_INSTALL, BREW_TAP, BROW_ALIAS, BROW_INSTALL, BROW_TAP } from '../common-commands'
+import { BREW_CASK, BREW_HOME, BREW_INSTALL, BREW_TAP, BROW_ALIAS, BROW_INSTALL, BROW_TAP } from '../common-commands'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
@@ -7,18 +7,21 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description: 'Terminal with a power of code editor',
         group: 'terminal',
         tags: ['super-user'],
+        openUrl: () => BREW_HOME('warp', true),
         commands: () => [BREW_CASK('warp')],
     },
     {
         name: 'iTerm2',
         description: 'Terminal replacement',
         group: 'terminal',
+        openUrl: () => BREW_HOME('iterm2', true),
         commands: () => [BREW_CASK('iterm2')],
     },
     {
         name: 'Fig',
         group: 'terminal',
         tags: ['productivity'],
+        openUrl: () => BREW_HOME('fig', true),
         commands: () => [BREW_CASK('fig')],
     },
     {
@@ -26,6 +29,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description: 'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
         tags: ['productivity'],
+        openUrl: () => BREW_HOME('cantino/mcfly/mcfly'),
         commands: () => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
         fallbackCommands: () => [BROW_TAP('cantino/mcfly'), BROW_INSTALL('cantino/mcfly/mcfly')],
     },
@@ -34,6 +38,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description: 'Syntax highlighting for cat',
         group: 'terminal',
         tags: ['productivity'],
+        openUrl: () => BREW_HOME('bat'),
         commands: () => [BREW_INSTALL('bat')],
     },
     {
@@ -41,12 +46,14 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description: 'A faster way to navigate your filesystem - replace your native `cd` with memory-based autojump',
         group: 'terminal',
         tags: ['productivity'],
+        openUrl: () => BREW_HOME('zoxide'),
         commands: () => [BREW_INSTALL('zoxide')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting',
         group: 'terminal',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('zsh-syntax-highlighting'),
         commands: () => [BREW_INSTALL('zsh-syntax-highlighting')],
         fallbackCommands: () => [BROW_INSTALL('zsh-syntax-highlighting')],
     },
@@ -54,6 +61,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'ZSH Terminal Syntax Autosuggestions',
         group: 'terminal',
         tags: ['engineering'],
+        openUrl: () => BREW_HOME('zsh-autosuggestions'),
         commands: () => [BREW_INSTALL('zsh-autosuggestions')],
         fallbackCommands: () => [BROW_INSTALL('zsh-autosuggestions')],
     },
@@ -61,6 +69,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'ZSH Terminal Syntax Completions',
         description: 'Completions for zsh (password needed)',
         group: 'terminal',
+        openUrl: () => BREW_HOME('zsh-completions'),
         commands: () => [
             BREW_INSTALL('zsh-completions'),
             `chmod go-w "$(brew --prefix)/share"`,

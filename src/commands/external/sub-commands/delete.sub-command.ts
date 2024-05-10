@@ -1,7 +1,7 @@
 import { CommandRunner, SubCommand } from 'nest-commander'
 import { readdir, rm } from 'node:fs/promises'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { InjectLogger, LoggerService } from '@services/logger'
 import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
 
 @SubCommand({
@@ -11,11 +11,10 @@ import { EXTERNAL_REGISTRY_DIR_PATH } from '../config/constants'
 })
 export class DeleteSubCommand extends CommandRunner {
     constructor(
-        private readonly logger: LoggerService,
+        @InjectLogger(DeleteSubCommand.name) private readonly logger: LoggerService,
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(DeleteSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
