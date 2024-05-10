@@ -2,7 +2,7 @@
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { loggerMockCreator } from '@services/logger/testing/logger.mock'
 import { UpdateCommand } from './update.command'
 
 describe('UpdateCommand', () => {
@@ -12,10 +12,7 @@ describe('UpdateCommand', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 UpdateCommand,
-                {
-                    provide: LoggerService,
-                    useValue: { setContext: jest.fn() },
-                },
+                loggerMockCreator(UpdateCommand.name),
                 {
                     provide: CheckUpdateService,
                     useValue: {},

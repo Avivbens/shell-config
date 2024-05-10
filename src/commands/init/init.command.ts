@@ -7,7 +7,7 @@ import ora from 'ora'
 import { BASE_PATH } from '@common/constants'
 import { copyBundledAsset, execPromise, resolveBundledAsset } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { InjectLogger, LoggerService } from '@services/logger'
 import {
     BREW_DIRECTORY,
     BREW_INSTALLATION_COMMAND,
@@ -25,7 +25,7 @@ import { LINK_SHELL_COMMAND, LINK_SHELL_COMMAND_EXISTS } from './config/link-com
 })
 export class InitCommand extends CommandRunner {
     constructor(
-        private readonly logger: LoggerService,
+        @InjectLogger(InitCommand.name) private readonly logger: LoggerService,
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()

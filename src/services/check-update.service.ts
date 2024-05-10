@@ -6,7 +6,7 @@ import type { IReleasesAPIRes } from '@models/releases-api.model'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 import packageJson from '../../package.json'
-import { LoggerService } from './logger.service'
+import { LoggerService } from './logger/logger.service'
 
 @Injectable()
 export class CheckUpdateService {

@@ -2,7 +2,7 @@ import { Command, CommandRunner } from 'nest-commander'
 import { mkdir, readdir, writeFile } from 'node:fs/promises'
 import { execPromise } from '@common/utils'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { InjectLogger, LoggerService } from '@services/logger'
 import type { AvailableActionIds } from './config/ constants.config'
 import { GIT_PROFILES_TARGET, HELP_BOX_MESSAGE, NPM_PROFILES_TARGET } from './config/ constants.config'
 import {
@@ -25,11 +25,10 @@ import { replaceInTemplate } from './template-handle/replace-in-template'
 })
 export class AssetsCommand extends CommandRunner {
     constructor(
-        private readonly logger: LoggerService,
+        @InjectLogger(AssetsCommand.name) private readonly logger: LoggerService,
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(AssetsCommand.name)
     }
 
     async run(inputs: string[], options: unknown): Promise<void> {

@@ -25,8 +25,7 @@ export class LoggerService {
     }
     public warn(message: string) {
         const generatedMessage = this.generateMessage(message)
-        // set color to yellow
-        console.warn(`\x1b[33m${message}\x1b[0m`)
+        console.warn(this.coloredMessage(message, 'yellow'))
         appendFile(this.logPath, `WARN | ${generatedMessage}\n`, { mode: 0o770 })
     }
     public debug(message: string) {
@@ -46,7 +45,7 @@ export class LoggerService {
         return coloredMessage
     }
 
-    private generateMessage(message: string, color?: Color): string {
+    private generateMessage(message: string): string {
         return `INSTANCE: ${BOOTSTRAP_UUID} | ${new Date().toLocaleString()} |${this.context}${message}`
     }
 

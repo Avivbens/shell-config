@@ -2,7 +2,7 @@
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
 import { CheckUpdateService } from '@services/check-update.service'
-import { LoggerService } from '@services/logger.service'
+import { loggerMockCreator } from '@services/logger/testing/logger.mock'
 import { InstallSubCommand } from './install.sub-command'
 
 describe('InstallSubCommand', () => {
@@ -12,10 +12,7 @@ describe('InstallSubCommand', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 InstallSubCommand,
-                {
-                    provide: LoggerService,
-                    useValue: { setContext: jest.fn() },
-                },
+                loggerMockCreator(InstallSubCommand.name),
                 {
                     provide: CheckUpdateService,
                     useValue: { checkUpdate: jest.fn() },
