@@ -1,3 +1,16 @@
+# [2.18.0](https://github.com/Avivbens/shell-config/compare/v2.17.3...v2.18.0) (2024-05-10)
+
+
+### Bug Fixes
+
+* **apps:** add proper docs URL to all apps 🎉 ([3b0e57c](https://github.com/Avivbens/shell-config/commit/3b0e57c1c81bd0d1cdad88dfce3d89908ebef2bd))
+* **git:** support `credentials helper` cache ([29b7290](https://github.com/Avivbens/shell-config/commit/29b7290a033a026377e6971e484b88fa0c5d91cb))
+
+
+### Features
+
+* **install-command:** support open documentation links with `o` key 🚀 ([5fcc950](https://github.com/Avivbens/shell-config/commit/5fcc950f96e807fe56cd55bfd6f5f1d71d751e3b))
+
 ## [2.17.3](https://github.com/Avivbens/shell-config/compare/v2.17.2...v2.17.3) (2024-05-10)
 
 
