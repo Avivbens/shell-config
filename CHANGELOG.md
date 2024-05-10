@@ -1,3 +1,10 @@
+## [2.18.1](https://github.com/Avivbens/shell-config/compare/v2.18.0...v2.18.1) (2024-05-10)
+
+
+### Bug Fixes
+
+* **logger:** drop usage of all `Logger.setContext` - use `InjectLogger` ([ce205b1](https://github.com/Avivbens/shell-config/commit/ce205b1facb10f12ffa9ddcb2a8060517c3467dd))
+
 # [2.18.0](https://github.com/Avivbens/shell-config/compare/v2.17.3...v2.18.0) (2024-05-10)
 
 
