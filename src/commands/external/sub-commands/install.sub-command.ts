@@ -21,7 +21,6 @@ export class InstallSubCommand extends CommandRunner {
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(InstallSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, unknown>): Promise<void> {

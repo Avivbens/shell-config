@@ -15,7 +15,6 @@ export class ListSubCommand extends CommandRunner {
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(ListSubCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, unknown>): Promise<void> {

@@ -19,7 +19,6 @@ export class ShellCommand extends CommandRunner {
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(ShellCommand.name)
     }
 
     async run(inputs: string[], options: Record<string, unknown>): Promise<void> {

@@ -6,16 +6,15 @@ import type { IReleasesAPIRes } from '@models/releases-api.model'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 import packageJson from '../../package.json'
+import { InjectLogger } from './logger'
 import { LoggerService } from './logger/logger.service'
 
 @Injectable()
 export class CheckUpdateService {
     constructor(
         private readonly http: HttpService,
-        private readonly logger: LoggerService,
-    ) {
-        this.logger.setContext(CheckUpdateService.name)
-    }
+        @InjectLogger(CheckUpdateService.name) private readonly logger: LoggerService,
+    ) {}
 
     public async checkForUpdates(): Promise<boolean> {
         try {
@@ -35,8 +34,8 @@ export class CheckUpdateService {
             const currentVersionClean = clean(currentVersion)
 
             const updateNeeded: boolean = lt(currentVersionClean, latestClean)
+            this.logger.debug(`Current version: ${currentVersionClean}, latest version: ${latestClean}`)
             if (!updateNeeded) {
-                this.logger.debug(`Current version: ${currentVersionClean}, latest version: ${latestClean}`)
                 return false
             }
 
@@ -58,7 +57,7 @@ export class CheckUpdateService {
 
             return true
         } catch (error) {
-            this.logger.debug(`Error checkForUpdates, error: ${error.stack}`)
+            this.logger.debug(`Error checkForUpdates, error: ${error}`)
             return false
         }
     }
@@ -68,7 +67,7 @@ export class CheckUpdateService {
             const res = await lastValueFrom(this.http.get<IReleasesAPIRes[]>(GITHUB_RELEASES_API_URL))
             return res.data
         } catch (error) {
-            this.logger.debug(`Error getGithubReleases, error: ${error.stack}`)
+            this.logger.debug(`Error getGithubReleases, error: ${error}`)
             throw error
         }
     }

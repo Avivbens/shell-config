@@ -28,7 +28,6 @@ export class InstallCommand extends CommandRunner {
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(InstallCommand.name)
     }
 
     @Option({

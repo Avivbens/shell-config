@@ -27,7 +27,6 @@ export class UpdateCommand extends CommandRunner {
         private readonly checkUpdateService: CheckUpdateService,
     ) {
         super()
-        this.logger.setContext(UpdateCommand.name)
     }
 
     async run(inputs: string[], options: IUpdateCommandOptions): Promise<void> {
