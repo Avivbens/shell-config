@@ -1,3 +1,11 @@
+## [2.17.3](https://github.com/Avivbens/shell-config/compare/v2.17.2...v2.17.3) (2024-05-10)
+
+
+### Bug Fixes
+
+* **apps:** support `smartmontools` for MacOS ([5aefd46](https://github.com/Avivbens/shell-config/commit/5aefd46cb6ed47791efaeeaed5bfc5c09c47e9cb))
+* **git:** add flag `--ahead-behind` for `git status` ([65cb1a6](https://github.com/Avivbens/shell-config/commit/65cb1a652e316cfdab27ae4893fe41f87c190b0b))
+
 ## [2.17.2](https://github.com/Avivbens/shell-config/compare/v2.17.1...v2.17.2) (2024-05-06)
 
 
