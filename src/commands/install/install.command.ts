@@ -10,7 +10,7 @@ import { ITag, TAGS_DEPS } from '@models/tag.model'
 import { CheckUpdateService } from '@services/check-update.service'
 import { LoggerService } from '@services/logger.service'
 import { APPS_CONFIG_MAP } from './config/apps.config'
-import { MULTI_SELECT_APPS_PROMPT } from './config/multi-select-apps.config'
+import { MULTI_SELECT_APPS_PROMPT_V2 } from './config/multi-select-apps.config'
 import { HELP_BOX_MESSAGE, TASKS_CONFIG } from './config/parallel.config'
 import { USER_TAGS_PROMPT } from './config/user-tags.config'
 import { IInstallCommandOptions } from './models/install-command.options'
@@ -69,7 +69,7 @@ export class InstallCommand extends CommandRunner {
             })
             const uniqueTags = [...new Set(tagsWithDeps)]
 
-            const toInstall = await MULTI_SELECT_APPS_PROMPT(uniqueTags)
+            const toInstall = await MULTI_SELECT_APPS_PROMPT_V2(uniqueTags)
 
             const resolvedDeps = this.resolveDeps(toInstall)
 
