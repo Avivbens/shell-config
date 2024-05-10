@@ -1,3 +1,10 @@
+## [2.18.2](https://github.com/Avivbens/shell-config/compare/v2.18.1...v2.18.2) (2024-05-10)
+
+
+### Bug Fixes
+
+* **apps:** remove `fig` - sunset ([f3dee3d](https://github.com/Avivbens/shell-config/commit/f3dee3d0af55b642653502ee7510b3ab3932a08a))
+
 ## [2.18.1](https://github.com/Avivbens/shell-config/compare/v2.18.0...v2.18.1) (2024-05-10)
 
 
