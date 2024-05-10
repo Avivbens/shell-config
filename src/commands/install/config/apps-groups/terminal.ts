@@ -14,15 +14,9 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'iTerm2',
         description: 'Terminal replacement',
         group: 'terminal',
+        tags: ['productivity'],
         openUrl: () => BREW_HOME('iterm2', true),
         commands: () => [BREW_CASK('iterm2')],
-    },
-    {
-        name: 'Fig',
-        group: 'terminal',
-        tags: ['productivity'],
-        openUrl: () => BREW_HOME('fig', true),
-        commands: () => [BREW_CASK('fig')],
     },
     {
         name: 'Mcfly',
