@@ -15,6 +15,7 @@ export const PYTHON: Readonly<IAppSetup[]> = [
         description: 'Python package manager (Python required)',
         group: 'python',
         default: true,
+        openUrl: () => `open https://pypi.org/project/pip/`,
         commands: () => [
             `${CURL_COMMAND} https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py`,
             'python3 /tmp/get-pip.py --break-system-packages',

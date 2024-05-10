@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_INSTALL } from '../common-commands'
+import { BREW_HOME, BREW_INSTALL } from '../common-commands'
 
 export const MACOS: Readonly<IAppSetup[]> = [
     {
@@ -8,6 +8,7 @@ export const MACOS: Readonly<IAppSetup[]> = [
         group: 'MacOS',
         default: true,
         first: true,
+        openUrl: () => `open https://gist.github.com/windyinsc/26aaa8783c7734529998062a11d80b96`,
         commands: () => [
             'sudo -v',
             'sudo cp -f /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local',
@@ -18,6 +19,7 @@ export const MACOS: Readonly<IAppSetup[]> = [
         name: 'smartmontools',
         description: 'Monitor your hard drive health',
         group: 'MacOS',
+        openUrl: () => BREW_HOME('smartmontools'),
         commands: () => [BREW_INSTALL('smartmontools')],
     },
     {
