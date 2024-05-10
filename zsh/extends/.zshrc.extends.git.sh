@@ -5,7 +5,7 @@ source "$HOME/shell-config/zsh/extends/.zshrc.extends.vscode.sh"
 
 alias gl="git log"
 alias gd="git diff"
-alias gs="git status"
+alias gs="git status --ahead-behind"
 alias ga="git add ."
 alias gc="git commit -m"
 alias gcm="git commit --no-edit"
