@@ -1,5 +1,7 @@
 import ansiEscapes from 'ansi-escapes'
+import boxen from 'boxen'
 import chalk from 'chalk'
+import { WINDOW_HIGHT } from '@common/constants'
 import type { KeypressEvent } from '@inquirer/core'
 import {
     Separator,
@@ -132,6 +134,8 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
             additionalInstructions = () => [],
             specialKeysHandler = () => {},
         } = config
+
+        const limitedPageSize = Math.min(WINDOW_HIGHT() - 10, pageSize)
 
         const theme = makeTheme<CheckboxTheme>(checkboxTheme, config.theme)
         const prefix = usePrefix({ theme })
@@ -283,7 +287,7 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
                 const cursor = isActive ? theme.icon.cursor : ' '
                 return color(`${cursor}${checkbox} ${line}`)
             },
-            pageSize,
+            pageSize: limitedPageSize,
             loop,
         })
 
@@ -307,10 +311,22 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
             theme.helpMode === 'always' || (theme.helpMode === 'auto' && showHelpTip && instructions)
 
         const allInstructions = additionalInstructions(theme).concat(DEFAULT_TOP_KEYS(theme))
-        const helpTipTop = !shouldShowINstructions ? '' : ` (Press ${allInstructions.join(', ')})`
+        const helpTipTop = !shouldShowINstructions ? '' : `Press ${allInstructions.join(', ')}`
+        const helpTipTopBox = boxen(helpTipTop, {
+            padding: 1,
+            margin: 1,
+            borderStyle: 'round',
+            title: 'Menu',
+            titleAlignment: 'center',
+            textAlignment: 'left',
+            float: 'center',
+            backgroundColor: '#d38320',
+            borderColor: 'yellow',
+            dimBorder: true,
+        })
 
         let helpTipBottom = ''
-        if (shouldShowINstructions || (items.length > pageSize && firstRender.current)) {
+        if (shouldShowINstructions || (items.length > limitedPageSize && firstRender.current)) {
             helpTipBottom = `\n${theme.style.help('(Use arrow keys to reveal more choices)')}`
             firstRender.current = false
         }
@@ -321,6 +337,6 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
          */
         const error = !errorMsg ? '' : `\n${theme.style.error(errorMsg)}`
 
-        return `${prefix} ${parsedMessage}${helpTipTop}\n${page}${helpTipBottom}${error}${ansiEscapes.cursorHide}`
+        return `${prefix} ${parsedMessage}${helpTipTopBox}${page}${helpTipBottom}${error}${ansiEscapes.cursorHide}`
     },
 )
