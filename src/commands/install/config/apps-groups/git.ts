@@ -15,8 +15,6 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         group: 'git',
         tags: ['super-user'],
         commands: () => [
-            // avoid lock for other `git config` options
-            'sleep 2',
             `git config --global core.editor "/Applications/Visual\\ Studio\\ Code.app/Contents/Resources/app/bin/code --wait"`,
         ],
         deps: ['Git'],
@@ -26,7 +24,22 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         description: 'Enable reuse recorded resolution for merge conflicts (Git required)',
         group: 'git',
         tags: ['super-user'],
-        commands: () => [`git config --global rerere.enabled true`],
+        commands: () => [
+            // avoid lock for other `git config` options
+            'sleep 1',
+            `git config --global rerere.enabled true`,
+        ],
+        deps: ['Git'],
+    },
+    {
+        name: 'Increase credential cache timeout',
+        description: 'Increase the cache time for using your credentials from Keychain - 1 month (Git required)',
+        group: 'git',
+        commands: () => [
+            // avoid lock for other `git config` options
+            'sleep 2',
+            `git config --global credential.helper 'cache --timeout 2592000'`,
+        ],
         deps: ['Git'],
     },
     {
@@ -35,7 +48,8 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         group: 'git',
         tags: ['productivity'],
         commands: () => [
-            'sleep 4', // avoid lock for other `git config` options
+            // avoid lock for other `git config` options
+            'sleep 3',
             `git config --global --bool push.autoSetupRemote true`,
         ],
         deps: ['Git'],
