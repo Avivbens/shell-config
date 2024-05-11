@@ -1,3 +1,10 @@
+## [2.18.3](https://github.com/Avivbens/shell-config/compare/v2.18.2...v2.18.3) (2024-05-11)
+
+
+### Bug Fixes
+
+* **install-command:** better menu bar, responsive install list 🎉 ([bb2a042](https://github.com/Avivbens/shell-config/commit/bb2a04250b397ac2081cb5b3f951de9e645fbbc2))
+
 ## [2.18.2](https://github.com/Avivbens/shell-config/compare/v2.18.1...v2.18.2) (2024-05-10)
 
 
