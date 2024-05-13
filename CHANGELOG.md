@@ -1,3 +1,10 @@
+## [2.18.4](https://github.com/Avivbens/shell-config/compare/v2.18.3...v2.18.4) (2024-05-13)
+
+
+### Bug Fixes
+
+* **apps:** `mcfly` under the root repo of `HomeBrew` ([0e3517f](https://github.com/Avivbens/shell-config/commit/0e3517f017a8b9af14c51f3206cbe2452eb6bc00))
+
 ## [2.18.3](https://github.com/Avivbens/shell-config/compare/v2.18.2...v2.18.3) (2024-05-11)
 
 
