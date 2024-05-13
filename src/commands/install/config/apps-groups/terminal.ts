@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_HOME, BREW_INSTALL, BREW_TAP, BROW_ALIAS, BROW_INSTALL, BROW_TAP } from '../common-commands'
+import { BREW_CASK, BREW_HOME, BREW_INSTALL, BROW_ALIAS, BROW_INSTALL } from '../common-commands'
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
@@ -24,8 +24,8 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         group: 'terminal',
         tags: ['productivity'],
         openUrl: () => BREW_HOME('cantino/mcfly/mcfly'),
-        commands: () => [BREW_TAP('cantino/mcfly'), BREW_INSTALL('cantino/mcfly/mcfly')],
-        fallbackCommands: () => [BROW_TAP('cantino/mcfly'), BROW_INSTALL('cantino/mcfly/mcfly')],
+        commands: () => [BREW_INSTALL('mcfly')],
+        fallbackCommands: () => [BROW_INSTALL('mcfly')],
     },
     {
         name: 'Bat',
