@@ -1,3 +1,10 @@
+## [2.18.6](https://github.com/Avivbens/shell-config/compare/v2.18.5...v2.18.6) (2024-05-14)
+
+
+### Bug Fixes
+
+* **install:** show `paid` and `deps` mechanism ([d5b4df7](https://github.com/Avivbens/shell-config/commit/d5b4df73ea75e8dfd8963242d37384620b687567))
+
 ## [2.18.5](https://github.com/Avivbens/shell-config/compare/v2.18.4...v2.18.5) (2024-05-14)
 
 
