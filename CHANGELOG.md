@@ -1,3 +1,11 @@
+## [2.18.5](https://github.com/Avivbens/shell-config/compare/v2.18.4...v2.18.5) (2024-05-14)
+
+
+### Bug Fixes
+
+* **apps:** add `ncdu` and `entr` ([4c05b18](https://github.com/Avivbens/shell-config/commit/4c05b18bda60d80a7bdb3d9d87604c23f780778e))
+* **install:** group titles border, menu box disappear, handle more terminal sizes ([4a5a1c2](https://github.com/Avivbens/shell-config/commit/4a5a1c2e9fdb20854c19549e299c3036cd391ae8))
+
 ## [2.18.4](https://github.com/Avivbens/shell-config/compare/v2.18.3...v2.18.4) (2024-05-13)
 
 
