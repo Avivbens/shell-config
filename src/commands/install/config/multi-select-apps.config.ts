@@ -108,6 +108,7 @@ export const MULTI_SELECT_APPS_PROMPT_V2 = (tags: ITag[]): Promise<IAppSetup[]> 
         message: 'Select your MacOS setup',
         loop: false,
         pageSize: 30,
+        theme: { helpMode: 'always' },
         choices,
         specialKeysHandler,
         additionalInstructions: (theme) => [`${theme.style.key('o')} to open documentation link`],
