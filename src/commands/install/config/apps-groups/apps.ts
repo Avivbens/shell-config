@@ -12,7 +12,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Alfred',
         group: 'apps',
-        description: 'Productivity app, create custom shortcuts and workflows (paid)',
+        description: 'Productivity app, create custom shortcuts and workflows',
         tags: ['productivity'],
         paid: true,
         openUrl: () => BREW_HOME('alfred', true),
@@ -21,7 +21,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Bar Tender',
         group: 'apps',
-        description: 'Hide menu bar icons and manage them (paid)',
+        description: 'Hide menu bar icons and manage them',
         tags: ['productivity'],
         paid: true,
         openUrl: () => BREW_HOME('bartender', true),
@@ -81,7 +81,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Cleanshot',
-        description: 'Screen recorder and screenshot tool (paid)',
+        description: 'Screen recorder and screenshot tool',
         group: 'apps',
         tags: ['productivity'],
         paid: true,
@@ -90,7 +90,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Paste',
-        description: 'Clipboard manager (paid)',
+        description: 'Clipboard manager',
         group: 'apps',
         tags: ['super-user'],
         paid: true,
@@ -99,7 +99,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'RCMD',
-        description: 'Switch apps instantly using a Hotkey (paid)',
+        description: 'Switch apps instantly using a Hotkey',
         group: 'apps',
         tags: ['super-user'],
         paid: true,
@@ -123,7 +123,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'TextSniper',
-        description: 'Extract and copy text from images (paid)',
+        description: 'Extract and copy text from images',
         group: 'apps',
         tags: ['productivity'],
         paid: true,
@@ -148,7 +148,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Dropover',
-        description: 'Drag and drop files between apps with quick actions (paid)',
+        description: 'Drag and drop files between apps with quick actions',
         group: 'apps',
         tags: ['super-user'],
         paid: true,
@@ -211,7 +211,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Vivid',
         group: 'apps',
-        description: 'Unlocks the full brightness of your MacBook Pro (paid)',
+        description: 'Unlocks the full brightness of your MacBook Pro',
         paid: true,
         openUrl: () => BREW_HOME('vivid', true),
         commands: () => [BREW_CASK('vivid')],

@@ -4,7 +4,7 @@ import { BREW_CASK, BREW_HOME } from '../common-commands'
 export const MEDIA_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Downie',
-        description: 'Video downloader for YouTube and other video sites (paid)',
+        description: 'Video downloader for YouTube and other video sites',
         group: 'media',
         paid: true,
         openUrl: () => BREW_HOME('downie', true),

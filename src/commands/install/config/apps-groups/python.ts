@@ -12,7 +12,7 @@ export const PYTHON: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Python PIP',
-        description: 'Python package manager (Python required)',
+        description: 'Python package manager',
         group: 'python',
         default: true,
         openUrl: () => `open https://pypi.org/project/pip/`,

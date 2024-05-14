@@ -47,7 +47,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'google-cloud-sdk',
         group: 'cli-apps',
-        description: 'Integrate with Google Cloud Platform services (Python required)',
+        description: 'Integrate with Google Cloud Platform services',
         tags: ['engineering'],
         openUrl: () => BREW_HOME('google-cloud-sdk'),
         commands: () => [BREW_CASK('google-cloud-sdk')],
@@ -57,7 +57,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'AWS CLI',
         group: 'cli-apps',
-        description: 'Official Amazon AWS command-line interface (Python required)',
+        description: 'Official Amazon AWS command-line interface',
         tags: ['devops'],
         openUrl: () => BREW_HOME('awscli'),
         commands: () => [BREW_INSTALL('awscli')],

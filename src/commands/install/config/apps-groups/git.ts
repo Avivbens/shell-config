@@ -12,7 +12,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'VSCode as rebase editor',
-        description: 'Apply rebase with VSCode UI editor (Git required)',
+        description: 'Apply rebase with VSCode UI editor',
         group: 'git',
         tags: ['super-user'],
         openUrl: () =>
@@ -24,7 +24,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Enable ReReRe',
-        description: 'Enable reuse recorded resolution for merge conflicts (Git required)',
+        description: 'Enable reuse recorded resolution for merge conflicts',
         group: 'git',
         tags: ['super-user'],
         openUrl: () => `open https://git-scm.com/book/en/v2/Git-Tools-Rerere`,
@@ -37,7 +37,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Increase credential cache timeout',
-        description: 'Increase the cache time for using your credentials from Keychain - 1 month (Git required)',
+        description: 'Increase the cache time for using your credentials from Keychain - 1 month',
         group: 'git',
         openUrl: () => `open https://git-scm.com/docs/git-credential-cache`,
         commands: () => [
@@ -49,7 +49,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Auto Setup Remote',
-        description: 'Automatically setup remote tracking branches on git push (Git required)',
+        description: 'Automatically setup remote tracking branches on git push',
         group: 'git',
         tags: ['productivity'],
         openUrl: () => `open https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote`,
