@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import { inquirer } from '@common/inquirer'
 import type {
     Item,
@@ -34,7 +35,7 @@ const BUILD_CHOICES_LIST = (tags: ITag[]): Item<IAppSetup>[] => {
 
     const choices: Item<IAppSetup>[] = Object.entries(groups).flatMap(([groupName, group]) => {
         const value = group.map((app) => {
-            const { name, default: initial, description, tags = [], paid } = app
+            const { name, default: initial, description, tags = [], paid, deps } = app
             const checked = () => {
                 if (dropPaid && paid) {
                     return false
@@ -43,8 +44,12 @@ const BUILD_CHOICES_LIST = (tags: ITag[]): Item<IAppSetup>[] => {
                 return initial || tags.some((tag) => tagsMap[tag])
             }
 
+            const parsedDescription = description ? ` - ${description}` : ''
+            const parsedDeps = deps ? chalk.red(` (${deps.join(', ')} Required)`) : ''
+            const parsedPaid = paid ? ` - ${chalk.bgRed('Paid')}` : ''
+
             return {
-                name: `${name}${description ? ` - ${description}` : ''}`,
+                name: `${name}${parsedDescription}${parsedDeps}${parsedPaid}`,
                 checked: checked(),
                 value: app,
             } as Item<IAppSetup>

@@ -4,7 +4,7 @@ import { BREW_CASK, BREW_HOME, OPEN_APP_STORE_APP_LINK } from '../common-command
 export const SECURITY_PRIVACY: Readonly<IAppSetup[]> = [
     {
         name: 'Unplug Alarm',
-        description: 'Protect your device from theft (paid)',
+        description: 'Protect your device from theft',
         group: 'security-privacy',
         paid: true,
         openUrl: () => `open https://unplugalarm.app/`,
@@ -12,7 +12,7 @@ export const SECURITY_PRIVACY: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Radio Silence',
-        description: 'Firewall to detect and block any application from accessing the internet (paid)',
+        description: 'Firewall to detect and block any application from accessing the internet',
         group: 'security-privacy',
         paid: true,
         openUrl: () => BREW_HOME('radio-silence', true),

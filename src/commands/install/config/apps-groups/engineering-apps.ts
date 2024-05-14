@@ -4,7 +4,7 @@ import { BREW_CASK, BREW_HOME } from '../common-commands'
 export const ENGINEERING_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Mongodb Compass',
-        description: 'MongoDB GUI, MongoDB is required',
+        description: 'MongoDB GUI',
         group: 'engineering-apps',
         tags: ['engineering'],
         openUrl: () => BREW_HOME('mongodb-compass', true),
@@ -12,7 +12,7 @@ export const ENGINEERING_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'Another Redis Desktop Manager',
-        description: 'Redis GUI, Redis is required (password needed)',
+        description: 'Redis GUI (password needed)',
         group: 'engineering-apps',
         tags: ['engineering'],
         openUrl: () => BREW_HOME('another-redis-desktop-manager', true),
