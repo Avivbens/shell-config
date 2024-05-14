@@ -135,13 +135,17 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
             specialKeysHandler = () => {},
         } = config
 
-        const limitedPageSize = Math.min(WINDOW_HIGHT() - 10, pageSize)
-
         const theme = makeTheme<CheckboxTheme>(checkboxTheme, config.theme)
         const prefix = usePrefix({ theme })
         const firstRender = useRef(true)
         const [status, setStatus] = useState<'pending' | 'done'>('pending')
         const [items, setItems] = useState<ReadonlyArray<Item<Value>>>(choices.map((choice) => ({ ...choice })))
+
+        /**
+         * Calculated values
+         */
+        const allInstructions = additionalInstructions(theme).concat(DEFAULT_TOP_KEYS(theme))
+        const limitedPageSize = Math.floor(Math.min(WINDOW_HIGHT() - 7 - allInstructions.length / 2, pageSize))
 
         const bounds = useMemo(() => {
             const first = items.findIndex(isSelectable)
@@ -273,7 +277,7 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
             active,
             renderItem({ item, isActive }: { item: Item<Value>; isActive: boolean }) {
                 if (Separator.isSeparator(item)) {
-                    return ` ${item.separator}`
+                    return theme.style.help(chalk.black(chalk.bgWhite(`\n ${item.separator} `)))
                 }
 
                 const line = item.name || item.value
@@ -307,11 +311,21 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
         /**
          * Handle help tip
          */
-        const shouldShowINstructions =
+        const shouldShowInstructions =
             theme.helpMode === 'always' || (theme.helpMode === 'auto' && showHelpTip && instructions)
 
-        const allInstructions = additionalInstructions(theme).concat(DEFAULT_TOP_KEYS(theme))
-        const helpTipTop = !shouldShowINstructions ? '' : `Press ${allInstructions.join(', ')}`
+        const allInstructionsPairs: string[][] = allInstructions.reduce((acc, curr, i) => {
+            if (i % 2 === 0) {
+                acc.push(allInstructions.slice(i, i + 2))
+            }
+
+            return acc
+        }, [])
+
+        const helpTipTop = !shouldShowInstructions
+            ? ''
+            : `Press ${allInstructionsPairs.map((pair) => pair.join(', ')).join('\n')}`
+
         const helpTipTopBox = boxen(helpTipTop, {
             padding: 1,
             margin: 1,
@@ -326,7 +340,7 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
         })
 
         let helpTipBottom = ''
-        if (shouldShowINstructions || (items.length > limitedPageSize && firstRender.current)) {
+        if (shouldShowInstructions || (items.length > limitedPageSize && firstRender.current)) {
             helpTipBottom = `\n${theme.style.help('(Use arrow keys to reveal more choices)')}`
             firstRender.current = false
         }
@@ -337,6 +351,6 @@ export const SELECT_PROMPT_RENDERER = createPrompt(
          */
         const error = !errorMsg ? '' : `\n${theme.style.error(errorMsg)}`
 
-        return `${prefix} ${parsedMessage}${helpTipTopBox}${page}${helpTipBottom}${error}${ansiEscapes.cursorHide}`
+        return `${prefix} ${parsedMessage}${shouldShowInstructions ? helpTipTopBox : ''}${page}${helpTipBottom}${error}${ansiEscapes.cursorHide}`
     },
 )
