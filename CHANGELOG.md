@@ -1,3 +1,10 @@
+## [2.18.7](https://github.com/Avivbens/shell-config/compare/v2.18.6...v2.18.7) (2024-05-15)
+
+
+### Bug Fixes
+
+* **apps:** support `TL;DR`, fix `mcfly` view home ([a562edb](https://github.com/Avivbens/shell-config/commit/a562edb992930e037383e1698e8c989d232d16af))
+
 ## [2.18.6](https://github.com/Avivbens/shell-config/compare/v2.18.5...v2.18.6) (2024-05-14)
 
 
