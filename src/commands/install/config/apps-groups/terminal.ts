@@ -23,9 +23,17 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         description: 'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
         tags: ['productivity'],
-        openUrl: () => BREW_HOME('cantino/mcfly/mcfly'),
+        openUrl: () => BREW_HOME('mcfly'),
         commands: () => [BREW_INSTALL('mcfly')],
         fallbackCommands: () => [BROW_INSTALL('mcfly')],
+    },
+    {
+        name: 'TL;DR',
+        description: 'Simplified and community-driven man pages',
+        group: 'terminal',
+        tags: ['productivity'],
+        openUrl: () => BREW_HOME('tldr'),
+        commands: () => [BREW_INSTALL('tldr')],
     },
     {
         name: 'Bat',
