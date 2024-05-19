@@ -35,6 +35,26 @@ function performance_mark() {
     fi
 }
 
+# Usage: wait_for_input "key"
+# Usage: wait_for_input "key" "custom message to display"
+function wait_for_input() {
+    local TRIGGER_KEY=$1
+    local CUSTOM_MESSAGE=$2
+    local MESSAGE="Press $TRIGGER_KEY to continue ✨"
+
+    if [ -n "$CUSTOM_MESSAGE" ]; then
+        MESSAGE=$CUSTOM_MESSAGE
+    fi
+
+    printf "\x1b[31m$MESSAGE\x1b[0m\n"
+
+    while read line; do
+        if [[ "$line" == $TRIGGER_KEY ]]; then
+            break
+        fi
+    done
+}
+
 function sourceIf() {
     if [ -f "$1" ]; then
         source $1
