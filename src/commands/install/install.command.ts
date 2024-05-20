@@ -62,11 +62,15 @@ export class InstallCommand extends CommandRunner {
 
         try {
             const tags = await USER_TAGS_PROMPT()
+            this.logger.debug(`Selected tags: ${tags.join(', ')}`)
+
             const tagsWithDeps: ITag[] = tags.flatMap((tag) => {
                 const deps: ITag[] = TAGS_DEPS[tag] ?? []
                 return [tag, ...deps]
             })
             const uniqueTags = [...new Set(tagsWithDeps)]
+
+            this.logger.debug(`Unique tags: ${uniqueTags.join(', ')}`)
 
             const toInstall = await MULTI_SELECT_APPS_PROMPT_V2(uniqueTags)
 
@@ -406,7 +410,7 @@ export class InstallCommand extends CommandRunner {
 
                     await execPromise(command).catch((err) => {
                         this.logger.debug(
-                            `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
+                            `Error installApp2 app: ${name}, command failed: ${command}, error: ${err.stack}`,
                         )
 
                         this.processInstallError(err)
@@ -431,7 +435,7 @@ export class InstallCommand extends CommandRunner {
 
                     await execPromise(command).catch((err) => {
                         this.logger.debug(
-                            `Error installApp app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
+                            `Error installApp2 app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
                         )
 
                         this.processInstallError(err)
@@ -446,7 +450,7 @@ export class InstallCommand extends CommandRunner {
             const successMsg = `Installed ${name}`
             this.logger.debug(successMsg)
         } catch (error) {
-            this.logger.debug(`Error installApp2 app: ${name}, error: ${error.message}`)
+            this.logger.debug(`Error installApp2 root - app: ${name}, error: ${error.message}`)
             throw error
         }
     }

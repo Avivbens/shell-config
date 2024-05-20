@@ -15,7 +15,9 @@ describe('UpdateCommand', () => {
                 loggerMockCreator(UpdateCommand.name),
                 {
                     provide: CheckUpdateService,
-                    useValue: {},
+                    useValue: {
+                        checkForUpdates: jest.fn(),
+                    },
                 },
             ],
         }).compile()

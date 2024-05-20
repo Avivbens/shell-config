@@ -6,6 +6,11 @@ export TERMINAL_INSTANCE_ID=$(date +%s)
 
 source "$HOME/shell-config/zsh/.utils.sh"
 
+
+# compinit and completions
+autoload -Uz compinit
+compinit
+
 # Homebrew paths
 BROW="/usr/local/Homebrew/bin/brew"
 BREW="/opt/homebrew/bin/brew"
@@ -33,12 +38,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # ----- shell-config -----
 export PATH="$HOME/shell-config/executable:$PATH"
-source <(shell-config completion-script)
-
-function grant_permissions() {
-    sudo chown -R "$USER":admin "$1"
-    chmod -R 770 "$1"
-}
+cache_completion "shell-config completion-script" "shell-config" 120
 
 function shell-doctor() {
     chmod -R 755 $(compaudit)
@@ -64,22 +64,19 @@ if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; the
 fi
 
 # check for shell-config updates once in 10 times
-silent_background() {
-    { "$@" 2>&3 & } 3>&2 2>/dev/null
-    disown &>/dev/null # Prevent whine if job has already completed
-}
 if [ $((RANDOM % 10)) -eq 0 ]; then
     silent_background shell-config update -m
 fi
 # ----- shell-config -----
 
-# if google-cloud-sdk installed manually via download
-sourceIf "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"
-sourceIf "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"
 
 # if google-cloud-sdk installed via Homebrew
 sourceIf "$BREW_PERFIX/share/google-cloud-sdk/path.zsh.inc"
 sourceIf "$BREW_PERFIX/share/google-cloud-sdk/completion.zsh.inc"
+
+# if google-cloud-sdk installed via Homebrew legacy
+sourceIf "$BROW_PERFIX/share/google-cloud-sdk/path.zsh.inc"
+sourceIf "$BROW_PERFIX/share/google-cloud-sdk/completion.zsh.inc"
 
 # Autosuggest
 sourceIf "$BREW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -89,19 +86,11 @@ sourceIf "$BROW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # only if zsh-completions installed via Homebrew
 if [ -f "$BREW_PERFIX/share/zsh-completions" ]; then
     FPATH="$BREW_PERFIX/share/zsh-completions:$FPATH"
-    # load compinit as a function on an exported path to avoid overlapping with other compinit commands
-    autoload -Uz compinit
-    # toggle ON completions with tab key
-    compinit
 fi
 
 # only if zsh-completions installed via legacy Homebrew
 if [ -f "$BROW_PERFIX/share/zsh-completions" ]; then
     FPATH=$BROW_PERFIX/share/zsh-completions:$FPATH
-    # load compinit as a function on an exported path to avoid overlapping with other compinit commands
-    autoload -Uz compinit
-    # toggle ON completions with tab key
-    compinit
 fi
 
 # Colored correct code
@@ -151,11 +140,6 @@ function killport() {
 # add ls after cd
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls; }
-
-# github-copilot-cli alias setup
-if command -v github-copilot-cli &>/dev/null; then
-    eval "$(github-copilot-cli alias -- "$0")"
-fi
 
 # sync
 alias reload="exec /bin/zsh"

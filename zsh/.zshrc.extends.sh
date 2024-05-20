@@ -2,8 +2,6 @@
 
 echo "extends loaded"
 
-source "$HOME/shell-config/zsh/.utils.sh"
-
 function get_all_enabled_files() {
     find "$1" -type f -not -name "*.disabled" -print0 | xargs -0 -I {} basename {} | tr '\n' ' '
 }

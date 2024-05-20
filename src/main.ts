@@ -1,16 +1,16 @@
 import { CommandFactory } from 'nest-commander'
-import packageJson from '../package.json'
+import { BASE_PATH, PACKAGE_VERSION } from '@common/constants'
 import { AppModule } from './app.module'
 
 ;(async () => {
     const cliCommand = 'shell-config'
-    const cliExecutable = '$HOME/shell-config/executable/shell-config'
+    const cliExecutable = `${BASE_PATH}/executable/shell-config`
 
     const app = await CommandFactory.createWithoutRunning(AppModule, {
         errorHandler: (err) => {
             process.exit(1)
         },
-        version: packageJson.version,
+        version: PACKAGE_VERSION,
         completion: {
             cmd: cliCommand,
             fig: false,

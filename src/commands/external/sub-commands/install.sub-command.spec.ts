@@ -15,7 +15,7 @@ describe('InstallSubCommand', () => {
                 loggerMockCreator(InstallSubCommand.name),
                 {
                     provide: CheckUpdateService,
-                    useValue: { checkUpdate: jest.fn() },
+                    useValue: { checkForUpdates: jest.fn() },
                 },
             ],
         }).compile()
