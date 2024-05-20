@@ -34,6 +34,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         tags: ['productivity'],
         openUrl: () => BREW_HOME('tldr'),
         commands: () => [BREW_INSTALL('tldr')],
+        fallbackCommands: () => [BROW_INSTALL('tldr')],
     },
     {
         name: 'Bat',
@@ -42,6 +43,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         tags: ['productivity'],
         openUrl: () => BREW_HOME('bat'),
         commands: () => [BREW_INSTALL('bat')],
+        fallbackCommands: () => [BROW_INSTALL('bat')],
     },
     {
         name: 'Zoxide',
@@ -50,6 +52,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         tags: ['productivity'],
         openUrl: () => BREW_HOME('zoxide'),
         commands: () => [BREW_INSTALL('zoxide')],
+        fallbackCommands: () => [BROW_INSTALL('zoxide')],
     },
     {
         name: 'ZSH Terminal Syntax Highlighting',

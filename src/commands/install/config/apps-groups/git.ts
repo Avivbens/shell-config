@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_HOME, BREW_INSTALL } from '../common-commands'
+import { BREW_HOME, BREW_INSTALL, BROW_INSTALL } from '../common-commands'
 
 export const GIT_APPS: Readonly<IAppSetup[]> = [
     {
@@ -9,6 +9,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         tags: ['engineering'],
         openUrl: () => BREW_HOME('git'),
         commands: () => [BREW_INSTALL('git')],
+        fallbackCommands: () => [BROW_INSTALL('git')],
     },
     {
         name: 'VSCode as rebase editor',
