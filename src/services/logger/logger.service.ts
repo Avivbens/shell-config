@@ -1,5 +1,5 @@
 import { appendFile } from 'node:fs/promises'
-import { BASE_PATH, BOOTSTRAP_UUID } from '@common/constants'
+import { BASE_PATH, BOOTSTRAP_UUID, PACKAGE_VERSION } from '@common/constants'
 import { execPromise } from '@common/utils'
 import { Injectable, Scope } from '@nestjs/common'
 import { COLORS_CONFIG, Color } from './logger.config'
@@ -46,7 +46,7 @@ export class LoggerService {
     }
 
     private generateMessage(message: string): string {
-        return `INSTANCE: ${BOOTSTRAP_UUID} | ${new Date().toLocaleString()} |${this.context}${message}`
+        return `INSTANCE: ${BOOTSTRAP_UUID} | version: ${PACKAGE_VERSION} | ${new Date().toLocaleString()} | ${this.context}${message}`
     }
 
     public setContext(context: string) {

@@ -1,11 +1,10 @@
 import boxen from 'boxen'
 import { lastValueFrom } from 'rxjs'
 import { clean, lt } from 'semver'
-import { GITHUB_RELEASES_API_URL } from '@common/constants'
+import { GITHUB_RELEASES_API_URL, PACKAGE_VERSION } from '@common/constants'
 import type { IReleasesAPIRes } from '@models/releases-api.model'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
-import packageJson from '../../package.json'
 import { InjectLogger } from './logger'
 import { LoggerService } from './logger/logger.service'
 
@@ -24,7 +23,7 @@ export class CheckUpdateService {
 
             const { tag_name: latest } = latestMajorRelease
             const { tag_name: latestOfAll } = latestOfAllReleases
-            const { version: currentVersion } = packageJson
+            const currentVersion = PACKAGE_VERSION
 
             const isCurrentVersionBeta: boolean = currentVersion.includes('-beta')
 
