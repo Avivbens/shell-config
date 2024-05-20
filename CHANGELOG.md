@@ -1,3 +1,13 @@
+## [2.18.8](https://github.com/Avivbens/shell-config/compare/v2.18.7...v2.18.8) (2024-05-20)
+
+
+### Bug Fixes
+
+* **apps:** fallback commands for terminal apps 🔨 ([6cb252e](https://github.com/Avivbens/shell-config/commit/6cb252ecdc7f02ca2a1be3129ab8d04addefd00f))
+* **logs:** better logs, including package version ([1ea92c2](https://github.com/Avivbens/shell-config/commit/1ea92c239d96f4e3cf24b8ce1b2fbb9610d7044b))
+* **utils:** support `wait_for_input` ([8780aea](https://github.com/Avivbens/shell-config/commit/8780aeaa528ab2c1ba94fc72e6b9ea2d23b1c09c))
+* **zsh:** reduce bootstrap time `~2100` => `~1600` 🚀 ([fb46ee4](https://github.com/Avivbens/shell-config/commit/fb46ee44880248b1484f6f403c777be8fb1e10fb))
+
 ## [2.18.7](https://github.com/Avivbens/shell-config/compare/v2.18.6...v2.18.7) (2024-05-15)
 
 
