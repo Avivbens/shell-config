@@ -19,4 +19,5 @@ function ngrxcreate() {
 # Load Angular CLI autocompletion.
 if command -v ng &>/dev/null; then
     source <(ng completion script)
+    cache_completion "ng completion script" "angular" 120
 fi
