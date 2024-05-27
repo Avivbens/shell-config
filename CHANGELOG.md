@@ -1,3 +1,11 @@
+## [2.18.9](https://github.com/Avivbens/shell-config/compare/v2.18.8...v2.18.9) (2024-05-27)
+
+
+### Bug Fixes
+
+* **git:** better git addons, `Disable SSL` and use `osxkeychain` for creds ([4cad547](https://github.com/Avivbens/shell-config/commit/4cad547608731801b2498c24817a1e5a8adf02a9))
+* **node:** support `package_name` command for getting currnet WD package name ✨ ([4e7d5db](https://github.com/Avivbens/shell-config/commit/4e7d5dbe8b21cfc67e0f53cfe4a60eaad1604766))
+
 ## [2.18.8](https://github.com/Avivbens/shell-config/compare/v2.18.7...v2.18.8) (2024-05-20)
 
 
