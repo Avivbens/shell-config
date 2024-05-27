@@ -37,14 +37,26 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         deps: ['Git'],
     },
     {
-        name: 'Increase credential cache timeout',
-        description: 'Increase the cache time for using your credentials from Keychain - 1 month',
+        name: 'MacOS Keychain store credentials for HTTPS remotes',
+        description: 'Use macOS Keychain to store credentials',
         group: 'git',
-        openUrl: () => `open https://git-scm.com/docs/git-credential-cache`,
+        openUrl: () => `open https://git-scm.com/docs/gitcredentials`,
         commands: () => [
             // avoid lock for other `git config` options
             'sleep 2',
-            `git config --global credential.helper 'cache --timeout 2592000'`,
+            `git config --global credential.helper osxkeychain`,
+        ],
+        deps: ['Git'],
+    },
+    {
+        name: 'Disable SSL',
+        description: 'Disable SSL for Git operations',
+        group: 'git',
+        openUrl: () => `open https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpsslVerify`,
+        commands: () => [
+            // avoid lock for other `git config` options
+            'sleep 3',
+            `git config http.sslVerify "false"`,
         ],
         deps: ['Git'],
     },
@@ -56,7 +68,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         openUrl: () => `open https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote`,
         commands: () => [
             // avoid lock for other `git config` options
-            'sleep 3',
+            'sleep 4',
             `git config --global --bool push.autoSetupRemote true`,
         ],
         deps: ['Git'],
