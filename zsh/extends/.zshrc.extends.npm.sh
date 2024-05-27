@@ -5,6 +5,13 @@ alias nsd="npm run start:dev"
 alias nb="npm run build"
 alias nt="npm run test"
 alias nte="npm run test:e2e"
+
+# Get current working directory package name
+function package_name () {
+    cat package.json | jq '.name' | pbcopy
+}
+
+# Clear all node_modules and reinstall
 function cnodem() {
     npm ci --only=prod
     npm ci
