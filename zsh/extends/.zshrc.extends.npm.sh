@@ -8,7 +8,7 @@ alias nte="npm run test:e2e"
 
 # Get & copy current working directory package name
 function package_name() {
-    local packageName=$(cat package.json | jq '.name')
+    local packageName=$(cat package.json | jq -r '.name')
 
     echo $packageName | pbcopy
     echo $packageName
