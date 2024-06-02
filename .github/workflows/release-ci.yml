@@ -58,6 +58,10 @@ jobs:
             - name: 🖥️ Setup Env
               uses: ./.github/workflows/install
 
+            # -------------------------
+            # Check next version
+            # -------------------------
+
             - name: 🆚 Extract Next Release Version
               id: extract-version
               run: |
@@ -70,6 +74,10 @@ jobs:
                   echo "version=$NEXT_VERSION" >> $GITHUB_OUTPUT
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+            # -------------------------
+            # Bail out if no version
+            # -------------------------
 
             - name: 🔨 Build Package
               if: steps.extract-version.outputs.version != ''
