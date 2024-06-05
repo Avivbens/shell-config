@@ -149,6 +149,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('rocket')],
     },
     {
+        name: 'Macs Fan Control',
+        description: 'Control fan speed and monitor temperatures',
+        group: 'apps',
+        openUrl: () => BREW_HOME('macs-fan-control', true),
+        commands: () => [BREW_CASK('macs-fan-control')],
+        fallbackCommands: () => [BROW_CASK('macs-fan-control')],
+    },
+    {
         name: 'TinkerTool',
         description: 'Access hidden system settings on macOS',
         group: 'apps',
