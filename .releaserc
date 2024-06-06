@@ -20,6 +20,12 @@
             }
         ],
         [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": "npm run pack ${nextRelease.version}"
+            }
+        ],
+        [
             "@semantic-release/git",
             {
                 "assets": [
@@ -35,7 +41,7 @@
             {
                 "assets": [
                     {
-                        "path": "./pack.zip",
+                        "path": "dist/cli.zip",
                         "label": "cli-v${nextRelease.version}.zip",
                         "name": "cli-v${nextRelease.version}.zip"
                     }
