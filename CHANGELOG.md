@@ -1,3 +1,14 @@
+## [2.18.10](https://github.com/Avivbens/shell-config/compare/v2.18.9...v2.18.10) (2024-06-06)
+
+
+### Bug Fixes
+
+* **apps:** `BetterSnapTool` => `BetterTouchTool`, support `AlDente` ([ecb63a1](https://github.com/Avivbens/shell-config/commit/ecb63a1d0dddc3ef58f2fe8539e8195ed4c2e98a))
+* **apps:** support `Macs Fan Control` 🚀 ([3760b99](https://github.com/Avivbens/shell-config/commit/3760b9913501d3e86d9d7a3a4b106601a0f48a92))
+* **node:** `package_name` command also return package name & copy it ([12bd953](https://github.com/Avivbens/shell-config/commit/12bd953b3fb38d558ab162b567aa7d2440df3f4e))
+* **node:** `package_name` raw output ([87972a3](https://github.com/Avivbens/shell-config/commit/87972a3c049481066e4ba141540da57accc16277))
+* **redis:** call `redis-server` directly ([bbcf027](https://github.com/Avivbens/shell-config/commit/bbcf0275ae1b8dcad77612ade1fd89e1b1b6c898))
+
 ## [2.18.9](https://github.com/Avivbens/shell-config/compare/v2.18.8...v2.18.9) (2024-05-27)
 
 
