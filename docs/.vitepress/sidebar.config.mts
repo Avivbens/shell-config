@@ -9,19 +9,19 @@ export const SIDEBAR: DefaultTheme.Sidebar = [
         items: [
             {
                 text: 'Install',
-                link: '/install.md',
+                link: '/install',
             },
             {
                 text: 'Shell',
-                link: '/shell.md',
+                link: '/shell',
             },
             {
                 text: 'Assets',
-                link: '/assets.md',
+                link: '/assets',
             },
             {
                 text: 'Update',
-                link: '/update.md',
+                link: '/update',
             },
         ],
     },
@@ -33,11 +33,11 @@ export const SIDEBAR: DefaultTheme.Sidebar = [
         items: [
             {
                 text: 'Permissions',
-                link: '/permissions.md',
+                link: '/permissions',
             },
             {
                 text: 'Not Found',
-                link: '/not-found.md',
+                link: '/not-found',
             },
         ],
     },

@@ -13,7 +13,7 @@
     "homepage": "https://github.com/Avivbens/shell-config#readme",
     "scripts": {
         "build": "nest build",
-        "pack": "./project-scripts/pack.sh",
+        "pack": "./project-scripts/pack.js",
         "pack-local": "./project-scripts/pack-local.sh",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "lint": "eslint",

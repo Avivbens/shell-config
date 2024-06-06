@@ -6,9 +6,12 @@ alias nb="npm run build"
 alias nt="npm run test"
 alias nte="npm run test:e2e"
 
-# Get current working directory package name
-function package_name () {
-    cat package.json | jq '.name' | pbcopy
+# Get & copy current working directory package name
+function package_name() {
+    local packageName=$(cat package.json | jq -r '.name')
+
+    echo $packageName | pbcopy
+    echo $packageName
 }
 
 # Clear all node_modules and reinstall
