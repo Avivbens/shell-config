@@ -1,3 +1,10 @@
+## [2.18.11](https://github.com/Avivbens/shell-config/compare/v2.18.10...v2.18.11) (2024-06-06)
+
+
+### Bug Fixes
+
+* reduce compression of zip file, fix CI pack ([e4b5b56](https://github.com/Avivbens/shell-config/commit/e4b5b56c992bd9a161ed4dc320e86332a50fd4db))
+
 ## [2.18.10](https://github.com/Avivbens/shell-config/compare/v2.18.9...v2.18.10) (2024-06-06)
 
 
