@@ -1,3 +1,3 @@
-npm run pack
+npm run pack $(jq -r .version package.json)
 
-cp -f ./dist/cli-v* ./executable/shell-config
+cp -f ./bin/cli-v* ./executable/shell-config

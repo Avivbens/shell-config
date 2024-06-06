@@ -41,7 +41,7 @@
             {
                 "assets": [
                     {
-                        "path": "dist/cli.zip",
+                        "path": "bin/cli.zip",
                         "label": "cli-v${nextRelease.version}.zip",
                         "name": "cli-v${nextRelease.version}.zip"
                     }

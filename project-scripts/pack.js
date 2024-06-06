@@ -119,14 +119,13 @@ async function writeWorkflowPackageJson(
          * Pack
         */
         console.log('Packing...')
-        await execPromise(`pkg . --output "dist/cli-v${targetVersion}"`)
+        await execPromise(`pkg . --output "bin/cli-v${targetVersion}"`)
 
         /**
          * ZIP
         */
         console.log('Zipping...')
-        // await execPromise(`zip -9 dist/cli.zip dist/cli-v${targetVersion}`)
-        await execPromise(`cd dist && zip -9 -r "cli.zip" ./cli-v${targetVersion}`)
+        await execPromise(`zip -r "./bin/cli.zip" ./bin/cli-v${targetVersion}`)
     } catch (error) {
         console.error(`Error: ${error.stack}`)
     }
