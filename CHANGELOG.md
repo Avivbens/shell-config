@@ -1,3 +1,10 @@
+## [2.18.12](https://github.com/Avivbens/shell-config/compare/v2.18.11...v2.18.12) (2024-06-07)
+
+
+### Bug Fixes
+
+* remove deprecated npm libs ([1f442c7](https://github.com/Avivbens/shell-config/commit/1f442c7d9fb5914cc41c79e6a11632b7c6404e3d))
+
 ## [2.18.11](https://github.com/Avivbens/shell-config/compare/v2.18.10...v2.18.11) (2024-06-06)
 
 
