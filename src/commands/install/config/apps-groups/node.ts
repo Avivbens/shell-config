@@ -101,18 +101,6 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('ttab')],
     },
     {
-        name: 'alfred-open-whatsapp',
-        group: 'node',
-        openUrl: () => NPM_HOME('alfred-open-whatsapp'),
-        commands: () => [NODE_GLOBAL('alfred-open-whatsapp')],
-    },
-    {
-        name: 'alfred-search-bookmark',
-        group: 'node',
-        openUrl: () => NPM_HOME('alfred-search-bookmark'),
-        commands: () => [NODE_GLOBAL('alfred-search-bookmark')],
-    },
-    {
         name: 'gulp-cli',
         group: 'node',
         openUrl: () => NPM_HOME('gulp-cli'),
