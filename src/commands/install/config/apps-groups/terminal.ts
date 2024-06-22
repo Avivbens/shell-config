@@ -28,6 +28,15 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('mcfly')],
     },
     {
+        name: 'Fd',
+        description: 'A simple, fast and user-friendly alternative to find',
+        group: 'terminal',
+        tags: ['productivity'],
+        openUrl: () => BREW_HOME('fd'),
+        commands: () => [BREW_INSTALL('fd')],
+        fallbackCommands: () => [BROW_INSTALL('fd')],
+    },
+    {
         name: 'TL;DR',
         description: 'Simplified and community-driven man pages',
         group: 'terminal',
