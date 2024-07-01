@@ -15,8 +15,16 @@ export const IDES: Readonly<IAppSetup[]> = [
         tags: ['web-engineering', 'node-engineering'],
         paid: true,
         openUrl: () => BREW_HOME('webstorm', true),
-        commands: () => [BROW_CASK('webstorm')],
-        fallbackCommands: () => [BREW_CASK('webstorm')],
+        commands: () => [BREW_CASK('webstorm')],
+        fallbackCommands: () => [BROW_CASK('webstorm')],
+    },
+    {
+        name: 'IntelliJ IDEA Ultimate',
+        group: 'IDEs',
+        paid: true,
+        openUrl: () => BREW_HOME('intellij-idea', true),
+        commands: () => [BREW_CASK('intellij-idea')],
+        fallbackCommands: () => [BROW_CASK('intellij-idea')],
     },
     {
         name: 'Pycharm',
@@ -25,7 +33,7 @@ export const IDES: Readonly<IAppSetup[]> = [
         description: 'Python IDE',
         paid: true,
         openUrl: () => BREW_HOME('pycharm', true),
-        commands: () => [BROW_CASK('pycharm')],
-        fallbackCommands: () => [BREW_CASK('pycharm')],
+        commands: () => [BREW_CASK('pycharm')],
+        fallbackCommands: () => [BROW_CASK('pycharm')],
     },
 ]
