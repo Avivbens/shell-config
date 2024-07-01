@@ -1,3 +1,12 @@
+## [2.18.13](https://github.com/Avivbens/shell-config/compare/v2.18.12...v2.18.13) (2024-07-01)
+
+
+### Bug Fixes
+
+* **apps:** add `fd` tool ([46b1fa9](https://github.com/Avivbens/shell-config/commit/46b1fa99f6b3cdbdca2d6817213dbc5e801832f3))
+* **git:** setup disable SSL commmand as global ([a0966a3](https://github.com/Avivbens/shell-config/commit/a0966a3472e14fd2a002b9ccdd29913e09c16e7f))
+* **ides:** add `IntelliJ IDEA`, set all IntelliJ IDEs to be by default with `brew` ([2d22549](https://github.com/Avivbens/shell-config/commit/2d2254942ef077947274c61f886026811431dd5b))
+
 ## [2.18.12](https://github.com/Avivbens/shell-config/compare/v2.18.11...v2.18.12) (2024-06-07)
 
 
