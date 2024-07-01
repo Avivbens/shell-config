@@ -56,7 +56,7 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         commands: () => [
             // avoid lock for other `git config` options
             'sleep 3',
-            `git config http.sslVerify "false"`,
+            `git config --global http.sslVerify "false"`,
         ],
         deps: ['Git'],
     },
