@@ -11,6 +11,13 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('downie')],
     },
     {
+        name: 'IINA',
+        group: 'media',
+        description: 'Open-source modern video player for macOS',
+        openUrl: () => BREW_HOME('iina', true),
+        commands: () => [BREW_CASK('iina')],
+    },
+    {
         name: 'VLC',
         group: 'media',
         description: 'Open-source multimedia player',
