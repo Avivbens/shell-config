@@ -1,3 +1,12 @@
+## [2.18.14](https://github.com/Avivbens/shell-config/compare/v2.18.13...v2.18.14) (2024-07-24)
+
+
+### Bug Fixes
+
+* **apps:** add `IINA` and `Folder Hub` ([b591e32](https://github.com/Avivbens/shell-config/commit/b591e328c1bf0e51a760be97ac169137e32e2c49))
+* **git:** remove autoSetupRemote from git extends - can be set up via `shell-config install` ([aac7884](https://github.com/Avivbens/shell-config/commit/aac78844d866f1f60bf680f499f5546420a5ef3a))
+* **redis:** return to original directory after using redis-server ([40ade8e](https://github.com/Avivbens/shell-config/commit/40ade8ef1df1e03f8802b44a9faef1c30512fc2a))
+
 ## [2.18.13](https://github.com/Avivbens/shell-config/compare/v2.18.12...v2.18.13) (2024-07-01)
 
 
