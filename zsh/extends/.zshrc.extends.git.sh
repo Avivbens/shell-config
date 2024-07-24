@@ -112,8 +112,6 @@ function clonets() {
 # remove all local branches but the master & staging
 alias grab="git branch | egrep -v 'master|staging' | xargs git branch -D"
 
-git config --global push.autoSetupRemote true
-
 # show current email config
 echo "\nCurrent git email config:"
 git config --global -l | grep 'email'

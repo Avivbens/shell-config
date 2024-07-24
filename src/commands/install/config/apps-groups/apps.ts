@@ -165,6 +165,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [OPEN_BROWSER_LINK('https://www.bresink.com/osx/0TinkerTool/download.php')],
     },
     {
+        name: 'Folder Hub',
+        description: 'Quickly access your favorite folders from the Notch Bar',
+        group: 'apps',
+        tags: ['super-user'],
+        openUrl: () => `open https://www.finderhub.app/`,
+        commands: () => [OPEN_APP_STORE_APP_LINK('folder-hub-file-browser/id6473019059')],
+    },
+    {
         name: 'Dropover',
         description: 'Drag and drop files between apps with quick actions',
         group: 'apps',
