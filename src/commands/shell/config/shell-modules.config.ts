@@ -32,6 +32,11 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'NPM aliases and functions',
     },
     {
+        name: 'Network',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.network.sh`,
+        description: 'Network helpers',
+    },
+    {
         name: 'Nest',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.nest.sh`,
         description: 'NestJS aliases',
