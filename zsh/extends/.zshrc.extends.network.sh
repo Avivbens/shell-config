@@ -18,3 +18,4 @@ function netconnect() {
 }
 
 alias netinfo="networksetup -getinfo "Wi-Fi""
+alias pubip="curl -s http://whatismyip.akamai.com"
