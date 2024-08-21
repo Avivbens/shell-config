@@ -1,3 +1,11 @@
+## [2.18.15](https://github.com/Avivbens/shell-config/compare/v2.18.14...v2.18.15) (2024-08-21)
+
+
+### Bug Fixes
+
+* add `pubip` command - find your public IP ([b284e62](https://github.com/Avivbens/shell-config/commit/b284e627d376c7594f1ecff0899e176320fbc866))
+* support network shell module ([32dccbf](https://github.com/Avivbens/shell-config/commit/32dccbf1310acfd525da10dbacbc1937f93ee6bf))
+
 ## [2.18.14](https://github.com/Avivbens/shell-config/compare/v2.18.13...v2.18.14) (2024-07-24)
 
 
