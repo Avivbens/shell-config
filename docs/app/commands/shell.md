@@ -32,6 +32,7 @@ Enable / disable the modules according to your preferences, by using the arrow k
 -   [GitHub CLI](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.github.sh)
 -   [VSCode](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.vscode.sh)
 -   [Npm](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.npm.sh)
+-   [Network](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.network.sh)
 -   [Angular](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.angular.sh)
 -   [MongoDB](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.mongo.sh)
 -   [Python](https://github.com/Avivbens/shell-config/tree/HEAD/zsh/extends/.zshrc.extends.python.sh)
