@@ -1,3 +1,10 @@
+## [2.18.16](https://github.com/Avivbens/shell-config/compare/v2.18.15...v2.18.16) (2024-11-06)
+
+
+### Bug Fixes
+
+* add `yt-dlp` tool ([bbc9167](https://github.com/Avivbens/shell-config/commit/bbc916737791e06d203f2fd1803d43147552aaa0))
+
 ## [2.18.15](https://github.com/Avivbens/shell-config/compare/v2.18.14...v2.18.15) (2024-08-21)
 
 
