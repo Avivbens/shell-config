@@ -18,6 +18,13 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('iina')],
     },
     {
+        name: 'YT-DLP',
+        group: 'media',
+        description: 'CLI tool for audio/video downloading, with support for fragmented DASH streams',
+        openUrl: () => BREW_HOME('yt-dlp'),
+        commands: () => [BREW_CASK('yt-dlp')],
+    },
+    {
         name: 'VLC',
         group: 'media',
         description: 'Open-source multimedia player',
