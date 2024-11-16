@@ -1,3 +1,10 @@
+## [2.18.17](https://github.com/Avivbens/shell-config/compare/v2.18.16...v2.18.17) (2024-11-16)
+
+
+### Bug Fixes
+
+* support `cd` history, use `dirs -v` ([bdc37bc](https://github.com/Avivbens/shell-config/commit/bdc37bc5e1a52b7e4559fca187faa0d3594139e4))
+
 ## [2.18.16](https://github.com/Avivbens/shell-config/compare/v2.18.15...v2.18.16) (2024-11-06)
 
 
