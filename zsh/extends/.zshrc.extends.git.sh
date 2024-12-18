@@ -21,6 +21,9 @@ alias gf="git fetch"
 alias gr="git rebase"
 alias gunlast="git reset --soft HEAD~1"
 
+alias gss="git stash"
+alias gsp="git stash pop"
+
 # setup less to fit with git log, in order to search and see the hash of the commit
 # set the number of padding lines to 15
 export LESS="-FXRSj15"
