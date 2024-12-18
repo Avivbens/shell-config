@@ -84,9 +84,17 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         name: 'DPDM',
         description: 'A robust static dependency analyzer for your JavaScript and TypeScript projects',
         group: 'node',
-        tags: ['web-engineering'],
+        tags: ['node-engineering', 'web-engineering'],
         openUrl: () => NPM_HOME('dpdm'),
         commands: () => [NODE_GLOBAL('dpdm')],
+    },
+    {
+        name: 'TS Prune',
+        description: 'Find potentially unused exports in your Typescript project with zero configuration',
+        group: 'node',
+        tags: ['node-engineering', 'web-engineering'],
+        openUrl: () => NPM_HOME('ts-prune'),
+        commands: () => [NODE_GLOBAL('ts-prune')],
     },
     {
         name: 'verdaccio',
