@@ -1,3 +1,11 @@
+## [2.18.18](https://github.com/Avivbens/shell-config/compare/v2.18.17...v2.18.18) (2024-12-18)
+
+
+### Bug Fixes
+
+* add `ts-prune` package 🥷 ([ee2357c](https://github.com/Avivbens/shell-config/commit/ee2357c5478af2e6dd49f6921bc41b9fa2bab939))
+* **git:** add aliases for `git stash` ([742541a](https://github.com/Avivbens/shell-config/commit/742541a5393a8ea5ea1ec78cb44878d26e8bbcd2))
+
 ## [2.18.17](https://github.com/Avivbens/shell-config/compare/v2.18.16...v2.18.17) (2024-11-16)
 
 
