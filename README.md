@@ -2,7 +2,7 @@
 
 # Shell-Config CLI - Your MacOS Setup Tool
 
-**🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that does it all for you:
+> **🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that does it all for you:
 installs apps, configures your dev system, and personalizes your working station.
 
 **Turn your new Mac into a useful working station in minutes**
