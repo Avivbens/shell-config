@@ -189,6 +189,27 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_INSTALL('hovrly')],
     },
     {
+        name: 'MeetingBar',
+        description: 'Shows upcoming meetings in your menu bar',
+        group: 'apps',
+        openUrl: () => BREW_HOME('meetingbar', true),
+        commands: () => [BREW_CASK('meetingbar')],
+    },
+    {
+        name: 'Clop',
+        description: 'Image, video and clipboard optimiser',
+        group: 'apps',
+        openUrl: () => BREW_HOME('clop', true),
+        commands: () => [BREW_CASK('clop')],
+    },
+    {
+        name: 'AppCleaner',
+        description: 'Uninstall apps and their associated files',
+        group: 'apps',
+        openUrl: () => BREW_HOME('appcleaner', true),
+        commands: () => [BREW_CASK('appcleaner')],
+    },
+    {
         name: 'Notion',
         group: 'apps',
         tags: ['productivity'],
