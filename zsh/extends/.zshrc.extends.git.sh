@@ -20,6 +20,7 @@ alias gm="git merge"
 alias gf="git fetch"
 alias gr="git rebase"
 alias gunlast="git reset --soft HEAD~1"
+alias gprune="git remote prune origin"
 
 alias gss="git stash"
 alias gsp="git stash pop"
