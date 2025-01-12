@@ -64,6 +64,15 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('zoxide')],
     },
     {
+        name: 'Eza',
+        description: 'Modern, maintained replacement for ls',
+        group: 'terminal',
+        tags: ['productivity'],
+        openUrl: () => BREW_HOME('eza'),
+        commands: () => [BREW_INSTALL('eza')],
+        fallbackCommands: () => [BROW_INSTALL('eza')],
+    },
+    {
         name: 'ZSH Terminal Syntax Highlighting',
         group: 'terminal',
         tags: ['engineering'],
