@@ -1,3 +1,14 @@
+## [2.18.19](https://github.com/Avivbens/shell-config/compare/v2.18.18...v2.18.19) (2025-01-24)
+
+
+### Bug Fixes
+
+* **apps:** add `Hyperduck` app ([6d77af1](https://github.com/Avivbens/shell-config/commit/6d77af16fdd3f8c09a7260f01311e406b5990532))
+* drop `clop` cask app ([f0a372d](https://github.com/Avivbens/shell-config/commit/f0a372dc8f4c97daa0fc27295594368c790eecbb))
+* **git:** support `prune` alias for git ([c27dfe2](https://github.com/Avivbens/shell-config/commit/c27dfe241ead7b302c09272ea32fa838916a30f8))
+* support `Clop`, `MeetingBar` and `AppCleaner` ([ad99971](https://github.com/Avivbens/shell-config/commit/ad999710888dec7f51799e0d8d17620c2909dcde))
+* **terminal:** support `eza`, add that as `ll` alias if exists ([f1472ff](https://github.com/Avivbens/shell-config/commit/f1472ff6d1eb4f682ef4ba25e9041d7cf13161ea))
+
 ## [2.18.18](https://github.com/Avivbens/shell-config/compare/v2.18.17...v2.18.18) (2024-12-18)
 
 
