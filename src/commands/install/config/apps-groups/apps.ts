@@ -204,13 +204,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('meetingbar')],
     },
     {
-        name: 'Clop',
-        description: 'Image, video and clipboard optimiser',
-        group: 'apps',
-        openUrl: () => BREW_HOME('clop', true),
-        commands: () => [BREW_CASK('clop')],
-    },
-    {
         name: 'AppCleaner',
         description: 'Uninstall apps and their associated files',
         group: 'apps',
