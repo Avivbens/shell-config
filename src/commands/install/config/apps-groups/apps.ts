@@ -182,11 +182,33 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
     },
     {
+        name: 'Hyperduck',
+        description: 'Send links from your iOS & visionOS devices to your Mac',
+        group: 'apps',
+        tags: ['super-user'],
+        openUrl: () => `open https://sindresorhus.com/hyperduck`,
+        commands: () => [OPEN_APP_STORE_APP_LINK('hyperduck/id6444667067')],
+    },
+    {
         name: 'Hovrly',
         description: 'Easily see time zones in your menu bar',
         group: 'apps',
         openUrl: () => BREW_HOME('hovrly'),
         commands: () => [BREW_INSTALL('hovrly')],
+    },
+    {
+        name: 'MeetingBar',
+        description: 'Shows upcoming meetings in your menu bar',
+        group: 'apps',
+        openUrl: () => BREW_HOME('meetingbar', true),
+        commands: () => [BREW_CASK('meetingbar')],
+    },
+    {
+        name: 'AppCleaner',
+        description: 'Uninstall apps and their associated files',
+        group: 'apps',
+        openUrl: () => BREW_HOME('appcleaner', true),
+        commands: () => [BREW_CASK('appcleaner')],
     },
     {
         name: 'Notion',

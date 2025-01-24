@@ -29,7 +29,7 @@ export const BROW_TAP = (tapTo: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BROW
  * App Store
  */
 export const OPEN_APP_STORE_APP_LINK = (appPath: `${string}/id${number}`) =>
-    OPEN_BROWSER_LINK(`https://apps.apple.com/il/app/${appPath}`)
+    OPEN_BROWSER_LINK(`https://apps.apple.com/us/app/${appPath}`)
 
 /**
  * NodeJS

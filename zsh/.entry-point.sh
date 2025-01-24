@@ -130,8 +130,14 @@ alias c="clear"
 alias q="exit"
 alias ..="cd .."
 alias la="ls -a"
-alias ll="ls -al"
 alias sizeof="du -sh"
+
+# check if eza installed
+if command -v eza &>/dev/null; then
+    alias ll="eza --long --header --icons --git"
+else
+    alias ll="ls -al"
+fi
 
 # kill port process by port number
 function killport() {
