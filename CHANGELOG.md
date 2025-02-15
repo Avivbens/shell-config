@@ -1,3 +1,10 @@
+## [2.18.20](https://github.com/Avivbens/shell-config/compare/v2.18.19...v2.18.20) (2025-02-15)
+
+
+### Bug Fixes
+
+* **apps:** support `cupcat` application ([f833d16](https://github.com/Avivbens/shell-config/commit/f833d168cef9c938892e1d47ebbdb9cffde46c46))
+
 ## [2.18.19](https://github.com/Avivbens/shell-config/compare/v2.18.18...v2.18.19) (2025-01-24)
 
 
