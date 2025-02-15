@@ -18,6 +18,13 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('iina')],
     },
     {
+        name: 'Cap Cut',
+        group: 'media',
+        description: 'Video editor for macOS',
+        openUrl: () => BREW_HOME('capcut', true),
+        commands: () => [BREW_CASK('capcut')],
+    },
+    {
         name: 'YT-DLP',
         group: 'media',
         description: 'CLI tool for audio/video downloading, with support for fragmented DASH streams',
