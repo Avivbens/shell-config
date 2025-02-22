@@ -1,3 +1,10 @@
+## [2.18.21](https://github.com/Avivbens/shell-config/compare/v2.18.20...v2.18.21) (2025-02-22)
+
+
+### Bug Fixes
+
+* **mac:** support `keyboard hold to repeat` ([b36c89f](https://github.com/Avivbens/shell-config/commit/b36c89f1cd61b88f6fd690d7f792bb11d96c431d))
+
 ## [2.18.20](https://github.com/Avivbens/shell-config/compare/v2.18.19...v2.18.20) (2025-02-15)
 
 
