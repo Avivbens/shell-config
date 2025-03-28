@@ -73,13 +73,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('1password')],
     },
     {
-        name: 'Grammarly',
-        group: 'apps',
-        default: true,
-        openUrl: () => BREW_HOME('grammarly-desktop', true),
-        commands: () => [BREW_CASK('grammarly-desktop')],
-    },
-    {
         name: 'Cleanshot',
         description: 'Screen recorder and screenshot tool',
         group: 'apps',
@@ -248,13 +241,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         openUrl: () => BREW_HOME('telegram', true),
         commands: () => [BREW_CASK('telegram')],
         fallbackCommands: () => [BROW_CASK('telegram')],
-    },
-    {
-        name: 'Dash',
-        group: 'apps',
-        description: 'Documentation browser',
-        openUrl: () => BREW_HOME('dash', true),
-        commands: () => [BREW_CASK('dash')],
     },
     {
         name: 'Vivid',
