@@ -73,13 +73,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('1password')],
     },
     {
-        name: 'Grammarly',
-        group: 'apps',
-        default: true,
-        openUrl: () => BREW_HOME('grammarly-desktop', true),
-        commands: () => [BREW_CASK('grammarly-desktop')],
-    },
-    {
         name: 'Cleanshot',
         description: 'Screen recorder and screenshot tool',
         group: 'apps',
@@ -182,6 +175,15 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
     },
     {
+        name: 'SuperWhisper',
+        description: 'Drag and drop files between apps with quick actions',
+        group: 'apps',
+        tags: ['productivity', 'ai'],
+        paid: true,
+        openUrl: () => BREW_HOME('superwhisper', true),
+        commands: () => [BREW_CASK('superwhisper')],
+    },
+    {
         name: 'Hyperduck',
         description: 'Send links from your iOS & visionOS devices to your Mac',
         group: 'apps',
@@ -248,13 +250,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         openUrl: () => BREW_HOME('telegram', true),
         commands: () => [BREW_CASK('telegram')],
         fallbackCommands: () => [BROW_CASK('telegram')],
-    },
-    {
-        name: 'Dash',
-        group: 'apps',
-        description: 'Documentation browser',
-        openUrl: () => BREW_HOME('dash', true),
-        commands: () => [BREW_CASK('dash')],
     },
     {
         name: 'Vivid',

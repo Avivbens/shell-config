@@ -4,6 +4,7 @@ export const AVAILABLE_TAGS = [
     'python-engineering',
     'engineering',
     'devops',
+    'ai',
     'ui-ux',
     'productivity',
     'super-user',

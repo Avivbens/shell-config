@@ -6,7 +6,7 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         name: 'Wrap',
         description: 'Terminal with a power of code editor',
         group: 'terminal',
-        tags: ['super-user'],
+        tags: ['productivity', 'ai'],
         openUrl: () => BREW_HOME('warp', true),
         commands: () => [BREW_CASK('warp')],
     },
