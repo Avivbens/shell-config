@@ -176,7 +176,7 @@ export const APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'SuperWhisper',
-        description: 'Drag and drop files between apps with quick actions',
+        description: 'AI-powered voice to text transcription tool',
         group: 'apps',
         tags: ['productivity', 'ai'],
         paid: true,
