@@ -1,3 +1,12 @@
+## [2.18.22](https://github.com/Avivbens/shell-config/compare/v2.18.21...v2.18.22) (2025-03-28)
+
+
+### Bug Fixes
+
+* add `ai` tag for relevance apps ([1852eb6](https://github.com/Avivbens/shell-config/commit/1852eb6a60f41ae7dd80d4cc28896b4a7c00b75a))
+* **apps:** support `SuperWhisper` ([e30bd2a](https://github.com/Avivbens/shell-config/commit/e30bd2a08e4c423492221bc4090c97bf590956f0))
+* remove `Dash` and `Grammarly` ([4103dc6](https://github.com/Avivbens/shell-config/commit/4103dc6f93708ea3485e5a5f3ce22d78dc9d2bf5))
+
 ## [2.18.21](https://github.com/Avivbens/shell-config/compare/v2.18.20...v2.18.21) (2025-02-22)
 
 
