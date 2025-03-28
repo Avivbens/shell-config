@@ -1,3 +1,10 @@
+## [2.18.23](https://github.com/Avivbens/shell-config/compare/v2.18.22...v2.18.23) (2025-03-28)
+
+
+### Bug Fixes
+
+* **apps:** description of `SuperWhisper` ([018da10](https://github.com/Avivbens/shell-config/commit/018da10a1ab4d0596c630a3cfcaf1d51618a0577))
+
 ## [2.18.22](https://github.com/Avivbens/shell-config/compare/v2.18.21...v2.18.22) (2025-03-28)
 
 
