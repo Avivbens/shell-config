@@ -175,6 +175,15 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
     },
     {
+        name: 'SuperWhisper',
+        description: 'Drag and drop files between apps with quick actions',
+        group: 'apps',
+        tags: ['productivity', 'ai'],
+        paid: true,
+        openUrl: () => BREW_HOME('superwhisper', true),
+        commands: () => [BREW_CASK('superwhisper')],
+    },
+    {
         name: 'Hyperduck',
         description: 'Send links from your iOS & visionOS devices to your Mac',
         group: 'apps',
