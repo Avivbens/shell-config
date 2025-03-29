@@ -3,7 +3,7 @@
 # Shell-Config CLI - Your MacOS Setup Tool
 
 > **🚀 Simplify your MacOS setup** with `shell-config` - a CLI tool that does it all for you:
-installs apps, configures your dev system, and personalizes your working station.
+> installs apps, configures your dev system, and personalizes your working station.
 
 **Turn your new Mac into a useful working station in minutes**
 
@@ -13,6 +13,7 @@ installs apps, configures your dev system, and personalizes your working station
 [![Latest Version](https://img.shields.io/github/v/release/avivbens/shell-config?label=Latest%20Version&color=green)](https://github.com/avivbens/shell-config/releases/latest)
 [![Total Downloads](https://img.shields.io/github/downloads/avivbens/shell-config/total?label=Total%20Downloads&color=blue)](https://github.com/avivbens/shell-config/releases)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
+[![GitHub Stars](https://img.shields.io/github/stars/avivbens/shell-config)](https://github.com/avivbens/shell-config/stargazers)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/kcao7snkgx)
 
