@@ -37,6 +37,14 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('ts-jest')],
     },
     {
+        name: 'tsx',
+        description: 'The easiest way to run TypeScript in Node.js, including ESM / CJS',
+        group: 'node',
+        tags: ['node-engineering'],
+        openUrl: () => NPM_HOME('tsx'),
+        commands: () => [NODE_GLOBAL('tsx')],
+    },
+    {
         name: 'ts-node-dev',
         group: 'node',
         tags: ['node-engineering'],
