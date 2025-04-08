@@ -24,13 +24,6 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('nx')],
     },
     {
-        name: 'jest',
-        group: 'node',
-        tags: ['web-engineering', 'node-engineering'],
-        openUrl: () => NPM_HOME('jest'),
-        commands: () => [NODE_GLOBAL('jest')],
-    },
-    {
         name: 'ts-jest',
         group: 'node',
         openUrl: () => NPM_HOME('ts-jest'),
@@ -117,12 +110,6 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('ttab')],
     },
     {
-        name: 'gulp-cli',
-        group: 'node',
-        openUrl: () => NPM_HOME('gulp-cli'),
-        commands: () => [NODE_GLOBAL('gulp-cli')],
-    },
-    {
         name: 'http-server',
         group: 'node',
         openUrl: () => NPM_HOME('http-server'),
@@ -134,17 +121,5 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         group: 'node',
         openUrl: () => NPM_HOME('npkill'),
         commands: () => [NODE_GLOBAL('npkill')],
-    },
-    {
-        name: 'prettier',
-        group: 'node',
-        openUrl: () => NPM_HOME('prettier'),
-        commands: () => [NODE_GLOBAL('prettier')],
-    },
-    {
-        name: 'vercel',
-        group: 'node',
-        openUrl: () => NPM_HOME('vercel'),
-        commands: () => [NODE_GLOBAL('vercel')],
     },
 ] as const
