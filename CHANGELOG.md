@@ -1,3 +1,11 @@
+## [2.18.24](https://github.com/Avivbens/shell-config/compare/v2.18.23...v2.18.24) (2025-04-08)
+
+
+### Bug Fixes
+
+* **npm:** add `tsx` as a package ([77423dd](https://github.com/Avivbens/shell-config/commit/77423ddab7cb0a2fff5bdb36a3386665ef6151e6))
+* **npm:** remove old global packages ([a762547](https://github.com/Avivbens/shell-config/commit/a7625476910a030df15d0815819e4f8b92439509))
+
 ## [2.18.23](https://github.com/Avivbens/shell-config/compare/v2.18.22...v2.18.23) (2025-03-28)
 
 
