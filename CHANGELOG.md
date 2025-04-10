@@ -1,3 +1,11 @@
+## [2.18.25](https://github.com/Avivbens/shell-config/compare/v2.18.24...v2.18.25) (2025-04-10)
+
+
+### Bug Fixes
+
+* `yt-dlp` from cask to formula ([5542dba](https://github.com/Avivbens/shell-config/commit/5542dba688ac42ba5876c1eccdfa115c4fa0c9c4))
+* **apps:** add `ChatGPT` and `WebCatalog` ([7485f07](https://github.com/Avivbens/shell-config/commit/7485f07190ee2d6cf12be22ded0257878c50a5a6))
+
 ## [2.18.24](https://github.com/Avivbens/shell-config/compare/v2.18.23...v2.18.24) (2025-04-08)
 
 
