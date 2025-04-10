@@ -19,6 +19,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('alfred')],
     },
     {
+        name: 'ChatGPT',
+        group: 'apps',
+        description: `OpenAI's official ChatGPT desktop app`,
+        tags: ['ai'],
+        openUrl: () => BREW_HOME('chatgpt', true),
+        commands: () => [BREW_CASK('chatgpt')],
+    },
+    {
         name: 'Bar Tender',
         group: 'apps',
         description: 'Hide menu bar icons and manage them',
@@ -173,6 +181,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         paid: true,
         openUrl: () => `open https://dropoverapp.com/`,
         commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
+    },
+    {
+        name: 'WebCatalog',
+        description: 'Tool to run web apps like desktop apps',
+        group: 'apps',
+        tags: ['super-user'],
+        openUrl: () => BREW_HOME('webcatalog', true),
+        commands: () => [BREW_CASK('webcatalog')],
     },
     {
         name: 'SuperWhisper',
