@@ -1,3 +1,10 @@
+## [2.18.26](https://github.com/Avivbens/shell-config/compare/v2.18.25...v2.18.26) (2025-04-10)
+
+
+### Bug Fixes
+
+* **cli-apps:** add `yarn` ([cdb36b2](https://github.com/Avivbens/shell-config/commit/cdb36b2b13cef59dfbc80904b717562f6c838a12))
+
 ## [2.18.25](https://github.com/Avivbens/shell-config/compare/v2.18.24...v2.18.25) (2025-04-10)
 
 
