@@ -36,6 +36,14 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         ],
     },
     {
+        name: 'Yarn',
+        group: 'cli-apps',
+        description: 'Node package manager by Facebook',
+        tags: ['node-engineering'],
+        openUrl: () => BREW_HOME('yarn'),
+        commands: () => [BREW_INSTALL('yarn')],
+    },
+    {
         name: 'GitHub CLI',
         group: 'cli-apps',
         description: 'GitHub in your terminal',
