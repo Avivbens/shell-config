@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_HOME } from '../common-commands'
+import { BREW_CASK, BREW_HOME, BREW_INSTALL } from '../common-commands'
 
 export const MEDIA_APPS: Readonly<IAppSetup[]> = [
     {
@@ -29,7 +29,7 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
         group: 'media',
         description: 'CLI tool for audio/video downloading, with support for fragmented DASH streams',
         openUrl: () => BREW_HOME('yt-dlp'),
-        commands: () => [BREW_CASK('yt-dlp')],
+        commands: () => [BREW_INSTALL('yt-dlp')],
     },
     {
         name: 'VLC',
