@@ -1,3 +1,10 @@
+## [2.18.27](https://github.com/Avivbens/shell-config/compare/v2.18.26...v2.18.27) (2025-04-12)
+
+
+### Bug Fixes
+
+* **cli-apps:** add `rust` and `go` CLIs ([98d1565](https://github.com/Avivbens/shell-config/commit/98d1565da519398cb5ca8cf7367291919ba2560e))
+
 ## [2.18.26](https://github.com/Avivbens/shell-config/compare/v2.18.25...v2.18.26) (2025-04-10)
 
 
