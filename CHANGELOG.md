@@ -1,3 +1,10 @@
+## [2.18.28](https://github.com/Avivbens/shell-config/compare/v2.18.27...v2.18.28) (2025-04-12)
+
+
+### Bug Fixes
+
+* **cli-apps:** add `pnpm` package manager ([ba76f40](https://github.com/Avivbens/shell-config/commit/ba76f40fc55c42ecdca472a67ed053d2c01cfb13))
+
 ## [2.18.27](https://github.com/Avivbens/shell-config/compare/v2.18.26...v2.18.27) (2025-04-12)
 
 
