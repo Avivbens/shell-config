@@ -44,6 +44,20 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_INSTALL('yarn')],
     },
     {
+        name: 'Go CLI',
+        group: 'cli-apps',
+        description: 'Go programming language CLI',
+        openUrl: () => BREW_HOME('go'),
+        commands: () => [BREW_INSTALL('go')],
+    },
+    {
+        name: 'Rust CLI 🦀',
+        group: 'cli-apps',
+        description: 'Rust programming language CLI',
+        openUrl: () => BREW_HOME('rust'),
+        commands: () => [BREW_INSTALL('rust')],
+    },
+    {
         name: 'GitHub CLI',
         group: 'cli-apps',
         description: 'GitHub in your terminal',
