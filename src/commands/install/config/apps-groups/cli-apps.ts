@@ -44,6 +44,14 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_INSTALL('yarn')],
     },
     {
+        name: 'PNPM',
+        group: 'cli-apps',
+        description: 'Fast, disk space efficient package manager',
+        tags: ['node-engineering'],
+        openUrl: () => BREW_HOME('pnpm'),
+        commands: () => [BREW_INSTALL('pnpm')],
+    },
+    {
         name: 'Go CLI',
         group: 'cli-apps',
         description: 'Go programming language CLI',
