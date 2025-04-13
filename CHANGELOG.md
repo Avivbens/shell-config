@@ -1,3 +1,10 @@
+## [2.18.30](https://github.com/Avivbens/shell-config/compare/v2.18.29...v2.18.30) (2025-04-13)
+
+
+### Bug Fixes
+
+* add debug logs for installing brew & brow ([5353b72](https://github.com/Avivbens/shell-config/commit/5353b72c49fc938e224847353a7ae96b949ccd19))
+
 ## [2.18.29](https://github.com/Avivbens/shell-config/compare/v2.18.28...v2.18.29) (2025-04-13)
 
 
