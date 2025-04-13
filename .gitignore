@@ -11,8 +11,6 @@ logs
 zsh/external/list.txt
 zsh/external/registry
 
-.fig/autocomplete/build
-
 .DS_Store
 node_modules
 dist

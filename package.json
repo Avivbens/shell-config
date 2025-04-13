@@ -22,8 +22,6 @@
         "start:dev": "ts-node src/main.ts",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
-        "create-fig-spec": "./project-scripts/create-fig-spec.sh",
-        "publish-fig-spec": "./project-scripts/publish-fig-spec.sh",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:cov": "jest --coverage",

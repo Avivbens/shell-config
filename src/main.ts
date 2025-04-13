@@ -13,7 +13,6 @@ import { AppModule } from './app.module'
         version: PACKAGE_VERSION,
         completion: {
             cmd: cliCommand,
-            fig: false,
             nativeShell: {
                 executablePath: cliExecutable,
             },
