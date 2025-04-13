@@ -17,6 +17,7 @@ BREW="/opt/homebrew/bin/brew"
 
 # support brew formulaes installed via Rosetta 2
 alias brow="arch --x86_64 $BROW"
+alias brew="$BREW"
 
 export BREW_PERFIX=$(brew --prefix)
 export BROW_PERFIX=$(brow --prefix)
@@ -33,8 +34,14 @@ fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
+
+# In case of new brew
 [ -s "$BREW_PERFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PERFIX/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "$BREW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
+# In case of Rosetta 2
+[ -s "$BROW_PERFIX/opt/nvm/nvm.sh" ] && \. "$BROW_PERFIX/opt/nvm/nvm.sh"                                       # This loads nvm
+[ -s "$BROW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BROW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # ----- shell-config -----
 export PATH="$HOME/shell-config/executable:$PATH"
