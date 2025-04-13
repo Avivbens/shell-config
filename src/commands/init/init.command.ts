@@ -235,7 +235,10 @@ export class InitCommand extends CommandRunner {
 
         this.logger.debug(msg)
         try {
-            await execPromise(BREW_INSTALLATION_COMMAND)
+            const { stderr, stdout } = await execPromise(BREW_INSTALLATION_COMMAND)
+            this.logger.debug(`installBrew | stdout: ${stdout}`)
+            this.logger.debug(`installBrew | stderr: ${stderr}`)
+
             innerSpinner.text = 'Homebrew installed'
             innerSpinner.succeed()
             return true
@@ -254,7 +257,10 @@ export class InitCommand extends CommandRunner {
 
         this.logger.debug(msg)
         try {
-            await execPromise(BROW_INSTALLATION_COMMAND)
+            const { stderr, stdout } = await execPromise(BROW_INSTALLATION_COMMAND)
+            this.logger.debug(`installBrow | stdout: ${stdout}`)
+            this.logger.debug(`installBrow | stderr: ${stderr}`)
+
             innerSpinner.text = 'Homebrew 64x arch installed'
             innerSpinner.succeed()
             return true
