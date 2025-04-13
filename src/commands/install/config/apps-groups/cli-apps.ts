@@ -42,6 +42,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['node-engineering'],
         openUrl: () => BREW_HOME('yarn'),
         commands: () => [BREW_INSTALL('yarn')],
+        fallbackCommands: () => [BROW_INSTALL('yarn')],
     },
     {
         name: 'PNPM',
@@ -50,6 +51,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['node-engineering'],
         openUrl: () => BREW_HOME('pnpm'),
         commands: () => [BREW_INSTALL('pnpm')],
+        fallbackCommands: () => [BROW_INSTALL('pnpm')],
     },
     {
         name: 'Go CLI',
@@ -57,6 +59,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Go programming language CLI',
         openUrl: () => BREW_HOME('go'),
         commands: () => [BREW_INSTALL('go')],
+        fallbackCommands: () => [BROW_INSTALL('go')],
     },
     {
         name: 'Rust CLI 🦀',
@@ -64,6 +67,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         description: 'Rust programming language CLI',
         openUrl: () => BREW_HOME('rust'),
         commands: () => [BREW_INSTALL('rust')],
+        fallbackCommands: () => [BROW_INSTALL('rust')],
     },
     {
         name: 'GitHub CLI',
@@ -91,6 +95,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['devops'],
         openUrl: () => BREW_HOME('awscli'),
         commands: () => [BREW_INSTALL('awscli')],
+        fallbackCommands: () => [BROW_INSTALL('awscli')],
         deps: ['Python'],
     },
     {
@@ -100,6 +105,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['devops'],
         openUrl: () => BREW_HOME('kubectx'),
         commands: () => [BREW_INSTALL('kubectx')],
+        fallbackCommands: () => [BROW_INSTALL('kubectx')],
     },
     {
         name: 'Mongodb',
@@ -130,6 +136,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['node-engineering', 'devops'],
         openUrl: () => BREW_HOME('docker'),
         commands: () => [BREW_INSTALL('docker')],
+        fallbackCommands: () => [BROW_INSTALL('docker')],
     },
     {
         name: 'Terraform',
@@ -138,6 +145,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['devops'],
         openUrl: () => BREW_HOME('terraform'),
         commands: () => [BREW_INSTALL('terraform')],
+        fallbackCommands: () => [BROW_INSTALL('terraform')],
     },
     {
         name: 'Kubernetes Helm',
@@ -146,6 +154,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['devops'],
         openUrl: () => BREW_HOME('helm'),
         commands: () => [BREW_INSTALL('helm')],
+        fallbackCommands: () => [BROW_INSTALL('helm')],
     },
     {
         name: 'Btop',
@@ -154,6 +163,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['super-user'],
         openUrl: () => BREW_HOME('btop'),
         commands: () => [BREW_INSTALL('btop')],
+        fallbackCommands: () => [BROW_INSTALL('btop')],
     },
     {
         name: 'ncdu',
@@ -162,6 +172,7 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['super-user'],
         openUrl: () => BREW_HOME('ncdu'),
         commands: () => [BREW_INSTALL('ncdu')],
+        fallbackCommands: () => [BROW_INSTALL('ncdu')],
     },
     {
         name: 'entr',
@@ -170,5 +181,6 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         tags: ['productivity'],
         openUrl: () => BREW_HOME('entr'),
         commands: () => [BREW_INSTALL('entr')],
+        fallbackCommands: () => [BROW_INSTALL('entr')],
     },
 ] as const
