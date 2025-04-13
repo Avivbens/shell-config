@@ -14,6 +14,8 @@ const PACKAGE_JSON_LOCK_FILE = 'package-lock.json'
 
 const DEFAULT_OPTIONS = { lockfile: false }
 
+const MAX_OLD_SPACE_SIZE = 16_000
+
 function isCI() {
     return (
         process.env.CI === 'true' ||
@@ -53,10 +55,7 @@ async function readWorkflowPackageJson({ lockfile = false } = DEFAULT_OPTIONS) {
     }
 }
 
-async function writeWorkflowPackageJson(
-    data,
-    { lockfile = false } = DEFAULT_OPTIONS,
-) {
+async function writeWorkflowPackageJson(data, { lockfile = false } = DEFAULT_OPTIONS) {
     try {
         const { tabWidth = 2 } = await readPrettierConfig()
 
@@ -71,9 +70,8 @@ async function writeWorkflowPackageJson(
     }
 }
 
-; (async () => {
+;(async () => {
     try {
-
         let [targetVersion] = process.argv.slice(2)
         if (!targetVersion) {
             if (isCI()) {
@@ -89,12 +87,12 @@ async function writeWorkflowPackageJson(
          * Clean up
          * */
         console.log('Cleaning up...')
-        const deletePrm = DIRECTORIES_TO_DELETE.map(dir => rm(dir, { recursive: true, force: true }))
+        const deletePrm = DIRECTORIES_TO_DELETE.map((dir) => rm(dir, { recursive: true, force: true }))
         await Promise.all(deletePrm)
 
         /**
          * Bump up versions
-        */
+         */
         if (isCI()) {
             console.log('Bumping up versions...')
 
@@ -111,19 +109,21 @@ async function writeWorkflowPackageJson(
 
         /**
          * Build
-        */
+         */
         console.log('Building...')
         await execPromise('npm run build')
 
         /**
          * Pack
-        */
+         */
         console.log('Packing...')
-        await execPromise(`pkg . --output "bin/cli-v${targetVersion}"`)
+        await execPromise(
+            `pkg . --output "bin/cli-v${targetVersion}" --options max-old-space-size=${MAX_OLD_SPACE_SIZE}`,
+        )
 
         /**
          * ZIP
-        */
+         */
         console.log('Zipping...')
         await execPromise(`zip -r "./bin/cli.zip" ./bin/cli-v${targetVersion}`)
     } catch (error) {

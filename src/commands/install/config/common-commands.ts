@@ -2,6 +2,8 @@ import type { Arch } from '@models/app-setup.model'
 
 const ARCH_FLAG = (arch?: Arch): '' | `arch -${Arch}` => (arch ? `arch -${arch}` : '')
 export const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
+const BREW_ALIAS = `/opt/homebrew/bin/brew`
+
 const BREW_NON_INTERACTIVE_FLAGS = `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1`
 
 /**
@@ -12,11 +14,11 @@ export const OPEN_BROWSER_LINK = (link: string) => `open ${link}`
 /**
  * HomeBrew
  */
-export const BREW_CASK = (app: string) => `${BREW_NON_INTERACTIVE_FLAGS} brew install --cask ${app}`
+export const BREW_CASK = (app: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BREW_ALIAS} install --cask ${app}`
 export const BREW_HOME = (app: string, cask: boolean = false) =>
-    `${BREW_NON_INTERACTIVE_FLAGS} brew home ${cask ? '--cask' : ''} ${app}`
-export const BREW_INSTALL = (formula: string) => `${BREW_NON_INTERACTIVE_FLAGS} brew install ${formula}`
-export const BREW_TAP = (tapTo: string) => `${BREW_NON_INTERACTIVE_FLAGS} brew tap ${tapTo}`
+    `${BREW_NON_INTERACTIVE_FLAGS} ${BREW_ALIAS} home ${cask ? '--cask' : ''} ${app}`
+export const BREW_INSTALL = (formula: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BREW_ALIAS} install ${formula}`
+export const BREW_TAP = (tapTo: string) => `${BREW_NON_INTERACTIVE_FLAGS} ${BREW_ALIAS} tap ${tapTo}`
 
 /**
  * HomeBrew - Rosetta

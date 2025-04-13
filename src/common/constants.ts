@@ -17,7 +17,11 @@ export const BREW_NON_ERRORS: string[] = [
     `the latest version is already installed`,
 ]
 
-export const BREW_INSTALL_RETRIES = 3
+export const BREW_LOCKING_STATE_ERROR = `process has already locked`
+export const RANDOM_WAIT_BOUNDARY = 15_000
+export const RANDOM_WAIT_MIN = 10_000
+
+export const BREW_INSTALL_RETRIES = 5
 
 export const WINDOW_WIDTH = () => stdout.getWindowSize().at(0)
 export const WINDOW_HIGHT = () => stdout.getWindowSize().at(1)
