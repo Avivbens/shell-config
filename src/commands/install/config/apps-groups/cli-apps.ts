@@ -11,7 +11,7 @@ import {
     NVM_COMMAND,
 } from '../common-commands'
 
-const DEFAULT_NODE_VERSION = '18.19.1'
+const DEFAULT_NODE_VERSION = '22.14.0'
 
 export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
