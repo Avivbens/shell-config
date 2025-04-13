@@ -1,3 +1,10 @@
+## [2.18.29](https://github.com/Avivbens/shell-config/compare/v2.18.28...v2.18.29) (2025-04-13)
+
+
+### Bug Fixes
+
+* change Node.js default version to `22.14.0` ([b710d46](https://github.com/Avivbens/shell-config/commit/b710d46e2267be484bbb6b1479b6035969af1c33))
+
 ## [2.18.28](https://github.com/Avivbens/shell-config/compare/v2.18.27...v2.18.28) (2025-04-12)
 
 
