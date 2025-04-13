@@ -1,3 +1,19 @@
+# [2.19.0](https://github.com/Avivbens/shell-config/compare/v2.18.30...v2.19.0) (2025-04-13)
+
+
+### Bug Fixes
+
+* **apps:** setup fallback `brow install` for cli apps ([0bd6771](https://github.com/Avivbens/shell-config/commit/0bd67715afca46e7646b3e42115ff8b1fb4f1323))
+* **brew:** force alias for new `brew` path, load nvm from legacy `brow` in case exists ([a24f313](https://github.com/Avivbens/shell-config/commit/a24f31354dc4e94ab7623f48301e6f5074284639))
+* **cli-apps:** add `colima` as Docker default ([6013ad1](https://github.com/Avivbens/shell-config/commit/6013ad114aa080728b4948ddc9fdd586f25c2945))
+* **install:** increase retries times, add jitter for locked brew file, decrease parallel default count to 5 max ([1123f5d](https://github.com/Avivbens/shell-config/commit/1123f5d3b807be6c983da4b667f4db7bd868378e))
+* setup `brew` executable path for `brew` commands ([235ba3d](https://github.com/Avivbens/shell-config/commit/235ba3d434ba882005cc5ad05b451260be9634a0))
+
+
+### Features
+
+* **cli:** support `MAX_OLD_SPACE_SIZE` when packing, allow more memory for the CLI ([48ddb76](https://github.com/Avivbens/shell-config/commit/48ddb76d9401416b1d99fe6563a40bc3a03b2a4e))
+
 ## [2.18.30](https://github.com/Avivbens/shell-config/compare/v2.18.29...v2.18.30) (2025-04-13)
 
 
