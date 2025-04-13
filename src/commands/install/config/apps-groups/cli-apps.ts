@@ -133,10 +133,17 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         name: 'Docker',
         description: 'Docker CLI',
         group: 'cli-apps',
-        tags: ['node-engineering', 'devops'],
         openUrl: () => BREW_HOME('docker'),
         commands: () => [BREW_INSTALL('docker')],
         fallbackCommands: () => [BROW_INSTALL('docker')],
+    },
+    {
+        name: 'Colima',
+        description: 'Docker alternative for macOS',
+        group: 'cli-apps',
+        tags: ['node-engineering', 'devops'],
+        openUrl: () => BREW_HOME('colima'),
+        commands: () => [BREW_INSTALL('colima')],
     },
     {
         name: 'Terraform',
