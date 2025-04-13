@@ -2,8 +2,15 @@ import { Listr, ListrTask } from 'listr2'
 import { Command, CommandRunner, Option } from 'nest-commander'
 import { cpus } from 'node:os'
 import { arch as ARCH, exit } from 'node:process'
+import { setTimeout } from 'node:timers/promises'
 import ora from 'ora'
-import { BREW_INSTALL_RETRIES, BREW_NON_ERRORS } from '@common/constants'
+import {
+    BREW_INSTALL_RETRIES,
+    BREW_LOCKING_STATE_ERROR,
+    BREW_NON_ERRORS,
+    RANDOM_WAIT_BOUNDARY,
+    RANDOM_WAIT_MIN,
+} from '@common/constants'
 import { execPromise } from '@common/utils'
 import type { IAppSetup } from '@models/app-setup.model'
 import { ITag, TAGS_DEPS } from '@models/tag.model'
@@ -43,7 +50,7 @@ export class InstallCommand extends CommandRunner {
     @Option({
         name: 'parallelCount',
         flags: '-p --parallel-count <parallelCount>',
-        defaultValue: cpus().length / 2 + 1,
+        defaultValue: Math.min(cpus().length / 3 + 1, 5),
         description: 'Amount of parallel processes for installation',
     })
     private parallelCount(count: string): number {
@@ -342,12 +349,12 @@ export class InstallCommand extends CommandRunner {
                         break
                     }
 
-                    await execPromise(command).catch((err) => {
+                    await execPromise(command).catch(async (err) => {
                         this.logger.debug(
                             `Error installApp app: ${name}, command failed: ${command}, error: ${err.stack}`,
                         )
 
-                        this.processInstallError(err)
+                        await this.processInstallError(err)
 
                         forceStop = true
                     })
@@ -367,12 +374,12 @@ export class InstallCommand extends CommandRunner {
                         break
                     }
 
-                    await execPromise(command).catch((err) => {
+                    await execPromise(command).catch(async (err) => {
                         this.logger.debug(
                             `Error installApp app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
                         )
 
-                        this.processInstallError(err)
+                        await this.processInstallError(err)
 
                         forceStop = true
                     })
@@ -408,12 +415,12 @@ export class InstallCommand extends CommandRunner {
                         break
                     }
 
-                    await execPromise(command).catch((err) => {
+                    await execPromise(command).catch(async (err) => {
                         this.logger.debug(
                             `Error installApp2 app: ${name}, command failed: ${command}, error: ${err.stack}`,
                         )
 
-                        this.processInstallError(err)
+                        await this.processInstallError(err)
 
                         forceStop = true
                     })
@@ -433,12 +440,12 @@ export class InstallCommand extends CommandRunner {
                         break
                     }
 
-                    await execPromise(command).catch((err) => {
+                    await execPromise(command).catch(async (err) => {
                         this.logger.debug(
                             `Error installApp2 app: ${name}, fallback command failed: ${command}, error: ${err.stack}`,
                         )
 
-                        this.processInstallError(err)
+                        await this.processInstallError(err)
 
                         forceStop = true
                     })
@@ -460,11 +467,22 @@ export class InstallCommand extends CommandRunner {
      * @returns true - if error should be treated as a non-error
      * @throws - If error should be an error
      */
-    private processInstallError(error: Error): void {
+    private async processInstallError(error: Error): Promise<void> {
         const { message } = error
         const isOk = BREW_NON_ERRORS.some((nonErrorMsg) => message?.includes(nonErrorMsg))
         if (isOk) {
             return
+        }
+
+        /**
+         * In case of brew locking state error, wait for a random time and retry
+         */
+        const shouldWaitForLock = message.includes(BREW_LOCKING_STATE_ERROR)
+        if (shouldWaitForLock) {
+            const randomWait = Math.floor(Math.random() * RANDOM_WAIT_BOUNDARY + RANDOM_WAIT_MIN)
+
+            this.logger.debug(`Brew locking state error, waiting for a random time - ${randomWait}ms`)
+            await setTimeout(randomWait)
         }
 
         throw error
