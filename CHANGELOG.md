@@ -1,3 +1,11 @@
+## [2.19.1](https://github.com/Avivbens/shell-config/compare/v2.19.0...v2.19.1) (2025-05-04)
+
+
+### Bug Fixes
+
+* **apps:** add `screen-studio` as recording and editing media app ([40bb060](https://github.com/Avivbens/shell-config/commit/40bb06006ced2983a6ab8068f242eec0a07b9cc4))
+* **git:** add `gbn` as an alias for getting the current branch name ([0ea4aa5](https://github.com/Avivbens/shell-config/commit/0ea4aa5255eb72f85abec16ba13868ff47e262f2))
+
 # [2.19.0](https://github.com/Avivbens/shell-config/compare/v2.18.30...v2.19.0) (2025-04-13)
 
 
