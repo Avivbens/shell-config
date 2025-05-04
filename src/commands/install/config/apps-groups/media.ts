@@ -25,6 +25,14 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('capcut')],
     },
     {
+        name: 'Screen Studio',
+        group: 'media',
+        description: 'Screen recording and video editing tool - in one',
+        paid: true,
+        openUrl: () => BREW_HOME('screen-studio', true),
+        commands: () => [BREW_CASK('screen-studio')],
+    },
+    {
         name: 'YT-DLP',
         group: 'media',
         description: 'CLI tool for audio/video downloading, with support for fragmented DASH streams',
