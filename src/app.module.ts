@@ -1,5 +1,6 @@
 import { AssetsCommand } from '@commands/assets/assets.command'
 import { ExternalCommand } from '@commands/external/external.command'
+import { InfoCommand } from '@commands/info/info.command'
 import { InitScriptCommand } from '@commands/init-script/init-script.command'
 import { InitCommand } from '@commands/init/init.command'
 import { InstallCommand } from '@commands/install/install.command'
@@ -18,6 +19,7 @@ const COMMANDS = [
     ShellCommand,
     UpdateCommand,
     AssetsCommand,
+    InfoCommand,
     ...ExternalCommand.registerWithSubCommands(),
 ]
 
