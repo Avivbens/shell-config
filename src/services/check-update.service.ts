@@ -38,7 +38,7 @@ export class CheckUpdateService {
                 return false
             }
 
-            const message = `Update available ${currentVersionClean} → ${latestClean}\nRun 'shell-config update' to update`
+            const message = `Update available ${currentVersionClean} → ${latestClean}\nRun 'shell-config update' to update\n\nRun 'shell-config info' to view the release notes 🚀`
             console.log(
                 boxen(message, {
                     padding: 1,
