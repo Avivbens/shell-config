@@ -1,3 +1,10 @@
+# [2.20.0](https://github.com/Avivbens/shell-config/compare/v2.19.1...v2.20.0) (2025-05-16)
+
+
+### Features
+
+* **info:** add `info` command to show CLI assets - release notes, homepage, etc 🥷 ([e411ab1](https://github.com/Avivbens/shell-config/commit/e411ab1cf9e36011b5657b44c22a3b0257aaa26c))
+
 ## [2.19.1](https://github.com/Avivbens/shell-config/compare/v2.19.0...v2.19.1) (2025-05-04)
 
 
