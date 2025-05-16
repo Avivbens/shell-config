@@ -225,6 +225,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         name: 'Reminders MenuBar',
         description: 'Simple menu bar app to view and interact with reminders',
         group: 'apps',
+        tags: ['productivity'],
         openUrl: () => BREW_HOME('reminders-menubar', true),
         commands: () => [BREW_CASK('reminders-menubar')],
     },
