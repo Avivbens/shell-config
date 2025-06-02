@@ -18,4 +18,12 @@ export const SECURITY_PRIVACY: Readonly<IAppSetup[]> = [
         openUrl: () => BREW_HOME('radio-silence', true),
         commands: () => [BREW_CASK('radio-silence')],
     },
+    {
+        name: 'Little Snitch',
+        description: 'Network monitor and firewall to control outgoing network connections',
+        group: 'security-privacy',
+        paid: true,
+        openUrl: () => BREW_HOME('little-snitch', true),
+        commands: () => [BREW_CASK('little-snitch')],
+    },
 ]
