@@ -182,6 +182,15 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('ncdu')],
     },
     {
+        name: 'ffmpeg',
+        description: 'Multimedia framework for handling video, audio, and other multimedia files',
+        group: 'cli-apps',
+        tags: ['super-user'],
+        openUrl: () => BREW_HOME('ffmpeg'),
+        commands: () => [BREW_INSTALL('ffmpeg')],
+        fallbackCommands: () => [BROW_INSTALL('ffmpeg')],
+    },
+    {
         name: 'entr',
         description: 'Run arbitrary commands when files change',
         group: 'cli-apps',
