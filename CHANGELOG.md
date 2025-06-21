@@ -1,3 +1,13 @@
+## [2.20.1](https://github.com/Avivbens/shell-config/compare/v2.20.0...v2.20.1) (2025-06-21)
+
+
+### Bug Fixes
+
+* **apps:** add `ffmpeg` cli tool ([156ebdc](https://github.com/Avivbens/shell-config/commit/156ebdc9276008782dedddad8a08d9a65db12721))
+* **apps:** add `little-snitch` app ([d3ebeed](https://github.com/Avivbens/shell-config/commit/d3ebeedd31ab5edaf904d0ee8192420c0ceb1a58))
+* **apps:** add `reminders-menubar` app ([5542e33](https://github.com/Avivbens/shell-config/commit/5542e33f8f998c7d0b002b8c5edd4d2bee0ca082))
+* **python:** add shell aliases for initializing environment and installing dependencies ([935ecab](https://github.com/Avivbens/shell-config/commit/935ecab7689b4866a91432726ed291ab9d3f64d3))
+
 # [2.20.0](https://github.com/Avivbens/shell-config/compare/v2.19.1...v2.20.0) (2025-05-16)
 
 
