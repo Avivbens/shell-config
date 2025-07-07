@@ -23,7 +23,7 @@ alias gr="git rebase"
 alias gunlast="git reset --soft HEAD~1"
 alias gprune="git remote prune origin"
 
-alias gss="git stash"
+alias gss="git stash --include-untracked"
 alias gsp="git stash pop"
 
 # setup less to fit with git log, in order to search and see the hash of the commit
