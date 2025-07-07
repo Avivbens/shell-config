@@ -104,6 +104,9 @@ fi
 sourceIf "$BREW_PERFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIf "$BROW_PERFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+export HISTSIZE=10000
+export SAVEHIST=$HISTSIZE
+
 # setopt hist_ignore_all_dups # remove older duplicate entries from history
 # setopt hist_reduce_blanks # remove superfluous blanks from history items
 setopt hist_ignore_dups   # if you run the same command multiple times in a row, only add it to the history once
