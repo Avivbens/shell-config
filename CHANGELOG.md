@@ -1,3 +1,11 @@
+## [2.20.2](https://github.com/Avivbens/shell-config/compare/v2.20.1...v2.20.2) (2025-07-07)
+
+
+### Bug Fixes
+
+* **git:** include non-tracked files in stash ([33fae1e](https://github.com/Avivbens/shell-config/commit/33fae1ed298a8d879c9c1d75bc6f9926b7acb87b))
+* **history:** keep `10_000` items in zsh history ([7781394](https://github.com/Avivbens/shell-config/commit/77813945e7f3abe53557369c21cf749c0231f104))
+
 ## [2.20.1](https://github.com/Avivbens/shell-config/compare/v2.20.0...v2.20.1) (2025-06-21)
 
 
