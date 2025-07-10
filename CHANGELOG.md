@@ -1,3 +1,10 @@
+## [2.20.3](https://github.com/Avivbens/shell-config/compare/v2.20.2...v2.20.3) (2025-07-10)
+
+
+### Bug Fixes
+
+* **zsh:** remove `correct_all` setting ([4691113](https://github.com/Avivbens/shell-config/commit/4691113a1c30b6cdb80fa32c8d18d3cf2fe40056))
+
 ## [2.20.2](https://github.com/Avivbens/shell-config/compare/v2.20.1...v2.20.2) (2025-07-07)
 
 
