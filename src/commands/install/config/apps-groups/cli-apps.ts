@@ -199,4 +199,22 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_INSTALL('entr')],
         fallbackCommands: () => [BROW_INSTALL('entr')],
     },
+    {
+        name: 'claude',
+        description: `Interact with Anthropic's Claude AI directly from your terminal`,
+        group: 'cli-apps',
+        tags: ['ai', 'productivity'],
+        openUrl: () => BREW_HOME('claude'),
+        commands: () => [BREW_INSTALL('claude')],
+        fallbackCommands: () => [BROW_INSTALL('claude')],
+    },
+    {
+        name: 'claude-squad',
+        description: 'Manage multiple Claude AI instances with git worktrees isolated environments',
+        group: 'cli-apps',
+        tags: ['ai', 'productivity'],
+        openUrl: () => BREW_HOME('claude-squad'),
+        commands: () => [BREW_INSTALL('claude-squad'), BREW_INSTALL('tmux')],
+        fallbackCommands: () => [BROW_INSTALL('claude-squad'), BROW_INSTALL('tmux')],
+    },
 ] as const

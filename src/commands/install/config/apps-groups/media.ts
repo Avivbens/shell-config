@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_HOME, BREW_INSTALL } from '../common-commands'
+import { BREW_CASK, BREW_HOME, BREW_INSTALL, OPEN_APP_STORE_APP_LINK } from '../common-commands'
 
 export const MEDIA_APPS: Readonly<IAppSetup[]> = [
     {
@@ -23,6 +23,13 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
         description: 'Video editor for macOS',
         openUrl: () => BREW_HOME('capcut', true),
         commands: () => [BREW_CASK('capcut')],
+    },
+    {
+        name: 'Pixelmator Pro',
+        description: 'Incredibly powerful, beautiful, and easy-to-use image editor designed exclusively for Mac.',
+        group: 'apps',
+        openUrl: () => `open https://www.pixelmator.com/pro`,
+        commands: () => [OPEN_APP_STORE_APP_LINK('pixelmator-pro/id1289583905')],
     },
     {
         name: 'Screen Studio',
