@@ -1,3 +1,16 @@
+# [2.21.0](https://github.com/Avivbens/shell-config/compare/v2.20.3...v2.21.0) (2025-08-14)
+
+
+### Bug Fixes
+
+* **media:** add `Pixelmator Pro` photo editing app ([5664b10](https://github.com/Avivbens/shell-config/commit/5664b1023d456cec3bc712f1f22422932dacd226))
+* **vscode:** assign `code` with `$PATH` instead of alias ([c44e49f](https://github.com/Avivbens/shell-config/commit/c44e49ffdda15e4ae43cfb27fdce409d6aea2ac1))
+
+
+### Features
+
+* **cli-apps:** add claude and claude-squad AI CLI tools ([2154c22](https://github.com/Avivbens/shell-config/commit/2154c22956efd4f8b1c754a1048dc88b500e1043))
+
 ## [2.20.3](https://github.com/Avivbens/shell-config/compare/v2.20.2...v2.20.3) (2025-07-10)
 
 
