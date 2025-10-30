@@ -27,13 +27,11 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('chatgpt')],
     },
     {
-        name: 'Bar Tender',
-        group: 'apps',
+        name: 'iBar',
         description: 'Hide menu bar icons and manage them',
         tags: ['productivity'],
-        paid: true,
-        openUrl: () => BREW_HOME('bartender', true),
-        commands: () => [BREW_CASK('bartender')],
+        group: 'apps',
+        commands: () => [OPEN_APP_STORE_APP_LINK('ibar-menubar-icon-control-tool/id6443843900')],
     },
     {
         name: 'Google Drive',
