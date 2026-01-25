@@ -1,3 +1,10 @@
+## [2.22.1](https://github.com/Avivbens/shell-config/compare/v2.22.0...v2.22.1) (2026-01-25)
+
+
+### Bug Fixes
+
+* **kubectl:** add new module to settings ([a1ccfc8](https://github.com/Avivbens/shell-config/commit/a1ccfc898b2debecf5706041349f9899dc6413cc))
+
 # [2.22.0](https://github.com/Avivbens/shell-config/compare/v2.21.0...v2.22.0) (2026-01-25)
 
 
