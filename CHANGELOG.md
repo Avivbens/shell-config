@@ -1,3 +1,10 @@
+# [2.22.0](https://github.com/Avivbens/shell-config/compare/v2.21.0...v2.22.0) (2026-01-25)
+
+
+### Features
+
+* **kubectl:** add `kubectl` aliases ([4322861](https://github.com/Avivbens/shell-config/commit/43228611b3ba9786403ee7c1b8b8d04ea100ddf6))
+
 # [2.21.0](https://github.com/Avivbens/shell-config/compare/v2.20.3...v2.21.0) (2025-08-14)
 
 
