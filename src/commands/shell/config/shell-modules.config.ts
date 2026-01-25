@@ -61,6 +61,11 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.python.sh`,
         description: 'Python aliases',
     },
+    {
+        name: 'Kubectl',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.kubectl.sh`,
+        description: 'Kubectl aliases',
+    },
 ]
 
 export const MODULES_MAP: Record<string, IShellModule> = SHELL_MODULES_OPTIONS.reduce((acc, module) => {
