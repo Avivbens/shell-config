@@ -1,3 +1,10 @@
+## [2.22.2](https://github.com/Avivbens/shell-config/compare/v2.22.1...v2.22.2) (2026-01-28)
+
+
+### Bug Fixes
+
+* **git:** add new `cleangit` for speeding up Git operation in a repo ([594e5ec](https://github.com/Avivbens/shell-config/commit/594e5ec27f503c5f215f192768afc4ef7c786977))
+
 ## [2.22.1](https://github.com/Avivbens/shell-config/compare/v2.22.0...v2.22.1) (2026-01-25)
 
 
