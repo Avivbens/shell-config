@@ -21,7 +21,16 @@ alias gm="git merge"
 alias gf="git fetch"
 alias gr="git rebase"
 alias gunlast="git reset --soft HEAD~1"
+# remove references to deleted remote branches
 alias gprune="git remote prune origin"
+
+# clean up local git repository useful after a lot of branching and merging
+# reduce the size of the .git folder and speed up git operations
+function cleangit() {
+    git gc --prune=now
+    git repack -Ad
+    git prune
+}
 
 alias gss="git stash --include-untracked"
 alias gsp="git stash pop"
