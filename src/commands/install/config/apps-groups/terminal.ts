@@ -19,6 +19,14 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('iterm2')],
     },
     {
+        name: 'Termius',
+        description: 'Cross-platform SSH client with sync, SFTP, and AI-powered autocomplete',
+        group: 'terminal',
+        tags: ['productivity', 'ai'],
+        openUrl: () => BREW_HOME('termius', true),
+        commands: () => [BREW_CASK('termius')],
+    },
+    {
         name: 'Mcfly',
         description: 'Search & execute through your shell history, with context-aware suggestions and neural network.',
         group: 'terminal',
