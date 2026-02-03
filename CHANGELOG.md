@@ -1,3 +1,11 @@
+## [2.22.3](https://github.com/Avivbens/shell-config/compare/v2.22.2...v2.22.3) (2026-02-03)
+
+
+### Bug Fixes
+
+* **kubectl:** add `kubectl` shell aliases ([e604472](https://github.com/Avivbens/shell-config/commit/e604472c489fe1ff431944c0a169457afbffe553))
+* **terminal:** add `Termius` as an app ([e9be649](https://github.com/Avivbens/shell-config/commit/e9be6490cf6b1b3cfa04a3649086bc19bacd7cb5))
+
 ## [2.22.2](https://github.com/Avivbens/shell-config/compare/v2.22.1...v2.22.2) (2026-01-28)
 
 
