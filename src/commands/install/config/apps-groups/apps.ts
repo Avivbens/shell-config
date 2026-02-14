@@ -27,13 +27,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('chatgpt')],
     },
     {
-        name: 'Bar Tender',
+        name: 'Ice',
         group: 'apps',
-        description: 'Hide menu bar icons and manage them',
+        description: 'Open-source menu bar management tool to hide and organize menu bar icons',
         tags: ['productivity'],
-        paid: true,
-        openUrl: () => BREW_HOME('bartender', true),
-        commands: () => [BREW_CASK('bartender')],
+        openUrl: () => BREW_HOME('jordanbaird-ice', true),
+        commands: () => [BREW_CASK('jordanbaird-ice')],
     },
     {
         name: 'Google Drive',
