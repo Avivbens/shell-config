@@ -1,3 +1,10 @@
+## [2.22.4](https://github.com/Avivbens/shell-config/compare/v2.22.3...v2.22.4) (2026-02-14)
+
+
+### Bug Fixes
+
+* **apps:** add `Ice` instead of `Bartender 6` ([8058658](https://github.com/Avivbens/shell-config/commit/805865866873e20017fef42c57fe56393b5ceb00))
+
 ## [2.22.3](https://github.com/Avivbens/shell-config/compare/v2.22.2...v2.22.3) (2026-02-03)
 
 
