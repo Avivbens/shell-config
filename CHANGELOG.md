@@ -1,3 +1,10 @@
+## [2.22.5](https://github.com/Avivbens/shell-config/compare/v2.22.4...v2.22.5) (2026-02-18)
+
+
+### Bug Fixes
+
+* **apps:** add `Lens` as a devops app ([f1448e7](https://github.com/Avivbens/shell-config/commit/f1448e771776bf3c01a6373cdccffa051fe9e124))
+
 ## [2.22.4](https://github.com/Avivbens/shell-config/compare/v2.22.3...v2.22.4) (2026-02-14)
 
 
