@@ -29,6 +29,14 @@ export const ENGINEERING_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('rancher')],
     },
     {
+        name: 'Lens',
+        description: 'Kubernetes IDE',
+        group: 'engineering-apps',
+        tags: ['devops'],
+        openUrl: () => BREW_HOME('lens', true),
+        commands: () => [BREW_CASK('lens')],
+    },
+    {
         name: 'Postman',
         description: 'API client',
         group: 'engineering-apps',
