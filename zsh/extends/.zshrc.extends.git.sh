@@ -123,9 +123,6 @@ function clonets() {
     npm ci
 }
 
-# remove all local branches but the master & staging
-alias grab="git branch | egrep -v 'master|staging' | xargs git branch -D"
-
 # show current email config
 echo "\nCurrent git email config:"
 git config --global -l | grep 'email'
