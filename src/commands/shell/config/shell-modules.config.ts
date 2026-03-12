@@ -12,6 +12,11 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
         description: 'Git aliases and functions',
     },
     {
+        name: 'Git Worktree',
+        path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.git-worktree.sh`,
+        description: 'Git worktree helpers (gwa, gwn, gwr, gwcd)',
+    },
+    {
         name: 'VSCode',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.vscode.sh`,
         description: 'VSCode aliases and functions',
