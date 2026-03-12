@@ -10,19 +10,6 @@ function _gw_path() {
     echo "$(dirname "$root")/$(basename "$root")@${1//\//-}"
 }
 
-# detect package manager and run install
-function _gw_install() {
-    if [[ -f "bun.lockb" ]] || [[ -f "bun.lock" ]]; then
-        bun install --frozen-lockfile
-    elif [[ -f "pnpm-lock.yaml" ]]; then
-        pnpm install --frozen-lockfile
-    elif [[ -f "yarn.lock" ]]; then
-        yarn install --frozen-lockfile
-    elif [[ -f "package-lock.json" ]]; then
-        npm ci
-    fi
-}
-
 # interactive worktree picker (fzf or numbered list fallback)
 function _gw_pick() {
     local main_wt=$(git worktree list --porcelain 2>/dev/null | head -1 | sed 's/^worktree //')
@@ -90,7 +77,7 @@ function gwa() {
     git worktree add "$wt_path" "$branch" || return 1
     cd "$wt_path"
 
-    [[ -n "$opts_i" ]] && _gw_install
+    [[ -n "$opts_i" ]] && pm_install
     [[ -n "$opts_c" ]] && code .
 }
 
@@ -109,7 +96,7 @@ function gwn() {
     git worktree add -b "$branch" "$wt_path" "$base" || return 1
     cd "$wt_path"
 
-    [[ -n "$opts_i" ]] && _gw_install
+    [[ -n "$opts_i" ]] && pm_install
     [[ -n "$opts_c" ]] && code .
 }
 

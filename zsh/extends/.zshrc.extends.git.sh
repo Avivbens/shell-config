@@ -120,7 +120,7 @@ function clonets() {
     # enter the directory
     cd $(basename $_ .git)
     code .
-    npm ci
+    pm_install
 }
 
 # show current email config
