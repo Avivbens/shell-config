@@ -66,8 +66,8 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         group: 'cli-apps',
         description: 'Rust programming language CLI',
         openUrl: () => BREW_HOME('rust'),
-        commands: () => [BREW_INSTALL('rust')],
-        fallbackCommands: () => [BROW_INSTALL('rust')],
+        commands: () => [BREW_INSTALL('rust'), BREW_INSTALL('rustup')],
+        fallbackCommands: () => [BROW_INSTALL('rust'), BROW_INSTALL('rustup')],
     },
     {
         name: 'GitHub CLI',
