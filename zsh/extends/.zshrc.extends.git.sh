@@ -27,9 +27,8 @@ alias gprune="git remote prune origin"
 # clean up local git repository useful after a lot of branching and merging
 # reduce the size of the .git folder and speed up git operations
 function cleangit() {
-    git gc --prune=now
+    git gc
     git repack -Ad
-    git prune
 }
 
 alias gss="git stash --include-untracked"
@@ -120,11 +119,8 @@ function clonets() {
     # enter the directory
     cd $(basename $_ .git)
     code .
-    npm ci
+    pm_install
 }
-
-# remove all local branches but the master & staging
-alias grab="git branch | egrep -v 'master|staging' | xargs git branch -D"
 
 # show current email config
 echo "\nCurrent git email config:"
