@@ -18,6 +18,7 @@ alias gbn="git branch --show-current"
 alias gba="git branch -a"
 # prints the repo's default branch (e.g. main, master, dev)
 alias gbdefault="git symbolic-ref refs/remotes/origin/HEAD --short | sed 's@^origin/@@'"
+alias gchd='git checkout "$(gbdefault)"'
 alias gpu="git pull"
 alias gm="git merge"
 alias gf="git fetch"
