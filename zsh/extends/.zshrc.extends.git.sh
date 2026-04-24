@@ -16,6 +16,8 @@ alias gcp="git cherry-pick"
 alias gb="git branch"
 alias gbn="git branch --show-current"
 alias gba="git branch -a"
+# prints the repo's default branch (e.g. main, master, dev)
+alias gbdefault="git symbolic-ref refs/remotes/origin/HEAD --short | sed 's@^origin/@@'"
 alias gpu="git pull"
 alias gm="git merge"
 alias gf="git fetch"
@@ -38,9 +40,10 @@ alias gsp="git stash pop"
 # set the number of padding lines to 15
 export LESS="-FXRSj15"
 
-function gmd() {
-    git pull
-    git merge origin/dev
+# fetch + rebase onto the default branch
+function grm() {
+    gf
+    gr "origin/$(gbdefault)"
 }
 
 # stop git from tracking a file
