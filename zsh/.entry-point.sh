@@ -43,6 +43,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$BROW_PERFIX/opt/nvm/nvm.sh" ] && \. "$BROW_PERFIX/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "$BROW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BROW_PERFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
+# Rust toolchain (rustup)
+sourceIf "$HOME/.cargo/env"
+
 # ----- shell-config -----
 export PATH="$HOME/shell-config/executable:$PATH"
 cache_completion "shell-config completion-script" "shell-config" 120

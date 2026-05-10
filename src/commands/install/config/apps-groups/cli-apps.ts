@@ -9,6 +9,7 @@ import {
     BROW_INSTALL,
     BROW_TAP,
     NVM_COMMAND,
+    OPEN_BROWSER_LINK,
 } from '../common-commands'
 
 const DEFAULT_NODE_VERSION = '22.14.0'
@@ -64,10 +65,11 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Rust CLI 🦀',
         group: 'cli-apps',
-        description: 'Rust programming language CLI',
-        openUrl: () => BREW_HOME('rust'),
-        commands: () => [BREW_INSTALL('rust'), BREW_INSTALL('rustup')],
-        fallbackCommands: () => [BROW_INSTALL('rust'), BROW_INSTALL('rustup')],
+        description: 'Rust programming language CLI (via rustup)',
+        openUrl: () => OPEN_BROWSER_LINK('https://rustup.rs'),
+        commands: () => [
+            `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --no-modify-path`,
+        ],
     },
     {
         name: 'GitHub CLI',
