@@ -1,12 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import {
-    BREW_CASK,
-    BREW_HOME,
-    BREW_INSTALL,
-    BROW_CASK,
-    OPEN_APP_STORE_APP_LINK,
-    OPEN_BROWSER_LINK,
-} from '../common-commands'
+import { BREW_CASK, BREW_HOME, BREW_INSTALL, BROW_CASK, MAS_APP_STORE, OPEN_BROWSER_LINK } from '../common-commands'
 
 export const APPS: Readonly<IAppSetup[]> = [
     {
@@ -95,7 +88,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         tags: ['super-user'],
         paid: true,
         openUrl: () => `open https://pasteapp.io/`,
-        commands: () => [OPEN_APP_STORE_APP_LINK('paste-endless-clipboard/id967805235')],
+        commands: () => [BREW_CASK('paste')],
     },
     {
         name: 'RCMD',
@@ -104,14 +97,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         tags: ['super-user'],
         paid: true,
         openUrl: () => `open https://lowtechguys.com/rcmd/`,
-        commands: () => [OPEN_APP_STORE_APP_LINK('rcmd-app-switcher/id1596283165')],
+        commands: () => [BREW_CASK('rcmd')],
     },
     {
         name: 'Amphetamine',
         description: 'Prevent your Mac from sleeping',
         group: 'apps',
         tags: ['super-user'],
-        commands: () => [OPEN_APP_STORE_APP_LINK('amphetamine/id937984704')],
+        commands: () => MAS_APP_STORE('937984704'),
     },
     {
         name: 'BetterTouchTool',
@@ -162,6 +155,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['super-user'],
         openUrl: () => `open https://www.bresink.com/osx/TinkerTool.html`,
+        manual: true,
         commands: () => [OPEN_BROWSER_LINK('https://www.bresink.com/osx/0TinkerTool/download.php')],
     },
     {
@@ -170,7 +164,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['super-user'],
         openUrl: () => `open https://www.finderhub.app/`,
-        commands: () => [OPEN_APP_STORE_APP_LINK('folder-hub-file-browser/id6473019059')],
+        commands: () => MAS_APP_STORE('6473019059'),
     },
     {
         name: 'Dropover',
@@ -179,7 +173,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         tags: ['super-user'],
         paid: true,
         openUrl: () => `open https://dropoverapp.com/`,
-        commands: () => [OPEN_APP_STORE_APP_LINK('dropover-easier-drag-drop/id1355679052')],
+        commands: () => MAS_APP_STORE('1355679052'),
     },
     {
         name: 'WebCatalog',
@@ -203,7 +197,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['super-user'],
         openUrl: () => `open https://sindresorhus.com/hyperduck`,
-        commands: () => [OPEN_APP_STORE_APP_LINK('hyperduck/id6444667067')],
+        commands: () => MAS_APP_STORE('6444667067'),
     },
     {
         name: 'Hovrly',

@@ -1,10 +1,12 @@
 import { Listr, ListrTask } from 'listr2'
 import { Command, CommandRunner, Option } from 'nest-commander'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { cpus } from 'node:os'
 import { arch as ARCH, exit } from 'node:process'
 import { setTimeout } from 'node:timers/promises'
 import ora from 'ora'
 import {
+    BASE_PATH,
     BREW_INSTALL_RETRIES,
     BREW_LOCKING_STATE_ERROR,
     BREW_NON_ERRORS,
@@ -22,6 +24,17 @@ import { HELP_BOX_MESSAGE, TASKS_CONFIG } from './config/parallel.config'
 import { USER_TAGS_PROMPT } from './config/user-tags.config'
 import { IInstallCommandOptions } from './models/install-command.options'
 
+interface IInstallState {
+    apps: string[]
+    completed: string[]
+}
+
+/**
+ * Where the current selection + progress is persisted so a crashed / OOM-killed run can be
+ * resumed with `install --resume`.
+ */
+const RESUME_STATE_FILE = `${BASE_PATH}/logs/last-install.json`
+
 @Command({
     name: 'install',
     description: 'Install MacOS setup with Multi-Selection',
@@ -29,6 +42,12 @@ import { IInstallCommandOptions } from './models/install-command.options'
 })
 export class InstallCommand extends CommandRunner {
     private readonly installMap = new Map<string, boolean>()
+
+    /**
+     * Names of all apps in the current run's resolved selection — used to compute what's left for
+     * `--resume` and whether to show the resume hint.
+     */
+    private selectedAppNames: string[] = []
 
     constructor(
         @InjectLogger(InstallCommand.name) private readonly logger: LoggerService,
@@ -63,25 +82,34 @@ export class InstallCommand extends CommandRunner {
         return parsed
     }
 
+    @Option({
+        name: 'resume',
+        flags: '--resume',
+        defaultValue: false,
+        description: 'Resume the previous install, skipping apps that already completed',
+    })
+    private isResume(): boolean {
+        return true
+    }
+
     async run(inputs: string[], options: IInstallCommandOptions): Promise<void> {
-        const { noParallel, parallelCount } = options
+        const { noParallel, parallelCount, resume } = options
         await this.checkUpdateService.checkForUpdates()
 
         try {
-            const tags = await USER_TAGS_PROMPT()
-            this.logger.debug(`Selected tags: ${tags.join(', ')}`)
+            const toInstall = resume ? this.loadResumeApps() : await this.promptForApps()
 
-            const tagsWithDeps: ITag[] = tags.flatMap((tag) => {
-                const deps: ITag[] = TAGS_DEPS[tag] ?? []
-                return [tag, ...deps]
-            })
-            const uniqueTags = [...new Set(tagsWithDeps)]
-
-            this.logger.debug(`Unique tags: ${uniqueTags.join(', ')}`)
-
-            const toInstall = await MULTI_SELECT_APPS_PROMPT_V2(uniqueTags)
+            if (!toInstall?.length) {
+                if (resume) {
+                    console.log('Nothing to resume — no unfinished apps from a previous run.')
+                }
+                this.logger.debug(resume ? 'Nothing to resume' : 'No apps selected')
+                return
+            }
 
             const resolvedDeps = this.resolveDeps(toInstall)
+            this.selectedAppNames = resolvedDeps.map((app) => app.name)
+            this.persistProgress()
 
             this.logger.debug(`Installing apps, resolvedDeps: ${resolvedDeps.map((app) => app.name).join(', ')}`)
             this.logger.debug(`Current arch ${ARCH}`)
@@ -139,13 +167,89 @@ export class InstallCommand extends CommandRunner {
             }
         } catch (error) {
             this.logger.debug(`Error InstallCommand, error: ${error.stack}`)
+        } finally {
+            this.printResumeHintIfNeeded()
         }
     }
 
     /**
+     * Prompt the user for tags, then the apps to install.
+     */
+    private async promptForApps(): Promise<IAppSetup[]> {
+        const tags = await USER_TAGS_PROMPT()
+        this.logger.debug(`Selected tags: ${tags.join(', ')}`)
+
+        const tagsWithDeps: ITag[] = tags.flatMap((tag) => {
+            const deps: ITag[] = TAGS_DEPS[tag] ?? []
+            return [tag, ...deps]
+        })
+        const uniqueTags = [...new Set(tagsWithDeps)]
+
+        this.logger.debug(`Unique tags: ${uniqueTags.join(', ')}`)
+
+        return MULTI_SELECT_APPS_PROMPT_V2(uniqueTags)
+    }
+
+    /**
+     * Persist the current selection + completed apps so a crashed / OOM-killed run can be resumed
+     * with `install --resume`. Written synchronously after each install so progress survives a hard
+     * crash.
+     */
+    private persistProgress(): void {
+        try {
+            const state: IInstallState = {
+                apps: this.selectedAppNames,
+                completed: [...this.installMap.keys()],
+            }
+            writeFileSync(RESUME_STATE_FILE, JSON.stringify(state, null, 4))
+        } catch (error) {
+            this.logger.debug(`Error persistProgress, error: ${error.stack}`)
+        }
+    }
+
+    /**
+     * Load the not-yet-completed apps from the previous run's state for `--resume`.
+     * @returns the remaining apps, or an empty list if there is nothing to resume.
+     */
+    private loadResumeApps(): IAppSetup[] {
+        try {
+            if (!existsSync(RESUME_STATE_FILE)) {
+                return []
+            }
+
+            const state: IInstallState = JSON.parse(readFileSync(RESUME_STATE_FILE, 'utf-8'))
+            const completed = new Set(state.completed ?? [])
+
+            return (state.apps ?? [])
+                .filter((name) => !completed.has(name))
+                .map((name) => APPS_CONFIG_MAP[name])
+                .filter(Boolean)
+        } catch (error) {
+            this.logger.debug(`Error loadResumeApps, error: ${error.stack}`)
+            return []
+        }
+    }
+
+    /**
+     * If any selected app didn't finish, print the exact command to continue.
+     */
+    private printResumeHintIfNeeded(): void {
+        const unfinished = this.selectedAppNames.filter((name) => !this.installMap.has(name))
+        if (!unfinished.length) {
+            return
+        }
+
+        this.logger.debug(`Unfinished apps: ${unfinished.join(', ')}`)
+        console.log(
+            `\n${unfinished.length} app(s) did not finish: ${unfinished.join(', ')}\n` +
+                `To continue where you left off, run:\n\n    shell-config install --resume\n`,
+        )
+    }
+
+    /**
      * Resolve dependencies order for apps
-     * @returns All apps within the resolved order
-     * @throws - If any dependency is not listed
+     * @returns All apps within the resolved order. Apps whose deps aren't part of this selection
+     * are appended without ordering (the dep is assumed already installed or simply not selected).
      */
     private resolveDeps(
         apps: IAppSetup[],
@@ -176,6 +280,23 @@ export class InstallCommand extends CommandRunner {
             })
 
             if (!toCheck.length) {
+                return res
+            }
+
+            /**
+             * Progress guard: if a full round resolved nothing (every remaining app still has an
+             * unmet dependency and none could be satisfied), the missing deps aren't part of this
+             * selection — e.g. AWS CLI depends on Python but Python wasn't chosen. Install the
+             * remaining apps without ordering instead of recursing forever, which previously blew
+             * the stack (`RangeError: Maximum call stack size exceeded`).
+             */
+            if (toCheck.length === apps.length) {
+                this.logger.debug(
+                    `resolveDeps: unmet deps for [${toCheck
+                        .map((app) => app.name)
+                        .join(', ')}] — installing without ordering`,
+                )
+                res.push(...toCheck)
                 return res
             }
 
@@ -282,6 +403,10 @@ export class InstallCommand extends CommandRunner {
                             try {
                                 await this.installAppV2(app)
 
+                                if (app.manual) {
+                                    task.title = `Manual step required — finish installing ${name}`
+                                }
+
                                 if (!dependBy?.length) {
                                     return
                                 }
@@ -331,7 +456,7 @@ export class InstallCommand extends CommandRunner {
      * @deprecated - Use {@link installAppV2} instead
      */
     private async installApp(app: IAppSetup): Promise<void> {
-        const { name, commands, fallbackCommands } = app
+        const { name, commands, fallbackCommands, manual } = app
         const spinner = ora({
             text: `Installing ${name}`,
             hideCursor: false,
@@ -387,10 +512,17 @@ export class InstallCommand extends CommandRunner {
             }
 
             this.installMap.set(name, true)
+            this.persistProgress()
 
-            const successMsg = `Installed ${name}`
-            spinner.succeed(successMsg)
-            this.logger.debug(successMsg)
+            if (manual) {
+                const manualMsg = `Manual step required — finish installing ${name}`
+                spinner.warn(manualMsg)
+                this.logger.debug(manualMsg)
+            } else {
+                const successMsg = `Installed ${name}`
+                spinner.succeed(successMsg)
+                this.logger.debug(successMsg)
+            }
         } catch (error) {
             spinner.fail()
             this.logger.error(`Error installApp app: ${name}, error: ${error.message}`)
@@ -403,7 +535,7 @@ export class InstallCommand extends CommandRunner {
      * @throws - If any command fails (including fallback commands)
      */
     private async installAppV2(app: IAppSetup): Promise<void> {
-        const { name, commands, fallbackCommands } = app
+        const { name, commands, fallbackCommands, manual } = app
 
         try {
             try {
@@ -453,8 +585,9 @@ export class InstallCommand extends CommandRunner {
             }
 
             this.installMap.set(name, true)
+            this.persistProgress()
 
-            const successMsg = `Installed ${name}`
+            const successMsg = manual ? `Manual step required — finish installing ${name}` : `Installed ${name}`
             this.logger.debug(successMsg)
         } catch (error) {
             this.logger.debug(`Error installApp2 root - app: ${name}, error: ${error.message}`)
