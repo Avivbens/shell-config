@@ -202,13 +202,13 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('entr')],
     },
     {
-        name: 'claude',
-        description: `Interact with Anthropic's Claude AI directly from your terminal`,
+        name: 'claude-code',
+        description: `Anthropic's agentic coding tool that lives in your terminal`,
         group: 'cli-apps',
         tags: ['ai', 'productivity'],
-        openUrl: () => BREW_HOME('claude'),
-        commands: () => [BREW_INSTALL('claude')],
-        fallbackCommands: () => [BROW_INSTALL('claude')],
+        openUrl: () => BREW_HOME('claude-code', true),
+        commands: () => [BREW_CASK('claude-code')],
+        fallbackCommands: () => [BROW_CASK('claude-code')],
     },
     {
         name: 'claude-squad',
