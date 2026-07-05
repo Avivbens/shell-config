@@ -1,3 +1,11 @@
+## [2.23.1-beta.1](https://github.com/Avivbens/shell-config/compare/v2.23.0...v2.23.1-beta.1) (2026-07-05)
+
+
+### Bug Fixes
+
+* **manual:** add manual flag ([dc39e25](https://github.com/Avivbens/shell-config/commit/dc39e25a740a633a870cffaa16c05e3f28970640))
+* **resume:** support resume flag for install, better App Store install ([7e4569e](https://github.com/Avivbens/shell-config/commit/7e4569e0ecfe2c76a54dc56bf6423a813a931ec0))
+
 # [2.23.0](https://github.com/Avivbens/shell-config/compare/v2.22.5...v2.23.0) (2026-07-05)
 
 
