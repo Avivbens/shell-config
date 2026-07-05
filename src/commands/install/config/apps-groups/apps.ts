@@ -190,13 +190,12 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('webcatalog')],
     },
     {
-        name: 'SuperWhisper',
-        description: 'AI-powered voice to text transcription tool',
+        name: 'FluidVoice',
+        description: 'Offline voice-to-text dictation app with on-device AI enhancement',
         group: 'apps',
         tags: ['productivity', 'ai'],
-        paid: true,
-        openUrl: () => BREW_HOME('superwhisper', true),
-        commands: () => [BREW_CASK('superwhisper')],
+        openUrl: () => BREW_HOME('fluidvoice', true),
+        commands: () => [BREW_CASK('fluidvoice')],
     },
     {
         name: 'Hyperduck',

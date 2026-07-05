@@ -81,6 +81,15 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('eza')],
     },
     {
+        name: 'Tree',
+        description: 'Display directories as trees (with optional color/HTML output)',
+        group: 'terminal',
+        tags: ['productivity'],
+        openUrl: () => BREW_HOME('tree'),
+        commands: () => [BREW_INSTALL('tree')],
+        fallbackCommands: () => [BROW_INSTALL('tree')],
+    },
+    {
         name: 'ZSH Terminal Syntax Highlighting',
         group: 'terminal',
         tags: ['engineering'],

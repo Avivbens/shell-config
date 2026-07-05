@@ -16,6 +16,9 @@ alias gcp="git cherry-pick"
 alias gb="git branch"
 alias gbn="git branch --show-current"
 alias gba="git branch -a"
+# prints the repo's default branch (e.g. main, master, dev)
+alias gbdefault="git symbolic-ref refs/remotes/origin/HEAD --short | sed 's@^origin/@@'"
+alias gchd='git checkout "$(gbdefault)"'
 alias gpu="git pull"
 alias gm="git merge"
 alias gf="git fetch"
@@ -27,9 +30,8 @@ alias gprune="git remote prune origin"
 # clean up local git repository useful after a lot of branching and merging
 # reduce the size of the .git folder and speed up git operations
 function cleangit() {
-    git gc --prune=now
+    git gc
     git repack -Ad
-    git prune
 }
 
 alias gss="git stash --include-untracked"
@@ -39,9 +41,10 @@ alias gsp="git stash pop"
 # set the number of padding lines to 15
 export LESS="-FXRSj15"
 
-function gmd() {
-    git pull
-    git merge origin/dev
+# fetch + rebase onto the default branch
+function grm() {
+    gf
+    gr "origin/$(gbdefault)"
 }
 
 # stop git from tracking a file
@@ -120,11 +123,8 @@ function clonets() {
     # enter the directory
     cd $(basename $_ .git)
     code .
-    npm ci
+    pm_install
 }
-
-# remove all local branches but the master & staging
-alias grab="git branch | egrep -v 'master|staging' | xargs git branch -D"
 
 # show current email config
 echo "\nCurrent git email config:"

@@ -5,6 +5,9 @@ if command -v kubectl &>/dev/null; then
     # List pods
     alias kgp='kubectl get pods'
 
+    # Show pod resource usage
+    alias ktop='kubectl top pod'
+
     # List contexts
     alias kctx='kubectx'
 

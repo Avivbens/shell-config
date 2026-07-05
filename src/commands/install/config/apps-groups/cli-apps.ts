@@ -9,6 +9,7 @@ import {
     BROW_INSTALL,
     BROW_TAP,
     NVM_COMMAND,
+    OPEN_BROWSER_LINK,
 } from '../common-commands'
 
 const DEFAULT_NODE_VERSION = '22.14.0'
@@ -64,10 +65,11 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Rust CLI 🦀',
         group: 'cli-apps',
-        description: 'Rust programming language CLI',
-        openUrl: () => BREW_HOME('rust'),
-        commands: () => [BREW_INSTALL('rust')],
-        fallbackCommands: () => [BROW_INSTALL('rust')],
+        description: 'Rust programming language CLI (via rustup)',
+        openUrl: () => OPEN_BROWSER_LINK('https://rustup.rs'),
+        commands: () => [
+            `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --no-modify-path`,
+        ],
     },
     {
         name: 'GitHub CLI',
@@ -200,13 +202,13 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('entr')],
     },
     {
-        name: 'claude',
-        description: `Interact with Anthropic's Claude AI directly from your terminal`,
+        name: 'claude-code',
+        description: `Anthropic's agentic coding tool that lives in your terminal`,
         group: 'cli-apps',
         tags: ['ai', 'productivity'],
-        openUrl: () => BREW_HOME('claude'),
-        commands: () => [BREW_INSTALL('claude')],
-        fallbackCommands: () => [BROW_INSTALL('claude')],
+        openUrl: () => BREW_HOME('claude-code', true),
+        commands: () => [BREW_CASK('claude-code')],
+        fallbackCommands: () => [BROW_CASK('claude-code')],
     },
     {
         name: 'claude-squad',

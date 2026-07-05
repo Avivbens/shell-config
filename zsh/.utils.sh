@@ -95,3 +95,22 @@ function cache_completion() {
 
     source $cache_file
 }
+
+# detect package manager from lock files and run install
+function pm_install() {
+    if [[ -f "bun.lockb" ]] || [[ -f "bun.lock" ]]; then
+        bun install --frozen-lockfile
+    elif [[ -f "pnpm-lock.yaml" ]]; then
+        pnpm install --frozen-lockfile
+    elif [[ -f "yarn.lock" ]]; then
+        yarn install --frozen-lockfile
+    elif [[ -f "package-lock.json" ]]; then
+        npm ci
+    elif [[ -f "poetry.lock" ]]; then
+        poetry install
+    elif [[ -f "Pipfile.lock" ]]; then
+        pipenv install
+    elif [[ -f "requirements.txt" ]]; then
+        pip install -r requirements.txt
+    fi
+}
