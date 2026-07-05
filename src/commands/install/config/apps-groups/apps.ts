@@ -162,6 +162,7 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         tags: ['super-user'],
         openUrl: () => `open https://www.bresink.com/osx/TinkerTool.html`,
+        manual: true,
         commands: () => [OPEN_BROWSER_LINK('https://www.bresink.com/osx/0TinkerTool/download.php')],
     },
     {

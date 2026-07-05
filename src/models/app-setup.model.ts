@@ -48,6 +48,14 @@ export interface IAppSetup {
     last?: boolean
 
     /**
+     * @default false
+     * @description If true, the app cannot be installed unattended (e.g. a paid Mac App Store app
+     * or a direct download). Its command typically just opens the store / download page, so the CLI
+     * reports a manual step to finish instead of falsely claiming the app was `Installed`.
+     */
+    manual?: boolean
+
+    /**
      * @description Open the app's website / documentation
      * @default undefined
      */
