@@ -1,3 +1,26 @@
+# [2.23.0](https://github.com/Avivbens/shell-config/compare/v2.22.5...v2.23.0) (2026-07-05)
+
+
+### Bug Fixes
+
+* **apps:** replace audio transcription to on-device tool `FluidVoice` ([06079a0](https://github.com/Avivbens/shell-config/commit/06079a047052a2e564c6754a6c902988468c2c00))
+* **claude:** correct Claude Code installation ([0239b49](https://github.com/Avivbens/shell-config/commit/0239b497b8ee38847893adb0354470308c34356b))
+* **git:** change `cleangit` to be more conservative ([9a896df](https://github.com/Avivbens/shell-config/commit/9a896df283e7581730a62e7f3d7d218ccb6ee0d9))
+* **git:** remove `grab` alias ([43941db](https://github.com/Avivbens/shell-config/commit/43941db94f68a00dfc19ae5f306778294531e1b3))
+* **git:** support `gchd` for quick checkout to default branch ([2f56c62](https://github.com/Avivbens/shell-config/commit/2f56c628237cf88e77931664fd4100fa1e4e02e3))
+* **git:** support default branch detection + `grm` for quick rebase ([381a576](https://github.com/Avivbens/shell-config/commit/381a5760e589d80e03163c6a02df1b37e2a24d82))
+* **kubectl:** add `ktop` alias ([5935451](https://github.com/Avivbens/shell-config/commit/59354519260f6db6ea6e0eb1333c08a7ddb9b6aa))
+* **rust:** include `rustup` as part of rust installation ([dd1907c](https://github.com/Avivbens/shell-config/commit/dd1907cdb0438d5f74d08da21a54f79825e002e2))
+* **rust:** install via official installer - `rustup` only ([56219b3](https://github.com/Avivbens/shell-config/commit/56219b3f004c071605180fa207b0539623250eeb))
+* **terminal:** add `tree` formula ([432f7d0](https://github.com/Avivbens/shell-config/commit/432f7d0768f5e8f8068cae763db05bc15aa7f5c5))
+
+
+### Features
+
+* **git-worktrees:** add git worktree aliases ([8a10907](https://github.com/Avivbens/shell-config/commit/8a10907ce501e006b8c4bf6587996f050a7b758a))
+* **network:** support new `netwatch` for unstable network rejoin ([67532f1](https://github.com/Avivbens/shell-config/commit/67532f195f3a39c7c66d602b60ed8f4872456188))
+* **package-managers:** add `pm_install` for auto install deps based on relevant PM ([a8e0a68](https://github.com/Avivbens/shell-config/commit/a8e0a68358bf6d8a75fe2f556a9674ae513d26b1))
+
 ## [2.22.5](https://github.com/Avivbens/shell-config/compare/v2.22.4...v2.22.5) (2026-02-18)
 
 
