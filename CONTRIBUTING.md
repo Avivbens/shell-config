@@ -31,6 +31,26 @@ npm run start:dev -- install
 1. Both the [.zshrc configuration](zsh/.entry-point.sh), and the [UpdateCommand](src/commands/update/update.command.ts) calling `source <(shell-config init-script)` in order to have the dynamic init command of the latest version.
 1. The [InitCommand](src/commands/init/init.command.ts) kicks in, and checks all of the relevant files, tools, setups and configurations of the latest version, and update them if needed. Homebrew is been installed for both Apple Silicon and Intel based Macs. It will also backup the current `.zshrc` file
 
+## Beta Releases
+
+Betas are published automatically by [semantic-release](https://github.com/semantic-release/semantic-release) whenever commits land on the `beta` branch (configured in [.releaserc](.releaserc)). There is no manual version bumping — the version is derived from your [conventional commits](#commit-message-guidelines).
+
+### Publish a beta
+
+1. Merge your PR into the `beta` branch (PRs should target `beta` — see [Getting Started](#getting-started))
+1. The [release workflow](.github/workflows/release-ci.yml) runs and publishes a prerelease named `vX.Y.Z-beta.N` to [GitHub Releases](https://github.com/Avivbens/shell-config/releases), with the packed `cli.zip` attached
+1. Push more commits to `beta` to cut `-beta.2`, `-beta.3`, … ; merging `beta` into `master` later promotes it to the stable `vX.Y.Z`
+
+### Install / test a beta
+
+Use the built-in `update` command with the beta tag (the leading `v` is optional):
+
+```bash
+shell-config update --target v2.23.1-beta.1
+```
+
+It verifies the release exists, downloads that version's `cli.zip`, swaps the executable, and re-runs `init`. To go back, run `shell-config update` (equivalent to `--target latest`).
+
 ## Commit Message Guidelines
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. Make sure your commit messages follow the format below:
