@@ -1,3 +1,16 @@
+## [2.23.1](https://github.com/Avivbens/shell-config/compare/v2.23.0...v2.23.1) (2026-07-06)
+
+
+### Bug Fixes
+
+* **compatibility:** better matching of brew install target ([f20c8c9](https://github.com/Avivbens/shell-config/commit/f20c8c995487652f724e8ebd82e35fb7818cc037))
+* **deps:** auto-resolve deps instead of fail ([b7dc480](https://github.com/Avivbens/shell-config/commit/b7dc4803559d1741f7f313dac9d0e032b410ad6d))
+* **git-lfs:** add LFS support ([0409c68](https://github.com/Avivbens/shell-config/commit/0409c6812b3f5e7c91747c0a5abbfbbb5821bb89))
+* **logs:** issues with permissions ([b8d677e](https://github.com/Avivbens/shell-config/commit/b8d677e2323c5fea08bfb5c29633f6a131a02f42))
+* **mac:** add keyboard shortcut for toggle full screen ([6e582a3](https://github.com/Avivbens/shell-config/commit/6e582a3a28589146a75547d8959afbb9c51a71bd))
+* **manual:** add manual flag ([dc39e25](https://github.com/Avivbens/shell-config/commit/dc39e25a740a633a870cffaa16c05e3f28970640))
+* **resume:** support resume flag for install, better App Store install ([7e4569e](https://github.com/Avivbens/shell-config/commit/7e4569e0ecfe2c76a54dc56bf6423a813a931ec0))
+
 # [2.23.0](https://github.com/Avivbens/shell-config/compare/v2.22.5...v2.23.0) (2026-07-05)
 
 
