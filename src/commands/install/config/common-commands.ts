@@ -1,16 +1,38 @@
+import { execSync } from 'node:child_process'
 import { arch } from 'node:process'
 
 export const BROW_ALIAS = `arch --x86_64 /usr/local/Homebrew/bin/brew`
-const BREW_ARM = `/opt/homebrew/bin/brew`
+
+/** Force native arm64 so brew runs correctly even when this Node process is translated by Rosetta 2. */
+const BREW_ARM = `arch -arm64 /opt/homebrew/bin/brew`
 
 /**
- * Primary brew binary, chosen by the effective process architecture.
+ * True hardware architecture, independent of how this Node process was launched.
  *
- * Under Rosetta 2 `process.arch` reports `x64` and the ARM brew at /opt/homebrew refuses to run
- * (`Cannot install under Rosetta 2 in ARM default prefix`). Route x64 (Rosetta OR native Intel) to
- * the x86 brew that InitCommand guarantees in /usr/local; arm64 keeps the native /opt/homebrew.
+ * `process.arch` reports `x64` when Node runs under Rosetta 2 on Apple Silicon, which used to route
+ * every install to the x86 brew (brow) even though native /opt/homebrew works when run manually.
+ * `hw.optional.arm64` is `1` on Apple Silicon regardless of translation, and errors on Intel — so it
+ * reflects the real CPU rather than the process personality.
  */
-const BREW_ALIAS = arch === 'arm64' ? BREW_ARM : BROW_ALIAS
+const isAppleSilicon = ((): boolean => {
+    if (arch === 'arm64') {
+        return true
+    }
+
+    try {
+        return execSync('sysctl -n hw.optional.arm64 2>/dev/null').toString().trim() === '1'
+    } catch {
+        return false
+    }
+})()
+
+/**
+ * Primary brew binary, chosen by the true machine architecture.
+ *
+ * Apple Silicon uses the native /opt/homebrew (forced to arm64 so it works even under a Rosetta 2
+ * Node process); Intel uses the x86 brew that InitCommand guarantees in /usr/local.
+ */
+const BREW_ALIAS = isAppleSilicon ? BREW_ARM : BROW_ALIAS
 
 const BREW_NON_INTERACTIVE_FLAGS = `yes | HOMEBREW_NO_AUTO_UPDATE=1 NONINTERACTIVE=1`
 
