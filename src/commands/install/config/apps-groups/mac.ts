@@ -30,6 +30,28 @@ export const MACOS: Readonly<IAppSetup[]> = [
         commands: () => ['defaults write -g ApplePressAndHoldEnabled -bool false'],
     },
     {
+        name: 'Full screen shortcut',
+        description: 'Toggle full screen with Ctrl+Shift+F',
+        group: 'MacOS',
+        default: true,
+        /**
+         * Bind the standard Cocoa full screen menu commands to Ctrl+Shift+F via NSUserKeyEquivalents
+         * (^ = Ctrl, $ = Shift) — the "App Shortcuts → All Applications" pane in System Settings.
+         * All three menu-item titles are set so it works whether an app exposes a single "Toggle Full
+         * Screen" command or the separate "Enter/Exit Full Screen" pair. `-dict-add` merges into the
+         * existing dict instead of overwriting it. Applies to apps launched after this runs; a
+         * logout/login fully propagates it.
+         *
+         * The value MUST be single-quoted: the command runs through a shell, and `$f` in double quotes
+         * would be expanded as an (empty) shell variable, collapsing the shortcut to a bare `^`.
+         */
+        commands: () => [
+            `defaults write -g NSUserKeyEquivalents -dict-add "Toggle Full Screen" '^$f'`,
+            `defaults write -g NSUserKeyEquivalents -dict-add "Enter Full Screen" '^$f'`,
+            `defaults write -g NSUserKeyEquivalents -dict-add "Exit Full Screen" '^$f'`,
+        ],
+    },
+    {
         name: 'Update MacOS version',
         group: 'MacOS',
         default: true,

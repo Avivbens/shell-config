@@ -1,5 +1,5 @@
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_CASK, BREW_HOME, OPEN_APP_STORE_APP_LINK } from '../common-commands'
+import { BREW_CASK, BREW_HOME, MAS_APP_STORE } from '../common-commands'
 
 export const SECURITY_PRIVACY: Readonly<IAppSetup[]> = [
     {
@@ -8,7 +8,7 @@ export const SECURITY_PRIVACY: Readonly<IAppSetup[]> = [
         group: 'security-privacy',
         paid: true,
         openUrl: () => `open https://unplugalarm.app/`,
-        commands: () => [OPEN_APP_STORE_APP_LINK('unplug-alarm-anti-theft-app/id1489026302')],
+        commands: () => MAS_APP_STORE('1489026302'),
     },
     {
         name: 'Radio Silence',
