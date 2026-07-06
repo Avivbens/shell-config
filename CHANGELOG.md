@@ -1,3 +1,12 @@
+## [2.23.1-beta.2](https://github.com/Avivbens/shell-config/compare/v2.23.1-beta.1...v2.23.1-beta.2) (2026-07-06)
+
+
+### Bug Fixes
+
+* **compatibility:** better matching of brew install target ([af1bce6](https://github.com/Avivbens/shell-config/commit/af1bce6e65fad63532c24efe4a016fd96dc7c368))
+* **git-lfs:** add LFS support ([1201491](https://github.com/Avivbens/shell-config/commit/1201491b41c48466d945345c41b5561e0e25ff17))
+* **mac:** add keyboard shortcut for toggle full screen ([9ad2565](https://github.com/Avivbens/shell-config/commit/9ad25650fc861b282db2b46172df44f8e3a8a1f3))
+
 ## [2.23.1-beta.1](https://github.com/Avivbens/shell-config/compare/v2.23.0...v2.23.1-beta.1) (2026-07-05)
 
 
