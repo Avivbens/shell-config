@@ -4,12 +4,12 @@ import { BREW_HOME, BREW_INSTALL, BROW_INSTALL } from '../common-commands'
 export const GIT_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Git',
-        description: 'Common Code Version Manager',
+        description: 'Common Code Version Manager (with Git LFS for large files)',
         group: 'git',
         tags: ['engineering'],
         openUrl: () => BREW_HOME('git'),
-        commands: () => [BREW_INSTALL('git')],
-        fallbackCommands: () => [BROW_INSTALL('git')],
+        commands: () => [BREW_INSTALL('git'), BREW_INSTALL('git-lfs'), 'git lfs install'],
+        fallbackCommands: () => [BROW_INSTALL('git'), BROW_INSTALL('git-lfs'), 'git lfs install'],
     },
     {
         name: 'VSCode as rebase editor',
