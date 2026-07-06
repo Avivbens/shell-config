@@ -4,12 +4,18 @@ import { BREW_HOME, BREW_INSTALL, BROW_INSTALL } from '../common-commands'
 export const GIT_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Git',
-        description: 'Common Code Version Manager',
+        description: 'Common Code Version Manager (with Git LFS for large files)',
         group: 'git',
         tags: ['engineering'],
         openUrl: () => BREW_HOME('git'),
-        commands: () => [BREW_INSTALL('git')],
-        fallbackCommands: () => [BROW_INSTALL('git')],
+        /**
+         * `--skip-repo` sets up the global LFS filters (clean/smudge/process) in ~/.gitconfig without
+         * installing hooks into the current repo. Plain `git lfs install` fails with "Hook already
+         * exists: pre-push" when run from inside a repo that already has hooks (e.g. husky), which is
+         * exactly the case when the CLI runs from a git checkout.
+         */
+        commands: () => [BREW_INSTALL('git'), BREW_INSTALL('git-lfs'), 'git lfs install --skip-repo'],
+        fallbackCommands: () => [BROW_INSTALL('git'), BROW_INSTALL('git-lfs'), 'git lfs install --skip-repo'],
     },
     {
         name: 'VSCode as rebase editor',
