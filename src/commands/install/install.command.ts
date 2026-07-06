@@ -97,15 +97,23 @@ export class InstallCommand extends CommandRunner {
         await this.checkUpdateService.checkForUpdates()
 
         try {
-            const toInstall = resume ? this.loadResumeApps() : await this.promptForApps()
+            const selectedApps = resume ? this.loadResumeApps() : await this.promptForApps()
 
-            if (!toInstall?.length) {
+            if (!selectedApps?.length) {
                 if (resume) {
                     console.log('Nothing to resume — no unfinished apps from a previous run.')
                 }
                 this.logger.debug(resume ? 'Nothing to resume' : 'No apps selected')
                 return
             }
+
+            /**
+             * Fresh install: pull in any dependencies the user didn't pick so they install (ordered)
+             * first. On `--resume` we deliberately skip this — a dependency absent from the resume set
+             * already completed in the earlier run, so re-adding it would redo finished work; the
+             * leftover dependents install on their own (see the root selection in generateParallelTasks).
+             */
+            const toInstall = resume ? selectedApps : this.includeMissingDeps(selectedApps)
 
             const resolvedDeps = this.resolveDeps(toInstall)
             this.selectedAppNames = resolvedDeps.map((app) => app.name)
@@ -188,6 +196,45 @@ export class InstallCommand extends CommandRunner {
         this.logger.debug(`Unique tags: ${uniqueTags.join(', ')}`)
 
         return MULTI_SELECT_APPS_PROMPT_V2(uniqueTags)
+    }
+
+    /**
+     * Add any missing (transitive) dependencies to the selection so they install, ordered, before
+     * their dependents. Used for a fresh install only: e.g. picking "AWS CLI" (deps: ['Python'])
+     * without Python pulls Python in. Deps already in the selection are left untouched.
+     *
+     * Deliberately NOT used on `--resume`: a dependency absent from the resume set already completed
+     * in the previous run, so re-adding it would redo finished work.
+     */
+    private includeMissingDeps(apps: IAppSetup[]): IAppSetup[] {
+        const selected = new Map<string, IAppSetup>(apps.map((app) => [app.name, app]))
+
+        /** BFS over deps; newly-added deps are appended and processed as the loop reaches them. */
+        const queue = [...apps]
+        for (let i = 0; i < queue.length; i++) {
+            for (const depName of queue[i].deps ?? []) {
+                if (selected.has(depName)) {
+                    continue
+                }
+
+                const dep = APPS_CONFIG_MAP[depName]
+                if (!dep) {
+                    this.logger.debug(`includeMissingDeps: '${depName}' (dep of '${queue[i].name}') not in config`)
+                    continue
+                }
+
+                selected.set(depName, dep)
+                queue.push(dep)
+            }
+        }
+
+        const added = [...selected.keys()].filter((name) => !apps.some((app) => app.name === name))
+        if (added.length) {
+            this.logger.debug(`Auto-included missing dependencies: ${added.join(', ')}`)
+            console.log(`Including required dependencies: ${added.join(', ')}`)
+        }
+
+        return [...selected.values()]
     }
 
     /**
@@ -346,23 +393,6 @@ export class InstallCommand extends CommandRunner {
         const CHUNKS_SIZE = 15
         try {
             /**
-             * All selected apps deps enrichment
-             *
-             * @example
-             * {
-             *  'Python': [<ALL_PYTHON_DEPS>]
-             * }
-             */
-            const appsDeps: Record<string, IAppSetup[]> = apps.reduce((acc, app) => {
-                const { deps } = app
-                if (deps?.length) {
-                    acc[app.name] = deps.map((dep) => APPS_CONFIG_MAP[dep])
-                }
-
-                return acc
-            }, {})
-
-            /**
              * All selected apps depend by enrichment
              *
              * @example
@@ -384,7 +414,17 @@ export class InstallCommand extends CommandRunner {
                 return acc
             }, {})
 
-            const nonDeps = apps.filter((app) => !appsDeps[app.name])
+            /**
+             * Root tasks: apps with no dependency that is ALSO part of this run's selection.
+             *
+             * Besides genuinely dependency-free apps, this promotes apps whose deps live outside the
+             * current selection to top-level tasks — most importantly on `--resume`, where a dependency
+             * (e.g. Git) already completed and so isn't in the resume set. Such dependents would
+             * otherwise only ever run as subtasks of an in-selection parent that doesn't exist here,
+             * and would silently never install (the resume "does nothing" bug).
+             */
+            const selectedNames = new Set(apps.map((app) => app.name))
+            const roots = apps.filter((app) => !app.deps?.some((dep) => selectedNames.has(dep)))
 
             /**
              * Build tasks and subtasks by dependencies
@@ -423,7 +463,7 @@ export class InstallCommand extends CommandRunner {
                 return tasks
             }
 
-            const allTasks = buildByDeps(nonDeps)
+            const allTasks = buildByDeps(roots)
 
             const tasksChunks = this.splitToChunks(allTasks, CHUNKS_SIZE)
 
