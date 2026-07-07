@@ -1,3 +1,10 @@
+## [2.23.2](https://github.com/Avivbens/shell-config/compare/v2.23.1...v2.23.2) (2026-07-07)
+
+
+### Bug Fixes
+
+* **refresh:** drop a lot of legacy apps, update best-practices ([7c9ec1d](https://github.com/Avivbens/shell-config/commit/7c9ec1db53c32396c90d2d0d6087be8f25241aa1))
+
 ## [2.23.1](https://github.com/Avivbens/shell-config/compare/v2.23.0...v2.23.1) (2026-07-06)
 
 
