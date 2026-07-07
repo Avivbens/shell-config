@@ -244,22 +244,6 @@ export const APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_CASK('whatsapp')],
     },
     {
-        name: 'WhatsApp (legacy)',
-        description: 'WhatsApp legacy version',
-        group: 'apps',
-        openUrl: () => BREW_HOME('whatsapp', true),
-        commands: () => [
-            BREW_CASK(
-                'https://raw.githubusercontent.com/Homebrew/homebrew-cask/2f428f0d63c346637aafd8a8b2f474670c2e42f1/Casks/w/whatsapp.rb',
-            ),
-        ],
-        fallbackCommands: () => [
-            BROW_CASK(
-                'https://raw.githubusercontent.com/Homebrew/homebrew-cask/2f428f0d63c346637aafd8a8b2f474670c2e42f1/Casks/w/whatsapp.rb',
-            ),
-        ],
-    },
-    {
         name: 'Telegram',
         group: 'apps',
         tags: ['personal'],

@@ -27,7 +27,7 @@ export const MEDIA_APPS: Readonly<IAppSetup[]> = [
     {
         name: 'Pixelmator Pro',
         description: 'Incredibly powerful, beautiful, and easy-to-use image editor designed exclusively for Mac.',
-        group: 'apps',
+        group: 'media',
         openUrl: () => `open https://www.pixelmator.com/pro`,
         manual: true,
         commands: () => [OPEN_APP_STORE_APP_LINK('pixelmator-pro/id1289583905')],

@@ -3,7 +3,7 @@ import { BREW_CASK, BREW_HOME, BREW_INSTALL, BROW_ALIAS, BROW_INSTALL } from '..
 
 export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
     {
-        name: 'Wrap',
+        name: 'Warp',
         description: 'Terminal with a power of code editor',
         group: 'terminal',
         tags: ['productivity', 'ai'],
@@ -27,13 +27,13 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('termius')],
     },
     {
-        name: 'Mcfly',
-        description: 'Search & execute through your shell history, with context-aware suggestions and neural network.',
+        name: 'Atuin',
+        description: 'Magical shell history - sync, search and backup your shell history with SQLite',
         group: 'terminal',
         tags: ['productivity'],
-        openUrl: () => BREW_HOME('mcfly'),
-        commands: () => [BREW_INSTALL('mcfly')],
-        fallbackCommands: () => [BROW_INSTALL('mcfly')],
+        openUrl: () => BREW_HOME('atuin'),
+        commands: () => [BREW_INSTALL('atuin')],
+        fallbackCommands: () => [BROW_INSTALL('atuin')],
     },
     {
         name: 'Fd',
@@ -43,6 +43,15 @@ export const TERMINAL_APPS: Readonly<IAppSetup[]> = [
         openUrl: () => BREW_HOME('fd'),
         commands: () => [BREW_INSTALL('fd')],
         fallbackCommands: () => [BROW_INSTALL('fd')],
+    },
+    {
+        name: 'ripgrep',
+        description: 'Fast recursive grep alternative (rg)',
+        group: 'terminal',
+        tags: ['productivity'],
+        openUrl: () => BREW_HOME('ripgrep'),
+        commands: () => [BREW_INSTALL('ripgrep')],
+        fallbackCommands: () => [BROW_INSTALL('ripgrep')],
     },
     {
         name: 'TL;DR',

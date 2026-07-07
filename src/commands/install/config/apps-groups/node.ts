@@ -3,13 +3,6 @@ import { NODE_GLOBAL, NPM_HOME } from '../common-commands'
 
 export const NODE_APPS: Readonly<IAppSetup[]> = [
     {
-        name: '@angular/cli',
-        group: 'node',
-        tags: ['web-engineering'],
-        openUrl: () => NPM_HOME('@angular/cli'),
-        commands: () => [NODE_GLOBAL('@angular/cli')],
-    },
-    {
         name: '@nestjs/cli',
         group: 'node',
         tags: ['node-engineering'],
@@ -24,12 +17,6 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('nx')],
     },
     {
-        name: 'ts-jest',
-        group: 'node',
-        openUrl: () => NPM_HOME('ts-jest'),
-        commands: () => [NODE_GLOBAL('ts-jest')],
-    },
-    {
         name: 'tsx',
         description: 'The easiest way to run TypeScript in Node.js, including ESM / CJS',
         group: 'node',
@@ -38,32 +25,11 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
         commands: () => [NODE_GLOBAL('tsx')],
     },
     {
-        name: 'ts-node-dev',
-        group: 'node',
-        tags: ['node-engineering'],
-        openUrl: () => NPM_HOME('ts-node-dev'),
-        commands: () => [NODE_GLOBAL('ts-node-dev')],
-    },
-    {
-        name: 'ts-node',
-        group: 'node',
-        tags: ['node-engineering'],
-        openUrl: () => NPM_HOME('ts-node'),
-        commands: () => [NODE_GLOBAL('ts-node')],
-    },
-    {
         name: 'typescript',
         group: 'node',
         tags: ['web-engineering', 'node-engineering'],
         openUrl: () => NPM_HOME('typescript'),
         commands: () => [NODE_GLOBAL('typescript')],
-    },
-    {
-        name: 'nodemon',
-        group: 'node',
-        tags: ['node-engineering'],
-        openUrl: () => NPM_HOME('nodemon'),
-        commands: () => [NODE_GLOBAL('nodemon')],
     },
     {
         name: 'cost-of-modules',
@@ -91,29 +57,20 @@ export const NODE_APPS: Readonly<IAppSetup[]> = [
     },
     {
         name: 'TS Prune',
-        description: 'Find potentially unused exports in your Typescript project with zero configuration',
+        description:
+            'Find potentially unused exports in your Typescript project with zero configuration (legacy - superseded by Knip)',
         group: 'node',
         tags: ['node-engineering', 'web-engineering'],
         openUrl: () => NPM_HOME('ts-prune'),
         commands: () => [NODE_GLOBAL('ts-prune')],
     },
     {
-        name: 'verdaccio',
+        name: 'Knip',
+        description: 'Find unused files, dependencies and exports in JS/TS projects',
         group: 'node',
-        openUrl: () => NPM_HOME('verdaccio'),
-        commands: () => [NODE_GLOBAL('verdaccio')],
-    },
-    {
-        name: 'ttab',
-        group: 'node',
-        openUrl: () => NPM_HOME('ttab'),
-        commands: () => [NODE_GLOBAL('ttab')],
-    },
-    {
-        name: 'http-server',
-        group: 'node',
-        openUrl: () => NPM_HOME('http-server'),
-        commands: () => [NODE_GLOBAL('http-server')],
+        tags: ['node-engineering', 'web-engineering'],
+        openUrl: () => NPM_HOME('knip'),
+        commands: () => [NODE_GLOBAL('knip')],
     },
     {
         name: 'npkill',

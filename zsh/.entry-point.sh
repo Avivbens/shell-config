@@ -122,8 +122,8 @@ setopt auto_menu          # automatically use menu completion
 setopt always_to_end      # move cursor to end if word had one match
 setopt autopushd          # save directory stack
 
-if command -v mcfly &>/dev/null; then
-    eval "$(mcfly init zsh)"
+if command -v atuin &>/dev/null; then
+    eval "$(atuin init zsh)"
 fi
 
 if command -v zoxide &>/dev/null; then

@@ -1,6 +1,5 @@
-import { CURL_COMMAND } from '@common/constants'
 import type { IAppSetup } from '@models/app-setup.model'
-import { BREW_INSTALL, BROW_INSTALL } from '../common-commands'
+import { BREW_HOME, BREW_INSTALL, BROW_INSTALL } from '../common-commands'
 
 export const PYTHON: Readonly<IAppSetup[]> = [
     {
@@ -11,16 +10,13 @@ export const PYTHON: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('python')],
     },
     {
-        name: 'Python PIP',
-        description: 'Python package manager',
+        name: 'uv',
+        description: 'Extremely fast Python package and project manager (pip/pipx replacement)',
         group: 'python',
         default: true,
-        openUrl: () => `open https://pypi.org/project/pip/`,
-        commands: () => [
-            `${CURL_COMMAND} https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py`,
-            'python3 /tmp/get-pip.py --break-system-packages',
-            'rm /tmp/get-pip.py',
-        ],
+        openUrl: () => BREW_HOME('uv'),
+        commands: () => [BREW_INSTALL('uv')],
+        fallbackCommands: () => [BROW_INSTALL('uv')],
         deps: ['Python'],
     },
 ] as const

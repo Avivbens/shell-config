@@ -5,7 +5,6 @@ export const AVAILABLE_TAGS = [
     'engineering',
     'devops',
     'ai',
-    'ui-ux',
     'productivity',
     'super-user',
     'work',

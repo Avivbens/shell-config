@@ -55,18 +55,6 @@ export const GIT_APPS: Readonly<IAppSetup[]> = [
         deps: ['Git'],
     },
     {
-        name: 'Disable SSL',
-        description: 'Disable SSL for Git operations',
-        group: 'git',
-        openUrl: () => `open https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpsslVerify`,
-        commands: () => [
-            // avoid lock for other `git config` options
-            'sleep 3',
-            `git config --global http.sslVerify "false"`,
-        ],
-        deps: ['Git'],
-    },
-    {
         name: 'Auto Setup Remote',
         description: 'Automatically setup remote tracking branches on git push',
         group: 'git',
