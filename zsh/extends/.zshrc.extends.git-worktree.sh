@@ -11,7 +11,12 @@ function _gw_path() {
 }
 
 # interactive worktree picker (fzf or numbered list fallback)
+# prints one selected worktree path per line
+# usage: _gw_pick [-m]   (-m enables multi-select)
 function _gw_pick() {
+    local multi=0
+    [[ "$1" == "-m" ]] && multi=1
+
     local main_wt=$(git worktree list --porcelain 2>/dev/null | head -1 | sed 's/^worktree //')
     local -a paths=() labels=()
 
@@ -28,23 +33,48 @@ function _gw_pick() {
     fi
 
     if command -v fzf &>/dev/null; then
-        local sel=$(printf '%s\n' "${labels[@]}" | fzf --height=10 --prompt="worktree> ")
+        local -a fzf_opts=(--height=40% --reverse)
+        if [[ $multi -eq 1 ]]; then
+            fzf_opts+=(--multi --prompt="worktrees (TAB to mark, ENTER to confirm)> ")
+        else
+            fzf_opts+=(--prompt="worktree> ")
+        fi
+        local sel=$(printf '%s\n' "${labels[@]}" | fzf "${fzf_opts[@]}")
         [[ -z "$sel" ]] && return 1
         echo "$sel" | awk '{print $NF}'
     else
-        echo "Select a worktree:" >&2
+        echo "Select worktree(s):" >&2
         local i=1
         for l in "${labels[@]}"; do
             printf "  \033[1;34m%d)\033[0m %s\n" "$i" "$l" >&2
             ((i++))
         done
-        printf "Choice [1-%d]: " "${#paths[@]}" >&2
-        local choice; read choice
-        if [[ "$choice" -ge 1 && "$choice" -le ${#paths[@]} ]] 2>/dev/null; then
-            echo "${paths[$choice]}"
+        if [[ $multi -eq 1 ]]; then
+            printf "Choice (e.g. '1 3', or 'all') [1-%d]: " "${#paths[@]}" >&2
+            local input; read input
+            if [[ "$input" == "all" ]]; then
+                printf '%s\n' "${paths[@]}"
+                return 0
+            fi
+            local normalized=${input//,/ }
+            local -a chosen=()
+            local c
+            for c in ${(s: :)normalized}; do
+                if [[ "$c" -ge 1 && "$c" -le ${#paths[@]} ]] 2>/dev/null; then
+                    chosen+=("${paths[$c]}")
+                fi
+            done
+            [[ ${#chosen[@]} -eq 0 ]] && { echo "Invalid selection." >&2; return 1; }
+            printf '%s\n' "${chosen[@]}"
         else
-            echo "Invalid selection." >&2
-            return 1
+            printf "Choice [1-%d]: " "${#paths[@]}" >&2
+            local choice; read choice
+            if [[ "$choice" -ge 1 && "$choice" -le ${#paths[@]} ]] 2>/dev/null; then
+                echo "${paths[$choice]}"
+            else
+                echo "Invalid selection." >&2
+                return 1
+            fi
         fi
     fi
 }
@@ -54,7 +84,7 @@ function gw() {
     echo "  gwl              List all worktrees"
     echo "  gwa <branch>     Add worktree for existing branch"
     echo "  gwn <branch>     New branch + worktree"
-    echo "  gwr [branch]     Remove worktree (picker if no arg)"
+    echo "  gwr [branch]     Remove worktree(s) (multi-select picker if no arg)"
     echo "  gwcd [branch]    Navigate to worktree (picker if no arg)"
     echo ""
     echo "Flags:  -i  auto-install deps   -c  open VS Code"
@@ -79,6 +109,11 @@ function gwa() {
 
     [[ -n "$opts_i" ]] && pm_install
     [[ -n "$opts_c" ]] && code .
+
+    # a trailing `[[ ... ]] &&` test leaks its non-zero status as the function's
+    # exit code when the flag is unset; return explicitly so a successful add
+    # never surfaces as an error
+    return 0
 }
 
 # create new branch + worktree
@@ -98,37 +133,68 @@ function gwn() {
 
     [[ -n "$opts_i" ]] && pm_install
     [[ -n "$opts_c" ]] && code .
+
+    # a trailing `[[ ... ]] &&` test leaks its non-zero status as the function's
+    # exit code when the flag is unset; return explicitly so a successful add
+    # never surfaces as an error
+    return 0
 }
 
-# remove a worktree
-# usage: gwr [branch]
+# remove one or more worktrees
+# usage: gwr [branch]   (multi-select picker if no arg)
 function gwr() {
-    local wt_path
+    local -a wt_paths
     if [[ -n "$1" ]]; then
-        wt_path=$(_gw_path "$1") || return 1
-        [[ ! -d "$wt_path" ]] && echo "Worktree not found at: $wt_path" && return 1
+        local one=$(_gw_path "$1") || return 1
+        [[ ! -d "$one" ]] && echo "Worktree not found at: $one" && return 1
+        wt_paths=("$one")
     else
-        wt_path=$(_gw_pick) || return 1
+        local picked
+        picked=$(_gw_pick -m) || return 1
+        wt_paths=("${(f)picked}")
     fi
 
-    local branch=$(git worktree list --porcelain 2>/dev/null | grep -A2 "^worktree $wt_path$" | grep '^branch ' | sed 's|^branch refs/heads/||')
+    [[ ${#wt_paths[@]} -eq 0 ]] && return 0
 
-    printf "\033[1;33mRemove worktree at %s? [y/N]\033[0m " "$wt_path"
+    printf "\033[1;33mRemove %d worktree(s):\033[0m\n" "${#wt_paths[@]}"
+    local p
+    for p in "${wt_paths[@]}"; do printf "  %s\n" "$p"; done
+    printf "\033[1;33mProceed? [y/N]\033[0m "
     read -q || { echo; return 0; }
     echo
 
-    # cd out if we're inside the worktree being removed
-    if [[ "$(pwd -P)" == "$wt_path"* ]]; then
-        cd "$(git worktree list --porcelain 2>/dev/null | head -1 | sed 's/^worktree //')"
-    fi
+    local main_root=$(git worktree list --porcelain 2>/dev/null | head -1 | sed 's/^worktree //')
+    local -a branches=()
+    local wt_path branch
 
-    git worktree remove --force "$wt_path" || return 1
+    for wt_path in "${wt_paths[@]}"; do
+        branch=$(git worktree list --porcelain 2>/dev/null | grep -A2 "^worktree $wt_path$" | grep '^branch ' | sed 's|^branch refs/heads/||')
+
+        # cd out if we're inside the worktree being removed
+        [[ "$(pwd -P)" == "$wt_path"* ]] && cd "$main_root"
+
+        if git worktree remove --force "$wt_path"; then
+            printf "  \033[1;32m✓\033[0m removed %s\n" "$wt_path"
+            [[ -n "$branch" ]] && branches+=("$branch")
+        else
+            printf "  \033[1;31m✗\033[0m failed to remove %s\n" "$wt_path"
+        fi
+    done
+
     git worktree prune
 
-    if [[ -n "$branch" ]]; then
-        printf "\033[1;33mAlso delete branch '%s'? [y/N]\033[0m " "$branch"
-        read -q && { echo; git branch -D "$branch"; } || echo
+    if [[ ${#branches[@]} -gt 0 ]]; then
+        printf "\033[1;33mAlso delete %d branch(es): %s? [y/N]\033[0m " "${#branches[@]}" "${branches[*]}"
+        if read -q; then
+            echo
+            local b
+            for b in "${branches[@]}"; do git branch -D "$b"; done
+        else
+            echo
+        fi
     fi
+
+    return 0
 }
 
 # navigate to a worktree
