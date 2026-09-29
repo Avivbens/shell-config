@@ -81,6 +81,18 @@ export const CLI_APPS: Readonly<IAppSetup[]> = [
         fallbackCommands: () => [BROW_INSTALL('gh')],
     },
     {
+        name: 'gh-stack',
+        group: 'cli-apps',
+        description: 'GitHub CLI extension for stacked pull requests (gh stack)',
+        tags: ['engineering'],
+        openUrl: () => OPEN_BROWSER_LINK('https://gh.io/stacks'),
+        /**
+         * `--force` makes the install idempotent: upgrade, or no-op when already on the latest.
+         */
+        commands: () => ['gh extension install --force github/gh-stack'],
+        deps: ['GitHub CLI'],
+    },
+    {
         name: 'google-cloud-sdk',
         group: 'cli-apps',
         description: 'Integrate with Google Cloud Platform services',
