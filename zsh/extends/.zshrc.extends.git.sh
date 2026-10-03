@@ -24,6 +24,8 @@ alias gm="git merge"
 alias gf="git fetch"
 alias gr="git rebase"
 alias gunlast="git reset --soft HEAD~1"
+# unstage everything, keep the changes in the working tree
+alias gunstg="git restore --staged ."
 # remove references to deleted remote branches
 alias gprune="git remote prune origin"
 
@@ -46,6 +48,9 @@ function grm() {
     gf
     gr "origin/$(gbdefault)"
 }
+
+# rebase onto the remote of the current branch
+alias gro='git reset "origin/$(git branch --show-current)"'
 
 # stop git from tracking a file
 function gstrack() {
