@@ -31,6 +31,7 @@ if command -v gh &>/dev/null; then
     alias ghsa='ghs add'
     alias ghss='ghs submit'
     alias ghssy='ghs sync'
+    alias ghssr='ghs rebase'
     alias ghsv='ghs view'
     alias ghsu='ghs up'
     alias ghsd='ghs down'
