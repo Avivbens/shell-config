@@ -41,10 +41,30 @@ if command -v gh &>/dev/null; then
         return 1
     }
 
+    # `gh stack` pushes without tracking, and editor PR views find a branch's PR through its upstream
+    function _ghs_track_upstreams() {
+        local branch
+        for branch in ${(f)"$(gh stack view --json 2>/dev/null | jq -r '.branches[] | select(.isMerged | not) | .name')"}; do
+            if git rev-parse --abbrev-ref "$branch@{upstream}" &>/dev/null; then
+                continue
+            fi
+
+            if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+                git branch --quiet --set-upstream-to="origin/$branch" "$branch"
+            fi
+        done
+
+        return 0
+    }
+
     function ghs() {
         _ghs_ensure_installed || return 1
         _ghs_reject_bare_number "$1" "$2" || return 1
-        gh stack "$@"
+        gh stack "$@" || return $?
+
+        if [[ "$1" == (submit|push|sync) ]]; then
+            _ghs_track_upstreams
+        fi
     }
 
     alias ghsi='ghs init'
@@ -60,7 +80,7 @@ if command -v gh &>/dev/null; then
         echo "gh stack helpers - every alias forwards its arguments to \`gh stack\`\n"
         echo "  ghsi <branch>     init          start a stack"
         echo "  ghsa <branch>     add           add a layer on top"
-        echo "  ghss              submit        open or update the PRs"
+        echo "  ghss              submit        open or update the PRs, then track every layer's upstream"
         echo "  ghssr             rebase        rebase every layer onto its parent"
         echo "  ghsm              modify        restructure the stack (interactive)"
         echo "  ghsv              view          show the stack"
