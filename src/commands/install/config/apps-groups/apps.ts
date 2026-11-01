@@ -239,6 +239,13 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('appcleaner')],
     },
     {
+        name: 'KeyboardCleanTool',
+        description: 'Temporarily block keyboard and TouchBar input to clean them',
+        group: 'apps',
+        openUrl: () => BREW_HOME('keyboardcleantool', true),
+        commands: () => [BREW_CASK('keyboardcleantool')],
+    },
+    {
         name: 'Notion',
         group: 'apps',
         tags: ['productivity'],
