@@ -14,7 +14,7 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     {
         name: 'Git Worktree',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.git-worktree.sh`,
-        description: 'Git worktree helpers (gwa, gwn, gwr, gwcd)',
+        description: 'Git worktree helpers (gwa, gwn, gws, gwr, gwcd)',
     },
     {
         name: 'VSCode',
@@ -29,7 +29,7 @@ export const SHELL_MODULES_OPTIONS: IShellModule[] = [
     {
         name: 'GitHub CLI',
         path: `${EXTENDS_MODULES_DIR_PATH}/.zshrc.extends.github.sh`,
-        description: 'GitHub CLI aliases and functions',
+        description: 'GitHub CLI aliases and functions (PRs, gh stack)',
     },
     {
         name: 'NPM',

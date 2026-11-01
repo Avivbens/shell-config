@@ -100,6 +100,16 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => [BREW_CASK('rcmd')],
     },
     {
+        name: 'Pipiri',
+        description: 'Turn any window into a floating always-on-top panel (fn + P)',
+        group: 'apps',
+        tags: ['super-user'],
+        paid: true,
+        openUrl: () => `open https://lowtechguys.com/pipiri/`,
+        manual: true,
+        commands: () => [OPEN_BROWSER_LINK('https://files.lowtechguys.com/releases/Pipiri.dmg')],
+    },
+    {
         name: 'Amphetamine',
         description: 'Prevent your Mac from sleeping',
         group: 'apps',
@@ -227,6 +237,13 @@ export const APPS: Readonly<IAppSetup[]> = [
         group: 'apps',
         openUrl: () => BREW_HOME('appcleaner', true),
         commands: () => [BREW_CASK('appcleaner')],
+    },
+    {
+        name: 'KeyboardCleanTool',
+        description: 'Temporarily block keyboard and TouchBar input to clean them',
+        group: 'apps',
+        openUrl: () => BREW_HOME('keyboardcleantool', true),
+        commands: () => [BREW_CASK('keyboardcleantool')],
     },
     {
         name: 'Notion',
