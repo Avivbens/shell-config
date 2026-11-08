@@ -177,6 +177,14 @@ export const APPS: Readonly<IAppSetup[]> = [
         commands: () => MAS_APP_STORE('6473019059'),
     },
     {
+        name: 'Boring Notch',
+        description: 'Turn the MacBook notch into a dynamic island with media controls, calendar and file shelf',
+        group: 'apps',
+        tags: ['super-user'],
+        openUrl: () => `open https://github.com/TheBoredTeam/boring.notch`,
+        commands: () => [BREW_CASK('theboredteam/boring-notch/boring-notch')],
+    },
+    {
         name: 'Dropover',
         description: 'Drag and drop files between apps with quick actions',
         group: 'apps',
