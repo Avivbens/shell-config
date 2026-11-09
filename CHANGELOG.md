@@ -1,3 +1,22 @@
+# [2.24.0](https://github.com/Avivbens/shell-config/compare/v2.23.2...v2.24.0) (2026-11-09)
+
+
+### Bug Fixes
+
+* **apps:** add `Boring Notch` ([5a73ba4](https://github.com/Avivbens/shell-config/commit/5a73ba41cbf663173bd8f5bcbc2dcba29706bc68))
+* **apps:** add `KeyboardCleanTool` ([aeaf338](https://github.com/Avivbens/shell-config/commit/aeaf33821b11424cba5481e996200a2c69edeaf2))
+* **apps:** add `Pipiri` for PIP mode ([bb16b46](https://github.com/Avivbens/shell-config/commit/bb16b463317e4bba9ea86c35903a6f0da0bbb49a))
+* **gh-stack:** add rebase ([05940da](https://github.com/Avivbens/shell-config/commit/05940dabeb6d3f3b5a19277df341bd382fe8ec34))
+* **gh-stack:** always track upstream ([b0104e6](https://github.com/Avivbens/shell-config/commit/b0104e6ec854509797d0b9f8501cd94ccb76fb1c))
+* **git:** add `gunstg` - unstage all, `gro` - rebase to origin branch ([5a5e18b](https://github.com/Avivbens/shell-config/commit/5a5e18b1e5d2acb0162bc7545d13e252a0616378))
+* **worktree-stack:** better aliases, help section, better structure ([233cb64](https://github.com/Avivbens/shell-config/commit/233cb6451f94d0bbe86fa72cde07485abeb68bc1))
+* **worktree:** better remove, prevent error status code ([241fbd9](https://github.com/Avivbens/shell-config/commit/241fbd976959d57c787a6c8579f37c4b3957f0af))
+
+
+### Features
+
+* **gh-stack:** support new install & aliases ([0b69242](https://github.com/Avivbens/shell-config/commit/0b692422682cf04ce1cd92000d4f2ecc73e5aa3d))
+
 ## [2.23.2](https://github.com/Avivbens/shell-config/compare/v2.23.1...v2.23.2) (2026-07-07)
 
 
