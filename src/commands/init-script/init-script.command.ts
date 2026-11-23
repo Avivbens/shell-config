@@ -14,7 +14,7 @@ export class InitScriptCommand extends CommandRunner {
         super()
     }
 
-    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
+    async run(): Promise<void> {
         try {
             const hasPermissions: boolean = await access(`${BASE_PATH}/zsh`)
                 .then(() => true)
@@ -23,6 +23,6 @@ export class InitScriptCommand extends CommandRunner {
             const script = hasPermissions ? INIT_DYNAMIC_SCRIPT : OPEN_TERMINAL
             console.log(script)
             // eslint-disable-next-line no-empty
-        } catch (error) {}
+        } catch {}
     }
 }

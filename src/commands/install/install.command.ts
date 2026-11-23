@@ -454,7 +454,7 @@ export class InstallCommand extends CommandRunner {
                                 const subTasks = buildByDeps(dependBy)
                                 return task.newListr(subTasks, TASKS_CONFIG(parallelProcessAmount))
                             } catch (error) {
-                                throw new Error(`${name}: ${error.message}`)
+                                throw new Error(`${name}: ${error.message}`, { cause: error })
                             }
                         },
                     }

@@ -151,7 +151,7 @@ export class UpdateCommand extends CommandRunner {
         defaultValue: false,
         description: 'Daemon check for update notification. When specified is true.',
     })
-    private checkForUpdateMute(mute: string): boolean {
+    private checkForUpdateMute(): boolean {
         return true
     }
 }
