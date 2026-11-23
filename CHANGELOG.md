@@ -1,3 +1,10 @@
+## [2.24.1](https://github.com/Avivbens/shell-config/compare/v2.24.0...v2.24.1) (2026-11-23)
+
+
+### Bug Fixes
+
+* **gh-stack:** rename `ghss` to `ghssb` for submit ([5c4d1a8](https://github.com/Avivbens/shell-config/commit/5c4d1a8deb15c56ee315c4b409c401e9ddf589cc))
+
 # [2.24.0](https://github.com/Avivbens/shell-config/compare/v2.23.2...v2.24.0) (2026-11-09)
 
 
