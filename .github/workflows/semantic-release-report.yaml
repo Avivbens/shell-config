@@ -8,6 +8,7 @@ on:
             - master
 
 permissions:
+    # Write, and the checkout keeps its token: semantic-release's dry run still runs `git push --dry-run`, though the job never pushes
     contents: write
     issues: write
     pull-requests: write

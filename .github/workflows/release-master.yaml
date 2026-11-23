@@ -9,6 +9,7 @@ on:
             - beta
             - +([0-9])?(.{+([0-9]),x}).x
 
+# Read-only everywhere: the release job publishes with the `GH_TOKEN` PAT, never the built-in token
 permissions:
     contents: read
 
@@ -43,13 +44,6 @@ jobs:
         timeout-minutes: 60
         needs:
             - checks
-
-        permissions:
-            contents: write
-            pull-requests: write
-            issues: write
-            deployments: write
-            id-token: write
 
         env:
             HUSKY: 0
