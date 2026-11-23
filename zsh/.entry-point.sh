@@ -7,30 +7,50 @@ export TERMINAL_INSTANCE_ID=$(date +%s)
 source "$HOME/shell-config/zsh/.utils.sh"
 
 
-# compinit and completions
-autoload -Uz compinit
-compinit
-
 # Homebrew paths
 BROW="/usr/local/Homebrew/bin/brew"
 BREW="/opt/homebrew/bin/brew"
 
-# support brew formulaes installed via Rosetta 2
-alias brow="arch --x86_64 $BROW"
-alias brew="$BREW"
-
-export BREW_PERFIX=$(brew --prefix)
-export BROW_PERFIX=$(brow --prefix)
+# prefixes come from the binary path, because shellenv prints nothing once PATH already starts with Homebrew's folders
+export BROW_PERFIX="" BREW_PERFIX=""
 
 # load all homebrew paths - brow
-if [ -f "$BROW" ]; then
+if [ -x "$BROW" ]; then
+    alias brow="arch --x86_64 $BROW"
     eval "$($BROW shellenv)"
+    BROW_PERFIX="${BROW%/Homebrew/bin/brew}"
 fi
 
 # load all homebrew paths - brew
-if [ -f "$BREW" ]; then
+if [ -x "$BREW" ]; then
+    alias brew="$BREW"
     eval "$($BREW shellenv)"
+    BREW_PERFIX="${BREW%/bin/brew}"
 fi
+
+# Autocomplete
+# only if zsh-completions installed via Homebrew
+if [ -d "$BREW_PERFIX/share/zsh-completions" ]; then
+    FPATH="$BREW_PERFIX/share/zsh-completions:$FPATH"
+fi
+
+# only if zsh-completions installed via legacy Homebrew
+if [ -d "$BROW_PERFIX/share/zsh-completions" ]; then
+    FPATH=$BROW_PERFIX/share/zsh-completions:$FPATH
+fi
+
+# compinit and completions - after every fpath change above, or Homebrew's completions never register
+autoload -Uz compinit compaudit
+# compinit -i drops insecure folders, so lift group and world write first; shell-doctor gets the rest from this global
+_shell_config_insecure_fpath=(${(f)"$(compaudit 2>/dev/null)"})
+if (( ${#_shell_config_insecure_fpath} )); then
+    chmod go-w $_shell_config_insecure_fpath 2>/dev/null
+    _shell_config_insecure_fpath=(${(f)"$(compaudit 2>/dev/null)"})
+fi
+if (( ${#_shell_config_insecure_fpath} )); then
+    printf "\n\033[1;33mWARNING: some completion folders are insecure, run shell-doctor to repair them\033[0m\n"
+fi
+compinit -i
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -51,27 +71,35 @@ export PATH="$HOME/shell-config/executable:$PATH"
 cache_completion "shell-config completion-script" "shell-config" 120
 
 function shell-doctor() {
-    chmod -R 755 $(compaudit)
-    autoload -Uz compinit
-    grant_permissions "$HOME/shell-config/zsh"
-    grant_permissions "$HOME/shell-config/executable"
-    grant_permissions "$HOME/shell-config/downloads"
-    grant_permissions "$HOME/shell-config/assets"
+    local failed=0 dir remaining
+    local insecure=($_shell_config_insecure_fpath ${(f)"$(compaudit 2>/dev/null)"})
+    if (( ${#insecure} )); then
+        sudo chmod go-w $insecure || failed=1
+        # compaudit's own rule on the listed paths only - re-auditing them through fpath would also judge their parents
+        remaining=(${^insecure}(N-f:g+w:,-f:o+w:,-^u0u$EUID))
+        if (( ${#remaining} )); then
+            printf "still insecure, likely owned by another user - their completions stay off:\n%s\n" "${(F)remaining}"
+            failed=1
+        fi
+        _shell_config_insecure_fpath=($remaining)
+    fi
+
+    # init unpacks only zsh/, so the other folders may not exist yet
+    for dir in zsh executable downloads assets; do
+        if [ -d "$HOME/shell-config/$dir" ]; then
+            grant_permissions "$HOME/shell-config/$dir" || failed=1
+        fi
+    done
+
+    return $failed
 }
 
-# check if need to fix compaudit
-if compaudit | grep -q .; then
-    printf "\n\033[1;33mWARNING: shell-config permissions are not correct, fixing...\033[0m\n"
-    shell-doctor
+# init recreates zsh/ folders as 755 - restore 770 without sudo or a full init
+stale_dirs=(${(f)"$(find "$HOME/shell-config/zsh" -type d ! -perm 770 2>/dev/null)"})
+if (( ${#stale_dirs} )) && ! chmod 770 $stale_dirs 2>/dev/null; then
+    printf "\n\033[1;33mWARNING: run shell-doctor to repair ~/shell-config permissions\033[0m\n"
 fi
-
-# fix permissions if needed
-if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
-    echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
-    shell-doctor
-    shell-config init
-    shell-doctor
-fi
+unset stale_dirs
 
 # check for shell-config updates once in 10 times
 if [ $((RANDOM % 10)) -eq 0 ]; then
@@ -91,17 +119,6 @@ sourceIf "$BROW_PERFIX/share/google-cloud-sdk/completion.zsh.inc"
 # Autosuggest
 sourceIf "$BREW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 sourceIf "$BROW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# Autocomplete
-# only if zsh-completions installed via Homebrew
-if [ -f "$BREW_PERFIX/share/zsh-completions" ]; then
-    FPATH="$BREW_PERFIX/share/zsh-completions:$FPATH"
-fi
-
-# only if zsh-completions installed via legacy Homebrew
-if [ -f "$BROW_PERFIX/share/zsh-completions" ]; then
-    FPATH=$BROW_PERFIX/share/zsh-completions:$FPATH
-fi
 
 # Colored correct code
 sourceIf "$BREW_PERFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -158,7 +175,8 @@ function killport() {
 
 # add ls after cd
 autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ ls; }
+function _shell_config_ls_on_cd() { ls }
+add-zsh-hook chpwd _shell_config_ls_on_cd
 
 # sync
 alias reload="exec /bin/zsh"
