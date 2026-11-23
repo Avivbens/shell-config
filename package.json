@@ -27,7 +27,8 @@
         "start:dev": "ts-node src/main.ts",
         "start:prod": "node dist/src/main.js",
         "test": "vitest run",
-        "test:debug": "vitest --inspect-brk --no-file-parallelism"
+        "test:debug": "vitest --inspect-brk --no-file-parallelism",
+        "typecheck": "tsc --noEmit -p tsconfig.json"
     },
     "dependencies": {
         "@inquirer/core": "^8.2.4",
