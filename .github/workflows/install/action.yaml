@@ -5,12 +5,13 @@ description: 'Install dependencies and setup node'
 runs:
     using: composite
     steps:
-        - name: 🖥️ Setup Node
-          uses: actions/setup-node@v4
+        - name: 🖥️ Setup pnpm & Node
+          uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2
           with:
-              node-version: 20
+              runtime: node@20
+              install: false
 
         - name: 🔗 Install Dependencies
           shell: bash
           run: |
-              npm ci --no-fund --no-audit --no-progress --ignore-scripts
+              pnpm install --frozen-lockfile --ignore-scripts

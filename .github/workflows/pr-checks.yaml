@@ -20,4 +20,4 @@ jobs:
               uses: ./.github/workflows/health-check
 
             - name: 🧪 Check pack script
-              run: npm run pack $(jq -r .version package.json)
+              run: pnpm run pack $(jq -r .version package.json)

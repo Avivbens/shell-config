@@ -8,7 +8,8 @@ To get started, follow these steps:
 
 1. Fork the repository
 1. Clone your forked repository
-1. Install dependencies with `npm ci --no-fund --no-audit --no-progress`
+1. Enable pnpm (pinned in `package.json`) with `corepack enable`
+1. Install dependencies with `pnpm install --frozen-lockfile`
 1. Make changes
 1. Test your changes
 1. Submit a pull request against the `beta` branch
@@ -20,7 +21,7 @@ To get started, follow these steps:
 1. Test your changes via the following command:
 
 ```bash
-npm run start:dev -- install
+pnpm start:dev install
 ```
 
 4. Commit your changes, like `fix(apps): <Explain>`, and open a PR 🎉
