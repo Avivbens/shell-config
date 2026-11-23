@@ -9,7 +9,7 @@ module.exports = {
         sourceType: 'module',
         ecmaVersion: 2020,
     },
-    plugins: ['@typescript-eslint/eslint-plugin', 'jest', 'prettier', 'deprecation', 'unused-imports'],
+    plugins: ['@typescript-eslint/eslint-plugin', 'jest', 'prettier', 'unused-imports'],
     extends: [
         'plugin:@typescript-eslint/recommended',
         'eslint:recommended',
@@ -38,7 +38,6 @@ module.exports = {
                 endOfLine: 'auto',
             },
         ],
-        'deprecation/deprecation': 'warn',
         'unused-imports/no-unused-imports': 'error',
     },
     overrides: [
@@ -55,7 +54,6 @@ module.exports = {
             parser: 'jsonc-eslint-parser',
             extends: ['plugin:jsonc/recommended-with-jsonc'],
             rules: {
-                'deprecation/deprecation': 'off',
                 '@typescript-eslint/consistent-type-imports': 'off',
             },
         },
