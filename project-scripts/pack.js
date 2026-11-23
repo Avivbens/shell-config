@@ -121,5 +121,6 @@ async function writeWorkflowPackageJson(data) {
         await execPromise(`zip -r "./bin/cli.zip" ./bin/cli-v${targetVersion}`)
     } catch (error) {
         console.error(`Error: ${error.stack}`)
+        process.exitCode = 1
     }
 })()
