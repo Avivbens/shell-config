@@ -113,6 +113,6 @@ function pm_install() {
     elif [[ -f "Pipfile.lock" ]]; then
         pipenv install
     elif [[ -f "requirements.txt" ]]; then
-        pip install -r requirements.txt
+        python3 -m pip install -r requirements.txt
     fi
 }

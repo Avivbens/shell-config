@@ -4,13 +4,15 @@ alias python="python3"
 alias py="python3"
 
 # load pip
-export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+path=($HOME/Library/Python/*/bin(N/) $path)
 
-function pyenv() {
+# named pyvenv so the real pyenv tool is not hidden
+function pyvenv() {
   python -m venv .venv
   source .venv/bin/activate
 }
 
+# Homebrew ships no bare pip, and inside a venv this is still the venv's pip
 function pyci() {
-  pip install -r requirements.txt
+  python3 -m pip install -r requirements.txt
 }
