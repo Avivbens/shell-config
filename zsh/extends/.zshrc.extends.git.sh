@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 # depends on zsh/extends/.zshrc.extends.vscode.sh
-source "$HOME/shell-config/zsh/extends/.zshrc.extends.vscode.sh"
+sourceIf "$HOME/shell-config/zsh/extends/.zshrc.extends.vscode.sh"
 
 alias gl="git log"
 alias gd="git diff"
