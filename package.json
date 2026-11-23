@@ -1,33 +1,33 @@
 {
     "name": "shell-config",
     "version": "2.24.1",
-    "description": "CLI Tool for MacOS setup",
-    "author": "Aviv Ben Shahar",
     "private": false,
-    "license": "MIT",
-    "bin": "dist/src/main.js",
+    "description": "CLI Tool for MacOS setup",
+    "homepage": "https://github.com/Avivbens/shell-config#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Avivbens/shell-config.git"
     },
-    "homepage": "https://github.com/Avivbens/shell-config#readme",
+    "license": "MIT",
+    "author": "Aviv Ben Shahar",
+    "bin": "dist/src/main.js",
     "scripts": {
         "build": "nest build",
-        "pack": "./project-scripts/pack.js",
-        "pack-local": "./project-scripts/pack-local.sh",
+        "docs:build": "vitepress build docs",
+        "docs:dev": "vitepress dev docs",
+        "docs:preview": "vitepress preview docs",
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "eslint \"src/**/*.ts\"",
         "lint:fix": "eslint \"src/**/*.ts\" --fix",
+        "pack": "./project-scripts/pack.js",
+        "pack-local": "./project-scripts/pack-local.sh",
+        "prepare": "husky || exit 0",
         "start": "node dist/src/main.js",
-        "start:dev": "ts-node src/main.ts",
         "start:debug": "nest start --debug --watch",
+        "start:dev": "ts-node src/main.ts",
         "start:prod": "node dist/src/main.js",
         "test": "vitest run",
-        "test:debug": "vitest --inspect-brk --no-file-parallelism",
-        "prepare": "husky || exit 0",
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs"
+        "test:debug": "vitest --inspect-brk --no-file-parallelism"
     },
     "dependencies": {
         "@inquirer/core": "^8.2.4",
@@ -72,6 +72,7 @@
         "husky": "^9.1.7",
         "lint-staged": "^17.6.2",
         "prettier": "^3.10.1",
+        "prettier-plugin-packagejson": "^3.1.0",
         "semantic-release": "^25.0.9",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
@@ -80,6 +81,10 @@
         "vite": "^8.3.8",
         "vitepress": "^1.6.4",
         "vitest": "^5.1.1"
+    },
+    "packageManager": "pnpm@12.11.2",
+    "engines": {
+        "node": ">=22.22.1"
     },
     "pkg": {
         "scripts": "dist/**/*.js",
@@ -91,9 +96,5 @@
             "node20-macos-x64"
         ],
         "outputPath": "bin"
-    },
-    "packageManager": "pnpm@12.11.2",
-    "engines": {
-        "node": ">=22.22.1"
     }
 }
