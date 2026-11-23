@@ -7,10 +7,6 @@ export TERMINAL_INSTANCE_ID=$(date +%s)
 source "$HOME/shell-config/zsh/.utils.sh"
 
 
-# compinit and completions
-autoload -Uz compinit
-compinit
-
 # Homebrew paths
 BROW="/usr/local/Homebrew/bin/brew"
 BREW="/opt/homebrew/bin/brew"
@@ -31,6 +27,30 @@ fi
 if [ -f "$BREW" ]; then
     eval "$($BREW shellenv)"
 fi
+
+# Autocomplete
+# only if zsh-completions installed via Homebrew
+if [ -d "$BREW_PERFIX/share/zsh-completions" ]; then
+    FPATH="$BREW_PERFIX/share/zsh-completions:$FPATH"
+fi
+
+# only if zsh-completions installed via legacy Homebrew
+if [ -d "$BROW_PERFIX/share/zsh-completions" ]; then
+    FPATH=$BROW_PERFIX/share/zsh-completions:$FPATH
+fi
+
+# compinit and completions - after every fpath change above, or Homebrew's completions never register
+autoload -Uz compinit compaudit
+# compinit -i drops insecure folders, so lift group and world write first; shell-doctor gets the rest from this global
+_shell_config_insecure_fpath=(${(f)"$(compaudit 2>/dev/null)"})
+if (( ${#_shell_config_insecure_fpath} )); then
+    chmod go-w $_shell_config_insecure_fpath 2>/dev/null
+    _shell_config_insecure_fpath=(${(f)"$(compaudit 2>/dev/null)"})
+fi
+if (( ${#_shell_config_insecure_fpath} )); then
+    printf "\n\033[1;33mWARNING: some completion folders are insecure, run shell-doctor to repair them\033[0m\n"
+fi
+compinit -i
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -59,12 +79,6 @@ function shell-doctor() {
     grant_permissions "$HOME/shell-config/assets"
 }
 
-# check if need to fix compaudit
-if compaudit | grep -q .; then
-    printf "\n\033[1;33mWARNING: shell-config permissions are not correct, fixing...\033[0m\n"
-    shell-doctor
-fi
-
 # fix permissions if needed
 if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
     echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
@@ -91,17 +105,6 @@ sourceIf "$BROW_PERFIX/share/google-cloud-sdk/completion.zsh.inc"
 # Autosuggest
 sourceIf "$BREW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 sourceIf "$BROW_PERFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# Autocomplete
-# only if zsh-completions installed via Homebrew
-if [ -f "$BREW_PERFIX/share/zsh-completions" ]; then
-    FPATH="$BREW_PERFIX/share/zsh-completions:$FPATH"
-fi
-
-# only if zsh-completions installed via legacy Homebrew
-if [ -f "$BROW_PERFIX/share/zsh-completions" ]; then
-    FPATH=$BROW_PERFIX/share/zsh-completions:$FPATH
-fi
 
 # Colored correct code
 sourceIf "$BREW_PERFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
