@@ -158,7 +158,8 @@ function killport() {
 
 # add ls after cd
 autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ ls; }
+function _shell_config_ls_on_cd() { ls }
+add-zsh-hook chpwd _shell_config_ls_on_cd
 
 # sync
 alias reload="exec /bin/zsh"
