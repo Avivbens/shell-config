@@ -3,22 +3,19 @@ name: '📦 Create New Release'
 
 on:
     push:
-        paths-ignore:
-            - 'docs/**/*'
+        # `beta` publishes prereleases and maintenance branches publish patches (CONTRIBUTING, .releaserc)
         branches:
             - master
             - beta
             - +([0-9])?(.{+([0-9]),x}).x
 
 permissions:
-    contents: write
-    pull-requests: write
-    issues: write
-    deployments: write
+    contents: read
 
 concurrency:
-    group: release-ci-${{ github.repository }}-${{ github.ref }}
-    cancel-in-progress: true
+    group: release-master-${{ github.workflow }}-${{ github.ref }}
+    # Queue instead of cancel: a cancelled run can leave a pushed tag without its GitHub release
+    cancel-in-progress: false
 
 jobs:
     checks:
@@ -30,27 +27,35 @@ jobs:
             HUSKY: 0
 
         steps:
-            - name: 📀 Check out code
-              uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v7
               with:
                   fetch-depth: 1
 
+            # Tests run here too, because `--admin` merges skip the required PR checks
             - name: 🧪 Check out repository code
               uses: ./.github/workflows/health-check
 
     release:
         name: 📦 Release Version
         runs-on: ubuntu-latest
-        timeout-minutes: 20
+        timeout-minutes: 60
         needs:
             - checks
+
+        permissions:
+            contents: write
+            pull-requests: write
+            issues: write
+            deployments: write
+            id-token: write
 
         env:
             HUSKY: 0
 
         steps:
-            - name: 📀 Check out code
-              uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v7
               with:
                   fetch-depth: 0
                   persist-credentials: false
@@ -58,9 +63,9 @@ jobs:
             - name: 🖥️ Setup Env
               uses: ./.github/workflows/install
 
-            - name: 🚀 Release
+            - name: Release
               env:
-                  # This is required to make semantic-release work with GitHub Actions
+                  # A PAT, because the release commit has to pass master's branch protection, which the built-in token cannot
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
                   GIT_AUTHOR_NAME: github-bot
                   GIT_AUTHOR_EMAIL: github-bot@gmail.com

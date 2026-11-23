@@ -39,7 +39,7 @@ Betas are published automatically by [semantic-release](https://github.com/seman
 ### Publish a beta
 
 1. Merge your PR into the `beta` branch (PRs should target `beta` — see [Getting Started](#getting-started))
-1. The [release workflow](.github/workflows/release-ci.yml) runs and publishes a prerelease named `vX.Y.Z-beta.N` to [GitHub Releases](https://github.com/Avivbens/shell-config/releases), with the packed `cli.zip` attached
+1. The [release workflow](.github/workflows/release-master.yaml) runs and publishes a prerelease named `vX.Y.Z-beta.N` to [GitHub Releases](https://github.com/Avivbens/shell-config/releases), with the packed `cli.zip` attached
 1. Push more commits to `beta` to cut `-beta.2`, `-beta.3`, … ; merging `beta` into `master` later promotes it to the stable `vX.Y.Z`
 
 ### Install / test a beta
