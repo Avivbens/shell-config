@@ -31,7 +31,7 @@ export class AssetsCommand extends CommandRunner {
         super()
     }
 
-    async run(inputs: string[], options: unknown): Promise<void> {
+    async run(): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
         console.log(HELP_BOX_MESSAGE)

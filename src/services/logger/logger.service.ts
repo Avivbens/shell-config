@@ -46,7 +46,7 @@ export class LoggerService {
         color ? console.log(this.coloredMessage(message, color)) : console.log(message)
         this.writeToLog(`LOG | ${generatedMessage}`)
     }
-    public error(message: string, trace?) {
+    public error(message: string) {
         const generatedMessage = this.generateMessage(message)
         console.error(this.coloredMessage(message, 'red'))
         this.writeToLog(`ERROR | ${generatedMessage}`)

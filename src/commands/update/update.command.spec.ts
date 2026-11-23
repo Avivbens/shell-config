@@ -35,7 +35,6 @@ describe('UpdateCommand', () => {
 
     describe('getVersion', () => {
         it.each([
-            { input: 'no-version', expRes: '' },
             { input: 'latest', expRes: 'latest' },
             { input: 'v2.0.0', expRes: 'v2.0.0' },
             { input: '2.0.0', expRes: 'v2.0.0' },
@@ -53,16 +52,15 @@ describe('UpdateCommand', () => {
             { input: '112.440.3280-beta.15', expRes: 'v112.440.3280-beta.15' },
             { input: 'v112.440.3280-beta.15', expRes: 'v112.440.3280-beta.15' },
         ])('Should return the parsed version for all accepted inputs', ({ input, expRes }) => {
-            if (!expRes) {
-                // @ts-expect-error
-                const res = () => service.getVersion(input)
-                expect(res).toThrowError(`Invalid version: ${input}`)
-                return
-            }
-
             // @ts-expect-error
             const res = service.getVersion(input)
             expect(res).toEqual(expRes)
+        })
+
+        it('Should throw for an input that is not a version', () => {
+            // @ts-expect-error
+            const res = () => service.getVersion('no-version')
+            expect(res).toThrow('Invalid version: no-version')
         })
     })
 })

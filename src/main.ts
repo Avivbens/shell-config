@@ -7,7 +7,7 @@ import { AppModule } from './app.module'
     const cliExecutable = `${BASE_PATH}/executable/shell-config`
 
     const app = await CommandFactory.createWithoutRunning(AppModule, {
-        errorHandler: (err) => {
+        errorHandler: () => {
             process.exit(1)
         },
         version: PACKAGE_VERSION,

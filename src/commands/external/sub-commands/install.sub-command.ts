@@ -23,7 +23,7 @@ export class InstallSubCommand extends CommandRunner {
         super()
     }
 
-    async run(inputs: string[], options: Record<string, unknown>): Promise<void> {
+    async run(inputs: string[]): Promise<void> {
         await this.checkUpdateService.checkForUpdates()
 
         try {
