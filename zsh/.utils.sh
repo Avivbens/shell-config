@@ -65,8 +65,10 @@ function sourceIf() {
 
 # Usage: grant_permissions <path>
 function grant_permissions() {
-    sudo chown -R "$USER":admin "$1"
-    chmod -R 770 "$1"
+    local failed=0
+    sudo chown -R "$USER":admin "$1" || failed=1
+    chmod -R 770 "$1" || failed=1
+    return $failed
 }
 
 # Usage: silent_background <command>

@@ -71,12 +71,27 @@ export PATH="$HOME/shell-config/executable:$PATH"
 cache_completion "shell-config completion-script" "shell-config" 120
 
 function shell-doctor() {
-    chmod -R 755 $(compaudit)
-    autoload -Uz compinit
-    grant_permissions "$HOME/shell-config/zsh"
-    grant_permissions "$HOME/shell-config/executable"
-    grant_permissions "$HOME/shell-config/downloads"
-    grant_permissions "$HOME/shell-config/assets"
+    local failed=0 dir remaining
+    local insecure=($_shell_config_insecure_fpath ${(f)"$(compaudit 2>/dev/null)"})
+    if (( ${#insecure} )); then
+        sudo chmod go-w $insecure || failed=1
+        # compaudit's own rule on the listed paths only - re-auditing them through fpath would also judge their parents
+        remaining=(${^insecure}(N-f:g+w:,-f:o+w:,-^u0u$EUID))
+        if (( ${#remaining} )); then
+            printf "still insecure, likely owned by another user - their completions stay off:\n%s\n" "${(F)remaining}"
+            failed=1
+        fi
+        _shell_config_insecure_fpath=($remaining)
+    fi
+
+    # init unpacks only zsh/, so the other folders may not exist yet
+    for dir in zsh executable downloads assets; do
+        if [ -d "$HOME/shell-config/$dir" ]; then
+            grant_permissions "$HOME/shell-config/$dir" || failed=1
+        fi
+    done
+
+    return $failed
 }
 
 # fix permissions if needed
