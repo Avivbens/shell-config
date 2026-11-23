@@ -86,6 +86,5 @@ if command -v gh &>/dev/null; then
         echo "  ghsv              view          show the stack"
         echo "  ghsc <branch>     checkout      check out a stack (a branch or PR URL, never a bare number)"
         echo "  ghsw              switch        move to another layer (interactive picker)"
-        echo "  ghsst [--json]    status        review-loop snapshot of the current folder"
     }
 fi
