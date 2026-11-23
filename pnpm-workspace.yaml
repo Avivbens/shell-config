@@ -6,10 +6,3 @@ allowBuilds:
     fsevents: false
     # vitepress's vue-demi ships Vue 3 files; its postinstall only re-targets Vue 2
     vue-demi: false
-overrides:
-    # CommonJS majors of listr2's dependencies, carried over from the npm `overrides` block
-    lint-staged>listr2: 8.0.1
-    listr2>wrap-ansi: 7.0.0
-    listr2>cli-truncate: 2.1.0
-    listr2>log-update: 4.0.0
-    axios: 0.27.2
