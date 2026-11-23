@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
 import { CheckUpdateService } from '@services/check-update.service'
@@ -7,6 +8,7 @@ import { UpdateCommand } from './update.command'
 
 describe('UpdateCommand', () => {
     let service: UpdateCommand
+    const checkUpdateServiceMock = { checkForUpdates: vi.fn() }
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -15,9 +17,7 @@ describe('UpdateCommand', () => {
                 loggerMockCreator(UpdateCommand.name),
                 {
                     provide: CheckUpdateService,
-                    useValue: {
-                        checkForUpdates: jest.fn(),
-                    },
+                    useValue: checkUpdateServiceMock,
                 },
             ],
         }).compile()
@@ -27,6 +27,10 @@ describe('UpdateCommand', () => {
 
     it('should be defined', () => {
         expect(service).toBeDefined()
+    })
+
+    it('should inject CheckUpdateService by its type, which needs decorator metadata from the test transform', () => {
+        expect(service['checkUpdateService']).toBe(checkUpdateServiceMock)
     })
 
     describe('getVersion', () => {

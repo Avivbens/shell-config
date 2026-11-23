@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { TestingModule } from '@nestjs/testing'
 import { Test } from '@nestjs/testing'
 import { CheckUpdateService } from '@services/check-update.service'
@@ -15,7 +16,7 @@ describe('InstallSubCommand', () => {
                 loggerMockCreator(InstallSubCommand.name),
                 {
                     provide: CheckUpdateService,
-                    useValue: { checkForUpdates: jest.fn() },
+                    useValue: { checkForUpdates: vi.fn() },
                 },
             ],
         }).compile()
