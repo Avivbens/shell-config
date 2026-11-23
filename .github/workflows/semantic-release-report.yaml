@@ -29,9 +29,12 @@ jobs:
 
             - name: 🔬 Check Semantic Versioning
               id: semantic-release
+              # The branch name reaches the shell through env, never inline: a branch name can carry `$(...)`
+              env:
+                  HEAD_REF: ${{ github.head_ref }}
               run: |
-                  GITHUB_REF=${{ github.head_ref }}
-                  pnpm exec semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }} > output.txt
+                  GITHUB_REF="$HEAD_REF"
+                  pnpm exec semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches "$HEAD_REF" > output.txt
                   REPORT=$(cat output.txt | base64 -w 0)
 
                   VERSION=$(cat output.txt | \
