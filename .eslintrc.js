@@ -9,7 +9,7 @@ module.exports = {
         sourceType: 'module',
         ecmaVersion: 2020,
     },
-    plugins: ['@typescript-eslint/eslint-plugin', 'jest', 'prettier', 'unused-imports'],
+    plugins: ['@typescript-eslint/eslint-plugin', 'prettier', 'unused-imports'],
     extends: [
         'plugin:@typescript-eslint/recommended',
         'eslint:recommended',
@@ -20,7 +20,6 @@ module.exports = {
     root: true,
     env: {
         node: true,
-        jest: true,
     },
     ignorePatterns: ['.eslintrc.js', 'project-scripts/pack.js'],
     rules: {
@@ -41,14 +40,6 @@ module.exports = {
         'unused-imports/no-unused-imports': 'error',
     },
     overrides: [
-        {
-            files: ['*.spec.js'],
-            plugins: ['jest'],
-            extends: ['plugin:jest/recommended'],
-            rules: {
-                'jest/prefer-expect-assertions': 0,
-            },
-        },
         {
             files: ['*.json'],
             parser: 'jsonc-eslint-parser',
