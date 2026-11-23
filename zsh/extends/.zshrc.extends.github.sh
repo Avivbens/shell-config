@@ -69,7 +69,7 @@ if command -v gh &>/dev/null; then
 
     alias ghsi='ghs init'
     alias ghsa='ghs add'
-    alias ghss='ghs submit'
+    alias ghssb='ghs submit'
     alias ghssr='ghs rebase'
     alias ghsm='ghs modify'
     alias ghsv='ghs view'
@@ -80,7 +80,7 @@ if command -v gh &>/dev/null; then
         echo "gh stack helpers - every alias forwards its arguments to \`gh stack\`\n"
         echo "  ghsi <branch>     init          start a stack"
         echo "  ghsa <branch>     add           add a layer on top"
-        echo "  ghss              submit        open or update the PRs, then track every layer's upstream"
+        echo "  ghssb             submit        open or update the PRs, then track every layer's upstream"
         echo "  ghssr             rebase        rebase every layer onto its parent"
         echo "  ghsm              modify        restructure the stack (interactive)"
         echo "  ghsv              view          show the stack"
