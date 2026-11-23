@@ -133,7 +133,8 @@ function clonets() {
 
 # show current email config
 echo "\nCurrent git email config:"
-git config --global -l | grep 'email'
+# git fails loudly until ~/.gitconfig exists, as on a fresh Mac
+git config --global -l 2>/dev/null | grep 'email'
 echo "\n"
 
 # show current npmrc config
