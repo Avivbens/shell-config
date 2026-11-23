@@ -2,11 +2,13 @@
 name: Semantic Release Report 📝
 on:
     pull_request:
+        # PRs to `beta` cut prereleases, so they get the report too
         branches:
             - beta
             - master
 
 permissions:
+    # Write, and the checkout keeps its token: semantic-release's dry run still runs `git push --dry-run`, though the job never pushes
     contents: write
     issues: write
     pull-requests: write
@@ -18,7 +20,7 @@ jobs:
         name: Semantic Release Report 📝
         steps:
             - name: 📀 Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   fetch-depth: 0
 
@@ -27,9 +29,12 @@ jobs:
 
             - name: 🔬 Check Semantic Versioning
               id: semantic-release
+              # The branch name reaches the shell through env, never inline: a branch name can carry `$(...)`
+              env:
+                  HEAD_REF: ${{ github.head_ref }}
               run: |
-                  GITHUB_REF=${{ github.head_ref }}
-                  pnpm exec semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches ${{ github.head_ref }} > output.txt
+                  GITHUB_REF="$HEAD_REF"
+                  pnpm exec semantic-release --no-ci --dry-run --plugins @semantic-release/commit-analyzer,@semantic-release/release-notes-generator --branches "$HEAD_REF" > output.txt
                   REPORT=$(cat output.txt | base64 -w 0)
 
                   VERSION=$(cat output.txt | \
@@ -40,7 +45,7 @@ jobs:
                   echo "version=$VERSION" >> $GITHUB_OUTPUT
 
             - name: 📝 Report semantic versioning
-              uses: actions/github-script@v7
+              uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
               if: ${{ steps.semantic-release.outputs.releaseNote != '' }}
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}

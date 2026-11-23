@@ -1,9 +1,11 @@
 ---
 name: PR Health Checks 🐛
-on:
-    pull_request:
-        branches:
-            - master
+on: pull_request
+
+permissions:
+    contents: read
+    pull-requests: read
+    issues: read
 
 jobs:
     PR-checks:
@@ -12,9 +14,10 @@ jobs:
         name: PR Health Checks 🐛
         steps:
             - name: 📀 Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   fetch-depth: 1
+                  persist-credentials: false
 
             - name: 🧪 Check out repository code
               uses: ./.github/workflows/health-check
