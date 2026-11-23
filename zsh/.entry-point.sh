@@ -11,21 +11,21 @@ source "$HOME/shell-config/zsh/.utils.sh"
 BROW="/usr/local/Homebrew/bin/brew"
 BREW="/opt/homebrew/bin/brew"
 
-# support brew formulaes installed via Rosetta 2
-alias brow="arch --x86_64 $BROW"
-alias brew="$BREW"
-
-export BREW_PERFIX=$(brew --prefix)
-export BROW_PERFIX=$(brow --prefix)
+# prefixes come from the binary path, because shellenv prints nothing once PATH already starts with Homebrew's folders
+export BROW_PERFIX="" BREW_PERFIX=""
 
 # load all homebrew paths - brow
-if [ -f "$BROW" ]; then
+if [ -x "$BROW" ]; then
+    alias brow="arch --x86_64 $BROW"
     eval "$($BROW shellenv)"
+    BROW_PERFIX="${BROW%/Homebrew/bin/brew}"
 fi
 
 # load all homebrew paths - brew
-if [ -f "$BREW" ]; then
+if [ -x "$BREW" ]; then
+    alias brew="$BREW"
     eval "$($BREW shellenv)"
+    BREW_PERFIX="${BREW%/bin/brew}"
 fi
 
 # Autocomplete
@@ -94,13 +94,12 @@ function shell-doctor() {
     return $failed
 }
 
-# fix permissions if needed
-if find $HOME/shell-config/zsh -type d ! -perm 770 -print -quit | grep -q .; then
-    echo -e "\n\033[1;33mWARNING: shell-config permissions & initialization are not correct, fixing...\033[0m\n"
-    shell-doctor
-    shell-config init
-    shell-doctor
+# init recreates zsh/ folders as 755 - restore 770 without sudo or a full init
+stale_dirs=(${(f)"$(find "$HOME/shell-config/zsh" -type d ! -perm 770 2>/dev/null)"})
+if (( ${#stale_dirs} )) && ! chmod 770 $stale_dirs 2>/dev/null; then
+    printf "\n\033[1;33mWARNING: run shell-doctor to repair ~/shell-config permissions\033[0m\n"
 fi
+unset stale_dirs
 
 # check for shell-config updates once in 10 times
 if [ $((RANDOM % 10)) -eq 0 ]; then
