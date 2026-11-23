@@ -67,4 +67,4 @@ jobs:
                   GIT_COMMITTER_NAME: github-bot
                   GIT_COMMITTER_EMAIL: github-bot@gmail.com
               run: |
-                  npx semantic-release
+                  pnpm exec semantic-release

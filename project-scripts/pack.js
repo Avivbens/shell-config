@@ -10,9 +10,6 @@ const execPromise = promisify(exec)
 
 const DIRECTORIES_TO_DELETE = ['dist', 'bin']
 const PACKAGE_JSON_FILE = 'package.json'
-const PACKAGE_JSON_LOCK_FILE = 'package-lock.json'
-
-const DEFAULT_OPTIONS = { lockfile: false }
 
 const MAX_OLD_SPACE_SIZE = 16_000
 
@@ -41,9 +38,9 @@ async function readPrettierConfig() {
     }
 }
 
-async function readWorkflowPackageJson({ lockfile = false } = DEFAULT_OPTIONS) {
+async function readWorkflowPackageJson() {
     try {
-        const filePath = resolve(cwd(), lockfile ? PACKAGE_JSON_LOCK_FILE : PACKAGE_JSON_FILE)
+        const filePath = resolve(cwd(), PACKAGE_JSON_FILE)
 
         const rawData = await readFile(filePath, 'utf-8')
         const jsonData = JSON.parse(rawData)
@@ -55,13 +52,13 @@ async function readWorkflowPackageJson({ lockfile = false } = DEFAULT_OPTIONS) {
     }
 }
 
-async function writeWorkflowPackageJson(data, { lockfile = false } = DEFAULT_OPTIONS) {
+async function writeWorkflowPackageJson(data) {
     try {
         const { tabWidth = 2 } = await readPrettierConfig()
 
-        const filePath = resolve(cwd(), lockfile ? PACKAGE_JSON_LOCK_FILE : PACKAGE_JSON_FILE)
+        const filePath = resolve(cwd(), PACKAGE_JSON_FILE)
 
-        const dataToWrite = JSON.stringify(data, null, tabWidth)
+        const dataToWrite = `${JSON.stringify(data, null, tabWidth)}\n`
 
         await writeFile(filePath, dataToWrite)
     } catch (error) {
@@ -99,10 +96,6 @@ async function writeWorkflowPackageJson(data, { lockfile = false } = DEFAULT_OPT
             const packageJson = await readWorkflowPackageJson()
             packageJson.version = targetVersion
             await writeWorkflowPackageJson(packageJson)
-
-            const packageLockJson = await readWorkflowPackageJson({ lockfile: true })
-            packageLockJson.version = targetVersion
-            await writeWorkflowPackageJson(packageLockJson, { lockfile: true })
         } else {
             console.warn('Skipping version bumping because it is not running in CI')
         }
@@ -111,7 +104,7 @@ async function writeWorkflowPackageJson(data, { lockfile = false } = DEFAULT_OPT
          * Build
          */
         console.log('Building...')
-        await execPromise('npm run build')
+        await execPromise('pnpm build')
 
         /**
          * Pack
